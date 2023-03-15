@@ -9,7 +9,7 @@ export const ACTIVITE: Activite[] = [
     }, 
     {
         name: "Escalade",
-        description: "Le but est d'atteindre la derni-re prise. Si vous n'arrivez pas à faire une verte, vous êtes nuls.",
+        description: "Le but est d'atteindre la derniere prise. Si vous n'arrivez pas à faire une verte, vous êtes nuls.",
         image: "https://th.bing.com/th/id/OIP.Jb4G1zmxxH5riwKPGVeUEAHaE7?pid=ImgDet&rs=1"
     },
     {

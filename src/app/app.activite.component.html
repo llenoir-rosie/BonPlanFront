@@ -1,0 +1,16 @@
+<h1 class="center">Liste Activite</h1>
+<div class="row">
+    <div *ngFor="let Activite of listActivite">
+        <div class="col s4 m4" >
+          <div class="card">
+            <div class="card-image" >
+                <img  src= {{Activite.image}} >
+              <span class="card-title">{{ Activite.name }} </span>
+            </div>
+            <div class="card-content">
+             <p> {{ Activite.description }} </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>

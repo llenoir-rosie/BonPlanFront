@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Ville } from '../../ville/ville';
-import { VILLE } from '../../ville/mock-ville-list';
+import { Ville } from './ville/ville';
+import { VILLE } from './ville/mock-ville-list';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { VILLE } from '../../ville/mock-ville-list';
 })
 export class AppComponent implements OnInit {
   listVille: Ville[] = VILLE;
-
+  VilleSelected: Ville;
   ngOnInit() {
     console.table(this.listVille)
     this.selectVille(this.listVille[0])
