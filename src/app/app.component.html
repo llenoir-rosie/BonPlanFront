@@ -2,7 +2,7 @@
 <div class="row">
     <div *ngFor="let ville of listVille">
         <div class="col s4 m4" >
-          <div class="card" (click)="selectVille(ville.name)" testBorderVille="red">
+          <div class="card" (click)="selectVille(ville)" testBorderVille="red">
             <div class="card-image" >
                 <img  src= {{ville.image}} >
               <span class="card-title">{{ ville.name }} </span>
