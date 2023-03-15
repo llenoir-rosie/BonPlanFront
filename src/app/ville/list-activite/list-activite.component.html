@@ -1,0 +1,17 @@
+test
+
+<div class="row">
+    <div *ngFor="let ville of ListActivite">
+        <div class="col s4 m4" >
+          <div class="card" testBorderVille="red">
+            <div class="card-image" >
+                <img  src= {{ville.image}} >
+              <span class="card-title">{{ ville.name }} </span>
+            </div>
+            <div class="card-content">
+             <p> {{ ville.description }} </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>

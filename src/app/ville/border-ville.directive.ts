@@ -21,6 +21,6 @@ export class BorderVilleDirective {
   }
 
   setBorder(color: string) {
-    this.el.nativeElement.style.border = `solid 10px ${color}` ;
+    this.el.nativeElement.style.border = `solid 5px ${color}` ;
   }
 }
