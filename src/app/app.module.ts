@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BorderVilleDirective } from './border-ville.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BorderVilleDirective
   ],
   imports: [
     BrowserModule,

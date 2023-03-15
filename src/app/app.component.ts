@@ -12,5 +12,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.table(this.listVille)
+    this.selectVille('ville.name')
+  }
+
+  selectVille(villeName: string) {
+    console.log(`Vous avez cliqué sur la ville ${villeName}`);
   }
 }
