@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Ville } from './ville';
-import { VILLE } from './mock-ville-list';
+import { Ville } from '../../ville/ville';
+import { VILLE } from '../../ville/mock-ville-list';
 
 @Component({
   selector: 'app-root',

@@ -10,7 +10,7 @@ export class BorderVilleDirective {
     this.setBorder('#f5f5f5');
   }
   @HostListener('mouseenter') onMouseEnter() {
-    this.setBorder('#009688');
+    this.setBorder('#002688');
   
   }
   @HostListener('mouseleave') onMouseLeave() {
@@ -21,6 +21,6 @@ export class BorderVilleDirective {
   }
 
   setBorder(color: string) {
-    this.el.nativeElement.style.border = `solid 4x ${color}` ;
+    this.el.nativeElement.style.border = `solid 10px ${color}` ;
   }
 }
