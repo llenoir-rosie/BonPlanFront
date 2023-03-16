@@ -1,17 +1,15 @@
 <div class="row">
   <div *ngFor="let ville of listVille">
       <div class="col s4 m4">
-        <div class="card hoverable">
+        <div class="card hoverable" (click)="GoToVilleActivite(ville)"> 
           <div class="card-image">
               <img src= {{ville.image}} >
             <span class="card-title">{{ ville.name }} </span>
           </div>
           <div class="card-content">
-            <span
-            class="{{ ville.type | villeTypeColor }}"
-          >
-            {{ ville.type }}
-          </span>
+            <span class="{{ ville.type | villeTypeColor }}">
+              {{ ville.type }}
+            </span>
            <p> {{ ville.description }} </p>
           </div>
         </div>
