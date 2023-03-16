@@ -7,12 +7,11 @@
             <span class="card-title">{{ ville.name }} </span>
           </div>
           <div class="card-content">
-            <!-- <span
-            *ngFor="let type of ville.type" 
-            class="{{ type | villeTypeColor }}"
+            <span
+            class="{{ ville.type | villeTypeColor }}"
           >
-            {{ type }}
-          </span> -->
+            {{ ville.type }}
+          </span>
            <p> {{ ville.description }} </p>
           </div>
         </div>
