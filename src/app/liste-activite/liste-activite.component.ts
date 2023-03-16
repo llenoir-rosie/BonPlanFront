@@ -11,16 +11,17 @@ export class ListeActiviteComponent implements OnInit {
 
   villeList: Ville[];
   ville: Ville|undefined;
+  
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.villeList = VILLE;
     const villeName: string|null = this.route.snapshot.paramMap.get('ville.name');
+    let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
 
-    if(villeName) {
-      this.ville = this.villeList.find(ville => ville.name == villeName)
-    }
+    this.ville = this.villeList.find(ville => ville.name == nomdelaville)
+
     
 
   }
