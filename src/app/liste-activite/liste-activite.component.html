@@ -1,0 +1,26 @@
+<div *ngIf="ville" class="row">
+    <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ ville.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="ville.image">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ ville.name }}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a>Retour</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <h4 *ngIf='!ville' class="center">Aucune ville à afficher !</h4>
