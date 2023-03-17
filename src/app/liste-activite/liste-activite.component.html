@@ -1,7 +1,7 @@
 <div *ngIf="ville" class="row">
     <div class="col s12 m8 offset-m2">
     <h2 class="header center">{{ ville.name }}</h2>
-    <div class="card horizontal hoverable" (click)='goToVilleActiviteBonplan(ville)'>
+    <div class="card horizontal hoverable" (click)="goToVilleActiviteBonplan(ville)">
       <!-- <div class="card-image">
         <img [src]="ville.image">
       </div> -->
@@ -17,8 +17,7 @@
           </table>
         </div>
         <div class="card-action">
-          <button type="button" (click)="goToVilleList()">Retour à l'accueil</button>
-          <!-- <a (click)="goToVilleList()">Retour</a> -->
+          <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a>
         </div>
       </div>
     </div>
