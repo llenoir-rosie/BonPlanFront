@@ -1,7 +1,7 @@
 <div class="row">
   <div *ngFor="let ville of listVille">
       <div class="col s4 m4">
-        <div class="card hoverable" (click)="GoToVilleActivite(ville)"> 
+        <div (click)="goToVilleActivite(ville)" class="card hoverable" testBorderCard>
           <div class="card-image">
               <img src= {{ville.image}} >
             <span class="card-title">{{ ville.name }} </span>
