@@ -28,5 +28,10 @@ export class ListeActiviteComponent implements OnInit {
   goToVilleList() {
     this.router.navigate(['/ville']);
   }
+   
+  goToVilleActiviteBonplan(ville: Ville) {
+      this.router.navigate(['/ville/', ville.name,'bonplan'])
+
+    }
 
 }
