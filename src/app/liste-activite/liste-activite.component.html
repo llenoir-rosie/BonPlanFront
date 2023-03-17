@@ -1,7 +1,9 @@
 <div *ngIf="ville" class="row">
+  <div *ngFor="let act of activite">
     <div class="col s12 m8 offset-m2">
-    <h2 class="header center">{{ ville.name }}</h2>
-    <div class="card horizontal hoverable" (click)="goToVilleActiviteBonplan(ville)">
+    <h2 class="header center">{{ act.name }}</h2>
+    {{act.name}}
+    <div class="card horizontal hoverable" (click)="goToVilleActiviteBonplan(ville, act)">
       <!-- <div class="card-image">
         <img [src]="ville.image">
       </div> -->
@@ -11,7 +13,9 @@
             <tbody>
               <tr>
                 <td>Nom</td>
-                <td><strong>{{ ville.name }}</strong></td>
+                <td><strong>{{ act.name }}</strong></td>
+                <td>Description</td>
+                <td><strong>{{ act.description }}</strong></td>
               </tr>
             </tbody>
           </table>

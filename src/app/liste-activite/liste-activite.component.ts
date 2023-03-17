@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Activite } from '../activite';
+import { ACTIVITE } from '../mock-activite-list';
 import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 
@@ -8,9 +10,11 @@ import { Ville } from '../ville';
   templateUrl: './liste-activite.component.html',
 })
 export class ListeActiviteComponent implements OnInit {
-
-  villeList: Ville[];
+  activiteList:Activite[]=ACTIVITE;
+  villeList: Ville[];  
+  
   ville: Ville|undefined;
+  activite: Activite[]=[] ;
   
 
   constructor(private route: ActivatedRoute, private router: Router) { }
@@ -21,16 +25,22 @@ export class ListeActiviteComponent implements OnInit {
     let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
 
     this.ville = this.villeList.find(ville => ville.name == nomdelaville)
-
-    
+    this.activiteList.forEach(element => {
+      if (element.nameville === nomdelaville){
+        this.activite.push(element)
+      }
+      
+    });
+    // this.activite = this.activiteList.find(activite => activite.nameville == nomdelaville)
+    // console.log(this.activite)
 
   }
   goToVilleList() {
     this.router.navigate(['/ville']);
   }
    
-  goToVilleActiviteBonplan(ville: Ville) {
-      this.router.navigate(['/ville/', ville.name,'bonplan'])
+  goToVilleActiviteBonplan(ville: Ville, act: Activite) {
+      this.router.navigate(['/ville/', ville.name, act.name])
 
     }
 

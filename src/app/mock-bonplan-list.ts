@@ -1,0 +1,77 @@
+import { Bonplan } from "./bonplan";
+
+export const BONPLAN: Bonplan[] = [
+    {
+        nameville:"Grenoble",
+        nameactivite:"Course",
+        name:"Oussa",
+        lieu:"Monte la Bastille"
+    },
+    {
+        nameville:"Grenoble",
+        nameactivite:"Course",
+        name:"Oussabien",
+        lieu:"Descend de la Bastille"
+    },
+    {
+        nameville:"Grenoble",
+        nameactivite:"Ski",
+        name:"Quisa",
+        lieu:"Vercors"
+    },
+    {
+        nameville:"Grenoble",
+        nameactivite:"Ski",
+        name:"Chaussettes",
+        lieu:"Beldone"
+    },
+    {
+        nameville:"Grenoble",
+        nameactivite:"Randonne",
+        name:"Chaussures",
+        lieu:"Trounoir"
+    },
+    {
+        nameville:"Grenoble",
+        nameactivite:"Randonne",
+        name:"Tropnul",
+        lieu:"Troublanc"
+    },
+    {
+        nameville:"Lyon",
+        nameactivite:"Course",
+        name:"Fort",
+        lieu:"Tetedor"
+    },{
+        nameville:"Lyon",
+        nameactivite:"Course",
+        name:"Faible",
+        lieu:"Meribellejaunage"
+    },{
+        nameville:"Lyon",
+        nameactivite:"Course",
+        name:"Moyen",
+        lieu:"PartDieu"
+    },{
+        nameville:"Lyon",
+        nameactivite:"Piscine",
+        name:"Moulebite",
+        lieu:"BordureRhone"
+    },{
+        nameville:"Lyon",
+        nameactivite:"Piscine",
+        name:"Short",
+        lieu:"Eaudouce"
+    },{
+        nameville:"Marseille",
+        nameactivite:"Course",
+        name:"Plage",
+        lieu:"Sable"
+    },{
+        nameville:"Marseille",
+        nameactivite:"Course",
+        name:"Route",
+        lieu:"Cailloux"
+    },
+
+]

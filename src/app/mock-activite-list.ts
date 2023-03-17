@@ -8,7 +8,7 @@ export const ACTIVITE: Activite[] = [
     },
     {
         nameville:"Grenoble",
-        name:"Randonnée",
+        name:"Randonne",
         description:"Permet de faire des ballades en montagne"
     },
     {
