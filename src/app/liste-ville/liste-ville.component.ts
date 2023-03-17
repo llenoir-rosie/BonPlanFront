@@ -6,6 +6,7 @@ import { Ville } from '../ville';
 @Component({
   selector: 'app-liste-ville',
   templateUrl: './liste-ville.component.html',
+  styleUrls: ['liste-ville.component.css'],
 })
 export class ListeVilleComponent {
   listVille: Ville[] = VILLE;
