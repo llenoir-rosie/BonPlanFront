@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 button {
-    background-color: #eee;
+    background-color: #9ed3d9;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    color: black;
+    color: rgb(0, 0, 0);
     font-size: 1.2rem;
     padding: 1rem;
     margin-right: 1rem;
