@@ -2,14 +2,15 @@
   <div *ngFor="let ville of listVille">
       <div class="col s4 m4">
         <div (click)="goToVilleActivite(ville)" class="card hoverable" testBorderCard>
-          <div class="card-image">
-              <img src= {{ville.image}} >
-            <span class="card-title">{{ ville.name }} </span>
-          </div>
+          
+          <!-- <div class="card-image"> -->
+              <!-- <img src= {{ville.image}} > -->
+            <p class="card-title">{{ ville.name }} </p>
+          <!-- </div> -->
           <div class="card-content">
-            <span class="{{ ville.type | villeTypeColor }}">
+            <!-- <span class="{{ ville.type | villeTypeColor }}">
               {{ ville.type }}
-            </span>
+            </span> -->
            <p> {{ ville.description }} </p>
           </div>
         </div>
