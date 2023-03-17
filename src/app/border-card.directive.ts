@@ -6,7 +6,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 export class BorderCardDirective {
 
   constructor(private el: ElementRef) { 
-    this.setHeight(450);
+    this.setHeight(500);
     this.setBorder('#f5f5f5');
   }
   @HostListener('mouseenter') onMouseEnter() {

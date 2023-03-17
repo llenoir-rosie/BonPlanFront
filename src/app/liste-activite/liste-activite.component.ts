@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 
@@ -13,7 +13,7 @@ export class ListeActiviteComponent implements OnInit {
   ville: Ville|undefined;
   
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.villeList = VILLE;
@@ -24,6 +24,9 @@ export class ListeActiviteComponent implements OnInit {
 
     
 
+  }
+  goToVilleList() {
+    this.router.navigate(['/ville']);
   }
 
 }
