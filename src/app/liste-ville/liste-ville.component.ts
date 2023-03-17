@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 
@@ -8,4 +9,11 @@ import { Ville } from '../ville';
 })
 export class ListeVilleComponent {
   listVille: Ville[] = VILLE;
+
+  constructor(private router: Router) {}
+   
+  goToVilleActivite(ville: Ville) {
+      this.router.navigate(['/ville', ville.name])
+    }
+  
 }
