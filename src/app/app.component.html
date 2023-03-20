@@ -68,9 +68,21 @@
     }
 </style>
     <div class="search-box">
-      <input type="string" name="" class="search-txt" placeholder="Tapez pour rechercher" />
-      <a class="search-btn" href="#">
-        <i class="fa fa-search" aria-hidden="true"></i>
-      </a>
+      <input type="string" name="" 
+      class="search-txt" 
+      #searchBox
+      (keyup)="search(searchBox.value)"
+      placeholder="Recherchez une ville" />
+        <div class="collection">
+            <a *ngFor="let Ville of Villeslist"
+                (click)="goToVilleActivite(Ville)"
+                class="collection-item"
+            >
+                {{ Ville.name }}
+            </a>
+        </div>
+        <a class="search-btn" href="#">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
     </div>
 <router-outlet></router-outlet>
