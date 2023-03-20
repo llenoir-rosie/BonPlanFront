@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VILLE } from '../mock-ville-list';
+// import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 
 @Component({
@@ -9,29 +10,34 @@ import { Ville } from '../ville';
 })
 export class ListeActiviteComponent implements OnInit {
 
-  villeList: Ville[];
-  ville: Ville|undefined;
+  public listeActictivies: Activite[];
+  // ville: Ville|undefined;
   
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    this.villeList = VILLE;
+    // this.villeList = VILLE;
     const villeName: string|null = this.route.snapshot.paramMap.get('ville.name');
     let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
 
-    this.ville = this.villeList.find(ville => ville.name == nomdelaville)
+    this.getAllActivities(nomdelaville); 
+    // this.ville = this.villeList.find(ville => ville.name == nomdelaville)
 
-    
+  }
 
+  public getAllActivities(nomville) {
+    this.http.get<Activite[]>('http://localhost:8080/{{nomville}}/activités').subscribe((data) => {
+    this.listeActictivies = data;
+  })
   }
   goToVilleList() {
     this.router.navigate(['/ville']);
   }
    
-  goToVilleActiviteBonplan(ville: Ville) {
-      this.router.navigate(['/ville/', ville.name,'bonplan'])
+  // goToVilleActiviteBonplan(ville: Ville) {
+  //     this.router.navigate(['/ville/', ville.name,'bonplan'])
 
-    }
+  //   }
 
 }
