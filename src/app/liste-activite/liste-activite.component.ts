@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { VILLE } from '../mock-ville-list';
-import { Ville } from '../ville';
+import { Activite } from '../activite';
+
 
 @Component({
   selector: 'app-liste-activite',
@@ -10,7 +10,7 @@ import { Ville } from '../ville';
 })
 export class ListeActiviteComponent implements OnInit {
 
-  public listeActictivies: Activite[];
+  public listeActictivies: Activite[] = [];
   // ville: Ville|undefined;
   
 
