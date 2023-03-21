@@ -1,12 +1,8 @@
 
-test
 <div *ngIf="ville" class="row">
-
     <div *ngIf="activite" class="row">
-        test
         <div *ngFor="let bpl of bp">
-            test
-            <div (click)="goToVillePrecision(ville, activite, bpl)" class="card" testBorderCard>
+            <div (click)="goToVillePrecision(ville, activite, bpl)" class="card" testBorderCard = 'setHeight=50'>
                 <div class="card-stacked">
                     <div class="card-content">
                       <table class="bordered striped">
