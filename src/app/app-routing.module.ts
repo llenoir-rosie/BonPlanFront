@@ -9,9 +9,9 @@ import { ListPrecisionComponent } from './list-precision/list-precision.componen
 
 const routes: Routes = [
   { path: 'ville', component: ListeVilleComponent },
-  { path: 'ville/:ville.name', component: ListeActiviteComponent },
-  { path: 'ville/:ville.name/:act.name', component: ListBonplanComponent},
-  { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
+  { path: 'ville/:name', component: ListeActiviteComponent },
+  { path: 'ville/:name/:activity.name', component: ListBonplanComponent},
+  // { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
   { path: '', redirectTo: 'ville', pathMatch: 'full' }
 ];
 

@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from '../activite';
 import { Bonplan } from '../bonplan';
-import { BONPLAN } from '../mock-bonplan-list';
 import { Ville } from '../ville';
 
 @Component({
@@ -12,45 +12,32 @@ import { Ville } from '../ville';
   ]
 })
 export class ListBonplanComponent implements OnInit {
-  activiteList:Activite[];
-  villeList: Ville[];
-  bpList: Bonplan[]=BONPLAN;
-  
-
-
   ville: Ville|undefined;
   activite: Activite|undefined;
-  bp: Bonplan[]=[];
+
+  nomdelaville: String;
+  nomdelactivite: String;
+  public listeBonPlan: Bonplan[];
 
 
-
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
+    const villeName: string|null = this.route.snapshot.paramMap.get('name');
+    this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1);
 
+    const activiteName: string|null = this.route.snapshot.paramMap.get('activity.name');
+    this.nomdelactivite = activiteName+'';
+    // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
 
+    this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+  }
+    public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
+      this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
+        this.listeBonPlan = data;
+    })
+  }
 
-    const villeName: string|null = this.route.snapshot.paramMap.get('ville.name');
-    let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
-
-    this.ville = this.villeList.find(ville => ville.name == nomdelaville);
-
-    const activiteName: string|null = this.route.snapshot.paramMap.get('activite.name');
-    let nomdelactivite = (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1)
-
-
-    this.activite = this.activiteList.find(activite => activite.name == nomdelactivite)
-    this.bpList.forEach(element => {
-      if (element.nameville,element.nameactivite === nomdelaville,nomdelactivite){
-        this.bp.push(element)
-
-  }});
-  console.log(activiteName)
-  console.log(nomdelactivite)
-  console.log(this.bp)
-  console.log(this.villeList)
-  console.log(this.bpList)
-}
   goToVillePrecision(ville: Ville, act: Activite, bp: Bonplan) {
     this.router.navigate(['/ville', ville.name, act.name, bp.name])
   }
