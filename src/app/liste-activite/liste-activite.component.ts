@@ -10,25 +10,21 @@ import { Activite } from '../activite';
 })
 export class ListeActiviteComponent implements OnInit {
 
-  public listeActictivies: Activite[] = [];
-  // ville: Ville|undefined;
-  
+  public listeActivites: Activite[];
+  public nomdelaville: String;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    // this.villeList = VILLE;
     const villeName: string|null = this.route.snapshot.paramMap.get('ville.name');
-    let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
-
-    this.getAllActivities(nomdelaville); 
-    // this.ville = this.villeList.find(ville => ville.name == nomdelaville)
-
+    this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
+    this.getAllActivities(this.nomdelaville); 
   }
 
-  public getAllActivities(nomville) {
-    this.http.get<Activite[]>('http://localhost:8080/{{nomville}}/activités').subscribe((data) => {
-    this.listeActictivies = data;
+  public getAllActivities(nomville: String) {
+    this.http.get<Activite[]>("http://localhost:8080/" + nomville + "/activites").subscribe((data) => {
+    this.listeActivites = data;
+    console.log(this.listeActivites)
   })
   }
   goToVilleList() {

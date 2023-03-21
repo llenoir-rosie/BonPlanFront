@@ -1,12 +1,11 @@
-<div *ngIf="ville" class="row">
-  <div *ngFor="let act of activite">
+ <div *ngFor="let act of listeActivites">
     <div class="col s12 m8 offset-m2">
     <h2 class="header center">{{ act.name }}</h2>
-    {{act.name}}
-    <div class="card horizontal hoverable" (click)="goToVilleActiviteBonplan(ville, act)">
-      <!-- <div class="card-image">
-        <img [src]="ville.image">
-      </div> -->
+    <div class="card horizontal hoverable">
+      <!-- (click)="goToVilleActiviteBonplan(ville, act)"> -->
+      <div class="card-image">
+        <img src= " {{ act.image }}" >
+      </div>
       <div class="card-stacked">
         <div class="card-content">
           <table class="bordered striped">
@@ -27,4 +26,3 @@
     </div>
     </div>
     </div>
-    <h4 *ngIf='!ville' class="center">Aucune ville à afficher !</h4>

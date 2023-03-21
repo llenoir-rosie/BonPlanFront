@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from '../activite';
 import { Bonplan } from '../bonplan';
-import { ACTIVITE } from '../mock-activite-list';
 import { BONPLAN } from '../mock-bonplan-list';
-import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 
 @Component({
@@ -31,9 +29,6 @@ export class ListBonplanComponent implements OnInit {
   ngOnInit() {
 
 
-
-    this.villeList = VILLE;
-    this.activiteList = ACTIVITE;
 
     const villeName: string|null = this.route.snapshot.paramMap.get('ville.name');
     let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
