@@ -7,16 +7,17 @@ import { ListPrecisionComponent } from './list-precision/list-precision.componen
 
 
 
-const routes: Routes = [
-  { path: 'ville', component: ListeVilleComponent },
-  { path: 'ville/:ville.name', component: ListeActiviteComponent },
-  { path: 'ville/:ville.name/bonplan', component: ListBonplanComponent},
-  { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
-  { path: '', redirectTo: 'ville', pathMatch: 'full' }
+export const routes: Routes = [
+  { path: 'ville', component: ListeVilleComponent, runGuardsAndResolvers: 'always', },
+  { path: 'ville/:ville.name', component: ListeActiviteComponent, runGuardsAndResolvers: 'always', },
+  { path: 'ville/:ville.name/bonplan', component: ListBonplanComponent, runGuardsAndResolvers: 'always',},
+  { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent, runGuardsAndResolvers: 'always',},
+  { path: '', redirectTo: 'ville', pathMatch: 'full' , runGuardsAndResolvers: 'always',}
+  
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

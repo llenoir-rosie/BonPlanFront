@@ -68,14 +68,16 @@
     }
 </style>
     <div class="search-box">
-      <input type="string" name="" 
+      <input
+      type="string"
+      name="" 
       class="search-txt" 
       #searchBox
-      (keyup)="search(searchBox.value)"
+      (keyup)="SearchVille(searchBox.value)"
       placeholder="Recherchez une ville" />
         <div class="collection">
-            <a *ngFor="let Ville of Villeslist"
-                (click)="goToVilleActivite(Ville)"
+            <a *ngFor="let Ville of this.touteVille"
+                (click)="goToDetail(Ville)"
                 class="collection-item"
             >
                 {{ Ville.name }}
@@ -84,5 +86,6 @@
         <a class="search-btn" href="#">
             <i class="fa fa-search" aria-hidden="true"></i>
         </a>
-    </div>
+    </div >
+
 <router-outlet></router-outlet>

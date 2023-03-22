@@ -8,12 +8,15 @@ import { Ville } from '../ville';
   templateUrl: './liste-activite.component.html',
 })
 export class ListeActiviteComponent implements OnInit {
-
   villeList: Ville[];
   ville: Ville|undefined;
   
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
+  }
 
   ngOnInit() {
     this.villeList = VILLE;
@@ -21,10 +24,8 @@ export class ListeActiviteComponent implements OnInit {
     let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
 
     this.ville = this.villeList.find(ville => ville.name == nomdelaville)
-
-    
-
   }
+
   goToVilleList() {
     this.router.navigate(['/ville']);
   }
@@ -33,5 +34,5 @@ export class ListeActiviteComponent implements OnInit {
       this.router.navigate(['/ville/', ville.name,'bonplan'])
 
     }
-
+  
 }

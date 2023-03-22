@@ -1,1 +1,6 @@
 span {color: white}
+
+div {
+    position:relative;
+    z-index: 1;
+}

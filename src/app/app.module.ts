@@ -8,7 +8,7 @@ import { ListeActiviteComponent } from './liste-activite/liste-activite.componen
 import { BorderCardDirective } from './border-card.directive';
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
-import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -25,7 +25,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
