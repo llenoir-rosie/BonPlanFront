@@ -1,5 +1,23 @@
-<p>list-bonplan works!</p>
-<div (click)="goToVillePrecision()" class="card" testBorderCard>
+        <div *ngFor="let bp of listeBonPlan">
+            <div  class="card" testBorderCard> 
+              <!-- (click)="goToVillePrecision(ville, activite, bp)" -->
+                <div class="card-stacked">
+                    <div class="card-content">
+                      <table class="bordered striped">
+                        <tbody>
+                <tr>
+                <td>Nom</td>
+                <td><strong>{{ bp.name }}</strong></td>
+                <td>Description</td>
+                <td><strong>{{ bp.address }}</strong></td>
+                </tr>  
+                      </tbody>
+                    </table>
+                      </div>      
+                 </div>
+              </div>
+          </div>
 
 
-    Voir même très nul !!!
+
+

@@ -7,6 +7,7 @@ import { Ville } from './ville';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
+  styleUrls: ['base-page.css'],
 })
 
 export class AppComponent implements OnInit {

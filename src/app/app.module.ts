@@ -11,6 +11,7 @@ import { ListPrecisionComponent } from './list-precision/list-precision.componen
 import { RouterModule } from '@angular/router';
 
 
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
