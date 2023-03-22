@@ -14,7 +14,6 @@ import { Ville } from '../ville';
 export class ListBonplanComponent implements OnInit {
   ville: Ville|undefined;
   activite: Activite|undefined;
-
   nomdelaville: String;
   nomdelactivite: String;
   public listeBonPlan: Bonplan[];
