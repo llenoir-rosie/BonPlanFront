@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from '../activite';
 import { Bonplan } from '../bonplan';
+// import { ACTIVITE } from '../mock-activite-list';
+import { BONPLAN } from '../mock-bonplan-list';
+import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 
 @Component({
@@ -12,22 +15,13 @@ import { Ville } from '../ville';
   ]
 })
 export class ListBonplanComponent implements OnInit {
-<<<<<<< HEAD
-=======
-  activiteList:Activite[];
-  villeList: Ville[];
+  villeList: Ville[] = VILLE;
   bpList: Bonplan[]=BONPLAN;
-  
-  
-
-
->>>>>>> frontfthibault
   ville: Ville|undefined;
-  activite: Activite|undefined;
+  bp: Bonplan[]=[];
   nomdelaville: String;
   nomdelactivite: String;
   public listeBonPlan: Bonplan[];
-
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
@@ -40,50 +34,32 @@ export class ListBonplanComponent implements OnInit {
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
 
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+
+    this.bpList.forEach(element => {
+      if (element.ville_name === this.nomdelaville && element.activity_type === this.nomdelactivite){
+        this.bp.push(element)
+      }
+      console.log(this.bpList);
+    });
+
   }
-    public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
-      this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
-        this.listeBonPlan = data;
+
+  public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
+    this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
+    this.listeBonPlan = data;
     })
   }
-
-<<<<<<< HEAD
-=======
-    this.villeList = VILLE;
-    this.activiteList = ACTIVITE;
-
-    const villeName: string|null = this.route.snapshot.paramMap.get('ville.name');
-    const activiteName: string|null = this.route.snapshot.paramMap.get('act.name');
-    let nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
-    let nomdelactivite = (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1)
-
-    this.ville = this.villeList.find(ville => ville.name == nomdelaville);
-    this.activite = this.activiteList.find(activite => activite.nameville == nomdelaville)
-    
-    
-    this.bpList.forEach(element => {
-      if (element.nameville === nomdelaville && element.nameactivite === nomdelactivite){
-        this.bp.push(element)
-
-  }});
   
-
-
-
-
-}
->>>>>>> frontfthibault
   goToVillePrecision(ville: Ville, act: Activite, bp: Bonplan) {
     this.router.navigate(['/ville', ville.name, act.name, bp.name])
   }
   soumettreForm(test: string){
     console.log(test)
   }
-  CreNouveauBonPlan(ville: Ville, act: Activite) {
+  CreNouveauBonPlan(ville: String, act: String) {
     console.log(document.getElementById("test"),)
   }
-  goToedit(ville: Ville, act: Activite){
-    console.log(ville.name,act.name)
+  goToedit(ville: String, act: String){
     this.router.navigate(['/edit/bonplan'])
 
   }

@@ -1,24 +1,16 @@
-<<<<<<< HEAD
-        <div *ngFor="let bp of listeBonPlan">
-            <div  class="card" testBorderCard> 
-              <!-- (click)="goToVillePrecision(ville, activite, bp)" -->
-=======
-
-<div *ngIf="ville" class="row">
-    <div *ngIf="activite" class="row">
+<div *ngIf="nomdelaville" class="row">
+    <div *ngIf="nomdelactivite" class="row">
         <div *ngFor="let bpl of bp">
-            <div (click)="CreNouveauBonPlan(ville, activite)" class="card" testBorderCard = 'setHeight=50'>
->>>>>>> frontfthibault
+            <div (click)="CreNouveauBonPlan(nomdelaville, nomdelactivite)" class="card" testBorderCard = 'setHeight=50'>
                 <div class="card-stacked">
                     <div class="card-content">
                       <table class="bordered striped">
                         <tbody>
                 <tr>
                 <td>Nom</td>
-                <td><strong>{{ bp.name }}</strong></td>
+                <td><strong>{{ bpl.name }}</strong></td>
                 <td>Description</td>
-<<<<<<< HEAD
-                <td><strong>{{ bp.address }}</strong></td>
+                <td><strong>{{ bpl.address }}</strong></td>
                 </tr>  
                       </tbody>
                     </table>
@@ -26,21 +18,6 @@
                  </div>
               </div>
           </div>
-=======
-                <td><strong>{{ bpl.lieu }}</strong></td>
-              </tr>  
-            </tbody>
-        </table>
-      </div>      
-      
-            </div>
-        </div>
-    </div>
-
-<a (click)="goToedit(ville,activite)">Editer</a>
-</div>
-</div>
->>>>>>> frontfthibault
 
 
 

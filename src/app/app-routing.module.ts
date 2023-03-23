@@ -19,12 +19,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-<<<<<<< HEAD
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
-=======
-  imports: [RouterModule.forRoot(routes),
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
+RouterModule.forRoot(routes),
     FormsModule],
->>>>>>> frontfthibault
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

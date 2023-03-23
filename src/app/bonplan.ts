@@ -1,5 +1,6 @@
 export class Bonplan {
-    name: string
-    address: string
-    activity_type: string
+    ville_name: String
+    activity_type: String
+    name: String
+    address: String 
 }

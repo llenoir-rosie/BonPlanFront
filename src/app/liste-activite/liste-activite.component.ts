@@ -31,7 +31,8 @@ export class ListeActiviteComponent implements OnInit {
   }
    
   goToVilleActiviteBonplan(ville: String , activity: Activite) {
-      this.router.navigate(['/ville/', ville, activity.name])
+    console.log("aze",activity)
+      this.router.navigate(['/ville', ville, activity.name])
 
     }
   
