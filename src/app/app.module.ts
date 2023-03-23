@@ -9,8 +9,6 @@ import { BorderCardDirective } from './border-card.directive';
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
 import { RouterModule } from '@angular/router';
-
-
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({

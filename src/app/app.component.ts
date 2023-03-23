@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
-import { VILLE } from './mock-ville-list';
 import { Ville } from './ville';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +13,10 @@ import { Ville } from './ville';
 export class AppComponent implements OnInit {
   searchTerms = new Subject<string>();
   touteVille: Ville[] = [];
-  Villeslist: Ville[] = VILLE;
+  Villeslist: Ville[] = [];
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
@@ -28,6 +28,9 @@ export class AppComponent implements OnInit {
     //   distinctUntilChanged(),
     //   switchMap((term) => this.SearchVille(term))
     // );
+    this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
+      this.Villeslist = data;
+    })  
     console.log(this.Villeslist)
   }
 

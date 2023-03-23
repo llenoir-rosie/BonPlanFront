@@ -7,22 +7,12 @@ import { ListPrecisionComponent } from './list-precision/list-precision.componen
 
 
 
-<<<<<<< HEAD
-export const routes: Routes = [
-  { path: 'ville', component: ListeVilleComponent, runGuardsAndResolvers: 'always', },
-  { path: 'ville/:ville.name', component: ListeActiviteComponent, runGuardsAndResolvers: 'always', },
-  { path: 'ville/:ville.name/bonplan', component: ListBonplanComponent, runGuardsAndResolvers: 'always',},
-  { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent, runGuardsAndResolvers: 'always',},
-  { path: '', redirectTo: 'ville', pathMatch: 'full' , runGuardsAndResolvers: 'always',}
-  
-=======
 const routes: Routes = [
   { path: 'ville', component: ListeVilleComponent },
   { path: 'ville/:name', component: ListeActiviteComponent },
   { path: 'ville/:name/:activity.name', component: ListBonplanComponent},
   // { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
   { path: '', redirectTo: 'ville', pathMatch: 'full' }
->>>>>>> lorenzofront
 ];
 
 @NgModule({
