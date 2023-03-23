@@ -1,17 +1,31 @@
+<div class="en-tête">
+  <h2>
+    Description du site en 2 mots
+  </h2>
+  <hr>
+  <p class="description">
+    Ce site vous permettra de trouver les activités qui vous conviennent dans les villes où vous vous situez !
+    Il est entièrement collaboratif puisque ce sont les internautes qui donnent leurs bons plans.
+  </p>
+</div>
+
 <div class="row">
   <div *ngFor="let ville of listVille">
       <div class="col s4 m4">
-        <div (click)="goToVilleActivite(ville)" class="card hoverable">
-          
+        <div (click)="goToVilleActivite(ville)" class="card hoverable" testBorderCard>
           <div class="card-image">
-               <img src= " {{ ville.image }}" >
-          </div>
+            <div class="example">
+               <img src= " {{ ville.image }}">
+                <div class="fadedbox">
+                  <div class="title text">{{ ville.description }}</div>
+                </div>
+            </div>
           <div class="card-content">
-            <p class="card-title">{{ ville.name }} </p>
+            <p class="card-title">{{ ville.name }}</p>
             <!-- <span class="{{ ville.type | villeTypeColor }}">
               {{ ville.type }}
             </span> -->
-           <p> {{ ville.description }} </p>
+           <!-- <p> {{ ville.description }} </p> -->
           </div>
         </div>
       </div>

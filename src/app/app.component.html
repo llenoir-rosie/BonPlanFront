@@ -1,6 +1,7 @@
 <nav>
-    <div class="nav-wrapper" style="background-color: rgb(21, 207, 182);">
-        <a href="#" class="brand-logo center" style="color: rgb(255, 255, 255)">
+    <div class="nav-wrapper" style="background-color: rgb(65, 153, 230);">
+        <img src=".\assets\img\logo-site.jfif" height="90%" width="3.5%">
+        <a href="#" class="brand-logo-center" style="color: rgb(255, 255, 255)">
             Bon Plans
         </a>
         <div class="search-box2">
@@ -20,16 +21,44 @@
                   </a>
               </div>
           </div >
+          <button>
+            Identification
+            <img src=".\assets\img\logo-authentification.png" height="5%" width="5%">
+          </button>
     </div>
 </nav>
-<style>
 
-    .search-box2 {
+<style>
+nav {
+    height: 100px;
+}
+
+a.brand-logo-center{
+    font-size: 70px;
+    position: absolute;
+    left: 42%;
+    margin-top: 12px;
+}
+
+img {
+        z-index:3000;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+.search-box2 {
         position: absolute;
         z-index: 2000;
-        top: -5%;
-        right: 5%;
+        top: 0%;
+        right: 20%;
     }
+
+button {
+    position: absolute;
+    top: 40%;
+    right: 5%
+}
 
 </style>
 <router-outlet></router-outlet>
@@ -44,7 +73,12 @@
     <div class="footer-copyright">
       <div class="container">
       © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      <a class="grey-text text-lighten-4 right" href="#!">More Links
+      <img src=".\assets\img\facebook.png" height="15px" width="15px">
+      <img src=".\assets\img\twitter.png" height="15px" width="15px">
+      <img src=".\assets\img\instagram.jfif" height="15px" width="15px">
+      <img src=".\assets\img\discord.jfif" height="15px" width="15px">
+    </a>
       </div>
     </div>
     </footer>

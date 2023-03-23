@@ -1,6 +1,78 @@
-span {color: white}
+/* span {color: white} */
 
-div {
+/* div {
     position:relative;
     z-index: 1;
+} */
+/* .card-image {
+    border-radius: 10px;
+    width:"400";
+    height:"350";
+} */
+
+h2{
+    font-weight: 700;
 }
+
+p.description {
+    font-size: 25px;
+
+}
+
+img {
+    height: 430px;
+    object-fit: fill;
+}
+
+p.card-title {
+    position: relative;
+    color:black
+}
+
+.example {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .example .fadedbox {
+    background-color: #666666;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    opacity: 0;
+    width: 593px;
+    height: 430px;
+    padding: 130px 20px;
+  }
+  .example:hover .fadedbox {
+    opacity: 0.8;
+  }
+  .example .text {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    transform: translateY(30px);
+    -webkit-transform: translateY(30px);
+  }
+  .example .title {
+    font-size: 15px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition-delay: 0.2s;
+    transition-duration: 0.3s;
+  }
+  .example:hover .title,
+  .example:focus .title {
+    opacity: 1;
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+  }
