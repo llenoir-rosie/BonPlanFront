@@ -18,6 +18,7 @@ export class ListBonplanComponent implements OnInit {
   villeList: Ville[];
   bpList: Bonplan[]=BONPLAN;
   
+  
 
 
   ville: Ville|undefined;
@@ -49,15 +50,24 @@ export class ListBonplanComponent implements OnInit {
         this.bp.push(element)
 
   }});
-  console.log(activiteName)
-  console.log(this.activite)
+  
 
-  console.log(this.bp)
-  console.log(this.bpList)
+
 
 
 }
   goToVillePrecision(ville: Ville, act: Activite, bp: Bonplan) {
     this.router.navigate(['/ville', ville.name, act.name, bp.name])
+  }
+  soumettreForm(test: string){
+    console.log(test)
+  }
+  CreNouveauBonPlan(ville: Ville, act: Activite) {
+    console.log(document.getElementById("test"),)
+  }
+  goToedit(ville: Ville, act: Activite){
+    console.log(ville.name,act.name)
+    this.router.navigate(['/edit/bonplan'])
+
   }
 }

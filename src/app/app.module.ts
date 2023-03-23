@@ -8,6 +8,9 @@ import { ListeActiviteComponent } from './liste-activite/liste-activite.componen
 import { BorderCardDirective } from './border-card.directive';
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
+import { BonplanFormComponent } from './list-bonplan/bonplan-form/bonplan-form.component';
+import { FormsModule } from '@angular/forms';
+import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.component';
 
 
 @NgModule({
@@ -19,9 +22,12 @@ import { ListPrecisionComponent } from './list-precision/list-precision.componen
     BorderCardDirective,
     ListBonplanComponent,
     ListPrecisionComponent,
+    BonplanFormComponent,
+    EditbonplanComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
