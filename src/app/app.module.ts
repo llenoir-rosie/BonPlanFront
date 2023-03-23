@@ -8,15 +8,12 @@ import { ListeActiviteComponent } from './liste-activite/liste-activite.componen
 import { BorderCardDirective } from './border-card.directive';
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
-<<<<<<< HEAD
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-=======
 import { BonplanFormComponent } from './list-bonplan/bonplan-form/bonplan-form.component';
 import { FormsModule } from '@angular/forms';
 import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.component';
 
->>>>>>> frontfthibault
 
 @NgModule({
   declarations: [
@@ -32,13 +29,10 @@ import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.com
   ],
   imports: [
     BrowserModule,
-<<<<<<< HEAD
     AppRoutingModule,
-    HttpClientModule
-=======
+    HttpClientModule,
     FormsModule,
     AppRoutingModule
->>>>>>> frontfthibault
   ],
   providers: [],
   bootstrap: [AppComponent]
