@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private router: Router, private http: HttpClient) {}
 
   registration() {
-    this.router.navigate(['/ville/registration'])
+    this.router.navigate(['/registration'])
   }
 }
 
