@@ -22,6 +22,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/ville', ville.name]);
   }
 
+  goToRegistration(){
+    this.router.navigate(['/registration']);
+  }
+
   ngOnInit(): void {
     // this.ville$ = this.searchTerms.pipe(
     //   debounceTime(300),

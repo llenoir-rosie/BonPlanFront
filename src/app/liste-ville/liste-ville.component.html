@@ -11,23 +11,26 @@
 
 <div class="row">
   <div *ngFor="let ville of listVille">
-      <div class="col s4 m4">
-        <div (click)="goToVilleActivite(ville)" class="card hoverable" testBorderCard>
-          <div class="card-image">
-            <div class="example">
-               <img src= " {{ ville.image }}">
-                <div class="fadedbox">
-                  <div class="title text">{{ ville.description }}</div>
-                </div>
+    <div class="col s4 m4">
+      <div (click)="goToVilleActivite(ville)" class="card hoverable" testBorderCard>
+        <div class="card-image">
+          <div class="example">
+            <img src= " {{ ville.image }}">
+            <div class="fadedbox">
+              <div class="description text">{{ ville.description }}</div>
             </div>
-          <div class="card-content">
-            <p class="card-title">{{ ville.name }}</p>
+            <p class="card-title" style="color:black">{{ ville.name }}</p>
+
             <!-- <span class="{{ ville.type | villeTypeColor }}">
               {{ ville.type }}
             </span> -->
            <!-- <p> {{ ville.description }} </p> -->
           </div>
+          <!-- <div class="card-content">
+
+          </div>             -->
         </div>
       </div>
+    </div>
   </div>
 </div>

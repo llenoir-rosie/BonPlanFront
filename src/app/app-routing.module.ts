@@ -6,6 +6,7 @@ import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
 import { FormsModule } from '@angular/forms';
 import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.component';
+import { Register } from './regis/registration.component';
 
 
 
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'ville/:name', component: ListeActiviteComponent },
   { path: 'ville/:name/:activity.name', component: ListBonplanComponent},
   // { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
-  { path: '', redirectTo: 'ville', pathMatch: 'full' }
+  { path: '', redirectTo: 'ville', pathMatch: 'full' },
+  { path: 'registration', component: Register }
 ];
 
 @NgModule({
