@@ -3,7 +3,7 @@
     <h2 class="header center">{{ act.name }}</h2>
     <div class="card horizontal hoverable" (click)="goToVilleActiviteBonplan(nomdelaville, act)">
       <div class="card-image">
-        <img src= " {{ act.image }}" >
+        <img src= " {{act.image}}" >
       </div>
       <div class="card-stacked">
         <div class="card-content">
@@ -19,8 +19,9 @@
           </table>
         </div>
         <div class="card-action">
-          <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a>
+          <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
         </div>
+        <button class="Retour" (click)="goToVilleList()" >Retour</button>
       </div>
     </div>
     </div>

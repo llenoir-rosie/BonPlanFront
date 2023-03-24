@@ -15,6 +15,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
 import { Registration } from './registration/registration.component';
+import { BonplanFormComponent } from './list-bonplan/bonplan-form/bonplan-form.component';
+import { FormsModule } from '@angular/forms';
+import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.component';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +30,8 @@ import { Registration } from './registration/registration.component';
     ListBonplanComponent,
     ListPrecisionComponent,
     Registration,
+    BonplanFormComponent,
+    EditbonplanComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,8 @@ import { Registration } from './registration/registration.component';
     MatButtonModule,
     ReactiveFormsModule,
     MatIconModule,
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

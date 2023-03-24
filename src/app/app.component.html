@@ -1,12 +1,82 @@
 <nav>
-    <div class="nav-wrapper" style="background-color: rgb(170, 237, 212);">
-        <a href="#" class="brand-logo center" style="color: rgb(0, 0, 151)">
+    <div class="nav-wrapper" style="background-color: rgb(65, 153, 230);">
+        <img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%">
+        <a href="#" class="brand-logo-center" style="color: rgb(255, 255, 255)">
             Bon Plans
         </a>
-        <button (click)="registration()">Login</button>
+        <div class="search-box2">
+            <input 
+            type="text"
+            name="name" 
+            class="search-txt" 
+            #searchBox
+            (keyup)="SearchVille(searchBox.value)"
+            placeholder="Recherchez une ville" />
+              <div class="collection">
+                  <a *ngFor="let Ville of this.touteVille"
+                      (click)="goToDetail(Ville)"
+                      class="collection-item"
+                  >
+                      {{ Ville.name }}
+                  </a>
+              </div>
+          </div >
+          <button class="button connexion" (click)="registration()">
+            Se connecter
+            <img src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+          </button>
     </div>
 </nav>
 
+<style>
+nav {
+    height: 100px;
+}
+
+a.brand-logo-center{
+    font-size: 70px;
+    position: absolute;
+    left: 42%;
+    margin-top: 12px;
+}
+
+img.logo-site {
+        z-index:3000;
+        margin-top: 10px;
+        margin-left: 10px;
+        height: 80px;
+        width: 80px;
+        border-radius: 30px;
+    }
+
+.search-box2 {
+        position: absolute;
+        z-index: 2000;
+        top: 0%;
+        right: 20%;
+    }
+
+button.connexion {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 0%;
+    right: 0%;
+    font-weight: bold;
+    flex-wrap: wrap;
+    background-color: rgb(103, 219, 237);
+    color: rgb(0, 0, 0);
+    transition-duration: 0.4s;
+    border: none;
+}
+.button.connexion:hover {
+  background-color: rgb(72, 128, 240);
+  color: rgb(255, 255, 255);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
+}
+
+</style>
 <router-outlet></router-outlet>
 
 <footer class="page-footer" style="background-color:grey">
@@ -19,7 +89,12 @@
     <div class="footer-copyright">
       <div class="container">
       © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      <a class="grey-text text-lighten-4 right" href="#!">More Links
+      <img src=".\assets\img\facebook.png" height="15px" width="15px">
+      <img src=".\assets\img\twitter.png" height="15px" width="15px">
+      <img src=".\assets\img\instagram.jfif" height="15px" width="15px">
+      <img src=".\assets\img\discord.jfif" height="15px" width="15px">
+    </a>
       </div>
     </div>
     </footer>

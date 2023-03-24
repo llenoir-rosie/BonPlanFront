@@ -25,13 +25,15 @@ export class ListeActiviteComponent implements OnInit {
     this.listeActivites = data;
   })
   }
+
   goToVilleList() {
     this.router.navigate(['/ville']);
   }
    
   goToVilleActiviteBonplan(ville: String , activity: Activite) {
-      this.router.navigate(['/ville/', ville, activity.name])
+    console.log("aze",activity)
+      this.router.navigate(['/ville', ville, activity.name])
 
     }
-
+  
 }

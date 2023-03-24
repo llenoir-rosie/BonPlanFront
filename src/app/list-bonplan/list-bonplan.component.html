@@ -1,15 +1,16 @@
-        <div *ngFor="let bp of listeBonPlan">
-            <div  class="card" testBorderCard> 
-              <!-- (click)="goToVillePrecision(ville, activite, bp)" -->
+<div *ngIf="nomdelaville" class="row">
+    <div *ngIf="nomdelactivite" class="row">
+        <div *ngFor="let bpl of bp">
+            <div (click)="CreNouveauBonPlan(nomdelaville, nomdelactivite)" class="card" testBorderCard = 'setHeight=50'>
                 <div class="card-stacked">
                     <div class="card-content">
                       <table class="bordered striped">
                         <tbody>
                 <tr>
                 <td>Nom</td>
-                <td><strong>{{ bp.name }}</strong></td>
+                <td><strong>{{ bpl.name }}</strong></td>
                 <td>Description</td>
-                <td><strong>{{ bp.address }}</strong></td>
+                <td><strong>{{ bpl.address }}</strong></td>
                 </tr>  
                       </tbody>
                     </table>
@@ -21,3 +22,43 @@
 
 
 
+<!-- 
+<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+  <input type="text" name="message" id="message"/>
+ 
+<label for="message">Adresse</label>:
+<input type="text" name="message" id="message"/>
+  
+  <i class="material-icons right">send</i>
+  
+
+<label for="name">Nom</label>:
+
+
+</button> -->
+
+
+<!-- 
+
+
+
+
+<form name="MonForm" ng-submit="soumettreForm(this)" action="" method="GET" novalidate>
+
+<p>AJOUT D'UN NOUVEAU BONPLAN</p>
+ 
+
+
+<label for="name">Nom</label>:
+<input type="text" name="message" value="" id="message"/>
+ 
+<label for="message">Adresse</label>:
+<input type="text" name="message" id="message"/>
+<div *ngIf="ville" class="row">
+  <div *ngIf="activite" class="row">
+<input (click)="CreNouveauBonPlan(ville, activite)" type="submit" value="Soumettre"/>
+</div></div>
+</form>
+
+
+<input> : <input type="text" value="valeur" id="test"> -->
