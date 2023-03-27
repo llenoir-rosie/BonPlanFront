@@ -8,8 +8,13 @@ import { ListeActiviteComponent } from './liste-activite/liste-activite.componen
 import { BorderCardDirective } from './border-card.directive';
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
-import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
+import { Registration } from './registration/registration.component';
 import { BonplanFormComponent } from './list-bonplan/bonplan-form/bonplan-form.component';
 import { FormsModule } from '@angular/forms';
 import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.component';
@@ -24,6 +29,7 @@ import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.com
     BorderCardDirective,
     ListBonplanComponent,
     ListPrecisionComponent,
+    Registration,
     BonplanFormComponent,
     EditbonplanComponent,
   ],
@@ -31,6 +37,11 @@ import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.com
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatIconModule,
     FormsModule,
     AppRoutingModule
   ],

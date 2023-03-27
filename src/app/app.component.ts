@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 import { Ville } from './ville';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/ville', ville.name]);
   }
 
-  goToRegistration(){
-    this.router.navigate(['/registration']);
+  registration() {
+    this.router.navigate(['/registration'])
   }
 
   ngOnInit(): void {
