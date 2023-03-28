@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper" style="background-color: rgb(65, 153, 230);">
+    <div class="nav-wrapper" style="background-color: #2980b9;">
         <img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%">
         <a href="#" class="brand-logo-center" style="color: rgb(255, 255, 255)">
             Bon Plans
@@ -22,61 +22,12 @@
               </div>
           </div >
           <button class="button connexion" (click)="registration()">
-            Se connecter
-            <img src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+            <div class="txt-connection">Se connecter</div>
+            <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
           </button>
     </div>
 </nav>
 
-<style>
-    nav {
-        height: 100px;
-    }
-    
-    a.brand-logo-center{
-        font-size: 70px;
-        position: absolute;
-        left: 42%;
-        margin-top: 12px;
-    }
-    
-    img.logo-site {
-            z-index:3000;
-            margin-top: 10px;
-            margin-left: 10px;
-            height: 80px;
-            width: 80px;
-            border-radius: 30px;
-        }
-    
-    .search-box2 {
-            position: absolute;
-            z-index: 2000;
-            top: 0%;
-            right: 20%;
-        }
-    
-    button.connexion {
-        position: absolute;
-        height: 100px;
-        width: 100px;
-        top: 0%;
-        right: 0%;
-        font-weight: bold;
-        flex-wrap: wrap;
-        background-color: rgb(103, 219, 237);
-        color: rgb(0, 0, 0);
-        transition-duration: 0.4s;
-        border: none;
-    }
-    .button.connexion:hover {
-      background-color: rgb(72, 128, 240);
-      color: rgb(255, 255, 255);
-      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-      cursor: pointer;
-    }
-    
-    </style>
 <router-outlet></router-outlet>
 
 <footer class="page-footer" style="background-color:grey">

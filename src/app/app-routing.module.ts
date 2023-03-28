@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListeVilleComponent } from './liste-ville/liste-ville.component';
 import { ListeActiviteComponent } from './liste-activite/liste-activite.component';
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
-import { ListPrecisionComponent } from './list-precision/list-precision.component';
 import { Registration } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 

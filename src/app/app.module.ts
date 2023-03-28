@@ -5,10 +5,8 @@ import { AppComponent } from './app.component';
 // import { VilleTypeColorPipe } from './ville-type-color.pipe';
 import { ListeVilleComponent } from './liste-ville/liste-ville.component';
 import { ListeActiviteComponent } from './liste-activite/liste-activite.component';
-import { BorderCardDirective } from './border-card.directive';
 import { PopUpComponentAddBonPlan } from './list-bonplan/pop-up-addBonPlan'
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
-import { ListPrecisionComponent } from './list-precision/list-precision.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -25,9 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     // VilleTypeColorPipe,
     ListeVilleComponent,
     ListeActiviteComponent,
-    BorderCardDirective,
+    // BorderCardDirective,
     ListBonplanComponent,
-    ListPrecisionComponent,
     Registration,
     PopUpComponentAddBonPlan,
   ],
