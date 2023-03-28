@@ -1,40 +1,41 @@
-<div class="en-tête">
-  <h2>
-    Description du site en 2 mots
-  </h2>
-  <hr>
-  <p class="description">
-    Ce site vous permettra de trouver les activités qui vous conviennent dans les villes où vous vous situez !
-    Il est entièrement collaboratif puisque ce sont les internautes qui donnent leurs bons plans.
-  </p>
-</div>
+<!-- <body> -->
+  <div class="en-tête">
+    <h1>
+      Description du site en 2 mots
+    </h1>
+    <hr>
+    <p class="description">
+      Ce site vous permettra de trouver les activités qui vous conviennent dans les villes où vous vous situez !
+      Il est entièrement collaboratif puisque ce sont les internautes qui donnent leurs bons plans.
+    </p>
+  </div>
 
-<div class="row">
-  <div *ngFor="let ville of listVille">
-    <div class="col s4 m4">
-      <div (click)="goToVilleActivite(ville)" class="card hoverable" testBorderCard>
-        <div class="card-image">
-          <div class="example">
-            <img src= " {{ ville.image }}">
-            <div class="fadedbox">
-              <div class="description text">{{ ville.description }}</div>
+  <div class="row">
+    <div *ngFor="let ville of listVille">
+      <div class="col s3 m3">
+        <div class="container">
+          <!-- <div (click)="goToVilleActivite(ville)" class="card hoverable" testBorderCard> -->
+            <div class="card">
+              <!-- <div class="example"> -->
+                <img class="pic" src= " {{ ville.image }}">
+                <!-- <div class="fadedbox">
+                  
+                </div> -->
+                <h2>{{ ville.name }}</h2>
+                <i class="fas fa-arrow-right">Accédez aux activités → </i>
+                <!-- <span class="{{ ville.type | villeTypeColor }}">
+                  {{ ville.type }}
+                </span> -->
+              <!-- <p> {{ ville.description }} </p> -->
+              <!-- </div> -->
+              <!-- <div class="card-content">
+              </div>             -->
+              <div class="description-ville">{{ ville.description }}</div>
+              <button (click)="goToVilleActivite(ville)"></button>
             </div>
-            <div class="card-title" style="color:black">{{ ville.name }}</div>
-            <div class="go-corner" href="#">
-              <div class="go-arrow">
-                →
-              </div>
-            </div>
-            <!-- <span class="{{ ville.type | villeTypeColor }}">
-              {{ ville.type }}
-            </span> -->
-           <!-- <p> {{ ville.description }} </p> -->
-          </div>
-          <!-- <div class="card-content">
-
-          </div>             -->
+          <!-- </div> -->
         </div>
       </div>
     </div>
   </div>
-</div>
+<!-- </body> -->
