@@ -1,64 +1,39 @@
-<div *ngIf="nomdelaville" class="row">
-    <div *ngIf="nomdelactivite" class="row">
-        <div *ngFor="let bpl of bp">
-            <div (click)="CreNouveauBonPlan(nomdelaville, nomdelactivite)" class="card" testBorderCard = 'setHeight=50'>
-                <div class="card-stacked">
-                    <div class="card-content">
-                      <table class="bordered striped">
-                        <tbody>
-                <tr>
-                <td>Nom</td>
-                <td><strong>{{ bpl.name }}</strong></td>
-                <td>Description</td>
-                <td><strong>{{ bpl.address }}</strong></td>
-                </tr>  
-                      </tbody>
-                    </table>
-                      </div>      
-                 </div>
+<!DOCTYPE html>
+  <html>                        
+    <head>                        
+      <title>BonPlan</title>                        
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">                      
+    </head> 
+    <body>       
+      <br>     
+      <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>                          
+      <div *ngIf="nomdelaville" class="row">
+        <div *ngIf="nomdelactivite" class="row">
+          <div *ngFor="let bp of listeBonPlan">
+            <div  class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
+              <div class="card-stacked">
+                <div class="card-content">
+                  <table class="bordered striped">
+                    <tbody>
+                      <tr>
+                      <td>Nom</td>
+                      <td><strong>{{ bp.name }}</strong></td>
+                      <td>Description</td>
+                      <td><strong>{{ bp.address }}</strong></td>
+                      <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                      </tr>  
+                    </tbody>
+                  </table>
+                </div>     
               </div>
+            </div> 
           </div>
-
-
-
-
-<!-- 
-<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-  <input type="text" name="message" id="message"/>
- 
-<label for="message">Adresse</label>:
-<input type="text" name="message" id="message"/>
-  
-  <i class="material-icons right">send</i>
-  
-
-<label for="name">Nom</label>:
-
-
-</button> -->
-
-
-<!-- 
-
-
-
-
-<form name="MonForm" ng-submit="soumettreForm(this)" action="" method="GET" novalidate>
-
-<p>AJOUT D'UN NOUVEAU BONPLAN</p>
- 
-
-
-<label for="name">Nom</label>:
-<input type="text" name="message" value="" id="message"/>
- 
-<label for="message">Adresse</label>:
-<input type="text" name="message" id="message"/>
-<div *ngIf="ville" class="row">
-  <div *ngIf="activite" class="row">
-<input (click)="CreNouveauBonPlan(ville, activite)" type="submit" value="Soumettre"/>
-</div></div>
-</form>
-
-
-<input> : <input type="text" value="valeur" id="test"> -->
+        </div>
+      </div>
+      <button mat-raised-button class="waves-effect waves-light btn" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">Add a new BonPlan
+        <i class="material-icons right">send</i>
+      </button>
+      <br>
+      <br>
+    </body>
+  </html>

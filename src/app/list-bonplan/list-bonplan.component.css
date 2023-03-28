@@ -1,0 +1,7 @@
+#trashBtn {
+    color: red;
+}
+
+#trashBtn:hover {
+    cursor: pointer;
+}

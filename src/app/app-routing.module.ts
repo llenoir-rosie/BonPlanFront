@@ -6,13 +6,12 @@ import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
 import { Registration } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
-import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.component';
+
 
 
 
 
 const routes: Routes = [
-  { path: 'edit/bonplan', component: EditbonplanComponent },
   { path: 'ville', component: ListeVilleComponent },
   { path: 'ville/:name', component: ListeActiviteComponent },
   { path: 'ville/:name/:activity.name', component: ListBonplanComponent},

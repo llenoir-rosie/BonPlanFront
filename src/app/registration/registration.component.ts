@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Ville } from '../ville';
-import { BrowserModule } from '@angular/platform-browser';
 import { User } from '../User';
 import { FormGroup, FormControl, Validators} from '@angular/forms'; 
 
@@ -13,10 +11,11 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 export class Registration implements OnInit{
   newUserForm: FormGroup;
-
-  success: String;
+  success: Boolean = false;
   newUser: User;
+
   constructor(private router: Router, private http: HttpClient) {}
+  
   ngOnInit() {
     this.newUserForm = new FormGroup (
       {
@@ -34,6 +33,7 @@ export class Registration implements OnInit{
     this.http.post<String>('http://localhost:8080/registration', this.newUser).subscribe((data) => {
       console.log(data);
     })
+    this.success = true;
   }
 
 }

@@ -6,18 +6,17 @@ import { AppComponent } from './app.component';
 import { ListeVilleComponent } from './liste-ville/liste-ville.component';
 import { ListeActiviteComponent } from './liste-activite/liste-activite.component';
 import { BorderCardDirective } from './border-card.directive';
+import { PopUpComponentAddBonPlan } from './list-bonplan/pop-up-addBonPlan'
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { ListPrecisionComponent } from './list-precision/list-precision.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
 import { Registration } from './registration/registration.component';
-import { BonplanFormComponent } from './list-bonplan/bonplan-form/bonplan-form.component';
-import { FormsModule } from '@angular/forms';
-import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -30,8 +29,7 @@ import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.com
     ListBonplanComponent,
     ListPrecisionComponent,
     Registration,
-    BonplanFormComponent,
-    EditbonplanComponent,
+    PopUpComponentAddBonPlan,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +40,7 @@ import { EditbonplanComponent } from './list-bonplan/editbonplan/editbonplan.com
     MatButtonModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatDialogModule,
     FormsModule,
     AppRoutingModule
   ],

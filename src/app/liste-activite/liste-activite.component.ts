@@ -23,17 +23,15 @@ export class ListeActiviteComponent implements OnInit {
   public getAllActivities(nomville: String) {
     this.http.get<Activite[]>("http://localhost:8080/" + nomville + "/activites").subscribe((data) => {
     this.listeActivites = data;
-  })
+    })
   }
 
   goToVilleList() {
     this.router.navigate(['/ville']);
   }
-   
-  goToVilleActiviteBonplan(ville: String , activity: Activite) {
-    console.log("aze",activity)
-      this.router.navigate(['/ville', ville, activity.name])
-
-    }
   
+  //@return redirection to /ville
+  goToVilleActiviteBonplan(ville: String , activity: Activite) {
+      this.router.navigate(['/ville', ville, activity.name])
+  }
 }
