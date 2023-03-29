@@ -1,29 +1,58 @@
 <nav>
     <div class="nav-wrapper" style="background-color: #2980b9;">
-        <img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%">
-        <a href="#" class="brand-logo-center" style="color: rgb(255, 255, 255)">
+        <a href="#"><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
+        <a href="#" class="brand-logo" style="color: rgb(226, 235, 245)">
             Bon Plans
         </a>
-        <div class="search-box2">
-            <input 
+        <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
+        <!-- <div class="search-box2">
+          <input 
+          type="text"
+          name="name" 
+          class="search-txt" 
+          #searchBox
+          (keyup)="SearchVille(searchBox.value)"
+          placeholder="Recherchez une ville" />
+          <div class="collection">
+            <a *ngFor="let Ville of this.touteVille"
+              (click)="goToDetail(Ville)"
+              class="collection-item"
+            >
+              {{ Ville.name }}
+            </a>
+          </div>
+        </div> -->
+
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous">
+          <form action="">
+            <input
+            class="new-search" 
+            required
             type="text"
             name="name" 
-            class="search-txt" 
             #searchBox
-            (keyup)="SearchVille(searchBox.value)"
-            placeholder="Recherchez une ville" />
-              <div class="collection">
-                  <a *ngFor="let Ville of this.touteVille"
-                      (click)="goToDetail(Ville)"
-                      class="collection-item"
-                  >
-                      {{ Ville.name }}
-                  </a>
-              </div>
-          </div >
+            placeholder="Recherchez une ville"
+            (keyup)="SearchVille(searchBox.value)">
+            <div class="collection">
+              <a *ngFor="let Ville of this.touteVille"
+                (click)="goToDetail(Ville)"
+                class="collection-item"
+              >
+                {{ Ville.name }}
+              </a>
+            </div>
+            <i class="fa fa-search"></i>
+            </form>
+
+
           <button class="button connexion" (click)="registration()">
             <div class="txt-connection">Se connecter</div>
             <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+          </button>
+          <button class="button création">
+            <div class="txt-création">Créer un compte</div>
           </button>
     </div>
 </nav>
