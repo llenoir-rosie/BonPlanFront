@@ -6,7 +6,8 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'registration',
-  templateUrl: 'registration.component.html'
+  templateUrl: 'registration.component.html',
+  styleUrls: ['registration.component.css'],
 })
 
 export class Registration implements OnInit{

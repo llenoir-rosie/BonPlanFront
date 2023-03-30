@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       return of([]);
     }else{
       for (const i in this.Villeslist){
-        if (this.Villeslist[i].name.includes(toSearch)){
+        if (this.Villeslist[i].name.toLowerCase().includes(toSearch.toLowerCase())){
           this.touteVille.push(this.Villeslist[i]) ;
         }
       }
