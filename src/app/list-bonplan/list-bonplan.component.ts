@@ -61,8 +61,8 @@ export class ListBonplanComponent implements OnInit {
 
   public goToFormAddBonPlan() {
     this.dialogRef.open(PopUpComponentAddBonPlan, {
-      width: '330px',
-      height: '400px',
+      width: '600px',
+      height: '600px',
       data: {
         nameCity: this.nomdelaville,
         nameActivity:this.nomdelactivite 

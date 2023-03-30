@@ -6,7 +6,9 @@ import { HttpClient } from "@angular/common/http";
 
 @Component({
     selector: 'app-pop-up-bonplan',
-    templateUrl: './pop-up-addBonPlan.component.html'
+    templateUrl: './pop-up-addBonPlan.component.html',
+    styleUrls: ['pop-up-addBonPlan.css'],
+
   })
 
 export class PopUpComponentAddBonPlan implements OnInit {
