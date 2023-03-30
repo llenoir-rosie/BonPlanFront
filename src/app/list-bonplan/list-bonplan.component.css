@@ -1,3 +1,8 @@
+body {
+    background-color: #e4e7e7;
+    height: 100%;
+}
+
 #trashBtn {
     color: red;
 }
@@ -9,3 +14,24 @@
 
 /* ------------------------------------------------------------------------------ **/
 
+.row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.card-bp {
+    margin-left: 10px;
+    width: 45%;
+}
+.card-bp h1 {
+    text-align: center;
+}
+
+.card-mp {
+    margin-right: 10px;
+    width: 45%;
+}
+.card-mp h1 {
+    text-align: center;
+}
