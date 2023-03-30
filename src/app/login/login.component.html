@@ -12,21 +12,27 @@
   <div class = "container">
     <div class="row">
         <div class = "col-md-6 col-md-offser-3">
-            <div>
+            <div class="login-box">
                 <h1>Log In</h1>
                 <div *ngIf="msg">
                   <div class="alert alert-danger"> {{msg}} </div>
                 </div>
                     <form [formGroup]="loginUserForm">
-                            <div class="email-input">
+                            <div class="user-box">
+                                <input class="form-control" formControlName="email"  matInput required />
                                 <label>Email</label>
-                                <input class="form-control" formControlName="email" placeholder="Enter Your Email" matInput required />
-                            </div>
-                            <div class="password-input">
+                              </div>
+                            <div class="user-box">                               
+                                <input class="form-control" formControlName="password"  matInput required />
                                 <label>Password</label>
-                                <input class="form-control" formControlName="password" placeholder="Enter Your Password" matInput required />
                             </div>
-                            <button (click)="loginUser()">LogIn</button><p (click)="goToRegistration()">No account ?</p>
+                            <a (click)="loginUser()">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              LogIn
+                            </a><p (click)="goToRegistration()">No account ?</p>
                         </form>
             </div>
         </div>

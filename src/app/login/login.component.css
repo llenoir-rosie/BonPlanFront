@@ -1,14 +1,3 @@
-#trashBtn {
-    color: red;
-}
-
-#trashBtn:hover {
-    cursor: pointer;
-}
-
-
-/* ------------------------------------------------------------------------------ **/
-
 html {
     height: 100%;
   }
@@ -21,12 +10,12 @@ html {
   
   .login-box {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 100%;
+    left: 100%;
     width: 400px;
-    padding: 40px;
+    padding: 60px;
     transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,1);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
@@ -87,6 +76,19 @@ html {
     letter-spacing: 4px
   }
   
+  .login-box form p {
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px;
+    color: #03e9f4;
+    font-size: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+  }
+
   .login-box a:hover {
     background: #03e9f4;
     color: #fff;

@@ -16,11 +16,11 @@
                 <form [formGroup] = "newBPForm">
                   <div class="ville_name-input">
                           <label>City's name</label>
-                          <input class="form-control" formControlName="ville_name" placeholder="{{ ville_name }}" matInput required />
+                          <input class="form-control" formControlName="ville_name" placeholder="{{ ville_name }}" value={{ville_name}} readonly matInput required />
                   </div>
                   <div class="last_name-input">
                       <label>Activity's Type</label>
-                      <input class="form-control" formControlName="activity_type" placeholder="{{ activity_type }}" matInput required />
+                      <input class="form-control" formControlName="activity_type" placeholder="{{ activity_type }}" value={{activity_type}} readonly matInput required />
                   </div>
                   <div class="name_input">
                       <label>Name</label>

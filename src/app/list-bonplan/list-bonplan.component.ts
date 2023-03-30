@@ -18,6 +18,7 @@ export class ListBonplanComponent implements OnInit {
   bpList: Bonplan[]=BONPLAN;
   ville: Ville|undefined;
   bp: Bonplan[]=[];
+  imgBackGround: String;
   nomdelaville: String;
   nomdelactivite: String;
   public listeBonPlan: Bonplan[];
@@ -33,6 +34,8 @@ export class ListBonplanComponent implements OnInit {
     //Recup the activity name of bon plan
     const activiteName: string|null = this.route.snapshot.paramMap.get('activity.name');
     this.nomdelactivite = activiteName+'';
+
+    this.imgBackGround = '../assets/img/' + this.nomdelactivite + '.jfif'
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
 
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
@@ -42,6 +45,7 @@ export class ListBonplanComponent implements OnInit {
     this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
       this.listeBonPlan = data;
     })
+
   }
 
   public deleteBonPlan(bpName: String) {
