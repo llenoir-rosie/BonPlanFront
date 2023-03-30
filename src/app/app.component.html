@@ -21,8 +21,9 @@
                   </a>
               </div>
           </div >
-          <button class="button connexion" (click)="registration()">
-            <div class="txt-connection">Se connecter</div>
+          <button class="button connexion" (click)="login()">
+            <div *ngIf = "this.currentUser.role=='USER'" class="txt-connection">{{this.currentUser.username}}</div>
+            <div *ngIf = "this.currentUser.role!='USER'" class="txt-connection">Se connecter</div>
             <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
           </button>
     </div>

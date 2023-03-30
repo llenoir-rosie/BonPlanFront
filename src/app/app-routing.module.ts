@@ -4,7 +4,9 @@ import { ListeVilleComponent } from './liste-ville/liste-ville.component';
 import { ListeActiviteComponent } from './liste-activite/liste-activite.component';
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { Registration } from './registration/registration.component';
-import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -15,6 +17,7 @@ const routes: Routes = [
   { path: 'ville/:name', component: ListeActiviteComponent },
   { path: 'ville/:name/:activity.name', component: ListBonplanComponent},
   { path: 'registration', component: Registration},
+  { path : 'login', component: LoginComponent},
   // { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
   { path: '', redirectTo: 'ville', pathMatch: 'full' },
 ];
@@ -22,7 +25,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
 RouterModule.forRoot(routes),
-    FormsModule],
+    FormsModule, ReactiveFormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

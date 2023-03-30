@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 import { Ville } from './ville';
+import { User } from './User';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +12,19 @@ import { Ville } from './ville';
 })
 
 export class AppComponent implements OnInit {
-  searchTerms = new Subject<string>();
   touteVille: Ville[] = [];
   Villeslist: Ville[] = [];
-
-
+  logIn: Boolean = false;
+  commonUser = new User("","","","", "", "COMMON")
+  currentUser: User;
   constructor(private router: Router, private http: HttpClient) { }
 
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
   }
 
-  registration() {
-    this.router.navigate(['/registration'])
+  login() {
+    this.router.navigate(['/login'])
   }
 
   ngOnInit(): void {
@@ -35,7 +36,8 @@ export class AppComponent implements OnInit {
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
       this.Villeslist = data;
     })  
-    console.log(this.Villeslist)
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser")!);
+    localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
   }
 
   // search(term: string) {

@@ -13,8 +13,11 @@
     <div class="row">
         <div class = "col-md-6 col-md-offser-3">
             <div>
-                <div *ngIf="success">
+                <div *ngIf="!success">
                     <div class="alert alert-info">You've successfully registered</div>
+                </div>
+                <div *ngIf="msg">
+                    <div class="alert alert-danger"> {{msg}} </div>
                 </div>
                 <h1>Registration</h1>
                         <form [formGroup]="newUserForm">
@@ -33,6 +36,10 @@
                             <div class="password-input">
                                 <label>Password</label>
                                 <input class="form-control" formControlName="password" placeholder="Enter Your Password" matInput required />
+                            </div>
+                            <div class="username-input">
+                                <label>Username</label>
+                                <input class="form-control" formControlName="username" placeholder="Enter Your username" matInput required />
                             </div>
                             <button (click)="addNewUser()">Submit</button>
                         </form>

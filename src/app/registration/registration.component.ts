@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../User';
 import { FormGroup, FormControl, Validators} from '@angular/forms'; 
+import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'registration',
@@ -13,7 +14,7 @@ export class Registration implements OnInit{
   newUserForm: FormGroup;
   success: Boolean = false;
   newUser: User;
-
+  msg: String;
   constructor(private router: Router, private http: HttpClient) {}
   
   ngOnInit() {
@@ -29,11 +30,15 @@ export class Registration implements OnInit{
   }
 
   addNewUser() {
-    this.newUser = new User(this.newUserForm.value.first_name,this.newUserForm.value.last_name, this.newUserForm.value.email, this.newUserForm.value.password, this.newUserForm.value.username)
-    this.http.post<String>('http://localhost:8080/registration', this.newUser).subscribe((data) => {
-      console.log(data);
-    })
-    this.success = true;
+    this.newUser = new User(this.newUserForm.value.first_name,this.newUserForm.value.last_name, this.newUserForm.value.email, this.newUserForm.value.password, this.newUserForm.value.username, "USER")
+    this.http.post<String>('http://localhost:8080/registration', this.newUser)
+      .pipe ( 
+        catchError((error) => this.msg = error.error.message
+      ))
+     .subscribe((data) => {
+       console.log(data);
+
+     })
   }
 
 }
