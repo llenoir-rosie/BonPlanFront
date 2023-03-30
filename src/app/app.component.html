@@ -1,30 +1,46 @@
 <nav>
     <div class="nav-wrapper" style="background-color: #2980b9;">
-        <img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%">
-        <a href="#" class="brand-logo-center" style="color: rgb(255, 255, 255)">
+        <a href="#"><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
+        <a href="#" class="brand-logo" style="color: rgb(226, 235, 245)">
             Bon Plans
         </a>
-        <div class="search-box2">
-            <input 
-            type="text"
-            name="name" 
-            class="search-txt" 
-            #searchBox
-            (keyup)="SearchVille(searchBox.value)"
-            placeholder="Recherchez une ville" />
-              <div class="collection">
-                  <a *ngFor="let Ville of this.touteVille"
-                      (click)="goToDetail(Ville)"
-                      class="collection-item"
-                  >
-                      {{ Ville.name }}
-                  </a>
-              </div>
-          </div >
-          <button class="button connexion" (click)="login()">
+        <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
+
+        <img class = "ville-navbar" src=".\assets\img\ville-navbar.jfif">
+        <img class = "activite-navbar" src=".\assets\img\activite-navbar.jpeg">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+        <form action="">
+          <input
+          class="new-search" 
+          required
+          type="text"
+          name="name" 
+          #searchBox
+          placeholder="Recherchez une ville"
+          (keyup)="SearchVille(searchBox.value)">
+          <div class="collection">
+            <a *ngFor="let Ville of this.touteVille"
+              (click)="goToDetail(Ville)"
+              class="collection-item"
+            >
+              {{ Ville.name }}
+            </a>
+          </div>
+          <i class="fa fa-search"></i>
+        </form>
+
+
+          <button class="button connexion" >
             <div *ngIf = "this.currentUser.role=='USER'" class="txt-connection">{{this.currentUser.username}}</div>
             <div *ngIf = "this.currentUser.role!='USER'" class="txt-connection">Se connecter</div>
             <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+          </button>
+          <button *ngIf = "this.currentUser.role!='USER'" class="button création" (click)="login()">
+            <div class="txt-création">Créer un compte</div>
+            <img class="logo-création" src=".\assets\img\logo-création.png" height="70%" width="70%">
           </button>
     </div>
 </nav>
@@ -32,21 +48,21 @@
 <router-outlet></router-outlet>
 
 <footer class="page-footer" style="background-color:grey">
-    <div class="container">
-        <div class = "center">
-          <h5 class="white-text">Footer Content</h5>
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>   
-        </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links
-      <img src=".\assets\img\facebook.png" height="15px" width="15px">
-      <img src=".\assets\img\twitter.png" height="15px" width="15px">
-      <img src=".\assets\img\instagram.jfif" height="15px" width="15px">
-      <img src=".\assets\img\discord.jfif" height="15px" width="15px">
-    </a>
+  <div class="container">
+      <div class = "center">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>   
       </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2014 Copyright Text
+    <a class="grey-text text-lighten-4 right" href="#!">More Links
+    <img src=".\assets\img\facebook.png" height="15px" width="15px">
+    <img src=".\assets\img\twitter.png" height="15px" width="15px">
+    <img src=".\assets\img\instagram.jfif" height="15px" width="15px">
+    <img src=".\assets\img\discord.jfif" height="15px" width="15px">
+  </a>
     </div>
-    </footer>
+  </div>
+</footer>
