@@ -37,8 +37,9 @@ export class Registration implements OnInit{
       ))
      .subscribe((data) => {
        console.log(data);
-
+       this.success = true;
      })
+     this.router.navigate(['/login']);
   }
 
 }

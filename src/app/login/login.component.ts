@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit{
    .subscribe((data) => {
      localStorage.setItem("currentUser", JSON.stringify(data));
    })
+   this.router.navigate(['/ville']);
   }
 
 }
