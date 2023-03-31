@@ -6,11 +6,14 @@
     </head> 
     <body style='background-image: imgBackGround '>       
       <br>     
-      <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>                          
-      <div *ngIf="nomdelaville" class="row">
-        <div *ngIf="nomdelactivite" class="row">
+      <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>
+      
+      <div class="row">
+
+        <div class = "col card-bp">
+          <h1>Les bons plans</h1>  
           <div *ngFor="let bp of listeBonPlan">
-            <div  class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
+            <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
               <div class="card-stacked">
                 <div class="card-content">
                   <table class="bordered striped">
@@ -28,11 +31,39 @@
               </div>
             </div> 
           </div>
+          <button mat-raised-button class="waves-effect waves-light btn" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;"> Add a new BonPlan
+            <i class="material-icons right">send</i>
+          </button>
         </div>
+
+        <div class = "col card-mp">
+          <h1>Les mauvais plans</h1>  
+          <div *ngFor="let bp of listeBonPlan">
+            <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
+              <div class="card-stacked">
+                <div class="card-content">
+                  <table class="bordered striped">
+                    <tbody>
+                      <tr>
+                      <td>Nom</td>
+                      <td><strong>{{ bp.name }}</strong></td>
+                      <td>Description</td>
+                      <td><strong>{{ bp.address }}</strong></td>
+                      <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                      </tr>  
+                    </tbody>
+                  </table>
+                </div>     
+              </div>
+            </div> 
+          </div>
+          <button mat-raised-button class="waves-effect waves-light btn" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;"> Add a new MauvaisPlan
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      
       </div>
-      <button mat-raised-button class="waves-effect waves-light btn" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">Add a new BonPlan
-        <i class="material-icons right">send</i>
-      </button>
+
       <br>
       <br>
     </body>
