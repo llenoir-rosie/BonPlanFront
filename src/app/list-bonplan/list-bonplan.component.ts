@@ -7,6 +7,7 @@ import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
+import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -57,6 +58,18 @@ export class ListBonplanComponent implements OnInit {
       })
     });
     this.bonplanDeleted = true;
+  }
+
+  public updateBonPlan(bp: Bonplan) {
+    this.dialogRef.open(PopUpComponentUpdateBonPlan, {
+      width: '600px',
+      height: '600px',
+      data: {
+        nameCity: this.nomdelaville,
+        nameActivity:this.nomdelactivite,
+        bp: bp 
+      }
+    }).afterClosed().subscribe(() => this.getAllBonPlan(this.nomdelaville, this.nomdelactivite));
   }
 
   public goToFormAddBonPlan() {

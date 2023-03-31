@@ -9,9 +9,8 @@
       <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>
       
       <div class="row">
-
         <div class = "col card-bp">
-          <h1>Les bons plans</h1>  
+          <h1>Les bons plans de {{nomdelaville}} </h1>  
           <div *ngFor="let bp of listeBonPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
               <div class="card-stacked">
@@ -37,7 +36,7 @@
         </div>
 
         <div class = "col card-mp">
-          <h1>Les mauvais plans</h1>  
+          <h1> et ses mauvais plans... (y en a pas)</h1>  
           <div *ngFor="let bp of listeBonPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
               <div class="card-stacked">
@@ -49,6 +48,7 @@
                       <td><strong>{{ bp.name }}</strong></td>
                       <td>Description</td>
                       <td><strong>{{ bp.address }}</strong></td>
+                      <i class="fa fa-pencil" aria-hidden="true" (click)="updateBonPlan(bp)"></i>
                       <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
                       </tr>  
                     </tbody>
