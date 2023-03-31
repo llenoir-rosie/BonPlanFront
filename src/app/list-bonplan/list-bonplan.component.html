@@ -11,55 +11,47 @@
       <div class="row">
 
         <div class = "col card-bp">
-          <h1>Les bons plans</h1>  
-          <div *ngFor="let bp of listeBonPlan">
-            <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
-              <div class="card-stacked">
-                <div class="card-content">
-                  <table class="bordered striped">
-                    <tbody>
-                      <tr>
-                      <td>Nom</td>
-                      <td><strong>{{ bp.name }}</strong></td>
-                      <td>Description</td>
-                      <td><strong>{{ bp.address }}</strong></td>
-                      <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                      </tr>  
-                    </tbody>
-                  </table>
-                </div>     
-              </div>
-            </div> 
-          </div>
+          <h1>Les bons plans</h1>
           <button mat-raised-button class="waves-effect waves-light btn" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;"> Add a new BonPlan
             <i class="material-icons right">send</i>
-          </button>
+          </button>  
+          <div *ngFor="let bp of listeBonPlan">
+            <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
+                <div class="card-content">
+                  <div class="left-content">
+                    <h2>Nom {{ bp.name }}</h2>
+                    <p>Description {{ bp.address }}</p>
+                  </div>    
+                  <img class = "img-test" src=".\assets\img\foot.jfif">
+                  <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                </div>     
+            </div> 
+          </div>
+
         </div>
 
         <div class = "col card-mp">
-          <h1>Les mauvais plans</h1>  
+          <h1>Les mauvais plans</h1>
+          <button mat-raised-button class="waves-effect waves-light btn" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;"> Add a new MauvaisPlan
+            <i class="material-icons right">send</i>
+          </button>
           <div *ngFor="let bp of listeBonPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
               <div class="card-stacked">
-                <div class="card-content">
-                  <table class="bordered striped">
-                    <tbody>
-                      <tr>
-                      <td>Nom</td>
-                      <td><strong>{{ bp.name }}</strong></td>
-                      <td>Description</td>
-                      <td><strong>{{ bp.address }}</strong></td>
-                      <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                      </tr>  
-                    </tbody>
-                  </table>
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <div class="left-content">
+                      <h2>Nom {{ bp.name }}</h2>
+                      <p>Description {{ bp.address }}</p>
+                    </div>    
+                    <img class = "img-test" src=".\assets\img\foot.jfif">
+                    <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i>
+                  </div>     
                 </div>     
               </div>
             </div> 
           </div>
-          <button mat-raised-button class="waves-effect waves-light btn" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;"> Add a new MauvaisPlan
-            <i class="material-icons right">send</i>
-          </button>
+
         </div>
       
       </div>

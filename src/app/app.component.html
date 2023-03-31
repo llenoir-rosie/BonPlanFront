@@ -11,12 +11,17 @@
   </head>
   <nav>
       <div class="nav-wrapper" style="background-color: #2980b9;">
-          <a href="#"><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
-          <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
-              Bon Plans
-          </a>
-          <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
-
+        <a href="#">
+          <div class="haut-gauche">
+            <img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%">
+            <div class="right-content">
+              <a class="brand-logo" style="color: rgb(0, 0, 0)">
+                Bon Plans
+              </a>
+              <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
+            </div>
+          </div>
+        </a>
           <!-- <img class = "ville-navbar" src=".\assets\img\ville-navbar.jfif"> -->
           <img class = "activite-navbar" src=".\assets\img\activite-navbar.jpeg">
 
@@ -42,17 +47,16 @@
             </div>
             <i class="fa fa-search"></i>
           </form>
-            <button class="button connexion" >
+            <button class="button connexion" (click)="login()">
               <div *ngIf = "this.currentUser.role=='USER'" class="txt-connection">{{this.currentUser.username}}</div>
               <div *ngIf = "this.currentUser.role!='USER'" class="txt-connection">Se connecter</div>
               <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
             </button>
-            <button *ngIf = "this.currentUser.role!='USER'" class="button création" (click)="login()">
+            <!-- <button *ngIf = "this.currentUser.role!='USER'" class="button création" >
               <div class="txt-création">Créer un compte</div>
               <img class="logo-création" src=".\assets\img\logo-création.png" height="70%" width="70%">
-            </button>
+            </button> -->
       </div>
-<<<<<<< HEAD
   </nav>
   <body>
     <router-outlet></router-outlet>
@@ -77,18 +81,3 @@
     </footer>
   </body>
 </html>
-=======
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links
-        <img src=".\assets\img\facebook.png" height="15px" width="15px">
-        <img src=".\assets\img\twitter.png" height="15px" width="15px">
-        <img src=".\assets\img\instagram.jfif" height="15px" width="15px">
-        <img src=".\assets\img\discord.jfif" height="15px" width="15px">
-      </a>
-    </div>
-  </div>
-</footer>
->>>>>>> 01f5468e2f02f4be19c89b681675c9dafe1a2cb7

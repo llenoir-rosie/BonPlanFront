@@ -7,12 +7,10 @@ html, body {
 nav {
     height: 100px;
 }
-<<<<<<< HEAD
 .page-footer {
     bottom: 0;
     width: 100%;
   }
-=======
 /* footer {
     position: absolute;
     bottom: 0%;
@@ -25,27 +23,32 @@ a.text-lighten-4 {
     justify-content: space-between;
 }
 
->>>>>>> 01f5468e2f02f4be19c89b681675c9dafe1a2cb7
 
 .nav-wrapper {
     box-shadow: 0 0 20px 0 #2980b9;
 }  
 
+.haut-gauche {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+}
+
+.right-content {
+    margin-top: 0px;
+    margin-left: 4px;
+    flex-wrap: wrap;
+}
 .brand-logo {
     position: relative;
     z-index: 1;
     font-size: 40px;
-    margin-top: 0px;
-    margin-left: 4px;
     font-family: fantasy;
-    text-shadow: 0 0 2px rgb(0, 0, 0);
+    /* text-shadow: 0 0 2px rgb(0, 0, 0); */
     text-decoration: none;
     transition-duration: 0.3s;
 }
-.brand-logo:hover {
-    text-shadow: 0 0 5px rgb(0, 0, 0);
-}
-
 img.logo-site {
     position: relative;
     z-index:1;
@@ -54,24 +57,34 @@ img.logo-site {
     height: 80px;
     width: 80px;
     border-radius: 30px;
-    box-shadow: 0 0 3px black;
+    /* box-shadow: 0 0 3px black; */
     transition-duration: 0.3s;
 }
-img.logo-site:hover {
-    box-shadow: 0 0 8px rgb(0, 0, 0);
-}
-
 .accroche {
     position: relative;
-    width: 200px;
+    width: 100%;
     z-index: 1;
-    top: -35px;
-    left: 96px;
+    top:-20px;
     line-height: 17px;
     font-family: Comic Sans MS, Comic Sans, cursive;
     color: #07051a;
     font-weight: 900;
     font-size: 20px;
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+.haut-gauche:hover .logo-site {
+    box-shadow: 0 0 8px rgb(0, 0, 0);
+    cursor: pointer;
+}
+.haut-gauche:hover .brand-logo {
+    text-shadow: 0 0 5px rgb(0, 0, 0);
+    cursor: pointer;
+}
+.haut-gauche:hover .accroche {
+    text-shadow: 0 0 5px rgb(0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
 }
 
 
@@ -90,10 +103,11 @@ button.connexion {
 }
 .txt-connection{
     position: relative;
+    font-size: 140%;
     top:-10px;
 }
 .logo-authentification{
-    position:relative;
+    position: relative;
     top: -32px;
 }
 .button.connexion:hover {
@@ -171,6 +185,7 @@ form{
     border: 4px solid white;
     padding: 5px;
     box-shadow: 0 0 10px 10px #2980b9;
+    font-size: 135%;
 }
 
 input.new-search {

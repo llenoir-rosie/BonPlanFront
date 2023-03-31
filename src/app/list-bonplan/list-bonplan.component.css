@@ -5,18 +5,24 @@ body {
 
 #trashBtn {
     color: red;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 #trashBtn:hover {
     cursor: pointer;
 }
 
+.waves-effect {
+    position: relative;
+    left: 70%;
+}
 
 /* ------------------------------------------------------------------------------ **/
 
 .row {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
 }
 
@@ -34,4 +40,34 @@ body {
 }
 .card-mp h1 {
     text-align: center;
+}
+
+.left-content {
+    width: 50%;
+}
+
+h2 {
+    width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+p {
+    width: 100%;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.card-content {
+    display:flex;
+    flex-wrap: nowrap;
+}
+
+.img-test {
+    position: relative;
+    margin-left: 4rem;
+    height: 80%;
+    width: 40%;
+    object-fit: cover;
 }
