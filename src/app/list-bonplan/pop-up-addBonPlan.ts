@@ -32,8 +32,9 @@ ngOnInit() {
     )
 }
 public addNewBP() {
-    this.newBP = new Bonplan(this.newBPForm.value.ville_name, this.newBPForm.value.activity_type, this.newBPForm.value.name, this.newBPForm.value.address);
-    this.http.post('http://localhost:8080/' + this.newBPForm.value.ville_name + '/' +  this.newBPForm.value.activity_type + '/newbonplan', this.newBP).subscribe((data) => {
+    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address);
+    console.log(this.newBP)
+    this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe((data) => {
         this.dialogRefs.closeAll();
       })
 }

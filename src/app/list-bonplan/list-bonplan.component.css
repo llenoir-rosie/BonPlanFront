@@ -5,7 +5,3 @@
 #trashBtn:hover {
     cursor: pointer;
 }
-
-.cdk-overlay-pane {
-    background: rgba(0,0,0,1);
-  }

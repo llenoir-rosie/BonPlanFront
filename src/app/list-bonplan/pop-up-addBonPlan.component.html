@@ -13,11 +13,11 @@
       <h1>Add A New Bon Plan</h1>
       <form [formGroup] = "newBPForm">
         <div class="user-box">
-                <input :valid class="form-control" formControlName="ville_name"  placeholder="{{ville_name}}" value="{{ville_name}}" readonly matInput required />
+                <input  class="form-control" formControlName="ville_name"  placeholder="{{ville_name}}" value="{{ville_name}}" readonly matInput required />
                 <label>City's name</label>
         </div>
         <div class="user-box">                      
-            <input :valid class="form-control" formControlName="activity_type" placeholder="{{activity_type}}" value="{{activity_type}} "readonly matInput required />
+            <input class="form-control" formControlName="activity_type" placeholder="{{activity_type}}" value="{{activity_type}} " readonly matInput required />
             <label>Activity's Type</label>
         </div>
         <div class="user-box">                      
