@@ -7,10 +7,25 @@ html, body {
 nav {
     height: 100px;
 }
+<<<<<<< HEAD
 .page-footer {
     bottom: 0;
     width: 100%;
   }
+=======
+/* footer {
+    position: absolute;
+    bottom: 0%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  } */
+a.text-lighten-4 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+>>>>>>> 01f5468e2f02f4be19c89b681675c9dafe1a2cb7
 
 .nav-wrapper {
     box-shadow: 0 0 20px 0 #2980b9;
