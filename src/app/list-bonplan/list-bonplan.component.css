@@ -16,10 +16,16 @@ body {
 
 .waves-effect {
     position: relative;
-    left: 70%;
+    left: 5%;
 }
 
 /* ------------------------------------------------------------------------------ **/
+
+.gros-titre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .row {
     display: flex;
@@ -27,19 +33,23 @@ body {
 }
 
 .card-bp {
-    margin-left: 10px;
     width: 45%;
 }
 .card-bp h1 {
-    text-align: center;
+    background-color: #95a5a6;
+    border-radius: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .card-mp {
-    margin-right: 10px;
     width: 45%;
 }
 .card-mp h1 {
-    text-align: center;
+    background-color: #95a5a6;
+    border-radius: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .left-content {
