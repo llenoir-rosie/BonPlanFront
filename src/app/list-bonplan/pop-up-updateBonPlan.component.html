@@ -11,7 +11,7 @@
   <div cdk-overlay-pane>
   <div class="login-box">
       <h1>Update {{oldBP.name}}</h1>
-      <form [formGroup] = "updateBPForm">
+      <form ngformGroup = "updateBPForm">
         <div class="user-box">
                 <input  class="form-control" formControlName="ville_name"  placeholder="{{ville_name}}" value="{{ville_name}}" readonly matInput required />
                 <label>City's name</label>
