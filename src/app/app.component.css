@@ -71,7 +71,7 @@ img.logo-site {
     font-weight: 900;
     font-size: 20px;
     text-decoration: none;
-    transition-duration: 0.3s;
+    /* transition-duration: 0.3s; */
 }
 .haut-gauche:hover .logo-site {
     box-shadow: 0 0 8px rgb(0, 0, 0);
@@ -81,11 +81,11 @@ img.logo-site {
     text-shadow: 0 0 5px rgb(0, 0, 0);
     cursor: pointer;
 }
-.haut-gauche:hover .accroche {
+/* .haut-gauche:hover .accroche {
     text-shadow: 0 0 5px rgb(0, 0, 0);
     cursor: pointer;
     text-decoration: none;
-}
+} */
 
 
 button.connexion {

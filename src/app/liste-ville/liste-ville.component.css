@@ -31,7 +31,7 @@ h2{
   pointer-events:none;
 }
 .container {
-  width: 450px;
+  width: 100%;
   margin-bottom: 10px;
 }
 
