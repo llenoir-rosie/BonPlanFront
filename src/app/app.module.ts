@@ -41,6 +41,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatDialogModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   exports: [
