@@ -16,9 +16,16 @@ export class ListeActiviteComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    const villeName: string|null = this.route.snapshot.paramMap.get('name');
-    this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
-    this.getAllActivities(this.nomdelaville); 
+
+    const routeParams = this.route.snapshot.params;
+
+    this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
+    // this.nomdelaville = routeParams['name'];
+    this.getAllActivities(routeParams['name']);
+    });
+    
+    // this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
+    // si jamais il y a des soucis avec les majuscules des premières lettres des villes
   }
 
   public getAllActivities(nomville: String) {
