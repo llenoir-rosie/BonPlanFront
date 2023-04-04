@@ -69,10 +69,11 @@ export class ListeActiviteComponent implements OnInit {
         nameCity : this.nomdelaville,
         listActivities : this.listeActivites,
       }}).afterClosed().subscribe(() => this.getAllActivities(this.nomdelaville));
+    }
 
 
 @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
-public openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   this.dialog.open(templateRef);
 }
 // public openDialogWithoutRef() {
