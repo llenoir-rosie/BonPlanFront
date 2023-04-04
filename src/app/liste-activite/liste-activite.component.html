@@ -1,28 +1,27 @@
 <body>
   <div *ngFor="let act of listeActivites">
     <div class="col s6 m8 offset-m2">
-    <h2 class="header center">{{ act.name }}</h2>
-      <div class="card horizontal hoverable" (click)="goToVilleActiviteBonplan(nomdelaville, act)">
+    
+      <div class="card horizontal hoverable">
         <div class="card-image">
           <img src= " {{act.image}}" >
         </div>
         <div class="card-stacked">
           <div class="card-content">
-            <table class="bordered striped">
-              <tbody>
-                <tr>
-                  <td>Nom</td>
-                  <td><strong>{{ act.name }}</strong></td>
-                  <td>Description</td>
-                  <td><strong>{{ act.description }}</strong></td>
-                </tr>
-              </tbody>
-            </table>
+            <h2 class="card-header center">{{ act.name }}</h2>
+            <!-- <td>Nom</td> -->
+            <!-- <td><strong>{{ act.name }}</strong></td> -->
+            <!-- <td>Description</td> -->
+            <p class="card-description">
+              <strong>{{ act.description }}</strong>
+            </p>
           </div>
           <div class="card-action">
             <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
           </div>
-          <button class="Retour" (click)="goToVilleList()" >Retour</button>
+          <button class="gotobonplan" (click)="goToVilleActiviteBonplan(nomdelaville, act)" >
+            Découvrez les bons plans {{ act.name }} de {{ nomdelaville}}
+          </button>
         </div>
       </div>
     </div>

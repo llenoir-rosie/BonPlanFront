@@ -20,7 +20,7 @@ export class ListeActiviteComponent implements OnInit {
     const routeParams = this.route.snapshot.params;
 
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
-    // this.nomdelaville = routeParams['name'];
+    this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
     this.getAllActivities(routeParams['name']);
     });
     
