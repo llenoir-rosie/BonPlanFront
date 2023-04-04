@@ -14,6 +14,9 @@ import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
   styleUrls: ['list-bonplan.component.css'],
 })
 export class ListBonplanComponent implements OnInit {
+pop() {
+throw new Error('Method not implemented.');
+}
   villeList: Ville[] = VILLE;
   bpList: Bonplan[]=BONPLAN;
   ville: Ville|undefined;

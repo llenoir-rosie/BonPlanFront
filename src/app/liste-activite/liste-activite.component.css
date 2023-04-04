@@ -1,0 +1,38 @@
+#ButtonDeleteAct{
+    /* background-color: red; */
+    flex-wrap: wrap;
+    width : 100px;
+    bottom : 2%;
+    left : 85%;
+}
+
+.button_bottom{
+    display : flex;
+    align-content: flex-start;
+}
+
+#AjoutAct{
+
+    display : block;
+    margin:2% auto;
+
+}
+
+input[type="checkbox"].demo2 {
+  display: none;
+}
+input[type="checkbox"].demo2 + label::before {
+  content:'';
+  border: 1px solid #00B7E8;
+  padding: 0 0.6rem;
+  margin-right: 0.3rem;
+}
+input[type="checkbox"].demo2:checked + label::before {
+  background-color: #00B7E8;
+}
+
+
+label {
+  font-size: 1em;
+}
+
