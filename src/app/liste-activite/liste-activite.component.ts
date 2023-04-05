@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Activite } from '../activite';
-import { PopUpAddActivite } from './popupAddAct.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { __values } from 'tslib';
+import { cityactivities } from '../cityactivity';
 
 @Component({
   selector: 'liste-activite',
@@ -20,6 +20,8 @@ export class ListeActiviteComponent implements OnInit {
   public listeAllActivites : Activite[];
   public nomdelaville: String;
   dialogRefs: MatDialog;
+  newCityActivity : cityactivities;
+  id: number;
   
 
 
@@ -61,42 +63,30 @@ export class ListeActiviteComponent implements OnInit {
       this.router.navigate(['/ville', ville, activity.name])
   }
 
-  public goToFormaddAct(){
-    this.dialogRefs.open(PopUpAddActivite,{
-      width : '600px',
-      height : '600px',
-      data: {
-        nameCity : this.nomdelaville,
-        listActivities : this.listeActivites,
-      }}).afterClosed().subscribe(() => this.getAllActivities(this.nomdelaville));
-    }
-
 
 @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
 openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   this.dialog.open(templateRef);
 }
-// public openDialogWithoutRef() {
-//   this.dialog.open(this.secondDialog);
-// }
-// 
-
 
   public ValidationDelete(){
     console.log('click')
   }
 
-  // checked : Boolean;
   public AddNewAct(){
 
- 
     const checked_boxs = (document.querySelectorAll('[name ="activitybox"]:checked'));
-    
- 
-    console.log(checked_boxs);
-    
+    const lenght_checked_boxs = checked_boxs.length;
 
- 
+    id : Number;
+    
+    for (var index: number=0; index<lenght_checked_boxs; index++){
+      const html_checked_boxs = (<HTMLInputElement>checked_boxs.item(index)).value;
+      const id = 0;
+      this.newCityActivity = new cityactivities(this.id, this.nomdelaville, html_checked_boxs)
+      this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
+      this.getAllActivities(this.nomdelaville));
+    }
   }
 
 }

@@ -52,15 +52,14 @@ body {
 
 .button_bottom{
     display : flex;
-    align-content: flex-start;
+    /* align-items: center; */
+    justify-content: space-evenly;
 }
 
-#AjoutAct{
-
+/* #AjoutAct{
     display : block;
     margin:2% auto;
-
-}
+} */
 
 input[type="checkbox"].demo2 {
   display: none;

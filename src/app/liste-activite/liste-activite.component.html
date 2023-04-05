@@ -46,45 +46,28 @@
 
 
 
-    <div>
-      <button mat-raised-button class="waves-effect waves-light btn"color="primary" (click)="openDialogWithTemplateRef(myDialog)" style="color:wheat; background-color: black;">Ajouter une activité pour la ville
-        <i class="material-icons right">send</i>
-      </button>
+      <div>
+        <button mat-raised-button class="waves-effect waves-light btn"color="primary" (click)="openDialogWithTemplateRef(myDialog)" style="color:wheat; background-color: black;">Ajouter une activité pour la ville
+          <i class="material-icons right">send</i>
+        </button>
 
-      <!-- <button mat-button color="accent" (click)="openDialogWithoutRef()">Open second dialog</button> -->
-      <ng-template #myDialog>
-        <h2 matDialogTitle>Ajouter une activité dans la ville de {{nomdelaville}}</h2>
-        <mat-dialog-content>
-          <p>Sélectionner les activités à ajouter</p>
+        <!-- <button mat-button color="accent" (click)="openDialogWithoutRef()">Open second dialog</button> -->
+        <ng-template #myDialog>
+          <h2 matDialogTitle>Ajouter une activité dans la ville de {{nomdelaville}}</h2>
+          <mat-dialog-content>
+            <p>Sélectionner les activités à ajouter</p>
 
-          <div *ngFor="let activity of listeAllActivites">
-            <input type="checkbox" class="demo2" id ={{activity.name}} name="activitybox" value={{activity.name}}>
-            <label for={{activity.name}}>{{activity.name}}</label>
-          </div>
-
-
-
-
-
-        
-        </mat-dialog-content>
-        <mat-dialog-actions align="end">
-          <button id="boutonValider" mat-button matDialogClose color="primary" (click)="AddNewAct()">Valider</button>
-        </mat-dialog-actions>
-      </ng-template>
-      <!-- <ng-template #secondDialog>
-        <h2 matDialogTitle>Lovely dialog!</h2>
-        <mat-dialog-content>
-          <p>The content of this dialog came from an <code>ng-template</code>! Mind-blowing, right? (However, this wasn't passed in to a method while the other one was)</p>
-          <mat-slide-toggle>I'm a slide toggle!</mat-slide-toggle>
-          <mat-checkbox>I'm a checkbox!</mat-checkbox>
-        </mat-dialog-content>
-        <mat-dialog-actions align="end">
-          <button mat-button matDialogClose color="primary">I <mat-icon class="inline-icon">favorite</mat-icon> dialogs!</button>
-        </mat-dialog-actions>
-      </ng-template> -->
-    </div> 
+            <div *ngFor="let activity of listeAllActivites">
+              <input type="checkbox" class="demo2" id ={{activity.name}} name="activitybox" value={{activity.name}}>
+              <label for={{activity.name}}>{{activity.name}}</label>
+            </div>        
+          </mat-dialog-content>
+          <mat-dialog-actions align="end">
+            <button id="boutonValider" mat-button matDialogClose color="primary" (click)="AddNewAct()">Valider</button>
+          </mat-dialog-actions>
+        </ng-template>
+      </div> 
   </div>
   </body>
 </html>
->>>>>>> frontclaire
+
