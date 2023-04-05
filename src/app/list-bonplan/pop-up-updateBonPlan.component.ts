@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 @Component({
     selector: 'app-pop-up-Updatebonplan',
     templateUrl: './pop-up-updateBonPlan.component.html',
-    styleUrls: ['pop-up-addBonPlan.css'],
+    styleUrls: ['pop-upp-addBonPlan.css'],
 
   })
 
