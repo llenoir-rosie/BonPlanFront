@@ -113,6 +113,7 @@ h2{
     z-index: 2;
     opacity: 0.7;
     color: #ffffff;
+    cursor: pointer;
   }
   .container .card:hover button  {
     transform: scale(24);

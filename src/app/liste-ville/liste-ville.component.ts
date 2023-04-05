@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 })
 export class ListeVilleComponent implements OnInit{
   public listVille: Ville[];
+  currentImg: String;
 
   constructor(private router: Router, private http: HttpClient) {}
   
@@ -25,6 +26,8 @@ public getAllCities() {
 
   goToVilleActivite(ville: Ville) {
       this.router.navigate(['/ville', ville.name])
+      localStorage.setItem('currentImg', ville.image);
+      this.currentImg = localStorage.getItem("currentImg")!;
     }
   
 }

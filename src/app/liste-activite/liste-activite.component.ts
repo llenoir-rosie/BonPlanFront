@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activite } from '../activite';
+import { Ville } from '../ville';
 
 @Component({
   selector: 'app-liste-activite',
@@ -9,16 +10,14 @@ import { Activite } from '../activite';
   styleUrls: ['liste-activite.component.css'],
 })
 export class ListeActiviteComponent implements OnInit {
-
+  currentImg: String;
   public listeActivites: Activite[];
   public nomdelaville: String;
-
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-
+    this.currentImg = localStorage.getItem("currentImg")!;
     const routeParams = this.route.snapshot.params;
-
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
     this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
     this.getAllActivities(routeParams['name']);
