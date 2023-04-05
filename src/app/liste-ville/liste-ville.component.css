@@ -14,18 +14,16 @@ body {
   padding: 0;
 }
 
+
 /* -------------- Carousel ---------------**/
 .swiper {
   width: 100%;
   height: 100%;
-  margin-top: 50px;
-  margin-bottom: 50px;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,22 +43,11 @@ body {
   margin-right: auto;
 }
 
-.swiper-slide {
-  background-size: cover;
-  background-position: center;
-}
-
 .mySwiper2 {
-  height: 80%;
+  height: 100%;
   width: 100%;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 /* -----------------  Card  ------------------------- */
 h1{
   position: relative;
@@ -96,18 +83,6 @@ h2{
 }
 .container {
   width: 100%;
-  margin-bottom: 10px;
-}
-
-i {
-opacity: 0;
-font-size: 18px;
-color: #ffffff;
-will-change: transform;
--webkit-transform: scale(0.1);
-transform: scale(0.1);
--webkit-transition: all 0.2s ease;
-transition: all 0.2s ease;
 }
 
 h2{
@@ -115,12 +90,13 @@ pointer-events:none;
 }
 
 .swiper-wrapper {
+  margin-bottom: 110px;
+  margin-top: 185px;
   width: 100%;
-  margin-bottom: 10px;
 }
 .card {
   width: 60%;
-  height: 500px;
+  height: 550px;
   position: relative;
   background-size: 100% 100%;
   overflow: hidden;

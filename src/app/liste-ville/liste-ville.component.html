@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div #sec1 class="en-tête">
+  <div #sec1 class="entete" style="padding-top: 50px;">
     <h1>
       Comment fonctionne ce site ?
     </h1>
@@ -34,9 +34,9 @@
         </div>
       </div>
     </div>
-    <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+    <div style="background-color: brown;" class="swiper mySwiper2">
       <div class="swiper-wrapper" >
-        <div class="swiper-slide" *ngFor="let ville of listVille">
+        <div class="swiper-slide" style="background-color: brown;" *ngFor="let ville of listVille">
           <div class="card">
             <img class="pic" src= " {{ ville.image }}">
             <h2>{{ ville.name }}</h2>
@@ -50,10 +50,10 @@
       <div class="swiper-button-prev" style="color: black;"></div>
     </div>
   
-    <div  #sec2 style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2" #sectionRef>
-      <div class="swiper-wrapper" >
-        <div class="swiper-slide" *ngFor="let ville of listVille">
-          <div class="card">
+    <div  #sec2 class="swiper mySwiper2" style="background-color: beige;">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-color: beige;" *ngFor="let ville of listVille">
+          <div class="card" >
             <img class="pic" src= " {{ ville.image }}">
             <h2>ret</h2>
             <i class="access">Accédez aux activités → </i>
