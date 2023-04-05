@@ -16,7 +16,8 @@ import { Registration } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-
+//npm i ngx-page-scroll-core
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     PopUpComponentAddMauvaisPlan,
   ],
   imports: [
+    NgxPageScrollCoreModule.forRoot({duration: 500}),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -41,6 +43,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatDialogModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   exports: [

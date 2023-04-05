@@ -1,5 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+
 <body>
-  <div class="en-tête">
+  <div #sec1 class="entete" style="padding-top: 50px;">
     <h1>
       Comment fonctionne ce site ?
     </h1>
@@ -9,28 +20,54 @@
       Il est entièrement collaboratif puisque ce sont les internautes qui donnent leurs bons plans.
     </p>
   </div>
-
-<!-- 
-  <div class="pic-ctn">
-    <div *ngFor="let ville of listVille">
-
-    </div>
-  </div> -->
-
-
-  <div class="row">
-    <div *ngFor="let ville of listVille">
-      <div class="col s3 m3">
-        <div class="container">
-            <div class="card">
-                <img class="pic" src= " {{ ville.image }}">
-                <h2>{{ ville.name }}</h2>
-                <i class="access">Accédez aux activités → </i>
-              <div class="description-ville" (click)="goToVilleActivite(ville)">{{ ville.description }}</div>
-              <button (click)="goToVilleActivite(ville)"></button>
-            </div>
+  <div class="main-wrapper">
+    <div class="step-container">
+      <div class="step" [ngClass]="{'active': activeUIIndex === 1}" pageScroll (click)="scrollCustomImplementation(sec1, 1)">
+        <div class="v-stepper">
+          <div class="circle"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+      <div class="step" [ngClass]="{'active': activeUIIndex === 2}" pageScroll (click)="scrollCustomImplementation(sec2, 2)">
+        <div class="v-stepper">
+          <div class="circle"></div>
         </div>
       </div>
     </div>
+    <div style="background-color: brown;" class="swiper mySwiper2">
+      <div class="swiper-wrapper" >
+        <div class="swiper-slide" style="background-color: brown;" *ngFor="let ville of listVille">
+          <div class="card">
+            <img class="pic" src= " {{ ville.image }}">
+            <h2>{{ ville.name }}</h2>
+            <i class="access">Accédez aux activités → </i>
+            <div class="description-ville">{{ ville.description }}</div>
+            <button (click)="goToVilleActivite(ville)"></button>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next" style="color: black;"></div>
+      <div class="swiper-button-prev" style="color: black;"></div>
+    </div>
+  
+    <div  #sec2 class="swiper mySwiper2" style="background-color: beige;">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-color: beige;" *ngFor="let ville of listVille">
+          <div class="card" >
+            <img class="pic" src= " {{ ville.image }}">
+            <h2>ret</h2>
+            <i class="access">Accédez aux activités → </i>
+            <div class="description-ville">{{ ville.description }}</div>
+            <button (click)="goToVilleActivite(ville)"></button>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next" style="color: black;"></div>
+      <div class="swiper-button-prev" style="color: black;"></div>
+    </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    
 </body>
+
+</html>

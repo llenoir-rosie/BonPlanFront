@@ -2,7 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Ville } from '../ville';
-import { BrowserModule } from '@angular/platform-browser';
+
+// npm install swiper
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
+import { PageScrollService } from 'ngx-page-scroll-core';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 @Component({
   selector: 'app-liste-ville',
@@ -12,12 +20,37 @@ import { BrowserModule } from '@angular/platform-browser';
 export class ListeVilleComponent implements OnInit{
   public listVille: Ville[];
   currentImg: String;
+  activeUIIndex = 1;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
   
   ngOnInit() {
     this.getAllCities();
+    var swiper = new SwiperCore(".mySwiper2", {
+      loop: true,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+    var swiper2 = new SwiperCore(".mySwiper2", {
+      loop: true,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
   }
+scrollCustomImplementation(element: HTMLElement, index:any) {
+  this.pageScrollService.scroll({
+  document: this.document,
+  scrollTarget: element,
+  });
+  this.activeUIIndex = index;
+}
+
 public getAllCities() {
   this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
     this.listVille = data;

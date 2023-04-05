@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 import { Ville } from './ville';
 import { User } from './User';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',

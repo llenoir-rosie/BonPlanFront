@@ -9,6 +9,7 @@ import { Ville } from '../ville';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
 import { PopUpComponentAddMauvaisPlan } from './pop-up-addMauvaisPlan';
+import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -16,6 +17,9 @@ import { PopUpComponentAddMauvaisPlan } from './pop-up-addMauvaisPlan';
   styleUrls: ['list-bonplan.component.css'],
 })
 export class ListBonplanComponent implements OnInit {
+pop() {
+throw new Error('Method not implemented.');
+}
   villeList: Ville[] = VILLE;
   bpList: Bonplan[]=BONPLAN;
   // mpList: Mauvaisplan[]=MAUVAISPLAN;
@@ -88,6 +92,18 @@ export class ListBonplanComponent implements OnInit {
 
 
   // Formulaire de création de bons plans / mauvais plans
+  public updateBonPlan(bp: Bonplan) {
+    this.dialogRef.open(PopUpComponentUpdateBonPlan, {
+      width: '600px',
+      height: '600px',
+      data: {
+        nameCity: this.nomdelaville,
+        nameActivity:this.nomdelactivite,
+        bp: bp 
+      }
+    }).afterClosed().subscribe(() => this.getAllBonPlan(this.nomdelaville, this.nomdelactivite));
+  }
+
   public goToFormAddBonPlan() {
     this.dialogRef.open(PopUpComponentAddBonPlan, {
       width: '600px',

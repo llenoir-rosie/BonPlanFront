@@ -1,29 +1,89 @@
-<body>
-  <div *ngFor="let act of listeActivites">
-    <div class="col s6 m8 offset-m2">
-    
-      <div class="card horizontal hoverable">
-        <div class="card-image">
-          <img src= " {{act.image}}" >
-        </div>
-        <div class="card-stacked">
-          <div class="card-content">
-            <h2 class="card-header center">{{ act.name }}</h2>
-            <!-- <td>Nom</td> -->
-            <!-- <td><strong>{{ act.name }}</strong></td> -->
-            <!-- <td>Description</td> -->
-            <p class="card-description">
-              <strong>{{ act.description }}</strong>
-            </p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">       
+  </head>
+  <body>
+    <div *ngFor="let act of listeActivites">
+      <div class="col s12 m8 offset-m2">
+        <h2 class="header center">{{ act.name }}</h2>
+        <div class="card horizontal hoverable" (click)="goToVilleActiviteBonplan(nomdelaville, act)">
+          <div class="card-image">
+            <img src= " {{act.image}}" >
           </div>
-          <div class="card-action">
-            <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
-          </div>
-          <button class="gotobonplan" (click)="goToVilleActiviteBonplan(nomdelaville, act)" >
-            Découvrez les bons plans {{ act.name }} de {{ nomdelaville}}
-          </button>
+          <div class="card-stacked">
+            <div class="card-content">
+              <h2 class="card-header center">{{ act.name }}</h2>
+              <!-- <td>Nom</td> -->
+              <!-- <td><strong>{{ act.name }}</strong></td> -->
+              <!-- <td>Description</td> -->
+              <p class="card-description">
+                <strong>{{ act.description }}</strong>
+              </p>
+            </div>
+            <div class="card-action">
+              <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
+            </div>
+            <button class="gotobonplan" (click)="goToVilleActiviteBonplan(nomdelaville, act)" >
+              Découvrez les bons plans {{ act.name }} de {{ nomdelaville}}
+            </button>
+          <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="ValidationDelete()" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button>
         </div>
       </div>
+      </div>
     </div>
+
+
+
+    <div class="button_bottom">
+      <button id = "AjoutAct" mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
+        <i class="material-icons right">send</i>
+      </button>
+
+
+
+    <div>
+      <button mat-raised-button class="waves-effect waves-light btn"color="primary" (click)="openDialogWithTemplateRef(myDialog)" style="color:wheat; background-color: black;">Ajouter une activité pour la ville
+        <i class="material-icons right">send</i>
+      </button>
+
+      <!-- <button mat-button color="accent" (click)="openDialogWithoutRef()">Open second dialog</button> -->
+      <ng-template #myDialog>
+        <h2 matDialogTitle>Ajouter une activité dans la ville de {{nomdelaville}}</h2>
+        <mat-dialog-content>
+          <p>Sélectionner les activités à ajouter</p>
+
+          <div *ngFor="let activity of listeAllActivites">
+            <input type="checkbox" class="demo2" id ={{activity.name}} name="activitybox" value={{activity.name}}>
+            <label for={{activity.name}}>{{activity.name}}</label>
+          </div>
+
+
+
+
+
+        
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+          <button id="boutonValider" mat-button matDialogClose color="primary" (click)="AddNewAct()">Valider</button>
+        </mat-dialog-actions>
+      </ng-template>
+      <!-- <ng-template #secondDialog>
+        <h2 matDialogTitle>Lovely dialog!</h2>
+        <mat-dialog-content>
+          <p>The content of this dialog came from an <code>ng-template</code>! Mind-blowing, right? (However, this wasn't passed in to a method while the other one was)</p>
+          <mat-slide-toggle>I'm a slide toggle!</mat-slide-toggle>
+          <mat-checkbox>I'm a checkbox!</mat-checkbox>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+          <button mat-button matDialogClose color="primary">I <mat-icon class="inline-icon">favorite</mat-icon> dialogs!</button>
+        </mat-dialog-actions>
+      </ng-template> -->
+    </div> 
   </div>
-</body>
+  </body>
+</html>
