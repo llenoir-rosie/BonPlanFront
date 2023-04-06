@@ -22,9 +22,9 @@ body {
 
 .gotobonplan {
     position: relative; 
-    bottom: 10%;
+    bottom: 5%;
     width: 20%;
-    left: 70%;
+    left: 80%;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
