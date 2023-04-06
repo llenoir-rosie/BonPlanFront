@@ -20,6 +20,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export class ListeVilleComponent implements OnInit{
   public listVille: Ville[];
   currentImg: String;
+  currentVille: String;
   activeUIIndex = 1;
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
@@ -59,8 +60,13 @@ public getAllCities() {
 
   goToVilleActivite(ville: Ville) {
       this.router.navigate(['/ville', ville.name])
+      // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
       localStorage.setItem('currentImg', ville.image);
       this.currentImg = localStorage.getItem("currentImg")!;
+
+      // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
+      localStorage.setItem('currentVille', " de " + ville.name);
+      this.currentVille = localStorage.getItem("currentVille")!;
     }
   
 }

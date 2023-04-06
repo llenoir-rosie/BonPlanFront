@@ -16,13 +16,19 @@ import { __values } from 'tslib';
 
 export class ListeActiviteComponent implements OnInit {
   currentImg: String;
+  currentVille: String;
   public listeActivites: Activite[];
   public listeAllActivites : Activite[];
   public nomdelaville: String;
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
- this.currentImg = localStorage.getItem("currentImg")!;
+    // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
+    this.currentVille = localStorage.getItem("currentVille")!;
+
   dialogRefs: MatDialog;
 
     const routeParams = this.route.snapshot.params;
@@ -50,6 +56,14 @@ export class ListeActiviteComponent implements OnInit {
 
   goToVilleList() {
     this.router.navigate(['/ville']);
+
+    // on change la valeur de currentImg
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on change la valeur de currentVille
+    localStorage.setItem('currentVille'," de " + "");
+    this.currentVille = localStorage.getItem("currentVille")!;
   }
   
   //@return redirection to /ville
