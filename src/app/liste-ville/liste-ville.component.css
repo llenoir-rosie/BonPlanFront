@@ -229,6 +229,8 @@ transition: opacity 0.3s;
 opacity: 1;
 }
 .step {
+position:relative;
+top: 80px; left: 5px;
 padding: 10px;
 display: flex;
 flex-direction: row;
