@@ -58,7 +58,7 @@ export class ListeActiviteComponent implements OnInit {
   }
 
   public getAllPossibleActivities(){
-    this.http.get<Activite[]>("http://localhost:8080/activity").subscribe((data) => {
+    this.http.get<Activite[]>("http://localhost:8080/activities").subscribe((data) => {
       this.listeAllActivites = data;
     })
   }

@@ -67,22 +67,19 @@ public getAllActivities() {
   })
 }
 
-public goToActivite(ville: Ville) {
-    this.router.navigate(['/ville', ville.name])
-  }
-
 public goToVille(activity: Activite) {
   this.router.navigate(['/activity', activity.name])
 }
-  goToVilleActivite(ville: Ville) {
-      this.router.navigate(['/ville', ville.name])
-      // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
-      localStorage.setItem('currentImg', ville.image);
-      this.currentImg = localStorage.getItem("currentImg")!;
 
-      // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
-      localStorage.setItem('currentVille', " de " + ville.name);
-      this.currentVille = localStorage.getItem("currentVille")!;
-    }
+goToVilleActivite(ville: Ville) {
+    this.router.navigate(['/ville', ville.name])
+    // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
+    localStorage.setItem('currentImg', ville.image);
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
+    localStorage.setItem('currentVille', " de " + ville.name);
+    this.currentVille = localStorage.getItem("currentVille")!;
+  }
   
 }
