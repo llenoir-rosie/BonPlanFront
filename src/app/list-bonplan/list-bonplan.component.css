@@ -3,7 +3,7 @@ body {
     height: 100%;
 }
 
-#trashBtn {
+#editBtn {
     color: chartreuse;
     position: absolute;
     top: 10px;
