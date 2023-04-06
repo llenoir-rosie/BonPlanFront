@@ -21,7 +21,9 @@ export class ListeActiviteComponent implements OnInit {
   public nomdelaville: String;
   dialogRefs: MatDialog;
   newCityActivity : cityactivities;
+  newActivity : Activite;
   id: number;
+  count_bonplan : Number;
   
 
 
@@ -87,6 +89,46 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
       this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
       this.getAllActivities(this.nomdelaville));
     }
+  }
+
+  public CreateAct(){
+    new_activity_name : String;
+    new_activity_description : String;
+    new_activity_image : String;
+    id : Number;
+    const id=0;
+
+    const new_activity_name = (<HTMLInputElement>document.getElementById("new_activity_name")).value;
+    const new_activity_description = (<HTMLInputElement>document.getElementById("new_activity_description")).value;
+    const new_activity_image = "";
+
+    this.newActivity = new Activite(new_activity_image, new_activity_name, new_activity_description);
+    console.log(this.newActivity)
+    this.newCityActivity = new cityactivities(this.id, this.nomdelaville, new_activity_name)
+
+    this.http.post('http://localhost:8080/activite/new', this.newActivity).subscribe(()=>
+    {this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
+    this.getAllActivities(this.nomdelaville));
+  });
+  }
+  
+  public CountBonPlan(activity_name : String){
+    this.http.get<Number>('http://localhost:8080/'+this.nomdelaville+'/'+activity_name+'/countbonplan').subscribe((data)=>
+    this.count_bonplan = data);
+  }
+
+  public DeleteCityActivity(){
+
+    
+    const id : number=0;
+    const activity_name: String = (<HTMLInputElement>document.getElementById("delete_activity")).value;
+    
+    this.http.get<number>('http://localhost:8080/'+this.nomdelaville+'/'+activity_name+'/countbonplan').subscribe((data)=>
+    this.count_bonplan = data);
+
+    console.log('count bon plan : ',this.count_bonplan);
+    this.http.delete('http://localhost:8080/cityactivities/delete/'+this.nomdelaville+'/'+activity_name).subscribe(()=>
+    this.getAllActivities(this.nomdelaville));
   }
 
 }
