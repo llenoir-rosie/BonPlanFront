@@ -9,6 +9,7 @@ import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { PageScrollService } from 'ngx-page-scroll-core';
+import { Activite } from '../activite';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -19,12 +20,14 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 })
 export class ListeVilleComponent implements OnInit{
   public listVille: Ville[];
+  public listActivities: Activite[];
   activeUIIndex = 1;
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
   
   ngOnInit() {
     this.getAllCities();
+    this.getAllActivities();
     var swiper = new SwiperCore(".mySwiper2", {
       loop: true,
       spaceBetween: 10,
@@ -56,8 +59,18 @@ public getAllCities() {
   })        
 }
 
-goToVilleActivite(ville: Ville) {
+public getAllActivities() {
+  this.http.get<Activite[]>('http://localhost:8080/activities').subscribe((data) => {
+    this.listActivities = data;
+  })
+}
+
+public goToActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name])
   }
+
+public goToVille(activity: Activite) {
+  this.router.navigate(['/activity', activity.name])
+}
   
 }
