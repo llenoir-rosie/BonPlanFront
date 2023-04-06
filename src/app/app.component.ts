@@ -18,22 +18,23 @@ export class AppComponent implements OnInit {
   logIn: Boolean = false;
   commonUser = new User("","","","", "", "COMMON")
   currentUser: User;
+  currentImg: String;
   constructor(private router: Router, private http: HttpClient) { }
+  
 
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
+
   }
+
 
   login() {
     this.router.navigate(['/login'])
   }
 
   ngOnInit(): void {
-    // this.ville$ = this.searchTerms.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   switchMap((term) => this.SearchVille(term))
-    // );
+    localStorage.setItem("currentImg", JSON.stringify("./assets/img/activite-navbar.jpeg"));
+    this.currentImg = JSON.parse(localStorage.getItem("currentImg")!);
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
       this.Villeslist = data;
     })  
@@ -41,13 +42,26 @@ export class AppComponent implements OnInit {
     localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
   }
 
+  changeImgNav() { // cette fonction est activée dès qu'on clicke quelque part
+    if(location.href == "http://localhost:4200/ville"){
+      this.currentImg = "./assets/img/activite-navbar.jpeg";
+    } // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut
+    else {
+      this.currentImg = localStorage.getItem("currentImg")!;
+      // change l'image de la navbar selon la ville où l'on est grâce au localStorage
+    }
+  }
+
+
   // search(term: string) {
   //   this.SearchVille(term);
   //   // this.searchTerms.next(term);
   // }
 
   goToDetail(ville: Ville) {
-    this.router.navigate(['/ville', ville.name])
+    this.router.navigate(['/ville', ville.name]);
+    localStorage.setItem('currentImg', ville.image);
+    this.currentImg = localStorage.getItem("currentImg")!;
   }
 
 
@@ -55,7 +69,8 @@ export class AppComponent implements OnInit {
     this.touteVille =[]
     if(toSearch.length <= 1){
       return of([]);
-    }else{
+    }
+    else{
       for (const i in this.Villeslist){
         if (this.Villeslist[i].name.toLowerCase().includes(toSearch.toLowerCase())){
           this.touteVille.push(this.Villeslist[i]) ;

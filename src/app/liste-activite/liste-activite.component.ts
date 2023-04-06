@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Activite } from '../activite';
-import { PopUpAddActivite } from './popupAddAct.component';
+import { Ville } from '../ville';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { __values } from 'tslib';
+import { cityactivities } from '../cityactivity';
 
 @Component({
   selector: 'liste-activite',
@@ -15,21 +16,25 @@ import { __values } from 'tslib';
 })
 
 export class ListeActiviteComponent implements OnInit {
-
+  currentImg: String;
   public listeActivites: Activite[];
   public listeAllActivites : Activite[];
   public nomdelaville: String;
   dialogRefs: MatDialog;
+  newCityActivity : cityactivities;
+  newActivity : Activite;
+  id: number;
+  count_bonplan : Number;
   
 
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-
+ this.currentImg = localStorage.getItem("currentImg")!;
+  dialogRefs: MatDialog;
 
     const routeParams = this.route.snapshot.params;
-
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
     this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
     this.getAllActivities(routeParams['name']);
@@ -47,7 +52,7 @@ export class ListeActiviteComponent implements OnInit {
   }
 
   public getAllPossibleActivities(){
-    this.http.get<Activite[]>("http://localhost:8080/activites").subscribe((data) => {
+    this.http.get<Activite[]>("http://localhost:8080/activity").subscribe((data) => {
       this.listeAllActivites = data;
     })
   }
@@ -61,42 +66,70 @@ export class ListeActiviteComponent implements OnInit {
       this.router.navigate(['/ville', ville, activity.name])
   }
 
-  public goToFormaddAct(){
-    this.dialogRefs.open(PopUpAddActivite,{
-      width : '600px',
-      height : '600px',
-      data: {
-        nameCity : this.nomdelaville,
-        listActivities : this.listeActivites,
-      }}).afterClosed().subscribe(() => this.getAllActivities(this.nomdelaville));
-    }
-
 
 @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
 openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   this.dialog.open(templateRef);
 }
-// public openDialogWithoutRef() {
-//   this.dialog.open(this.secondDialog);
-// }
-// 
-
 
   public ValidationDelete(){
     console.log('click')
   }
 
-  // checked : Boolean;
   public AddNewAct(){
 
- 
     const checked_boxs = (document.querySelectorAll('[name ="activitybox"]:checked'));
-    
- 
-    console.log(checked_boxs);
-    
+    const lenght_checked_boxs = checked_boxs.length;
 
- 
+    id : Number;
+    
+    for (var index: number=0; index<lenght_checked_boxs; index++){
+      const html_checked_boxs = (<HTMLInputElement>checked_boxs.item(index)).value;
+      const id = 0;
+      this.newCityActivity = new cityactivities(this.id, this.nomdelaville, html_checked_boxs)
+      this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
+      this.getAllActivities(this.nomdelaville));
+    }
+  }
+
+  public CreateAct(){
+    new_activity_name : String;
+    new_activity_description : String;
+    new_activity_image : String;
+    id : Number;
+    const id=0;
+
+    const new_activity_name = (<HTMLInputElement>document.getElementById("new_activity_name")).value;
+    const new_activity_description = (<HTMLInputElement>document.getElementById("new_activity_description")).value;
+    const new_activity_image = "";
+
+    this.newActivity = new Activite(new_activity_image, new_activity_name, new_activity_description);
+    console.log(this.newActivity)
+    this.newCityActivity = new cityactivities(this.id, this.nomdelaville, new_activity_name)
+
+    this.http.post('http://localhost:8080/activity/new', this.newActivity).subscribe(()=>
+    {this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
+    this.getAllActivities(this.nomdelaville));
+  });
+  }
+  
+  public CountBonPlan(activity_name : String){
+    this.http.get<Number>('http://localhost:8080/'+this.nomdelaville+'/'+activity_name+'/countbonplan').subscribe((data)=>
+    this.count_bonplan = data);
+  }
+
+  public DeleteCityActivity(){
+
+    
+    const id : number=0;
+    const activity_name: String = (<HTMLInputElement>document.getElementById("delete_activity")).value;
+    
+    this.http.get<number>('http://localhost:8080/'+this.nomdelaville+'/'+activity_name+'/countbonplan').subscribe((data)=>
+    this.count_bonplan = data);
+
+    console.log('count bon plan : ',this.count_bonplan);
+    this.http.delete('http://localhost:8080/cityactivities/delete/'+this.nomdelaville+'/'+activity_name).subscribe(()=>
+    this.getAllActivities(this.nomdelaville));
   }
 
 }

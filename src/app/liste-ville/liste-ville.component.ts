@@ -21,6 +21,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export class ListeVilleComponent implements OnInit{
   public listVille: Ville[];
   public listActivities: Activite[];
+  currentImg: String;
   activeUIIndex = 1;
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
@@ -72,5 +73,10 @@ public goToActivite(ville: Ville) {
 public goToVille(activity: Activite) {
   this.router.navigate(['/activity', activity.name])
 }
+  goToVilleActivite(ville: Ville) {
+      this.router.navigate(['/ville', ville.name])
+      localStorage.setItem('currentImg', ville.image);
+      this.currentImg = localStorage.getItem("currentImg")!;
+    }
   
 }

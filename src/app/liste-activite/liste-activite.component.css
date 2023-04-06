@@ -52,15 +52,20 @@ body {
 
 .button_bottom{
     display : flex;
-    align-content: flex-start;
+    /* align-items: center; */
+    justify-content: space-evenly;
 }
 
-#AjoutAct{
-
-    display : block;
-    margin:2% auto;
-
+.bouton-pop-up-ajouter-act, .bouton-pop-up-delete{
+    display : flex;
+    justify-content: space-evenly;
 }
+
+.PopUpCreateAdd{
+    padding : 5px;
+    margin: 10px;
+}
+
 
 input[type="checkbox"].demo2 {
   display: none;
