@@ -134,8 +134,8 @@ input.new-search {
     position: absolute;
     color:rgb(0, 0, 0);
     top: 0;
-    left: 0;
-    width: 100%;;
+    left: -1.5%;
+    width: 83%;
     height: 42.5px;
     line-height: 30px;
     outline: 0;
@@ -159,6 +159,11 @@ input.new-search {
     line-height: 200%;
     font-size: 20px;
     transition: 0.5s;
+}
+
+.collection-item {
+    border: none;
+    text-decoration: none;
 }
 
 form:hover,
