@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 //npm i ngx-page-scroll-core
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { PopUpComponentUpdateBonPlan } from './list-bonplan/pop-up-updateBonPlan.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     Registration,
     PopUpComponentAddBonPlan,
     PopUpComponentAddMauvaisPlan,
+    PopUpComponentUpdateBonPlan,
   ],
   imports: [
     NgxPageScrollCoreModule.forRoot({duration: 500}),

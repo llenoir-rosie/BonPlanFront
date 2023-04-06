@@ -21,9 +21,10 @@ body {
 }
 
 .gotobonplan {
-    position: relative;
+    position: relative; 
+    bottom: 5%;
     width: 20%;
-    left: 70%;
+    left: 78%;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;

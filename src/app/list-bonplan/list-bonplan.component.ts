@@ -103,7 +103,6 @@ throw new Error('Method not implemented.');
       }
     }).afterClosed().subscribe(() => this.getAllBonPlan(this.nomdelaville, this.nomdelactivite));
   }
-
   public goToFormAddBonPlan() {
     this.dialogRef.open(PopUpComponentAddBonPlan, {
       width: '600px',

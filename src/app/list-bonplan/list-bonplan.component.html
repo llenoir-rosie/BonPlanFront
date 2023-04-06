@@ -2,7 +2,8 @@
   <html>                        
     <head>                        
       <title>BonPlan</title>                        
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">                      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">    
+      <link href='https://css.gg/css' rel='stylesheet'>                  
     </head> 
     <body style='background-image: imgBackGround '>       
           
@@ -26,7 +27,7 @@
                   </div>    
                   <img class = "img-test" src=".\assets\img\foot.jfif">
                   <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                  <i class="fa fa-pencil" aria-hidden="true" (click)="updateBonPlan(bp)">rty</i>
+                  <i id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
                 </div>     
             </div> 
           </div>
@@ -49,6 +50,7 @@
                 </div>    
                 <img class = "img-test" src=".\assets\img\foot.jfif">
                 <i id='trashBtn' class='fa fa-trash' (click)="deleteMauvaisPlan(mp.name)"></i>
+                <i id='editBtn' class="gg-edit-markup" aria-hidden="false"></i>
               </div>     
             </div> 
           </div>
