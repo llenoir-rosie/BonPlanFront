@@ -21,13 +21,14 @@ body {
 }
 
 .gotobonplan {
-    position: relative;
+    position: fixed; 
+    top: 40%;
     width: 20%;
     left: 70%;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 16px 16px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
