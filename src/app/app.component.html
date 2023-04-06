@@ -20,16 +20,17 @@
               <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
             </div>
           </div>
-        
-          <!-- <img class = "ville-navbar" src=".\assets\img\ville-navbar.jfif"> -->
-          <img class = "activite-navbar" src=".\assets\img\activite-navbar.jpeg">
+      
+          <img class = "activite-navbar" src='{{currentImg}}'>
+          <!-- <img class = "activite-navbar" src=".\assets\img\activite-navbar.jpeg"> -->
+
 
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
           crossorigin="anonymous">
           <form action="">
             <input
-            class="new-search" 
+            class="new-search"
             required
             type="text"
             name="name" 
@@ -57,7 +58,7 @@
             </button> -->
       </div>
   </nav>
-  <body>
+  <body (click)="changeImgNav()">
     <router-outlet></router-outlet>
     <footer class="page-footer" style="background-color:grey">
       <div class="container">

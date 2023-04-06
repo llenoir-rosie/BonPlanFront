@@ -39,14 +39,14 @@
       </div>
       <ng-template #DialogDeleteAct>
         <h2>Suppression de l'activité {{act.name}} pour la ville de {{nomdelaville}}</h2>
-        <mat-dialog-content [hidden]="count_bonplan==0">
+        <div mat-dialog-content [hidden]="count_bonplan==0">
           L'activité ne peut pas être supprimée car {{count_bonplan}} bons plans lui correspondent.<br>
           Merci de supprimer les bons plans avant de supprimer l'activité :) <br>
-        </mat-dialog-content>
-        <mat-dialog-actions  class="bouton-pop-up-delete">
+        </div>
+        <div mat-dialog-actions  class="bouton-pop-up-delete">
           <button mat-button matDialogClose color="primary" id="delete_activity"  [disabled]="count_bonplan>0" value={{act.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
           <button mat-button matDialogClose color="primary" >Annuler</button>
-        </mat-dialog-actions>
+        </div>
       </ng-template>
 
       <ng-template #DialogUpdateAct>
@@ -65,22 +65,22 @@
         <!-- <button mat-button color="accent" (click)="openDialogWithoutRef()">Open second dialog</button> -->
         <ng-template #DialogAddNewAct>
           <h2 matDialogTitle>Ajouter une activité dans la ville de {{nomdelaville}}</h2>
-          <mat-dialog-content>
+          <div mat-dialog-content>
             <p>Sélectionner les activités à ajouter</p>
             <div *ngFor="let activity of listeAllActivites">
               <input type="checkbox" class="demo2" id ={{activity.name}} name="activitybox" value={{activity.name}}>
               <label for={{activity.name}}>{{activity.name}}</label>
             </div>        
-          </mat-dialog-content>
-          <mat-dialog-actions class = "bouton-pop-up-ajouter-act">
+          </div>
+          <div mat-dialog-actions class = "bouton-pop-up-ajouter-act">
             <button id="boutonValider" mat-button matDialogClose color="primary" (click)="openDialogWithTemplateRef(DialogCreateActivity)">Ajouter une autre activité</button>
             <button id="boutonValider" mat-button matDialogClose color="primary" (click)="AddNewAct()">Valider</button>
-          </mat-dialog-actions>
+          </div>
         </ng-template>
 
         <ng-template #DialogCreateActivity class="PopUpCreateAdd">
           <h2>Ajouter une nouvelle activité dans la ville de {{nomdelaville}}</h2>
-          <mat-dialog-content>
+          <div mat-dialog-content>
             <label for="new_activity_name">Nom de l'activité</label>
             <input type="text" name = "new_activity_name" id="new_activity_name" required autocorrect size="30" required>
             <br>
@@ -89,12 +89,19 @@
             <br>
             <label for="new_activity_image">Image</label>
             <input type="file" id="new_activity_image" name="new_activity_image" accept="image/png, image/jpeg">
-          </mat-dialog-content>
-          <mat-dialog-actions align="end">
+          </div>
+          <div mat-dialog-actions align="end">
             <button mat-button matDialogClose color="primary" (click)="CreateAct()">Valider</button>
-          </mat-dialog-actions>
+          </div>
         </ng-template>
       </div> 
+
+
+    <!-- <div>
+      <button mat-raised-button class="waves-effect waves-light btn"color="primary" (click)="openDialogWithTemplateRef(myDialog)" style="color:wheat; background-color: black;">Ajouter une activité pour la ville
+        <i class="material-icons right">send</i>
+      </button>
+    </div>  -->
   </div>
   <br>
   </body>

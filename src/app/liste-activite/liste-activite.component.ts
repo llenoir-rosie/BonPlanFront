@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Activite } from '../activite';
+import { Ville } from '../ville';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { cityactivities } from '../cityactivity';
 
@@ -15,7 +16,7 @@ import { cityactivities } from '../cityactivity';
 })
 
 export class ListeActiviteComponent implements OnInit {
-
+  currentImg: String;
   public listeActivites: Activite[];
   public listeAllActivites : Activite[];
   public nomdelaville: String;
@@ -30,10 +31,10 @@ export class ListeActiviteComponent implements OnInit {
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-
+ this.currentImg = localStorage.getItem("currentImg")!;
+  dialogRefs: MatDialog;
 
     const routeParams = this.route.snapshot.params;
-
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
     this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
     this.getAllActivities(routeParams['name']);
@@ -51,7 +52,7 @@ export class ListeActiviteComponent implements OnInit {
   }
 
   public getAllPossibleActivities(){
-    this.http.get<Activite[]>("http://localhost:8080/activites").subscribe((data) => {
+    this.http.get<Activite[]>("http://localhost:8080/activity").subscribe((data) => {
       this.listeAllActivites = data;
     })
   }
@@ -106,7 +107,7 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     console.log(this.newActivity)
     this.newCityActivity = new cityactivities(this.id, this.nomdelaville, new_activity_name)
 
-    this.http.post('http://localhost:8080/activite/new', this.newActivity).subscribe(()=>
+    this.http.post('http://localhost:8080/activity/new', this.newActivity).subscribe(()=>
     {this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
     this.getAllActivities(this.nomdelaville));
   });
