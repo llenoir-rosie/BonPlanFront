@@ -53,24 +53,7 @@
 
       <!-- <button mat-button color="accent" (click)="openDialogWithoutRef()">Open second dialog</button> -->
       <ng-template #myDialog>
-        <h2 matDialogTitle>Ajouter une activité dans la ville de {{nomdelaville}}</h2>
-        <mat-dialog-content>
-          <p>Sélectionner les activités à ajouter</p>
-
-          <div *ngFor="let activity of listeAllActivites">
-            <input type="checkbox" class="demo2" id ={{activity.name}} name="activitybox" value={{activity.name}}>
-            <label for={{activity.name}}>{{activity.name}}</label>
-          </div>
-
-
-
-
-
-        
-        </mat-dialog-content>
-        <mat-dialog-actions align="end">
-          <button id="boutonValider" mat-button matDialogClose color="primary" (click)="AddNewAct()">Valider</button>
-        </mat-dialog-actions>
+  
       </ng-template>
       <!-- <ng-template #secondDialog>
         <h2 matDialogTitle>Lovely dialog!</h2>
