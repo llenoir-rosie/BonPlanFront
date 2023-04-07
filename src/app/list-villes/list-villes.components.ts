@@ -6,6 +6,7 @@ import { Activite } from '../activite';
 import { MatDialog } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { Ville } from '../ville';
+import { cityactivities } from '../cityactivity';
 
 @Component({
   selector: 'liste-villes',
@@ -19,7 +20,9 @@ export class ListeVillesComponent implements OnInit {
   public listeCities : Ville[];
   public nameActivity: String;
   public listAllCities: Ville[];
+  public newCity: Ville;
   dialogRefs: MatDialog;
+  id: number;
   
 
 
@@ -38,7 +41,6 @@ export class ListeVillesComponent implements OnInit {
     // si jamais il y a des soucis avec les majuscules des premières lettres des villes
 
   public getAllCities(nameActivity: String) {
-    console.log(nameActivity)
     this.http.get<Ville[]>("http://localhost:8080/villes/" + nameActivity).subscribe((data) => {
     this.listeCities = data;
     })
@@ -50,42 +52,33 @@ export class ListeVillesComponent implements OnInit {
     })
   }
 
+  public editCity() {
+
+    const new_city_name = (<HTMLInputElement>document.getElementById("new_city_name")).value;
+    const new_city_description = (<HTMLInputElement>document.getElementById("new_city_description")).value;
+    const new_city_image = "";
+
+    this.newCity = new Ville( new_city_name, new_city_description, new_city_image);
+
+    this.http.put('http://localhost:8080/city/update', this.newCity).subscribe(() => {
+      console.log(this.newCity)
+      this.http.get<Ville[]>("http://localhost:8080/cities").subscribe((data) => {
+        this.listAllCities = data;
+      })
+    })
+  }
+
   goToVilleList() {
     this.router.navigate(['/ville']);
   }
   
-goToVilleActiviteBonplan(ville: Ville , nameAct: String) {
-  this.router.navigate(['/ville', ville.name , nameAct])
-}
-
-//   public goToFormaddAct(){
-//     this.dialogRefs.open(PopUpAddActivite,{
-//       width : '600px',
-//       height : '600px',
-//       data: {
-//         nameCity : this.nomdelaville,
-//         listActivities : this.listeActivites,
-//       }}).afterClosed().subscribe(() => this.getAllActivities(this.nomdelaville));
-//     }
-
-
-@ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
-openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
-  this.dialog.open(templateRef);
-}
-public openDialogWithoutRef() {
-  this.dialog.open(this.secondDialog);
-}
-
-
-
-  public ValidationDelete(){
-    console.log('click')
+  goToVilleActiviteBonplan(ville: Ville , nameAct: String) {
+    this.router.navigate(['/ville', ville.name , nameAct])
   }
 
-  checked : Boolean;
-  public AddNewAct(){
-    const checked_boxs = (document.querySelectorAll('[name ="activitybox"]:checked'));
+  @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
   }
 
 }

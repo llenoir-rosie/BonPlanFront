@@ -30,29 +30,27 @@
             <button class="gotobonplan" (click)="goToVilleActiviteBonplan(nomdelaville, act)" >
               Découvrez les bons plans {{ act.name }} de {{ nomdelaville}}
             </button>
-          <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="CountBonPlan(act.name) ; openDialogWithTemplateRef(DialogDeleteAct)" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button>
-          <!-- <button id = "ButtonUpdateAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="openDialogWithTemplateRef(DialogUpdateAct)" style="color:wheat; background-color: rgb(172, 172, 172);"> Modifier </button> -->
-
+            <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="CountBonPlan(act.name) ; openDialogWithTemplateRef(DialogDeleteAct)" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button>
+            <!-- <button id = "ButtonUpdateAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="openDialogWithTemplateRef(DialogUpdateAct)" style="color:wheat; background-color: rgb(172, 172, 172);"> Modifier </button> -->
+          </div>
         </div>
       </div>
+    <ng-template #DialogDeleteAct>
+      <h2>Suppression de l'activité pour la ville de {{nomdelaville}}</h2>
+      <div mat-dialog-content [hidden]="count_bonplan==0">
+        L'activité ne peut pas être supprimée car {{count_bonplan}} bons plans lui correspondent.<br>
+        Merci de supprimer les bons plans avant de supprimer l'activité :) <br>
       </div>
-      <ng-template #DialogDeleteAct>
-        <h2>Suppression de l'activité {{act.name}} pour la ville de {{nomdelaville}}</h2>
-        <div mat-dialog-content [hidden]="count_bonplan==0">
-          L'activité ne peut pas être supprimée car {{count_bonplan}} bons plans lui correspondent.<br>
-          Merci de supprimer les bons plans avant de supprimer l'activité :) <br>
-        </div>
-        <div mat-dialog-actions  class="bouton-pop-up-delete">
-          <button mat-button matDialogClose color="primary" id="delete_activity"  [disabled]="count_bonplan>0" value={{act.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
-          <button mat-button matDialogClose color="primary" >Annuler</button>
-        </div>
-      </ng-template>
+      <div mat-dialog-actions  class="bouton-pop-up-delete">
+        <button mat-button matDialogClose color="primary" id="delete_activity"  [disabled]="count_bonplan>0" value={{act.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
+        <button mat-button matDialogClose color="primary" >Annuler</button>
+      </div>
+    </ng-template>
 
-      <ng-template #DialogUpdateAct>
-        <h2>Mettre à jour l'activité {{act.name}}</h2>
-      </ng-template>
+    <ng-template #DialogUpdateAct>
+      <h2>Mettre à jour l'activité {{act.name}}</h2>
+    </ng-template>
     </div>
-
     <div class="button_bottom">
       <button id = "AjoutAct" mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
         <i class="material-icons right">send</i>
@@ -101,7 +99,7 @@
         <i class="material-icons right">send</i>
       </button>
     </div>  -->
-  </div>
+    </div>
   <br>
   </body>
 </html>

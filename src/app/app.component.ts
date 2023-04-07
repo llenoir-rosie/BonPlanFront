@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/ville', ville.name]);
 
     // change la valeur de la currentImg de localStorage par l'image de la ville où on est
-    localStorage.setItem('currentImg', ville.image);
+    localStorage.setItem("currentImg", ville.image);
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // change la valeur de la currentVille de localStorage par le nom de la ville où on est

@@ -28,53 +28,38 @@
             <div class="card-action">
               <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
             </div>
-            <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="ValidationDelete()" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button> 
+            <button class="editCity" (click)="openDialogWithTemplateRef(DialogUpdateAct)" >
+              Modifier
+            </button>
             <button class="gotobonplan" (click)="goToVilleActiviteBonplan( city, nameActivity)" >
                 Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
             </button>
+          </div>
         </div>
       </div>
-      </div>
-    </div>
-
-
-
-    <div class="button_bottom">
-      <button id = "AjoutAct" mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
-        <i class="material-icons right">send</i>
-      </button>
-    <div>
-      <button mat-raised-button class="waves-effect waves-light btn"color="primary" (click)="openDialogWithTemplateRef(myDialog)" style="color:wheat; background-color: black;">Ajouter une activité pour la ville
-        <i class="material-icons right">send</i>
-      </button>
-
-      <button mat-button color="accent" (click)="openDialogWithoutRef()">Open second dialog</button> -->
-      <ng-template #myDialog>
-        <h2 matDialogTitle>Ajouter une ville pour l'activité {{ nameActivity }}</h2>
-        <mat-dialog-content>
-          <p>Sélectionner les villes à ajouter</p>
-
-          <div *ngFor="let city of listAllCities">
-            <input type="checkbox" class="demo2" id ={{city.name}} name="citybox" value={{city.name}}>
-            <label for={{city.name}}>{{ city.name }}</label>
-          </div>
-        </mat-dialog-content>
-        <mat-dialog-actions align="end">
-          <button id="boutonValider" mat-button matDialogClose color="primary" (click)="AddNewAct()">Valider</button>
-        </mat-dialog-actions>
+      <ng-template #DialogUpdateAct>
+        <h2 matDialogTitle >Mettre à jour l'activité {{nameActivity}}</h2>
+        <div mat-dialog-content>
+          <div>
+            <label for={{city.name}}>{{city.name}}</label>
+            <input class="demo2" id ="new_city_name" name="itembox" value={{city.name}} readonly>
+            <br>
+            <label for={{city.description}}> Description </label>
+            <textarea style="height:100px;" id = "new_city_description" name="itembox" cols="33">{{city.description}}</textarea>
+            <br>
+            <label for="city_image">Image</label>
+            <input type="file" id="new_city_image" name="city_image" accept="image/png, image/jpeg">
+          </div>        
+        </div>
+        <div mat-dialog-actions class = "bouton-pop-up-edit-city">
+          <button id="editBtn" mat-button matDialogClose color="primary" (click)="editCity()"> Appliquer les modifications </button>
+        </div>
       </ng-template>
-      <!-- <ng-template #secondDialog>
-        <h2 matDialogTitle>Lovely dialog!</h2>
-        <mat-dialog-content>
-          <p>The content of this dialog came from an <code>ng-template</code>! Mind-blowing, right? (However, this wasn't passed in to a method while the other one was)</p>
-          <mat-slide-toggle>I'm a slide toggle!</mat-slide-toggle>
-          <mat-checkbox>I'm a checkbox!</mat-checkbox>
-        </mat-dialog-content>
-        <mat-dialog-actions align="end">
-          <button mat-button matDialogClose color="primary">I <mat-icon class="inline-icon">favorite</mat-icon> dialogs!</button>
-        </mat-dialog-actions>
-      </ng-template> -->
+    </div>
+    <div class="button_bottom">
+      <button mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
+        <i class="material-icons right">send</i>
+      </button>
     </div> 
-  </div>
   </body>
 </html>
