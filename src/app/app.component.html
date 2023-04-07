@@ -33,20 +33,23 @@
           crossorigin="anonymous">
           <form action="">
             <input
+            [(ngModel)]="searchInput"
             class="new-search"
             required
-            type="text"
+            type="search"
             name="name" 
             #searchBox
             placeholder="Recherchez une ville"
             (keyup)="SearchVille(searchBox.value)">
             <div class="collection">
-              <a *ngFor="let Ville of this.touteVille"
-                (click)="goToDetail(Ville)"
-                class="collection-item"
-              >
-                {{ Ville.name }}
-              </a>
+              <ul>
+                <a *ngFor="let Ville of this.touteVille"
+                  (click)="goToDetail(Ville)"
+                  class="collection-item"
+                >
+                  <p> {{ Ville.name }} </p>
+                </a>
+              </ul>
             </div>
             <i class="fa fa-search"></i>
           </form>

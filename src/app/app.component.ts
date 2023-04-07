@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   currentUser: User;
   currentImg: String;
   currentVille: String;
+  public searchInput: String = '';
   constructor(private router: Router, private http: HttpClient) { }
   
 

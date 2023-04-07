@@ -134,8 +134,8 @@ input.new-search {
     position: absolute;
     color:rgb(0, 0, 0);
     top: 0;
-    left: 0;
-    width: 100%;;
+    left: -1.5%;
+    width: 83%;
     height: 42.5px;
     line-height: 30px;
     outline: 0;
@@ -160,6 +160,30 @@ input.new-search {
     font-size: 20px;
     transition: 0.5s;
 }
+
+ul{
+    list-style: none;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+  }
+  
+  ul a{
+    background: #ddd;
+    border-bottom: 3px solid whitesmoke;
+    padding: 2px;
+    overflow: hidden;
+    border: none;
+  }
+  
+  ul a p{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 7px;
+    color:#07051a;
+    font-size: 150%;
+    border: none;
+  } 
 
 form:hover,
 /* form:valid, */
