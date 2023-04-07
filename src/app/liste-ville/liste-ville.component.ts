@@ -9,6 +9,7 @@ import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { PageScrollService } from 'ngx-page-scroll-core';
+import { Activite } from '../activite';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -19,6 +20,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 })
 export class ListeVilleComponent implements OnInit{
   public listVille: Ville[];
+  public listActivities: Activite[];
   currentImg: String;
   currentVille: String;
   activeUIIndex = 1;
@@ -27,6 +29,7 @@ export class ListeVilleComponent implements OnInit{
   
   ngOnInit() {
     this.getAllCities();
+    this.getAllActivities();
     var swiper = new SwiperCore(".mySwiper2", {
       loop: true,
       spaceBetween: 10,
@@ -58,15 +61,25 @@ public getAllCities() {
   })        
 }
 
-  goToVilleActivite(ville: Ville) {
-      this.router.navigate(['/ville', ville.name])
-      // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
-      localStorage.setItem('currentImg', ville.image);
-      this.currentImg = localStorage.getItem("currentImg")!;
+public getAllActivities() {
+  this.http.get<Activite[]>('http://localhost:8080/activities').subscribe((data) => {
+    this.listActivities = data;
+  })
+}
 
-      // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
-      localStorage.setItem('currentVille', " de " + ville.name);
-      this.currentVille = localStorage.getItem("currentVille")!;
-    }
+public goToVille(activity: Activite) {
+  this.router.navigate(['/activity', activity.name])
+}
+
+goToVilleActivite(ville: Ville) {
+    this.router.navigate(['/ville', ville.name])
+    // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
+    localStorage.setItem('currentImg', ville.image);
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
+    localStorage.setItem('currentVille', " de " + ville.name);
+    this.currentVille = localStorage.getItem("currentVille")!;
+  }
   
 }

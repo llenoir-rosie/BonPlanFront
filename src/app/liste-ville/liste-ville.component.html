@@ -52,13 +52,13 @@
   
     <div  #sec2 class="swiper mySwiper2" style="background-color: beige;">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" style="background-color: beige;" *ngFor="let ville of listVille">
+        <div class="swiper-slide" style="background-color: beige;" *ngFor="let activity of listActivities">
           <div class="card" >
-            <img class="pic" src= " {{ ville.image }}">
-            <h2>ret</h2>
-            <i class="access">Accédez aux activités → </i>
-            <div class="description-ville">{{ ville.description }}</div>
-            <button (click)="goToVilleActivite(ville)"></button>
+            <img class="pic" src= " {{ activity.image }}">
+            <h2>{{activity.name}}</h2>
+            <i class="access">Accédez aux villes → </i>
+            <div class="description-activity">{{ activity.description }}</div>
+            <button (click)="goToVille(activity)"></button>
           </div>
         </div>
       </div>

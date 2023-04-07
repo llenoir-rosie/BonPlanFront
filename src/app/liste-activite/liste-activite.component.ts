@@ -58,7 +58,7 @@ export class ListeActiviteComponent implements OnInit {
   }
 
   public getAllPossibleActivities(){
-    this.http.get<Activite[]>("http://localhost:8080/activity").subscribe((data) => {
+    this.http.get<Activite[]>("http://localhost:8080/activities").subscribe((data) => {
       this.listeAllActivites = data;
     })
   }
@@ -91,7 +91,6 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   }
 
   public AddNewAct(){
-
     const checked_boxs = (document.querySelectorAll('[name ="activitybox"]:checked'));
     const lenght_checked_boxs = checked_boxs.length;
 
@@ -133,7 +132,6 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   }
 
   public DeleteCityActivity(){
-
     
     const id : number=0;
     const activity_name: String = (<HTMLInputElement>document.getElementById("delete_activity")).value;

@@ -4,8 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListeVilleComponent } from './liste-ville/liste-ville.component';
 import { ListeActiviteComponent } from './liste-activite/liste-activite.component';
-import { PopUpComponentAddBonPlan } from './list-bonplan/pop-up-addBonPlan'
-import { PopUpComponentAddMauvaisPlan } from './list-bonplan/pop-up-addMauvaisPlan'
+import { PopUpComponentAddBonPlan } from './list-bonplan/pop-up-addBonPlan';
+import { PopUpComponentAddMauvaisPlan } from './list-bonplan/pop-up-addMauvaisPlan';
+import { PopUpComponentUpdateBonPlan } from './list-bonplan/pop-up-updateBonPlan.component'
 import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,13 +17,17 @@ import { Registration } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 //npm i ngx-page-scroll-core
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { PopUpComponentUpdateBonPlan } from './list-bonplan/pop-up-updateBonPlan.component';
+import { ListeVillesComponent } from './list-villes/list-villes.components';
 
 
 @NgModule({
   declarations: [
+    ListeVillesComponent,
+    PopUpComponentUpdateBonPlan,
     AppComponent,
     ListeVilleComponent,
     ListeActiviteComponent,
@@ -45,11 +50,13 @@ import { PopUpComponentUpdateBonPlan } from './list-bonplan/pop-up-updateBonPlan
     MatIconModule,
     MatDialogModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     AppRoutingModule
   ],
   exports: [
     FormsModule,
+    CommonModule,
     ReactiveFormsModule
   ],
   providers: [],
