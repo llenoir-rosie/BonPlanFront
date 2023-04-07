@@ -42,12 +42,15 @@ body {
     background-color: white;
     color: black;
 }
-#ButtonDeleteAct{
+/* #ButtonDeleteAct{
     /* background-color: red; */
-    flex-wrap: wrap;
-    width : 100px;
-    bottom : 2%;
-    left : 85%;
+    /* flex-wrap: wrap;
+    width : 100px; */
+    /* bottom : 2%;
+    left : 85%; */
+
+#update_description{
+    height: 10;
 }
 
 .button_bottom{
@@ -56,14 +59,17 @@ body {
     justify-content: space-evenly;
 }
 
-.bouton-pop-up-ajouter-act, .bouton-pop-up-delete{
+.bouton-pop-up-ajouter-act, .bouton-pop-up-delete, .bouton-bottom-card{
     display : flex;
     justify-content: space-evenly;
 }
 
-.PopUpCreateAdd{
-    padding : 5px;
+.PopUpAct{
+    padding : 10px;
     margin: 10px;
+    justify-content: space-around;
+}.h2{
+    justify-content: space-around;
 }
 
 
