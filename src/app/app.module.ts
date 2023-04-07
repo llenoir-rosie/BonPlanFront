@@ -20,7 +20,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 //npm i ngx-page-scroll-core
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
-import { PopUpComponentUpdateBonPlan } from './list-bonplan/pop-up-updateBonPlan.component';
 import { ListeVillesComponent } from './list-villes/list-villes.components';
 
 
