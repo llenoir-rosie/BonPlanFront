@@ -26,6 +26,7 @@ export class ListeActiviteComponent implements OnInit {
   newActivity : Activite;
   id: number;
   count_bonplan : Number;
+  count_mauvaisplan : Number;
   
 
 
@@ -117,7 +118,6 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     const new_activity_image = "";
 
     this.newActivity = new Activite(new_activity_image, new_activity_name, new_activity_description);
-    console.log(this.newActivity)
     this.newCityActivity = new cityactivities(this.id, this.nomdelaville, new_activity_name)
 
     this.http.post('http://localhost:8080/activity/new', this.newActivity).subscribe(()=>
@@ -131,6 +131,11 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.count_bonplan = data);
   }
 
+  public CountMauvaisPlan(activity_name:String){
+    this.http.get<Number>('http://localhost:8080/'+this.nomdelaville+'/'+activity_name+'/countmauvaisplan').subscribe((data)=>
+    this.count_mauvaisplan = data)
+  }
+
   public DeleteCityActivity(){
     
     const id : number=0;
@@ -142,6 +147,20 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     console.log('count bon plan : ',this.count_bonplan);
     this.http.delete('http://localhost:8080/cityactivities/delete/'+this.nomdelaville+'/'+activity_name).subscribe(()=>
     this.getAllActivities(this.nomdelaville));
+  }
+
+  public UpdateActivity(activity : Activite){
+    const UpdateDescription : String= (<HTMLInputElement>document.getElementById("update_description")).value;
+    let UpdateImagePath : String = (<HTMLInputElement>document.getElementById("update_image")).value;
+    if (UpdateImagePath.length==0){
+      UpdateImagePath = activity.image;
+    }
+
+    this.newActivity = new Activite(UpdateImagePath, activity.name, UpdateDescription)
+    console.log(this.newActivity)
+
+    this.http.put('http://localhost:8080/activity/update',this.newActivity).subscribe((data)=>
+    this.getAllActivities(this.nomdelaville))
   }
 
 }
