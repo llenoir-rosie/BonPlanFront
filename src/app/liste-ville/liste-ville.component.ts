@@ -23,6 +23,7 @@ export class ListeVilleComponent implements OnInit{
   public listActivities: Activite[];
   currentImg: String;
   currentVille: String;
+  currentActivite: String;
   activeUIIndex = 1;
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
@@ -70,16 +71,24 @@ public getAllActivities() {
 
 public goToVille(activity: Activite) {
   this.router.navigate(['/activity', activity.name])
+
+  localStorage.setItem('currentImg', activity.image.toString());
+  this.currentImg = localStorage.getItem("currentImg")!;
+
+  localStorage.setItem('currentActivite', "\xa0"  +  activity.name.toString());
+  this.currentActivite = localStorage.getItem("currentActivite")!;
+
 }
 
 goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name])
+
     // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
     localStorage.setItem('currentImg', ville.image.toString());
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
-    localStorage.setItem('currentVille', " de " + ville.name);
+    localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
     this.currentVille = localStorage.getItem("currentVille")!;
   }
   

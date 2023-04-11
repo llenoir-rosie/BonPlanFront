@@ -18,6 +18,7 @@ import { cityactivities } from '../cityactivity';
 export class ListeActiviteComponent implements OnInit {
   currentImg: String;
   currentVille: String;
+  currentActivite: String;
   public listeActivites: Activite[];
   public listeAllActivites : Activite[];
   public nomdelaville: String;
@@ -72,13 +73,22 @@ export class ListeActiviteComponent implements OnInit {
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // on change la valeur de currentVille
-    localStorage.setItem('currentVille'," de " + "");
+    localStorage.setItem('currentVille', "");
     this.currentVille = localStorage.getItem("currentVille")!;
   }
   
   //@return redirection to /ville
   goToVilleActiviteBonplan(ville: String , activity: Activite) {
-      this.router.navigate(['/ville', ville, activity.name])
+    this.router.navigate(['/ville', this.nomdelaville, activity.name])
+
+    localStorage.setItem("currentImg", activity.image.toString());
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    localStorage.setItem("currentActivite", "\xa0"  + activity.name.toString());
+    this.currentActivite = localStorage.getItem("currentActivite")!;
+
+    localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
+    this.currentVille = localStorage.getItem("currentVille")!;
   }
 
 

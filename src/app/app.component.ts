@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   currentUser: User;
   currentImg: String;
   currentVille: String;
+  currentActivite: String;
   public searchInput: String = '';
   constructor(private router: Router, private http: HttpClient) { }
   
@@ -49,18 +50,21 @@ export class AppComponent implements OnInit {
   //     localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
   //   }
   // }
-  
-  changeImgNav() { // cette fonction est activée dès qu'on clicke dans le body
+
+  changeImgNav() { // cette fonction est activée dès qu'on clicke dans le body et à l'initialisation
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
     if(location.href == "http://localhost:4200/#"){
       this.currentImg = "./assets/img/activite-navbar.jpeg";
       localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-      localStorage.setItem('currentVille', "");
       this.currentVille = "";
+      localStorage.setItem('currentVille', "");
+      this.currentActivite = "";
+      localStorage.setItem('currentActivite', "");
     // change l'image et le nom de la ville de la navbar selon la ville où l'on est grâce au localStorage
     }else {
       this.currentImg = localStorage.getItem("currentImg")!;
       this.currentVille = localStorage.getItem("currentVille")!;
+      this.currentActivite = localStorage.getItem("currentActivite")!;
     }
   }
 
@@ -73,8 +77,11 @@ export class AppComponent implements OnInit {
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // change la valeur de la currentVille de localStorage par le nom de la ville où on est
-    localStorage.setItem('currentVille'," de " + ville.name);
+    localStorage.setItem('currentVille', "\xa0" + "de " + ville.name);
     this.currentVille = localStorage.getItem("currentVille")!;
+
+    localStorage.setItem('currentActivite', "");
+    this.currentActivite = localStorage.getItem("")!;
   }
 
 
@@ -91,6 +98,11 @@ export class AppComponent implements OnInit {
       }
     }
     return this.touteVille;
+  }
+
+
+  SearchEnter(){
+    this.goToDetail(this.touteVille[0])
   }
 
 }
