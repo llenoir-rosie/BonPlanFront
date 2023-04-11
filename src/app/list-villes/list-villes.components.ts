@@ -52,19 +52,15 @@ export class ListeVillesComponent implements OnInit {
     })
   }
 
-  public editCity() {
+  public editCity(city_image: String) {
 
     const new_city_name = (<HTMLInputElement>document.getElementById("new_city_name")).value;
     const new_city_description = (<HTMLInputElement>document.getElementById("new_city_description")).value;
-    const new_city_image = "";
+    const new_city_image = city_image;
 
     this.newCity = new Ville( new_city_name, new_city_description, new_city_image);
-
     this.http.put('http://localhost:8080/city/update', this.newCity).subscribe(() => {
-      console.log(this.newCity)
-      this.http.get<Ville[]>("http://localhost:8080/cities").subscribe((data) => {
-        this.listAllCities = data;
-      })
+      this.getAllCities(this.route.snapshot.params['activity.name'])
     })
   }
 

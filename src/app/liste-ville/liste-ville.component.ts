@@ -28,6 +28,7 @@ export class ListeVilleComponent implements OnInit{
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
   
   ngOnInit() {
+    console.log(localStorage)
     this.getAllCities();
     this.getAllActivities();
     var swiper = new SwiperCore(".mySwiper2", {
@@ -74,7 +75,7 @@ public goToVille(activity: Activite) {
 goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name])
     // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
-    localStorage.setItem('currentImg', ville.image);
+    localStorage.setItem('currentImg', ville.image.toString());
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage

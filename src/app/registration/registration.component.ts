@@ -37,7 +37,6 @@ export class Registration implements OnInit{
         catchError((error) => this.msg = error.error.message
       ))
      .subscribe((data) => {
-       console.log(data);
        this.success = true;
      })
      this.router.navigate(['/login']);
