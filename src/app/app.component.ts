@@ -36,16 +36,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.logCurrentUser();
     this.changeImgNav();
 
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
       this.Villeslist = data;
     })  
-    this.currentUser = JSON.parse(localStorage.getItem("currentUser")!);
-    localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
     
   }
-
+  // logCurrentUser() {
+  //   if (localStorage.getItem('currentUser["role"]') == null || localStorage.getItem('currentUser["role"]') == 'COMMON') {
+  //     localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
+  //   }
+  // }
+  
   changeImgNav() { // cette fonction est activée dès qu'on clicke dans le body
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
     if(location.href == "http://localhost:4200/#"){
@@ -65,7 +69,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/ville', ville.name]);
 
     // change la valeur de la currentImg de localStorage par l'image de la ville où on est
-    localStorage.setItem("currentImg", ville.image);
+    localStorage.setItem("currentImg", '{{ville.image}}');
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // change la valeur de la currentVille de localStorage par le nom de la ville où on est
