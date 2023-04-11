@@ -83,9 +83,7 @@ i {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-h2{
-  pointer-events:none;
-}
+
 .container {
   width: 100%;
 }
@@ -109,12 +107,9 @@ pointer-events:none;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-.card h2 {
+.card .title-card {
   z-index: 0;
   position: relative;
-  font-weight: 700;
-  font-size: 30px;
-  color: #000000;
   background-color: rgb(78, 75, 75);
   opacity: 0.7;
   height: 35px;
@@ -123,6 +118,11 @@ pointer-events:none;
   bottom: 35px;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
+}
+.card h2 {
+  font-weight: 700;
+  font-size: 30px;
+  color: #000000;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -188,12 +188,12 @@ pointer-events:none;
   opacity: 1;
 }
 .card:hover h2 {
-  text-align: left;
-  text-indent: 50px;
+  transform: translate(-40%);
+  margin-left: 5%;
   }
-  .card:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
-  }
+.card:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+}
 
   /*----------------------------------------------- Full Page Scroller ------------------------------------------*/
    
