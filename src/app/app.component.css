@@ -30,9 +30,14 @@ a.text-lighten-4 {
 }  
 
 .haut-gauche {
+    position: relative;
+    z-index: 1;
     width: fit-content;
+    max-height: 100px;
     display: flex;
     flex-wrap: wrap;
+    background-color: rgba(134, 134, 134, 0.5);
+    box-shadow: 0 -5px 5px 5px rgba(134, 134, 134, 0.5);
 }
 
 .right-content {
@@ -41,6 +46,7 @@ a.text-lighten-4 {
     width: fit-content;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 .brand-logo {
     position: relative;
@@ -49,7 +55,7 @@ a.text-lighten-4 {
     font-family: fantasy;
     /* text-shadow: 0 0 2px rgb(0, 0, 0); */
     text-decoration: none;
-    transition-duration: 0.3s;
+    /* transition-duration: 0.3s; */
 }
 img.logo-site {
     position: relative;
@@ -64,9 +70,8 @@ img.logo-site {
 }
 .accroche {
     position: relative;
-    width: 100%;
     z-index: 1;
-    top: -7%;
+    top: -17%;
     line-height: 17px;
     font-family: Arial, Helvetica, sans-serif;
     color: #07051a;

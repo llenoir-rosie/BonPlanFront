@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   currentActivite: String;
   public searchInput: String = '';
   constructor(private router: Router, private http: HttpClient) { }
-  
 
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
@@ -37,6 +36,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(localStorage)
     // this.logCurrentUser();
     this.changeImgNav();
 
@@ -73,11 +73,11 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/ville', ville.name]);
 
     // change la valeur de la currentImg de localStorage par l'image de la ville où on est
-    localStorage.setItem("currentImg", '{{ville.image}}');
+    localStorage.setItem("currentImg", ville.image.toString());
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // change la valeur de la currentVille de localStorage par le nom de la ville où on est
-    localStorage.setItem('currentVille', "\xa0" + "de " + ville.name);
+    localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
     this.currentVille = localStorage.getItem("currentVille")!;
 
     localStorage.setItem('currentActivite', "");
