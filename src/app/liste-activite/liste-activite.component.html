@@ -40,14 +40,14 @@
       </div>
       <ng-template #DialogDeleteAct class="PopUpAct">
         <h2>Suppression de l'activité {{act.name}} pour la ville de {{nomdelaville}}</h2>
-        <div mat-dialog-content [hidden]="count_bonplan==0 && count_mauvaisplan==0">
+        <div mat-dialog-content [hidden]="(count_bonplan==0 && count_mauvaisplan==0)">
           L'activité ne peut pas être supprimée car <span [hidden]="count_bonplan==0">{{count_bonplan}} bon<span [hidden]="count_bonplan==1">s</span> plan<span [hidden]="count_bonplan==1">s</span> </span>
           <span [hidden]="count_bonplan==0 || count_mauvaisplan==0"> et </span> <span [hidden]="count_mauvaisplan==0">{{count_mauvaisplan}} mauvais
              plan<span [hidden]="count_mauvaisplan==1">s</span> </span> lui correspond<span [hidden]="(count_mauvaisplan==1 || count_bonplan==1)&&(count_mauvaisplan==0 || count_bonplan==0)">ent</span>.
           Merci de supprimer les plans existant avant de supprimer l'activité :) <br>
         </div>
         <div mat-dialog-actions  class="bouton-pop-up-delete">
-          <button mat-button matDialogClose color="primary" id="delete_activity"  [disabled]="count_bonplan>0" value={{act.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
+          <button mat-button matDialogClose color="primary" id="delete_activity"  [disabled]="count_bonplan>0 || count_mauvaisplan>0" value={{act.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
           <button mat-button matDialogClose color="primary" >Annuler</button>
         </div>
       </ng-template>
