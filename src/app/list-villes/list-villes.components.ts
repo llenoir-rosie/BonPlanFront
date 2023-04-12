@@ -19,16 +19,26 @@ export class ListeVillesComponent implements OnInit {
 //   public listeVilles: Activite[];
   public listeCities : Ville[];
   public nameActivity: String;
+  public Act: Activite;
   public listAllCities: Ville[];
   public newCity: Ville;
   dialogRefs: MatDialog;
   id: number;
-  
+  currentImg: String;
+  currentVille: String;
+  currentActivite: String;  
 
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
+
+    // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
+    this.currentVille = localStorage.getItem("currentVille")!;
+    this.currentActivite = localStorage.getItem("currentActivite")!;
 
     const routeParams = this.route.snapshot.params;
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
@@ -52,28 +62,38 @@ export class ListeVillesComponent implements OnInit {
     })
   }
 
-  public editCity() {
+  public editCity(city_image: String) {
 
     const new_city_name = (<HTMLInputElement>document.getElementById("new_city_name")).value;
     const new_city_description = (<HTMLInputElement>document.getElementById("new_city_description")).value;
-    const new_city_image = "";
+    const new_city_image = city_image;
 
     this.newCity = new Ville( new_city_name, new_city_description, new_city_image);
-
     this.http.put('http://localhost:8080/city/update', this.newCity).subscribe(() => {
-      console.log(this.newCity)
-      this.http.get<Ville[]>("http://localhost:8080/cities").subscribe((data) => {
-        this.listAllCities = data;
-      })
+      this.getAllCities(this.route.snapshot.params['activity.name'])
     })
   }
 
   goToVilleList() {
     this.router.navigate(['/ville']);
+
+    // on change la valeur de currentImg
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on change la valeur de currentVille
+    localStorage.setItem('currentActivite', "");
+    this.currentActivite = localStorage.getItem("currentActivite")!;
   }
   
-  goToVilleActiviteBonplan(ville: Ville , nameAct: String) {
-    this.router.navigate(['/ville', ville.name , nameAct])
+  goToVilleActiviteBonplan(ville: Ville , Act: Activite) {
+    this.router.navigate(['/ville', ville.name, this.nameActivity])
+
+    localStorage.setItem("currentActivite", "\xa0"  + this.nameActivity.toString());
+    this.currentActivite = localStorage.getItem("currentActivite")!;
+
+    localStorage.setItem("currentVille"," à " + ville.name);
+    this.currentVille = localStorage.getItem("currentVille")!;
   }
 
   @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;

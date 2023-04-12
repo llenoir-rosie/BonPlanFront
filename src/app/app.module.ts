@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 //npm i ngx-page-scroll-core
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { ListeVillesComponent } from './list-villes/list-villes.components';
+import { PopUpComponentUpdateMauvaisPlan } from './list-bonplan/pop-up-updateMauvaisPlan.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ListeVillesComponent } from './list-villes/list-villes.components';
     PopUpComponentAddBonPlan,
     PopUpComponentAddMauvaisPlan,
     PopUpComponentUpdateBonPlan,
+    PopUpComponentUpdateMauvaisPlan,
   ],
   imports: [
     NgxPageScrollCoreModule.forRoot({duration: 500}),

@@ -35,7 +35,7 @@
             <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="CountBonPlan(act.name) ; CountMauvaisPlan(act.name); openDialogWithTemplateRef(DialogDeleteAct)" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button>
           </div>
         </div>
-      </div>
+        </div>
       <ng-template #DialogDeleteAct class="PopUpAct">
         <h2>Suppression de l'activité {{act.name}} pour la ville de {{nomdelaville}}</h2>
         <div mat-dialog-content [hidden]="count_bonplan==0 && count_mauvaisplan==0">
@@ -65,6 +65,7 @@
           <button mat-button matDialogClose color="primary" >Annuler</button>
         </div>
       </ng-template>
+      </div>
     </div>
     <div class="button_bottom">
       <button id = "AjoutAct" mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
@@ -109,7 +110,6 @@
       </div> 
     </div>
     <br>
-    </div>
   </body>
 </html>
 

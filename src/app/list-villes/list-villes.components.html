@@ -31,7 +31,7 @@
             <button class="editCity" (click)="openDialogWithTemplateRef(DialogUpdateAct)" >
               Modifier
             </button>
-            <button class="gotobonplan" (click)="goToVilleActiviteBonplan( city, nameActivity)" >
+            <button class="gotobonplan" (click)="goToVilleActiviteBonplan(city, Act)" >
                 Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
             </button>
           </div>
@@ -47,12 +47,12 @@
             <label for={{city.description}}> Description </label>
             <textarea style="height:100px;" id = "new_city_description" name="itembox" cols="33">{{city.description}}</textarea>
             <br>
-            <label for="city_image">Image</label>
-            <input type="file" id="new_city_image" name="city_image" accept="image/png, image/jpeg">
+            <!-- <label for="city_image">Image</label>
+            <input type="file" id="new_city_image" name="city_image" accept="image/png, image/jpeg"> -->
           </div>        
         </div>
         <div mat-dialog-actions class = "bouton-pop-up-edit-city">
-          <button id="editBtn" mat-button matDialogClose color="primary" (click)="editCity()"> Appliquer les modifications </button>
+          <button id="editBtn" mat-button matDialogClose color="primary" (click)="editCity(city.image)"> Appliquer les modifications </button>
         </div>
       </ng-template>
     </div>
