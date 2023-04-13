@@ -220,7 +220,7 @@ form:focus-within .collection {
 }
 
 
-button.connexion {
+.button-connexion {
     position: absolute;
     height: 100px;
     width: 100px;
@@ -230,8 +230,9 @@ button.connexion {
     flex-wrap: wrap;
     background-color: #3498db;
     color: rgb(0, 0, 0);
-    transition: 0.4s;
     border: none;
+    -webkit-transition: all 0.4s linear;
+    transition:  all 0.4s linear;
 }
 .txt-connection{
     position: relative;
@@ -242,7 +243,7 @@ button.connexion {
     position: relative;
     top: -32px;
 }
-.button.connexion:hover {
+.button-connexion:hover {
   background-color: #34495e;
   color: rgb(255, 255, 255);
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);

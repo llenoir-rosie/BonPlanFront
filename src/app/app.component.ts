@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 import { Ville } from './ville';
 import { User } from './User';
@@ -106,4 +106,3 @@ export class AppComponent implements OnInit {
   }
 
 }
-

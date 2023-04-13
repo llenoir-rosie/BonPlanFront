@@ -61,6 +61,11 @@ body {
     /* align-items: center; */
     justify-content: space-evenly;
 }
+.btn {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
 
 .bouton-pop-up-ajouter-act, .bouton-pop-up-delete, .bouton-bottom-card{
     display : flex;
@@ -92,10 +97,4 @@ input[type="checkbox"].demo2:checked + label::before {
 
 label {
   font-size: 1em;
-}
-
-.btn {
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
 }

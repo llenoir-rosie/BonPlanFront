@@ -10,7 +10,6 @@
   <body>
     <div *ngFor="let city of listeCities">
       <div class="col s12 m8 offset-m2">
-        <h2 class="header center">{{ city.name }}</h2>
         <div class="card horizontal hoverable" > <!--(click)="goToVilleActiviteBonplan(nameActivity, city)"-->
           <div class="card-image">
             <img src= " {{city.image}}" >
@@ -28,13 +27,17 @@
             <div class="card-action">
               <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
             </div>
-            <button class="editCity" (click)="openDialogWithTemplateRef(DialogUpdateAct)" >
-              Modifier
-            </button>
             <button class="gotobonplan" (click)="goToVilleActiviteBonplan(city, Act)" >
-                Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
-                <i class="material-icons right" style="font-size: 30px;">chevron_right</i>
+              Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
+              <i class="material-icons right" style="font-size: 30px;">chevron_right</i>
             </button>
+            <div class = "bouton-bottom-card">
+              <button class="editCity" mat-raised-button class="waves-effect waves-light btn" 
+                (click)="openDialogWithTemplateRef(DialogUpdateAct)" type="button"
+                style="color:wheat; background-color: rgb(172, 172, 172);" >Modifier
+                <i class="material-icons right" style="font-size: 20px;">edit</i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
