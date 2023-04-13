@@ -47,14 +47,14 @@
         </div>
       <ng-template #DialogDeleteAct class="PopUpAct">
         <h2>Suppression de l'activité {{act.name}} pour la ville de {{nomdelaville}}</h2>
-        <div mat-dialog-content [hidden]="count_bonplan==0 && count_mauvaisplan==0">
+        <div mat-dialog-content [hidden]="(count_bonplan==0 && count_mauvaisplan==0)">
           L'activité ne peut pas être supprimée car <span [hidden]="count_bonplan==0">{{count_bonplan}} bon<span [hidden]="count_bonplan==1">s</span> plan<span [hidden]="count_bonplan==1">s</span> </span>
           <span [hidden]="count_bonplan==0 || count_mauvaisplan==0"> et </span> <span [hidden]="count_mauvaisplan==0">{{count_mauvaisplan}} mauvais
              plan<span [hidden]="count_mauvaisplan==1">s</span> </span> lui correspond<span [hidden]="(count_mauvaisplan==1 || count_bonplan==1)&&(count_mauvaisplan==0 || count_bonplan==0)">ent</span>.
           Merci de supprimer les plans existant avant de supprimer l'activité :) <br>
         </div>
         <div mat-dialog-actions  class="bouton-pop-up-delete">
-          <button mat-button matDialogClose color="primary" id="delete_activity"  [disabled]="count_bonplan>0" value={{act.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
+          <button mat-button matDialogClose color="primary" id="delete_activity"  [disabled]="count_bonplan>0 || count_mauvaisplan>0" value={{act.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
           <button mat-button matDialogClose color="primary" >Annuler</button>
         </div>
       </ng-template>
@@ -106,7 +106,7 @@
           <h2>Ajouter une nouvelle activité dans la ville de {{nomdelaville}}</h2>
           <div mat-dialog-content>
             <label for="new_activity_name">Nom de l'activité</label>
-            <input type="text" name = "new_activity_name" id="new_activity_name" required autocorrect size="30" required>
+            <input type="text" name = "new_activity_name" (keyup)="CheckNullActName()" id="new_activity_name" required autocorrect size="30" >
             <br><br>
             <label for="new_activity_description">Description</label>
             <textarea id="new_activity_description" style="height: 100px;" name="new_activity_description" rows="5" cols="30"></textarea>
@@ -115,7 +115,8 @@
             <input type="file" id="new_activity_image" name="new_activity_image" accept="image/png, image/jpeg">
           </div>
           <div mat-dialog-actions align="end">
-            <button mat-button matDialogClose color="primary" (click)="CreateAct()">Valider</button>
+            <button id="CreateActValider" mat-button matDialogClose color="primary" disabled=true (click)="CreateAct()">Valider</button>
+            <button mat-button matDialogClose color="primary" >Annuler</button>
           </div>
         </ng-template>
       </div> 

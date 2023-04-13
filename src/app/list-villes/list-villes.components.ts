@@ -27,6 +27,9 @@ export class ListeVillesComponent implements OnInit {
   currentImg: String;
   currentVille: String;
   currentActivite: String;  
+  newCityActivity: cityactivities;
+  count_bonplan: Number;
+  count_mauvaisplan: Number;
 
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
@@ -59,6 +62,10 @@ export class ListeVillesComponent implements OnInit {
   public getAllPossibleCities(){
     this.http.get<Ville[]>("http://localhost:8080/cities").subscribe((data) => {
       this.listAllCities = data;
+    this.listAllCities.sort((a : Ville , b : Ville) =>
+      (a.name < b.name) ? -1 : 1)
+    
+    console.log(this.listAllCities)
     })
   }
 
@@ -100,6 +107,58 @@ export class ListeVillesComponent implements OnInit {
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }
+
+  AddCity(){
+    const checked_boxs = (document.querySelectorAll('[name = "citybox"]:checked'));
+    const length_checkedboxs = checked_boxs.length;
+    for (var index: number=0; index< length_checkedboxs; index++){
+      const html_checked_boxs = (<HTMLInputElement>checked_boxs.item(index)).value;
+      this.newCityActivity = new cityactivities(0, html_checked_boxs, this.nameActivity);
+      this.http.post('http://localhost:8080/cityactivities/new', this.newCityActivity).subscribe((data) =>
+      this.getAllCities(this.nameActivity));
+    }
+  }
+
+  CreateCity(){
+    const new_city_name = (<HTMLInputElement>document.getElementById('new_city_name')).value;
+    const new_city_description = (<HTMLInputElement>document.getElementById('new_city_description')).value;
+    const new_city_image = (<HTMLInputElement>document.getElementById('new_city_image')).files;
+    
+    const new_city_image2 = "";
+    this.newCity = new Ville(new_city_name, new_city_description, new_city_image2)
+    this.newCityActivity = new cityactivities(0, new_city_name, this.nameActivity)
+
+    this.http.post('http://localhost:8080/city/new', this.newCity).subscribe(()=>
+    {this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
+    this.getAllCities(this.nameActivity))})
+  }
+
+  public CheckNullCityName(){
+    const new_city_name = (<HTMLInputElement>document.getElementById('new_city_name')).value;
+    if (new_city_name.length>0){
+        (<HTMLInputElement>document.getElementById('CreateActValider')).disabled=false;
+    }else{
+      (<HTMLInputElement>document.getElementById('CreateActValider')).disabled=true;
+    }
+  }
+
+  public CountBonPlan(city_name : String){
+    this.http.get<Number>('http://localhost:8080/'+city_name+'/'+this.nameActivity+'/countbonplan').subscribe((data)=>
+    this.count_bonplan = data);
+  }
+
+  public CountMauvaisPlan(city_name:String){
+    this.http.get<Number>('http://localhost:8080/'+city_name+'/'+this.nameActivity+'/countmauvaisplan').subscribe((data)=>
+    this.count_mauvaisplan = data)
+  }
+
+  public DeleteCityActivity(){
+    const city_name : String = (<HTMLInputElement>document.getElementById("delete_city")).value;
+    this.http.delete('http://localhost:8080/cityactivities/delete/'+city_name+'/'+this.nameActivity).subscribe((data)=>
+    this.getAllCities(this.nameActivity))
+  }
+
+
 
 }
 
