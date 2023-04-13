@@ -35,10 +35,10 @@ export class LoginComponent implements OnInit{
     .pipe ( 
       catchError((error) => this.msg = error.error.message
     ))
-   .subscribe((data) => {
-     localStorage.setItem("currentUser", JSON.stringify(data));
-   })
-   this.router.navigate(['/ville']);
+    .subscribe((data) => {
+      localStorage.setItem("currentUser", JSON.stringify(data));
+    })
+    this.router.navigate(['/ville']);
   }
 
 }

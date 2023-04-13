@@ -18,6 +18,8 @@ import * as FileSaver from "file-saver";
 
 export class ListeActiviteComponent implements OnInit {
   currentImg: String;
+  currentVille: String;
+  currentActivite: String;
   public listeActivites: Activite[];
   public listeAllActivites : Activite[];
   public nomdelaville: String;
@@ -33,7 +35,12 @@ export class ListeActiviteComponent implements OnInit {
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
- this.currentImg = localStorage.getItem("currentImg")!;
+    // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
+    this.currentVille = localStorage.getItem("currentVille")!;
+
   dialogRefs: MatDialog;
 
     const routeParams = this.route.snapshot.params;
@@ -54,18 +61,36 @@ export class ListeActiviteComponent implements OnInit {
   }
 
   public getAllPossibleActivities(){
-    this.http.get<Activite[]>("http://localhost:8080/activity").subscribe((data) => {
+    this.http.get<Activite[]>("http://localhost:8080/activities").subscribe((data) => {
       this.listeAllActivites = data;
+    this.listeAllActivites.sort((a : Activite , b : Activite) => (a.name < b.name) ? -1 : 1)
     })
   }
 
   goToVilleList() {
     this.router.navigate(['/ville']);
+
+    // on change la valeur de currentImg
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    // on change la valeur de currentVille
+    localStorage.setItem('currentVille', "");
+    this.currentVille = localStorage.getItem("currentVille")!;
   }
   
   //@return redirection to /ville
   goToVilleActiviteBonplan(ville: String , activity: Activite) {
-      this.router.navigate(['/ville', ville, activity.name])
+    this.router.navigate(['/ville', this.nomdelaville, activity.name])
+
+    localStorage.setItem("currentImg", activity.image.toString());
+    this.currentImg = localStorage.getItem("currentImg")!;
+
+    localStorage.setItem("currentActivite", "\xa0"  + activity.name.toString());
+    this.currentActivite = localStorage.getItem("currentActivite")!;
+
+    localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
+    this.currentVille = localStorage.getItem("currentVille")!;
   }
 
 
@@ -79,16 +104,11 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   }
 
   public AddNewAct(){
-
     const checked_boxs = (document.querySelectorAll('[name ="activitybox"]:checked'));
     const lenght_checked_boxs = checked_boxs.length;
-
-    id : Number;
-    
     for (var index: number=0; index<lenght_checked_boxs; index++){
       const html_checked_boxs = (<HTMLInputElement>checked_boxs.item(index)).value;
-      const id = 0;
-      this.newCityActivity = new cityactivities(this.id, this.nomdelaville, html_checked_boxs)
+      this.newCityActivity = new cityactivities(0, this.nomdelaville, html_checked_boxs)
       this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
       this.getAllActivities(this.nomdelaville));
     }
@@ -99,8 +119,7 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     const new_activity_name = (<HTMLInputElement>document.getElementById("new_activity_name")).value;
     const new_activity_description = (<HTMLInputElement>document.getElementById("new_activity_description")).value;
     const new_activity_image = (<HTMLInputElement>document.getElementById("new_activity_image")).files;
-    console.log(new_activity_image)
-
+    
     const new_activity_image2=""
     this.newActivity = new Activite(new_activity_image2, new_activity_name, new_activity_description);
     this.newCityActivity = new cityactivities(this.id, this.nomdelaville, new_activity_name)
@@ -121,38 +140,40 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   }
 
   public DeleteCityActivity(){
+    
     const id : number=0;
     const activity_name: String = (<HTMLInputElement>document.getElementById("delete_activity")).value;
-    this.http.get<number>('http://localhost:8080/'+this.nomdelaville+'/'+activity_name+'/countbonplan').subscribe((data)=>
-    this.count_bonplan = data);
     this.http.delete('http://localhost:8080/cityactivities/delete/'+this.nomdelaville+'/'+activity_name).subscribe(()=>
     this.getAllActivities(this.nomdelaville));
   }
 
   public UpdateActivity(activity : Activite){
     const UpdateDescription : String= (<HTMLInputElement>document.getElementById("update_description")).value;
-       // let UpdateImagePath : String = (<HTMLInputElement>document.getElementById("update_image")).value;
     let UpdateImage = <HTMLInputElement>document.getElementById("update_image");
-    if (UpdateImage != null){
+    let PathUpdateImg : string = ""
+
+    if (UpdateImage.files?.length != 0){
       const file1 : File = UpdateImage.files![0] ;
-      console.log(file1)
-      console.log(UpdateImage.files![0])
-      let PathUpdateImg : string = file1.name
+      PathUpdateImg = file1.name
       FileSaver.saveAs(file1 , PathUpdateImg) 
-      console.log(file1)
-      const newDir : string = "../../" + file1.name
+     
       // Pour installer file-saver (fonction saveAs)
       // npm install file-saver -save
       // npm install @types/file-saver -save-dev
     }
-   
-    // if (UpdateImagePath.length==0){
-    //   UpdateImagePath = activity.image;}
 
-    const UpdateImagePath2 = ""
-    this.newActivity = new Activite(UpdateImagePath2, activity.name, UpdateDescription)
+    this.newActivity = new Activite(PathUpdateImg, activity.name, UpdateDescription)
     this.http.put('http://localhost:8080/activity/update',this.newActivity).subscribe((data)=>
     this.getAllActivities(this.nomdelaville))
+  }
+
+  public CheckNullActName(){
+    const new_activity_name = (<HTMLInputElement>document.getElementById('new_activity_name')).value;
+    if (new_activity_name.length>0){
+        (<HTMLInputElement>document.getElementById('CreateActValider')).disabled=false;
+    }else{
+      (<HTMLInputElement>document.getElementById('CreateActValider')).disabled=true;
+    }
   }
 
 

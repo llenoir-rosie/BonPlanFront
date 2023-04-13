@@ -12,15 +12,18 @@
   <nav>
       <div class="nav-wrapper" style="background-color: #2980b9;">
           <div class="haut-gauche">
-            <a href="#"><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
+            <a href="#" ><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
             <div class="right-content">
               <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
                 Bon Plans
               </a>
+              <div class = "nom-ville-actuelle">  {{currentActivite}}  {{currentVille}}</div>
               <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
             </div>
           </div>
       
+          
+
           <img class = "activite-navbar" src='{{currentImg}}'>
           <!-- <img class = "activite-navbar" src=".\assets\img\activite-navbar.jpeg"> -->
 
@@ -30,26 +33,31 @@
           crossorigin="anonymous">
           <form action="">
             <input
+            [(ngModel)]="searchInput"
             class="new-search"
-            required
             type="text"
+            required
             name="name" 
             #searchBox
             placeholder="Recherchez une ville"
-            (keyup)="SearchVille(searchBox.value)">
-            <div class="collection">
-              <a *ngFor="let Ville of this.touteVille"
-                (click)="goToDetail(Ville)"
-                class="collection-item"
-              >
-                {{ Ville.name }}
-              </a>
-            </div>
-            <i class="fa fa-search"></i>
+            (keyup)="SearchVille(searchBox.value)"
+            (keyup.enter)= "SearchEnter()">
+              <div class="collection">
+                <ul>
+                  <a *ngFor="let Ville of this.touteVille"
+                    (click)="goToDetail(Ville)"
+                    class="collection-item"
+                    id="log"
+                  >
+                    <p> {{ Ville.name }} </p>
+                  </a>
+                </ul>
+              </div>
+            <i class="fa fa-search" (click)="SearchEnter()"></i>
           </form>
             <button class="button connexion" (click)="login()">
-              <div *ngIf = "this.currentUser.role=='USER'" class="txt-connection">{{this.currentUser.username}}</div>
-              <div *ngIf = "this.currentUser.role!='USER'" class="txt-connection">Se connecter</div>
+              <!-- <div *ngIf = "this.currentUser.role=='USER'" class="txt-connection">{{this.currentUser.username}}</div>
+              <div *ngIf = "this.currentUser.role!='USER'" class="txt-connection">Se connecter</div> -->
               <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
             </button>
             <!-- <button *ngIf = "this.currentUser.role!='USER'" class="button création" >

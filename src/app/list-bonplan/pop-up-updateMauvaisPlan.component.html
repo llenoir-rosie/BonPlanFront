@@ -10,8 +10,8 @@
 <body>
   <div cdk-overlay-pane>
   <div class="login-box">
-      <h1>Update {{oldBP.name}}</h1>
-      <form [formGroup] = "updateBPForm">
+      <h1>Update {{oldMP.name}}</h1>
+      <form [formGroup] = "updateMPForm">
         <div class="user-box">
                 <input  class="form-control" formControlName="ville_name"  placeholder="{{ville_name}}" value="{{ville_name}}" readonly matInput required />
                 <label>City's name</label>
@@ -21,14 +21,14 @@
             <label>Activity's Type</label>
         </div>
         <div class="user-box">                      
-            <input class="form-control" formControlName="name" placeholder= "{{oldBP.name}}" value="{{oldBP.name}}" readonly matInput required />
+            <input class="form-control" formControlName="name" placeholder= "{{oldMP.name}}" value="{{oldMP.name}}" readonly matInput required />
             <label>Name</label>
         </div>
         <div class="user-box">                      
-            <input class="form-control" formControlName="address" placeholder= "{{oldBP.address}}" matInput required />
+            <input class="form-control" formControlName="address" placeholder= "{{oldMP.address}}" matInput required />
             <label>Address</label>
         </div>
-        <a (click)="addNewBP()">
+        <a (click)="addNewMP()">
           <span></span>
           <span></span>
           <span></span>

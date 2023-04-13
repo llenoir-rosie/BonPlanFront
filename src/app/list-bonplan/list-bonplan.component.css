@@ -3,11 +3,22 @@ body {
     height: 100%;
 }
 
-#trashBtn {
-    color: red;
+#editBtn {
+    color:forestgreen;
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+#editBtn:hover {
+    cursor:pointer;
+}
+
+#trashBtn {
+    color: red;
+    position: absolute;
+    top: 220px;
+    right: 15px;
 }
 
 #trashBtn:hover {
@@ -43,7 +54,7 @@ body {
     box-shadow: 0 0 10%;
     box-shadow: 0 0 10px #d0e9db;
 }
-.card-bp h1 {
+.card-bp h1 {                                                                                                               
     background-color: #95a5a6;
     border-radius: 10px;
     padding-left: 2%;

@@ -6,6 +6,7 @@ import { ListBonplanComponent } from './list-bonplan/list-bonplan.component';
 import { Registration } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListeVillesComponent } from './list-villes/list-villes.components';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'ville/:name/:activity.name', component: ListBonplanComponent},
   { path: 'registration', component: Registration},
   { path : 'login', component: LoginComponent},
+  { path : 'activity/:activity.name', component: ListeVillesComponent},
   // { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
   { path: '', redirectTo: 'ville', pathMatch: 'full' },
 ];

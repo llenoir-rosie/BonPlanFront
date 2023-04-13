@@ -30,15 +30,16 @@ a.text-lighten-4 {
 }  
 
 .haut-gauche {
-    width: auto;
+    width: fit-content;
     display: flex;
     flex-wrap: wrap;
-    height: 100px;
 }
 
 .right-content {
     margin-top: 0px;
     margin-left: 4px;
+    width: fit-content;
+    display: flex;
     flex-wrap: wrap;
 }
 .brand-logo {
@@ -65,13 +66,14 @@ img.logo-site {
     position: relative;
     width: 100%;
     z-index: 1;
-    top:-20px;
+    top: -7%;
     line-height: 17px;
-    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-family: Arial, Helvetica, sans-serif;
     color: #07051a;
-    font-weight: 900;
+    font-weight: 800;
     font-size: 20px;
     text-decoration: none;
+    text-shadow: 0 0 3px #e4e7e7;
     /* transition-duration: 0.3s; */
 }
 .haut-gauche:hover .logo-site {
@@ -82,74 +84,6 @@ img.logo-site {
     text-shadow: 0 0 5px rgb(0, 0, 0);
     cursor: pointer;
 }
-/* .haut-gauche:hover .accroche {
-    text-shadow: 0 0 5px rgb(0, 0, 0);
-    cursor: pointer;
-    text-decoration: none;
-} */
-
-
-button.connexion {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    top: 0%;
-    right: 0%;
-    font-weight: bold;
-    flex-wrap: wrap;
-    background-color: #3498db;
-    color: rgb(0, 0, 0);
-    transition: 0.4s;
-    border: none;
-}
-.txt-connection{
-    position: relative;
-    font-size: 140%;
-    top:-10px;
-}
-.logo-authentification{
-    position: relative;
-    top: -32px;
-}
-.button.connexion:hover {
-  background-color: #34495e;
-  color: rgb(255, 255, 255);
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  cursor: pointer;
-}
-
-button.création {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    top: 0%;
-    right: 100px;
-    
-    font-weight: bold;
-    flex-wrap: wrap;
-    background-color: #3498db;
-    color: rgb(0, 0, 0);
-    transition-duration: 0.4s;
-    border: none;
-    padding-top: 15px;
-    line-height: normal;
-    border-right: 1px solid #34495e;
-}
-.txt-création{
-    position: relative;
-    top:-10px;
-}
-.logo-création {
-    position: relative;
-    top: -10px;
-}
-
-.button.création:hover {
-  background-color: #34495e;
-  color: rgb(255, 255, 255);
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  cursor: pointer;
-}
 
 img.activite-navbar {
     z-index: 0;
@@ -158,6 +92,13 @@ img.activite-navbar {
     height: 100px;
     width: 100%;
     object-fit: cover;
+}
+.nom-ville-actuelle {
+    position: relative;
+    float: right;
+    z-index: 1;
+    font-size: 40px;
+    font-family: fantasy;
 }
 
 .search-box2 {
@@ -187,14 +128,15 @@ form{
     padding: 5px;
     box-shadow: 0 0 10px 10px #2980b9;
     font-size: 135%;
+    /* overflow: visible; */
 }
 
 input.new-search {
     position: absolute;
     color:rgb(0, 0, 0);
     top: 0;
-    left: 0;
-    width: 100%;;
+    left: -1.5%;
+    width: 83%;
     height: 42.5px;
     line-height: 30px;
     outline: 0;
@@ -220,21 +162,46 @@ input.new-search {
     transition: 0.5s;
 }
 
+ul{
+    list-style: none;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+  }
+  
+  ul a{
+    background: #ddd;
+    border-bottom: 3px solid whitesmoke;
+    padding: 2px;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+  
+  ul a p{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 7px;
+    color:#07051a;
+    font-size: 150%;
+    border: none;
+  }
+
+/* form input.new-search:valid {
+    overflow: visible;
+} */
+
 form:hover,
-/* form:valid, */
 form:focus-within {
     width: 200px;
     cursor: pointer;
 }
 
 form:hover input.new-search,
-form:focus-within input.new-search
-/* form:valid input.new-search*/{ 
+form:focus-within input.new-search { 
     display: block;
 }
 
-form:hover .fa
-/* form:valid .fa*/ { 
+form:hover .fa { 
     background: #07051a;
     color: white;
 }
@@ -245,4 +212,34 @@ form:hover .fa
 form:hover .collection,
 form:focus-within .collection {
     opacity: 1;
+}
+
+
+button.connexion {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 0%;
+    right: 0%;
+    font-weight: bold;
+    flex-wrap: wrap;
+    background-color: #3498db;
+    color: rgb(0, 0, 0);
+    transition: 0.4s;
+    border: none;
+}
+.txt-connection{
+    position: relative;
+    font-size: 140%;
+    top:-10px;
+}
+.logo-authentification{
+    position: relative;
+    top: -32px;
+}
+.button.connexion:hover {
+  background-color: #34495e;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
 }

@@ -1,6 +1,10 @@
 export class Ville {
-    name: string
-    description: string
-    image: string
-    // type: string
+    name: String
+    description: String
+    image: String
+    constructor(name : String, description : String, image : String){
+        this.image = image;
+        this.name = name;
+        this.description = description;
+    }
 }

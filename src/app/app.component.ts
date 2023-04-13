@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap 
 import { Ville } from './ville';
 import { User } from './User';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,9 @@ export class AppComponent implements OnInit {
   commonUser = new User("","","","", "", "COMMON")
   currentUser: User;
   currentImg: String;
+  currentVille: String;
+  currentActivite: String;
+  public searchInput: String = '';
   constructor(private router: Router, private http: HttpClient) { }
   
 
@@ -33,35 +37,51 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.setItem("currentImg", JSON.stringify("./assets/img/activite-navbar.jpeg"));
-    this.currentImg = JSON.parse(localStorage.getItem("currentImg")!);
+    // this.logCurrentUser();
+    this.changeImgNav();
+
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
       this.Villeslist = data;
     })  
-    this.currentUser = JSON.parse(localStorage.getItem("currentUser")!);
-    localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
+    
   }
+  // logCurrentUser() {
+  //   if (localStorage.getItem('currentUser["role"]') == null || localStorage.getItem('currentUser["role"]') == 'COMMON') {
+  //     localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
+  //   }
+  // }
 
-  changeImgNav() { // cette fonction est activée dès qu'on clicke quelque part
-    if(location.href == "http://localhost:4200/ville"){
+  changeImgNav() { // cette fonction est activée dès qu'on clicke dans le body et à l'initialisation
+    // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
+    if(location.href == "http://localhost:4200/#"){
       this.currentImg = "./assets/img/activite-navbar.jpeg";
-    } // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut
-    else {
+      localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+      this.currentVille = "";
+      localStorage.setItem('currentVille', "");
+      this.currentActivite = "";
+      localStorage.setItem('currentActivite', "");
+    // change l'image et le nom de la ville de la navbar selon la ville où l'on est grâce au localStorage
+    }else {
       this.currentImg = localStorage.getItem("currentImg")!;
-      // change l'image de la navbar selon la ville où l'on est grâce au localStorage
+      this.currentVille = localStorage.getItem("currentVille")!;
+      this.currentActivite = localStorage.getItem("currentActivite")!;
     }
   }
 
 
-  // search(term: string) {
-  //   this.SearchVille(term);
-  //   // this.searchTerms.next(term);
-  // }
-
   goToDetail(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
-    localStorage.setItem('currentImg', ville.image);
+
+    // change la valeur de la currentImg de localStorage par l'image de la ville où on est
+    localStorage.setItem("currentImg", '{{ville.image}}');
     this.currentImg = localStorage.getItem("currentImg")!;
+
+    // change la valeur de la currentVille de localStorage par le nom de la ville où on est
+    localStorage.setItem('currentVille', "\xa0" + "de " + ville.name);
+    this.currentVille = localStorage.getItem("currentVille")!;
+
+    localStorage.setItem('currentActivite', "");
+    this.currentActivite = localStorage.getItem("")!;
   }
 
 
@@ -78,6 +98,11 @@ export class AppComponent implements OnInit {
       }
     }
     return this.touteVille;
+  }
+
+
+  SearchEnter(){
+    this.goToDetail(this.touteVille[0])
   }
 
 }

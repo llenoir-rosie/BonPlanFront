@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
 import { PopUpComponentAddMauvaisPlan } from './pop-up-addMauvaisPlan';
 import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
+import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.component';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -80,7 +81,7 @@ throw new Error('Method not implemented.');
   }
   public deleteMauvaisPlan(mpName: String) {
     //supprime l'objet mauvais plan
-    this.http.delete<String>(`http://localhost:8080/${this.nomdelaville}/${this.nomdelactivite}/${mpName}`).subscribe(() => {
+    this.http.delete<String>(`http://localhost:8080/${this.nomdelaville}/${this.nomdelactivite}/${mpName}/deletemauvaisplan`).subscribe(() => {
     //refais une requête get vers la bdd pour avoir la liste des mauvais plans sans le mp venant d'être supprimé => permet de refresh la page
       this.http.get<Mauvaisplan[]>("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/mauvaisplan").subscribe((data) => {
         this.listeMauvaisPlan = data;
@@ -102,6 +103,18 @@ throw new Error('Method not implemented.');
         bp: bp 
       }
     }).afterClosed().subscribe(() => this.getAllBonPlan(this.nomdelaville, this.nomdelactivite));
+  }
+
+  public updateMauvaisPlan(mp: Mauvaisplan) {
+    this.dialogRef.open(PopUpComponentUpdateMauvaisPlan, {
+      width: '600px',
+      height: '600px',
+      data: {
+        nameCity: this.nomdelaville,
+        nameActivity:this.nomdelactivite,
+        mp: mp 
+      }
+    }).afterClosed().subscribe(() => this.getAllMauvaisPlan(this.nomdelaville, this.nomdelactivite));
   }
 
   public goToFormAddBonPlan() {
