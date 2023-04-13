@@ -29,12 +29,21 @@
             </div>
             <button class="gotobonplan" (click)="goToVilleActiviteBonplan(nomdelaville, act)" >
               Découvrez les bons plans {{ act.name }} de {{ nomdelaville}}
+              <i class="material-icons right" style="font-size: 30px;">chevron_right</i>
             </button>
-          <div class = "bouton-bottom-card">
-            <button id = "ButtonUpdateAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="openDialogWithTemplateRef(DialogUpdateAct)" style="color:wheat; background-color: rgb(172, 172, 172);"> Modifier </button>
-            <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="CountBonPlan(act.name) ; CountMauvaisPlan(act.name); openDialogWithTemplateRef(DialogDeleteAct)" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button>
+            <div class = "bouton-bottom-card">
+              <button id = "ButtonUpdateAct"  mat-raised-button class="waves-effect waves-light btn " type = "button"
+                (click)="openDialogWithTemplateRef(DialogUpdateAct)"
+                style="color:wheat; background-color: rgb(172, 172, 172);"> Modifier
+                <i class="material-icons right" style="font-size: 20px;">edit</i>
+              </button>
+              <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button"
+                (click)="CountBonPlan(act.name) ; CountMauvaisPlan(act.name); openDialogWithTemplateRef(DialogDeleteAct)"
+                style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer
+                <i class="material-icons right" style="font-size: 20px;">delete</i>
+              </button>
+            </div>
           </div>
-        </div>
         </div>
       <ng-template #DialogDeleteAct class="PopUpAct">
         <h2>Suppression de l'activité {{act.name}} pour la ville de {{nomdelaville}}</h2>
@@ -69,11 +78,13 @@
     </div>
     <div class="button_bottom">
       <button id = "AjoutAct" mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
-        <i class="material-icons right">send</i>
+        <i class="material-icons right" style="font-size: 23px;">subdirectory_arrow_left</i>
       </button>
       <div>
-        <button mat-raised-button class="waves-effect waves-light btn"color="primary" (click)="openDialogWithTemplateRef(DialogAddNewAct)" style="color:wheat; background-color: black;">Ajouter une activité pour la ville
-          <i class="material-icons right">send</i>
+        <button mat-raised-button class="waves-effect waves-light btn"color="primary"
+          (click)="openDialogWithTemplateRef(DialogAddNewAct)"
+          style="color:wheat; background-color: black;">Activité
+          <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
         </button>
         
         <ng-template #DialogAddNewAct class="PopUpAct">

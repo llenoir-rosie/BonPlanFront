@@ -47,9 +47,11 @@
             <div class="title-card">
               <h2>{{ ville.name }}</h2>
             </div>
-            <i class="access">Accédez aux activités → </i>
-            <div class="description-ville">{{ ville.description }}</div>
-            <button (click)="goToVilleActivite(ville)"></button>
+            <div (click)="goToVilleActivite(ville)">
+              <i class="access">Accédez aux activités → </i>
+              <div class="description-ville">{{ ville.description }}</div>
+              <button></button>
+            </div>
           </div>
         </div>
       </div>

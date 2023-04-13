@@ -33,6 +33,7 @@
             </button>
             <button class="gotobonplan" (click)="goToVilleActiviteBonplan(city, Act)" >
                 Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
+                <i class="material-icons right" style="font-size: 30px;">chevron_right</i>
             </button>
           </div>
         </div>
@@ -57,8 +58,9 @@
       </ng-template>
     </div>
     <div class="button_bottom">
-      <button mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
-        <i class="material-icons right">send</i>
+      <button mat-raised-button class="waves-effect waves-light btn "
+        (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
+        <i class="material-icons right" style="font-size: 14px;">subdirectory_arrow_left</i>
       </button>
     </div> 
   </body>
