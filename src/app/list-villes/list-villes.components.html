@@ -11,30 +11,41 @@
     <div *ngFor="let city of listeCities">
       <div class="col s12 m8 offset-m2">
         <div class="card horizontal hoverable" > <!--(click)="goToVilleActiviteBonplan(nameActivity, city)"-->
-          <div class="card-image">
-            <img src= " {{city.image}}" >
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <h2 class="card-header center">{{ city.name }}</h2>
-              <!-- <td>Nom</td> -->
-              <!-- <td><strong>{{ act.name }}</strong></td> -->
-              <!-- <td>Description</td> -->
-              <p class="card-description">
-                <strong>{{ city.description }}</strong>
-              </p>
+          <div class="sub-card">
+            <div class="card-image">
+              <img src= " {{city.image}}" >
             </div>
-            <div class="card-action">
-              <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
-            </div>  
-          <button class="gotobonplan" (click)="goToVilleActiviteBonplan(city, Act)" >
-              Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
-          </button>;
-          <div  class = "bouton-bottom-card">
-            <button id="ButtonUpdateAct" (click)="openDialogWithTemplateRef(DialogUpdateAct)" mat-raised-button class="waves-effect waves-light btn " type = "button" style="color:wheat; background-color: rgb(161, 161, 161);" >Modifier</button>
-            <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="CountBonPlan(city.name) ; CountMauvaisPlan(city.name); openDialogWithTemplateRef(DialogDeleteCity)" style="color:wheat; background-color: rgb(255, 0, 0);">Supprimer</button>
-          </div>
-          </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <h2 class="card-header center">{{ city.name }}</h2>
+                <!-- <td>Nom</td> -->
+                <!-- <td><strong>{{ act.name }}</strong></td> -->
+                <!-- <td>Description</td> -->
+                <p class="card-description">
+                  <strong>{{ city.description }}</strong>
+                </p>
+              </div>
+              <div class="card-action">
+                <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
+              </div>
+              <button class="gotobonplan" (click)="goToVilleActiviteBonplan(city, Act)" >
+                Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
+                <i class="material-icons right" style="font-size: 30px;">chevron_right</i>
+              </button>
+              <div class = "bouton-bottom-card">
+                <button class="editCity" mat-raised-button class="waves-effect waves-light btn" 
+                  (click)="openDialogWithTemplateRef(DialogUpdateAct)" type="button"
+                  style="color:wheat; background-color: rgb(172, 172, 172);" >Modifier
+                  <i class="material-icons right" style="font-size: 20px;">edit</i>
+                </button>
+                <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" 
+                  (click)="CountBonPlan(city.name) ; CountMauvaisPlan(city.name); openDialogWithTemplateRef(DialogDeleteCity)" 
+                  style="color:wheat; background-color: rgb(255, 0, 0);">Supprimer
+                  <i class="material-icons right" style="font-size: 20px;">delete</i>
+              </button>
+              </div>
+            </div>
+          </div> 
         </div>
       </div>
 
@@ -52,6 +63,7 @@
           <button mat-button matDialogClose color="primary" >Annuler</button>
         </div>
       </ng-template>
+
       <ng-template #DialogUpdateAct>
         <h2 matDialogTitle >Mettre à jour la ville {{city.name}}</h2>
         <div mat-dialog-content>
@@ -72,11 +84,13 @@
       </ng-template>
     </div>
     <div class="button_bottom">
-      <button mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
-        <i class="material-icons right">send</i>
+      <button mat-raised-button class="waves-effect waves-light btn "
+        (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
+        <i class="material-icons right" style="font-size: 23px;">subdirectory_arrow_left</i>
       </button>
-      <button mat-raised-button class="waves-effect waves-light btn " (click)="openDialogWithTemplateRef(DialogAddCity)" style="color:wheat; background-color: black;">Ajouter une ville
-        <i class="material-icons right">send</i>
+      <button mat-raised-button class="waves-effect waves-light btn " (click)="openDialogWithTemplateRef(DialogAddCity)"
+      style="color:wheat; background-color: black;">Ajouter une ville
+      <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
       </button>
     </div> 
     <div>

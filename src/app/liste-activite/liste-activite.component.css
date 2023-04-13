@@ -11,6 +11,22 @@ body {
     padding: 1%;
 }
 
+.sub-card {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.card-image {
+    height: 300px;
+    width: 25%;
+}
+img {
+    height: 100%;
+    object-fit: cover;
+}
+
 .card-header {
     font-size: 35px;
 }
@@ -21,17 +37,19 @@ body {
 }
 
 .gotobonplan {
-    position: relative; 
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     bottom: 5%;
-    width: 20%;
-    left: 78%;
+    width: 25%;
+    left: 73%;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+    padding: 16px 24px;
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;
@@ -58,6 +76,11 @@ body {
     display : flex;
     /* align-items: center; */
     justify-content: space-evenly;
+}
+.btn {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 
 .bouton-pop-up-ajouter-act, .bouton-pop-up-delete, .bouton-bottom-card{

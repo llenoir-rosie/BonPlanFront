@@ -20,17 +20,22 @@
       Il est entièrement collaboratif puisque ce sont les internautes qui donnent leurs bons plans.
     </p>
   </div>
+  <div>
   <div class="main-wrapper">
     <div class="step-container">
-      <div class="step" [ngClass]="{'active': activeUIIndex === 1}" pageScroll (click)="scrollCustomImplementation(sec1, 1)">
+      <div class="step" [ngClass]="{'active': (this.scroll_y < 650)}" pageScroll (click)="scrollCustomImplementation(sec1, 1)">
         <div class="v-stepper">
-          <div class="circle"></div>
-          <div class="line"></div>
+          <div class="part-gauche">
+            <div class="circle"></div>
+            <div class="line"></div>
+          </div>
+          <h4 class="liste-ville">Liste des villes</h4>
         </div>
       </div>
-      <div class="step" [ngClass]="{'active': activeUIIndex === 2}" pageScroll (click)="scrollCustomImplementation(sec2, 2)">
+      <div class="step" [ngClass]="{'active': (this.scroll_y > 650)}" pageScroll (click)="scrollCustomImplementation(sec2, 2)">
         <div class="v-stepper">
           <div class="circle"></div>
+          <h4 class="liste-activite">Liste des activités</h4>
         </div>
       </div>
     </div>
@@ -42,9 +47,11 @@
             <div class="title-card">
               <h2>{{ ville.name }}</h2>
             </div>
-            <i class="access">Accédez aux activités → </i>
-            <div class="description-ville">{{ ville.description }}</div>
-            <button (click)="goToVilleActivite(ville)"></button>
+            <div (click)="goToVilleActivite(ville)">
+              <i class="access">Accédez aux activités → </i>
+              <div class="description-ville">{{ ville.description }}</div>
+              <button></button>
+            </div>
           </div>
         </div>
       </div>
@@ -70,6 +77,7 @@
       <div class="swiper-button-prev" style="color: black;"></div>
     </div>
   </div>
+</div>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     
 </body>
