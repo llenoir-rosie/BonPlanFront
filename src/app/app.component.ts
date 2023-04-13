@@ -61,7 +61,8 @@ export class AppComponent implements OnInit {
       this.currentActivite = "";
       localStorage.setItem('currentActivite', "");
     // change l'image et le nom de la ville de la navbar selon la ville où l'on est grâce au localStorage
-    }else {
+    }
+    else {
       this.currentImg = localStorage.getItem("currentImg")!;
       this.currentVille = localStorage.getItem("currentVille")!;
       this.currentActivite = localStorage.getItem("currentActivite")!;
@@ -80,6 +81,7 @@ export class AppComponent implements OnInit {
     localStorage.setItem('currentVille', "\xa0" + "de " + ville.name);
     this.currentVille = localStorage.getItem("currentVille")!;
 
+    // change la valeur de la currentActivite de localStorage par le nom de la ville où on est
     localStorage.setItem('currentActivite', "");
     this.currentActivite = localStorage.getItem("")!;
   }
