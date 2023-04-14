@@ -9,7 +9,6 @@ import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
 import { PopUpComponentAddMauvaisPlan } from './pop-up-addMauvaisPlan';
 import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
 import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.component';
-import { UserAccountComponent } from '../user-account/user-account.component';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -34,7 +33,7 @@ throw new Error('Method not implemented.');
   allowUserRight: boolean;
   allowModeratorRight: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private userAccountComponent: UserAccountComponent, private dialogRef: MatDialog) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog) { }
 
   ngOnInit() {
     //Recup the city name of bonplan 
@@ -67,7 +66,6 @@ throw new Error('Method not implemented.');
 
   //"attrape" les bons et les mauvais plans en foncion de la ville et de l'activité où l'on est
   public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
-    console.log(nomdelaville, nomdelactivite)
     this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
       this.listeBonPlan = data;
     })
