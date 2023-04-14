@@ -27,8 +27,8 @@ export class ListeActiviteComponent implements OnInit {
   id: number;
   count_bonplan : Number;
   count_mauvaisplan : Number;
-  
-
+  allowModeratorRight: boolean;
+  allowUserRight: boolean;
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
@@ -46,6 +46,17 @@ export class ListeActiviteComponent implements OnInit {
     this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
     this.getAllActivities(routeParams['name']);
     this.getAllPossibleActivities();
+
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowModeratorRight = false
+      this.allowUserRight = false
+    } else {
+      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+        this.allowModeratorRight = true
+      } else {
+        this.allowUserRight = true
+      }
+    }
 
     });
   }

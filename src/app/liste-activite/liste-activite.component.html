@@ -31,8 +31,8 @@
               Découvrez les bons plans {{ act.name }} de {{ nomdelaville}}
             </button>
           <div class = "bouton-bottom-card">
-            <button id = "ButtonUpdateAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="openDialogWithTemplateRef(DialogUpdateAct)" style="color:wheat; background-color: rgb(172, 172, 172);"> Modifier </button>
-            <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="CountBonPlan(act.name) ; CountMauvaisPlan(act.name); openDialogWithTemplateRef(DialogDeleteAct)" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button>
+            <button *ngIf = "allowModeratorRight" id = "ButtonUpdateAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="openDialogWithTemplateRef(DialogUpdateAct)" style="color:wheat; background-color: rgb(172, 172, 172);"> Modifier </button>
+            <button *ngIf = "allowModeratorRight" id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" (click)="CountBonPlan(act.name) ; CountMauvaisPlan(act.name); openDialogWithTemplateRef(DialogDeleteAct)" style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer </button>
           </div>
         </div>
       </div>

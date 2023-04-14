@@ -3,14 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bonplan } from '../bonplan';
 import { Mauvaisplan } from '../mauvaisplan' ;
-import { BONPLAN } from '../mock-bonplan-list';
-import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
 import { PopUpComponentAddMauvaisPlan } from './pop-up-addMauvaisPlan';
 import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
 import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.component';
+import { UserAccountComponent } from '../user-account/user-account.component';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -18,12 +17,10 @@ import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.comp
   styleUrls: ['list-bonplan.component.css'],
 })
 export class ListBonplanComponent implements OnInit {
+
 pop() {
 throw new Error('Method not implemented.');
 }
-  villeList: Ville[] = VILLE;
-  bpList: Bonplan[]=BONPLAN;
-  // mpList: Mauvaisplan[]=MAUVAISPLAN;
   ville: Ville|undefined;
   bp: Bonplan[]=[];
   mp: Mauvaisplan[]=[];
@@ -34,8 +31,10 @@ throw new Error('Method not implemented.');
   public listeMauvaisPlan: Mauvaisplan[];
   bonplanDeleted: Boolean = false;
   mauvaisplanDeleted: Boolean = false;
+  allowUserRight: boolean;
+  allowModeratorRight: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private userAccountComponent: UserAccountComponent, private dialogRef: MatDialog) { }
 
   ngOnInit() {
     //Recup the city name of bonplan 
@@ -48,15 +47,27 @@ throw new Error('Method not implemented.');
 
     this.imgBackGround = '../assets/img/' + this.nomdelactivite + '.jfif'
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
-
+    
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     this.getAllMauvaisPlan(this.nomdelaville, this.nomdelactivite);
+
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowModeratorRight = false
+      this.allowUserRight = false
+    } else {
+      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+        this.allowModeratorRight = true
+      } else {
+        this.allowUserRight = true
+      }
+    }
   }
 
 
 
   //"attrape" les bons et les mauvais plans en foncion de la ville et de l'activité où l'on est
   public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
+    console.log(nomdelaville, nomdelactivite)
     this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
       this.listeBonPlan = data;
     })

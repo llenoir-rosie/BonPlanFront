@@ -28,7 +28,6 @@ export class ListeVilleComponent implements OnInit{
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
   
   ngOnInit() {
-    console.log(localStorage)
     this.getAllCities();
     this.getAllActivities();
     var swiper = new SwiperCore(".mySwiper2", {
