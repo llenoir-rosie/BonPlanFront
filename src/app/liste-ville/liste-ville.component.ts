@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Ville } from '../ville';
@@ -10,6 +10,7 @@ import { DOCUMENT } from '@angular/common';
 
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { Activite } from '../activite';
+import { _getOptionScrollPosition } from '@angular/material/core';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -18,15 +19,26 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   templateUrl: './liste-ville.component.html',
   styleUrls: ['liste-ville.component.css'],
 })
+
 export class ListeVilleComponent implements OnInit{
   public listVille: Ville[];
   public listActivities: Activite[];
   currentImg: String;
   currentVille: String;
+  currentActivite: String;
   activeUIIndex = 1;
+  scroll_y = 0;
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
   
+  // @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
+  //   console.log($event);
+  //   console.log("scrolling");
+  // }
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
+    this.scroll_y = scrollY;
+    }
+
   ngOnInit() {
     this.getAllCities();
     this.getAllActivities();
@@ -47,6 +59,7 @@ export class ListeVilleComponent implements OnInit{
       },
     });
   }
+
 scrollCustomImplementation(element: HTMLElement, index:any) {
   this.pageScrollService.scroll({
   document: this.document,
@@ -69,16 +82,24 @@ public getAllActivities() {
 
 public goToVille(activity: Activite) {
   this.router.navigate(['/activity', activity.name])
+
+  localStorage.setItem('currentImg', activity.image.toString());
+  this.currentImg = localStorage.getItem("currentImg")!;
+
+  localStorage.setItem('currentActivite', "\xa0"  +  activity.name.toString());
+  this.currentActivite = localStorage.getItem("currentActivite")!;
+
 }
 
 goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name])
+
     // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
     localStorage.setItem('currentImg', ville.image.toString());
     this.currentImg = localStorage.getItem("currentImg")!;
 
     // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
-    localStorage.setItem('currentVille', " de " + ville.name);
+    localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
     this.currentVille = localStorage.getItem("currentVille")!;
   }
   

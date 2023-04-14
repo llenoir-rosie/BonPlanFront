@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  background: #eee;
+  background: #e4e5e7;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;
@@ -14,6 +14,11 @@ body {
   padding: 0;
 }
 
+.espace-marge {
+  height: 50px;
+  background-color: #eee;
+  opacity: 0;
+}
 
 /* -------------- Carousel ---------------**/
 .swiper {
@@ -78,9 +83,7 @@ i {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-h2{
-  pointer-events:none;
-}
+
 .container {
   width: 100%;
 }
@@ -104,28 +107,30 @@ pointer-events:none;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-.card h2 {
+.card .title-card {
   z-index: 0;
   position: relative;
-  font-weight: 700;
-  font-size: 30px;
-  color: #000000;
-  background-color: rgb(78, 75, 75);
-  opacity: 0.7;
+  background-color: rgba(78, 75, 75, 0.7);
+  /* opacity: 0.7; */
   height: 35px;
   width: auto;
   text-align: center;
   bottom: 35px;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
+}
+.card h2 {
+  font-weight: 700;
+  font-size: 30px;
+  color: #000000;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 .card .access {
   z-index: 1;
   position: absolute;
-  right: 0px;
-  bottom: 10px;
+  right: 1%;
+  bottom: 1%;
   font-size: 20px;
   cursor: pointer;
 }
@@ -183,38 +188,36 @@ pointer-events:none;
   opacity: 1;
 }
 .card:hover h2 {
-  text-align: left;
-  text-indent: 50px;
+  transform: translate(-40%);
+  margin-left: 5%;
   }
-  .card:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
-  }
+.card:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+}
 
   /*----------------------------------------------- Full Page Scroller ------------------------------------------*/
    
 .step-container {
 z-index: 3;
-width: 30px;
+/* width: 30px; */
 position: fixed; 
-top: 25%; 
+top: 31%; 
 opacity: 0.5;
-transition: opacity 0.3s;
--webkit-transition: opacity 0.3s;
+transition: opacity 0.5s linear;
 }
 .step-container:hover {
 opacity: 1;
+cursor: pointer;
 }
 .step {
-position:relative;
-top: 80px; left: 5px;
+position: relative;
 padding: 10px;
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-background-color: cream;
 }
 .v-stepper {
 position: relative;
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
 }
 .step .circle {
 background-color: white;
@@ -227,30 +230,30 @@ display: inline-block;
 .step .line {
 top: 15px;
 left: 6px;
-height: 30px;
+height: 45px;
 position: absolute;
 border-left: 3px solid gray;
-}
-.step.completed .circle {
-visibility: visible;
-background-color: gray;
-border-color: rgb(0, 0, 0);
-}
-.step.completed .line {
-border-left: 3px solid rgb(0, 0, 0);
-}
-.step.active .circle {
-visibility: visible;
-border-color: rgb(0, 0, 0);
-}
-.step.empty .circle {
-visibility: hidden;
-}
-.step.empty .line {
-top: 0;
-height: 150%;
 }
 .step:last-child .line {
 border-left: 3px solid white;
 z-index: -1;
+}
+.v-stepper h4 {
+  position: relative;
+  top: -3.5px;
+  font-weight: 600;
+  margin-left: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+
+.step.active .circle {
+visibility: visible;
+border-color: rgb(0, 0, 0);
+}
+
+.step.active h4 {
+  visibility: visible;
+  opacity: 1;
 }

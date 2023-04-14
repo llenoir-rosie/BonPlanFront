@@ -14,10 +14,12 @@
           <div class="haut-gauche">
             <a href="#" ><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
             <div class="right-content">
-              <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
-                Bon Plans
-              </a>
-              <div class = "nom-ville-actuelle"> &nbsp; {{currentVille}}</div>
+              <div>
+                <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
+                  Bon Plans
+                </a>
+                <div class = "nom-ville-actuelle">  {{currentActivite}}  {{currentVille}}</div>
+              </div>
               <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
             </div>
           </div>
@@ -33,22 +35,27 @@
           crossorigin="anonymous">
           <form action="">
             <input
+            [(ngModel)]="searchInput"
             class="new-search"
-            required
             type="text"
+            required
             name="name" 
             #searchBox
             placeholder="Recherchez une ville"
-            (keyup)="SearchVille(searchBox.value)">
-            <div class="collection">
-              <a *ngFor="let Ville of this.touteVille"
-                (click)="goToDetail(Ville)"
-                class="collection-item"
-              >
-                {{ Ville.name }}
-              </a>
-            </div>
-            <i class="fa fa-search"></i>
+            (keyup)="SearchVille(searchBox.value)"
+            (keyup.enter)= "SearchEnter()">
+              <div class="collection">
+                <ul>
+                  <a *ngFor="let Ville of this.touteVille"
+                    (click)="goToDetail(Ville)"
+                    class="collection-item"
+                    id="log"
+                  >
+                    <p> {{ Ville.name }} </p>
+                  </a>
+                </ul>
+              </div>
+            <i class="fa fa-search" (click)="SearchEnter()"></i>
           </form>
             <button *ngIf = "!allowConnection" class="myAccount">
               <!-- <div *ngIf = "this.currentUser.role=='USER'" class="txt-connection">{{this.currentUser.username}}</div> -->
@@ -64,7 +71,7 @@
             <!-- <button *ngIf = "this.currentUser.role!='USER'" class="button création" >
               <div class="txt-création">Créer un compte</div>
               <img class="logo-création" src=".\assets\img\logo-création.png" height="70%" width="70%">
-            </button> -->
+            </button>  -->
       </div>
   </nav>
   <body (click)="changeImgNav()">
