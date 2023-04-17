@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { cityactivities } from '../cityactivity';
+      // Pour installer file-saver (fonction saveAs)
+      // npm install file-saver -save
+      // npm install @types/file-saver -save-dev
 import * as FileSaver from "file-saver";
 
 @Component({
@@ -173,10 +176,7 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
       const file1 : File = UpdateImage.files![0] ;
       PathUpdateImg = file1.name
       FileSaver.saveAs(file1 , PathUpdateImg) 
-     
-      // Pour installer file-saver (fonction saveAs)
-      // npm install file-saver -save
-      // npm install @types/file-saver -save-dev
+    
     }
 
     this.newActivity = new Activite(PathUpdateImg, activity.name, UpdateDescription)
