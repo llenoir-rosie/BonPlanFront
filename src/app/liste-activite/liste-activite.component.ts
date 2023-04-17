@@ -9,12 +9,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { cityactivities } from '../cityactivity';
 import * as FileSaver from "file-saver";
-//import "file-exists";
-//import * as fileExists from 'file-exists';
-// import * as fileExists from 'file-exists';
-//Pour installer file-exists :
-//npm i --save-dev @types/file-exists
-//npm install file-exists --save   
 
 // Pour installer file-saver (fonction saveAs) :
 // npm install file-saver -save
