@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { Ville } from '../ville';
 import { cityactivities } from '../cityactivity';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'liste-villes',
@@ -73,9 +74,16 @@ export class ListeVillesComponent implements OnInit {
 
     const new_city_name = (<HTMLInputElement>document.getElementById("new_city_name")).value;
     const new_city_description = (<HTMLInputElement>document.getElementById("new_city_description")).value;
-    const new_city_image = city_image;
+    let new_city_image = <HTMLInputElement>document.getElementById("new_city_image");
+    let PathNewImg = "";
+    
+    if (new_city_image.files?.length != 0){
+      const file1 : File = new_city_image.files![0] ;
+      PathNewImg = file1.name;
+      FileSaver.saveAs(file1 , PathNewImg) ;
+    }
 
-    this.newCity = new Ville( new_city_name, new_city_description, new_city_image);
+    this.newCity = new Ville( new_city_name, new_city_description, PathNewImg);
     this.http.put('http://localhost:8080/city/update', this.newCity).subscribe(() => {
       this.getAllCities(this.route.snapshot.params['activity.name'])
     })
@@ -122,10 +130,16 @@ export class ListeVillesComponent implements OnInit {
   CreateCity(){
     const new_city_name = (<HTMLInputElement>document.getElementById('new_city_name')).value;
     const new_city_description = (<HTMLInputElement>document.getElementById('new_city_description')).value;
-    const new_city_image = (<HTMLInputElement>document.getElementById('new_city_image')).files;
+    let new_city_image = (<HTMLInputElement>document.getElementById('new_city_image'));
+    let PathNewImg : string ="";
+
+    if (new_city_image.files?.length != 0){
+      const file1 : File = new_city_image.files![0] ;
+      PathNewImg = file1.name
+      FileSaver.saveAs(file1 , PathNewImg)
+    }
     
-    const new_city_image2 = "";
-    this.newCity = new Ville(new_city_name, new_city_description, new_city_image2)
+    this.newCity = new Ville(new_city_name, new_city_description, PathNewImg)
     this.newCityActivity = new cityactivities(0, new_city_name, this.nameActivity)
 
     this.http.post('http://localhost:8080/city/new', this.newCity).subscribe(()=>

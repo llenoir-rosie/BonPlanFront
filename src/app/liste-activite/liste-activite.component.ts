@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { cityactivities } from '../cityactivity';
+      // Pour installer file-saver (fonction saveAs)
+      // npm install file-saver -save
+      // npm install @types/file-saver -save-dev
 import * as FileSaver from "file-saver";
 
 @Component({
@@ -29,8 +32,8 @@ export class ListeActiviteComponent implements OnInit {
   id: number;
   count_bonplan : Number;
   count_mauvaisplan : Number;
-  
-
+  allowModeratorRight: boolean;
+  allowUserRight: boolean;
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
@@ -48,6 +51,17 @@ export class ListeActiviteComponent implements OnInit {
     this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
     this.getAllActivities(routeParams['name']);
     this.getAllPossibleActivities();
+
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowModeratorRight = false
+      this.allowUserRight = false
+    } else {
+      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+        this.allowModeratorRight = true
+      } else {
+        this.allowUserRight = true
+      }
+    }
 
     });
   }
@@ -115,14 +129,20 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   }
 
   public CreateAct(){
-    const id=0;
     const new_activity_name = (<HTMLInputElement>document.getElementById("new_activity_name")).value;
     const new_activity_description = (<HTMLInputElement>document.getElementById("new_activity_description")).value;
-    const new_activity_image = (<HTMLInputElement>document.getElementById("new_activity_image")).files;
+    let new_activity_image = <HTMLInputElement>document.getElementById("new_activity_image");
     
-    const new_activity_image2=""
-    this.newActivity = new Activite(new_activity_image2, new_activity_name, new_activity_description);
-    this.newCityActivity = new cityactivities(this.id, this.nomdelaville, new_activity_name)
+    let PathNewImg : string = ""
+
+    if (new_activity_image.files?.length != 0){
+      const file1 : File = new_activity_image.files![0] ;
+      PathNewImg = file1.name
+      FileSaver.saveAs(file1 , PathNewImg) 
+    }
+    
+    this.newActivity = new Activite(PathNewImg, new_activity_name, new_activity_description);
+    this.newCityActivity = new cityactivities(0, this.nomdelaville, new_activity_name)
     this.http.post('http://localhost:8080/activity/new', this.newActivity).subscribe(()=>
     {this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
     this.getAllActivities(this.nomdelaville));
@@ -156,10 +176,7 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
       const file1 : File = UpdateImage.files![0] ;
       PathUpdateImg = file1.name
       FileSaver.saveAs(file1 , PathUpdateImg) 
-     
-      // Pour installer file-saver (fonction saveAs)
-      // npm install file-saver -save
-      // npm install @types/file-saver -save-dev
+    
     }
 
     this.newActivity = new Activite(PathUpdateImg, activity.name, UpdateDescription)

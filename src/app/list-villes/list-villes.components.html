@@ -49,8 +49,9 @@
         </div>
       </div>
 
+
       <ng-template #DialogDeleteCity>
-        <h2>Supprimer l'activité {{nameActivity}} à {{city.name}}</h2>
+        <h2> Supprimer l'activité {{nameActivity}} à {{city.name}} ? </h2>
         <div mat-dialog-content [hidden]="(count_bonplan==0 && count_mauvaisplan==0)">
           L'activité ne peut pas être supprimée car <span [hidden]="count_bonplan==0">{{count_bonplan}} bon<span [hidden]="count_bonplan==1">s</span> plan<span [hidden]="count_bonplan==1">s</span> </span>
           <span [hidden]="count_bonplan==0 || count_mauvaisplan==0"> et </span> <span [hidden]="count_mauvaisplan==0">{{count_mauvaisplan}} mauvais
@@ -64,7 +65,7 @@
       </ng-template>
 
       <ng-template #DialogUpdateAct>
-        <h2 matDialogTitle >Mettre à jour l'activité {{nameActivity}}</h2>
+        <h2 matDialogTitle >Mettre à jour la ville {{city.name}}</h2>
         <div mat-dialog-content>
           <div>
             <label for={{city.name}}>{{city.name}}</label>
@@ -73,8 +74,8 @@
             <label for={{city.description}}> Description </label>
             <textarea style="height:100px;" id = "new_city_description" name="itembox" cols="33">{{city.description}}</textarea>
             <br>
-            <!-- <label for="city_image">Image</label>
-            <input type="file" id="new_city_image" name="city_image" accept="image/png, image/jpeg"> -->
+            <label for="city_image">Image</label>
+            <input type="file" id="new_city_image" name="city_image" accept="image/png, image/jpeg">
           </div>        
         </div>
         <div mat-dialog-actions class = "bouton-pop-up-edit-city">

@@ -18,14 +18,15 @@ export class AppComponent implements OnInit{
   Villeslist: Ville[] = [];
   logIn: Boolean = false;
   commonUser = new User("","","","", "", "COMMON")
-  currentUser: User;
+  currentUser: String;
   public nomdelaville: String;
   currentImg: String;
   currentVille: String;
+  allowConnection: Boolean;
   currentActivite: String;
   public searchInput: String = '';
   constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) { }
-
+  
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
 
@@ -43,7 +44,16 @@ export class AppComponent implements OnInit{
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
       this.Villeslist = data;
     })
-    
+    this.IsUserIsAuth();
+  }
+
+  IsUserIsAuth() {
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowConnection = true
+    } else {
+      this.currentUser = localStorage.getItem("currentUser")!;
+      this.allowConnection = false
+    }
   }
   
   @HostListener('window:beforeunload') onBeforeUnload() {
@@ -53,19 +63,19 @@ export class AppComponent implements OnInit{
     }
 
 
-  fonction_utile() {
-    for (let i = 0; i < this.Villeslist.length; i++) {
-      if (location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())
-      && location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())) {
-        localStorage.setItem("currentImg", this.Villeslist[i].image.toString());
-        this.currentImg = localStorage.getItem("currentImg")!;
-        localStorage.setItem("currentVille", this.Villeslist[i].name.toString());
-        this.currentVille = localStorage.getItem("currentVille")!;
-        localStorage.setItem("currentActivite", "");
-        this.currentActivite = localStorage.getItem("currentActivite")!;
-      }
-    }
-  }
+  // fonction_utile() {
+  //   for (let i = 0; i < this.Villeslist.length; i++) {
+  //     if (location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())
+  //     && location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())) {
+  //       localStorage.setItem("currentImg", this.Villeslist[i].image.toString());
+  //       this.currentImg = localStorage.getItem("currentImg")!;
+  //       localStorage.setItem("currentVille", this.Villeslist[i].name.toString());
+  //       this.currentVille = localStorage.getItem("currentVille")!;
+  //       localStorage.setItem("currentActivite", "");
+  //       this.currentActivite = localStorage.getItem("currentActivite")!;
+  //     }
+  //   }
+  // }
 
   @HostListener('window:popstate') onPopState() {
 
@@ -73,7 +83,7 @@ export class AppComponent implements OnInit{
     this.route.params.subscribe(routeParams => {
     this.nomdelaville = routeParams['name'];
     })
-    console.log('pop', routeParams)
+    console.log('pop', routeParams['name'])
   }
 
   // logCurrentUser() {
@@ -82,6 +92,11 @@ export class AppComponent implements OnInit{
   //   }
   // }
 
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    this.router.navigate(['/login'])
+  }
   changeImgNav() { // cette fonction est activée dès qu'on clicke dans le body et à l'initialisation
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
     if(location.href == "http://localhost:4200/#"){
@@ -98,7 +113,9 @@ export class AppComponent implements OnInit{
       this.currentActivite = localStorage.getItem("currentActivite")!;
     }
   }
-
+  gotToMyAccount(currentUser: String) {
+    this.router.navigate(['/account', currentUser])
+  }
 
   goToDetail(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
