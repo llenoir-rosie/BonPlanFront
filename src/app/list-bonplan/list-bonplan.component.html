@@ -15,9 +15,12 @@
           <div class="gros-titre">
             <h1>Les bons plans</h1>
           </div>
-          <button mat-raised-button class="waves-effect waves-light btn-bp" (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;"> Add a new BonPlan
-            <i class="material-icons right">send</i>
+
+          <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
+          (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; BonPlan
+          <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
           </button>  
+
           <div *ngFor="let bp of listeBonPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
                 <div class="card-content-bp">
@@ -26,8 +29,8 @@
                     <p>Description {{ bp.address }}</p>
                   </div>    
                   <img class = "img-test" src=".\assets\img\foot.jfif">
-                  <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                  <i id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
+                  <i *ngIf="allowModeratorRight || allowUserRight" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                  <i *ngIf="allowModeratorRight || allowUserRight" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
                 </div>     
             </div> 
           </div>
@@ -38,8 +41,9 @@
           <div class="gros-titre">
             <h1>Les mauvais plans</h1>
           </div>
-          <button mat-raised-button class="waves-effect waves-light btn-mp" (click)="goToFormAddMauvaisPlan()" style="color:wheat; background-color: black;"> Add a new MauvaisPlan
-            <i class="material-icons right">send</i>
+          <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-mp"
+            (click)="goToFormAddMauvaisPlan()" style="color:wheat; background-color: black;">&nbsp; MauvaisPlan
+            <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
           </button>
           <div *ngFor="let mp of listeMauvaisPlan">
             <div class="card" testBorderCard = 'setHeight=50'>
@@ -49,8 +53,8 @@
                   <p>Description {{ mp.address }}</p>
                 </div>    
                 <img class = "img-test" src=".\assets\img\foot.jfif">
-                <i id='trashBtn' class='fa fa-trash' (click)="deleteMauvaisPlan(mp.name)"></i>
-                <i id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateMauvaisPlan(mp)"></i>
+                <i *ngIf="allowModeratorRight || allowUserRight" id='trashBtn' class='fa fa-trash' (click)="deleteMauvaisPlan(mp.name)"></i>
+                <i *ngIf="allowModeratorRight || allowUserRight" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateMauvaisPlan(mp)"></i>
               </div>     
             </div> 
           </div>

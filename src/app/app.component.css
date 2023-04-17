@@ -30,9 +30,14 @@ a.text-lighten-4 {
 }  
 
 .haut-gauche {
+    position: relative;
+    z-index: 1;
     width: fit-content;
+    max-height: 100px;
     display: flex;
     flex-wrap: wrap;
+    background-color: rgba(134, 134, 134, 0.5);
+    box-shadow: 0 -5px 5px 5px rgba(134, 134, 134, 0.5);
 }
 
 .right-content {
@@ -41,6 +46,7 @@ a.text-lighten-4 {
     width: fit-content;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 .brand-logo {
     position: relative;
@@ -49,7 +55,7 @@ a.text-lighten-4 {
     font-family: fantasy;
     /* text-shadow: 0 0 2px rgb(0, 0, 0); */
     text-decoration: none;
-    transition-duration: 0.3s;
+    /* transition-duration: 0.3s; */
 }
 img.logo-site {
     position: relative;
@@ -64,9 +70,8 @@ img.logo-site {
 }
 .accroche {
     position: relative;
-    width: 100%;
     z-index: 1;
-    top: -7%;
+    top: -17%;
     line-height: 17px;
     font-family: Arial, Helvetica, sans-serif;
     color: #07051a;
@@ -215,7 +220,7 @@ form:focus-within .collection {
 }
 
 
-button.connexion {
+.button-connexion {
     position: absolute;
     height: 100px;
     width: 100px;
@@ -225,9 +230,11 @@ button.connexion {
     flex-wrap: wrap;
     background-color: #3498db;
     color: rgb(0, 0, 0);
-    transition: 0.4s;
     border: none;
+    -webkit-transition: all 0.4s linear;
+    transition:  all 0.4s linear;
 }
+
 .txt-connection{
     position: relative;
     font-size: 140%;
@@ -237,9 +244,30 @@ button.connexion {
     position: relative;
     top: -32px;
 }
-.button.connexion:hover {
+.button-connexion:hover {
   background-color: #34495e;
   color: rgb(255, 255, 255);
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   cursor: pointer;
 }
+
+.myAccount {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 0%;
+    right: 5%;
+    font-weight: bold;
+    flex-wrap: wrap;
+    background-color: #3498db;
+    color: rgb(0, 0, 0);
+    transition: 0.4s;
+    border: none;
+}
+
+.myAccount:hover {
+    background-color: #34495e;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+  }

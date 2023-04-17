@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bonplan } from '../bonplan';
 import { Mauvaisplan } from '../mauvaisplan' ;
-import { BONPLAN } from '../mock-bonplan-list';
-import { VILLE } from '../mock-ville-list';
 import { Ville } from '../ville';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
@@ -18,12 +16,10 @@ import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.comp
   styleUrls: ['list-bonplan.component.css'],
 })
 export class ListBonplanComponent implements OnInit {
+
 pop() {
 throw new Error('Method not implemented.');
 }
-  villeList: Ville[] = VILLE;
-  bpList: Bonplan[]=BONPLAN;
-  // mpList: Mauvaisplan[]=MAUVAISPLAN;
   ville: Ville|undefined;
   bp: Bonplan[]=[];
   mp: Mauvaisplan[]=[];
@@ -34,6 +30,8 @@ throw new Error('Method not implemented.');
   public listeMauvaisPlan: Mauvaisplan[];
   bonplanDeleted: Boolean = false;
   mauvaisplanDeleted: Boolean = false;
+  allowUserRight: boolean;
+  allowModeratorRight: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog) { }
 
@@ -48,9 +46,20 @@ throw new Error('Method not implemented.');
 
     this.imgBackGround = '../assets/img/' + this.nomdelactivite + '.jfif'
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
-
+    
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     this.getAllMauvaisPlan(this.nomdelaville, this.nomdelactivite);
+
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowModeratorRight = false
+      this.allowUserRight = false
+    } else {
+      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+        this.allowModeratorRight = true
+      } else {
+        this.allowUserRight = true
+      }
+    }
   }
 
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <html>                        
+    <head>                        
+      <title>BonPlan</title>      
+    </head> 
+    <body>       
+        <div>
+            <p>{{userDetails.firstName}}</p>
+            <p>{{userDetails.lastName}}</p>
+            <p>{{userDetails.email}}</p>
+            <p>{{userDetails.role}}</p>
+            <p>{{userDetails.username}}</p>
+        </div>
+        <div *ngIf = "msgError">
+            {{msgError}}
+        </div>
+        <div *ngFor="let elemt of AllBonPlan">
+          <div class="card" testBorderCard = 'setHeight=50'>
+              <div class="card-content-bp">
+                <div class="left-content">
+                  <h2>Nom {{ elemt.name }}</h2>
+                  <p>Description {{ elemt.address }}</p>
+                </div>  
+                <img class = "img-test" src=".\assets\img\foot.jfif">  
+              </div>
+          </div> 
+        </div>
+        <div *ngIf = "msgError2">
+          {{msgError2}}
+        </div>
+        <div *ngFor="let elemt of AllMauvaisPlan">
+          <div class="card" testBorderCard = 'setHeight=50'>
+              <div class="card-content-mp">
+                <div class="left-content">
+                  <h2>Nom {{ elemt.name }}</h2>
+                  <p>Description {{ elemt.address }}</p>
+                </div>    
+                <img class = "img-test" src=".\assets\img\foot.jfif">
+              </div>
+          </div> 
+        </div>
+    </body>
+  </html>
