@@ -12,7 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { Registration } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,10 +22,12 @@ import { CommonModule } from '@angular/common';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { ListeVillesComponent } from './list-villes/list-villes.components';
 import { PopUpComponentUpdateMauvaisPlan } from './list-bonplan/pop-up-updateMauvaisPlan.component';
-
+import { AuthInterceptor } from './AuthInterceptor';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 @NgModule({
   declarations: [
+    UserAccountComponent,
     ListeVillesComponent,
     PopUpComponentUpdateBonPlan,
     AppComponent,
@@ -53,14 +55,14 @@ import { PopUpComponentUpdateMauvaisPlan } from './list-bonplan/pop-up-updateMau
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   exports: [
     FormsModule,
     CommonModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

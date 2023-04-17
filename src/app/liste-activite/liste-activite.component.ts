@@ -8,6 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { cityactivities } from '../cityactivity';
+      // Pour installer file-saver (fonction saveAs)
+      // npm install file-saver -save
+      // npm install @types/file-saver -save-dev
+import * as FileSaver from "file-saver";
+
+// Pour installer file-saver (fonction saveAs) :
+// npm install file-saver -save
+// npm install @types/file-saver -save-dev
+
 
 @Component({
   selector: 'liste-activite',
@@ -28,8 +37,8 @@ export class ListeActiviteComponent implements OnInit {
   id: number;
   count_bonplan : Number;
   count_mauvaisplan : Number;
-  
-
+  allowModeratorRight: boolean;
+  allowUserRight: boolean;
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
@@ -52,6 +61,17 @@ export class ListeActiviteComponent implements OnInit {
     this.getAllActivities(routeParams['name']);
     this.getAllPossibleActivities();
 
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowModeratorRight = false
+      this.allowUserRight = false
+    } else {
+      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+        this.allowModeratorRight = true
+      } else {
+        this.allowUserRight = true
+      }
+    }
+
     });
   }
     // this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
@@ -66,6 +86,7 @@ export class ListeActiviteComponent implements OnInit {
   public getAllPossibleActivities(){
     this.http.get<Activite[]>("http://localhost:8080/activities").subscribe((data) => {
       this.listeAllActivites = data;
+    this.listeAllActivites.sort((a : Activite , b : Activite) => (a.name < b.name) ? -1 : 1)
     })
   }
 
@@ -108,32 +129,29 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
   public AddNewAct(){
     const checked_boxs = (document.querySelectorAll('[name ="activitybox"]:checked'));
     const lenght_checked_boxs = checked_boxs.length;
-
-    id : Number;
-    
     for (var index: number=0; index<lenght_checked_boxs; index++){
       const html_checked_boxs = (<HTMLInputElement>checked_boxs.item(index)).value;
-      const id = 0;
-      this.newCityActivity = new cityactivities(this.id, this.nomdelaville, html_checked_boxs)
+      this.newCityActivity = new cityactivities(0, this.nomdelaville, html_checked_boxs)
       this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
       this.getAllActivities(this.nomdelaville));
     }
   }
 
   public CreateAct(){
-    new_activity_name : String;
-    new_activity_description : String;
-    new_activity_image : String;
-    id : Number;
-    const id=0;
-
     const new_activity_name = (<HTMLInputElement>document.getElementById("new_activity_name")).value;
     const new_activity_description = (<HTMLInputElement>document.getElementById("new_activity_description")).value;
-    const new_activity_image = "";
+    let new_activity_image = <HTMLInputElement>document.getElementById("new_activity_image");
+    
+    let PathNewImg : string = ""
 
-    this.newActivity = new Activite(new_activity_image, new_activity_name, new_activity_description);
-    this.newCityActivity = new cityactivities(this.id, this.nomdelaville, new_activity_name)
-
+    if (new_activity_image.files?.length != 0){
+      const file1 : File = new_activity_image.files![0] ;
+      PathNewImg = file1.name
+      FileSaver.saveAs(file1 , PathNewImg) 
+    }
+    
+    this.newActivity = new Activite(PathNewImg, new_activity_name, new_activity_description);
+    this.newCityActivity = new cityactivities(0, this.nomdelaville, new_activity_name)
     this.http.post('http://localhost:8080/activity/new', this.newActivity).subscribe(()=>
     {this.http.post('http://localhost:8080/cityactivities/new',this.newCityActivity).subscribe((data)=>
     this.getAllActivities(this.nomdelaville));
@@ -154,28 +172,36 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     
     const id : number=0;
     const activity_name: String = (<HTMLInputElement>document.getElementById("delete_activity")).value;
-    
-    this.http.get<number>('http://localhost:8080/'+this.nomdelaville+'/'+activity_name+'/countbonplan').subscribe((data)=>
-    this.count_bonplan = data);
-
-    console.log('count bon plan : ',this.count_bonplan);
     this.http.delete('http://localhost:8080/cityactivities/delete/'+this.nomdelaville+'/'+activity_name).subscribe(()=>
     this.getAllActivities(this.nomdelaville));
   }
 
   public UpdateActivity(activity : Activite){
     const UpdateDescription : String= (<HTMLInputElement>document.getElementById("update_description")).value;
-    let UpdateImagePath : String = (<HTMLInputElement>document.getElementById("update_image")).value;
-    if (UpdateImagePath.length==0){
-      UpdateImagePath = activity.image;
+    let UpdateImage = <HTMLInputElement>document.getElementById("update_image");
+    let PathUpdateImg : string = ""
+
+    if (UpdateImage.files?.length != 0){
+      const file1 : File = UpdateImage.files![0] ;
+      PathUpdateImg = file1.name
+      FileSaver.saveAs(file1 , PathUpdateImg) 
+    
     }
 
-    this.newActivity = new Activite(UpdateImagePath, activity.name, UpdateDescription)
-    console.log(this.newActivity)
-
+    this.newActivity = new Activite(PathUpdateImg, activity.name, UpdateDescription)
     this.http.put('http://localhost:8080/activity/update',this.newActivity).subscribe((data)=>
     this.getAllActivities(this.nomdelaville))
   }
+
+  public CheckNullActName(){
+    const new_activity_name = (<HTMLInputElement>document.getElementById('new_activity_name')).value;
+    if (new_activity_name.length>0){
+        (<HTMLInputElement>document.getElementById('CreateActValider')).disabled=false;
+    }else{
+      (<HTMLInputElement>document.getElementById('CreateActValider')).disabled=true;
+    }
+  }
+
 
 }
 

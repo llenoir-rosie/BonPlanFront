@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../User';
 import { FormGroup, FormControl, Validators} from '@angular/forms'; 
 import {catchError} from 'rxjs/operators';
+import { Token } from '@angular/compiler';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'login',
@@ -15,12 +17,17 @@ export class LoginComponent implements OnInit{
   loginUserForm: FormGroup;
   logUser: User;
   msg: String = "";
-  constructor(private router: Router, private http: HttpClient) {}
+  token = String; 
+
+  constructor(private router: Router, private http: HttpClient, private appComponent: AppComponent) {}
   
   ngOnInit() {
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    localStorage.setItem('currentVille', "");
+    this.appComponent.ngOnInit();
     this.loginUserForm = new FormGroup (
       {
-        email : new FormControl('', Validators.required),
+        username : new FormControl('', Validators.required),
         password : new FormControl('', Validators.required),
       }
     )
@@ -30,15 +37,17 @@ export class LoginComponent implements OnInit{
   }
 
   loginUser(){
-    this.logUser = new User("","", this.loginUserForm.value.email, this.loginUserForm.value.password, "", "USER");
-    this.http.post<User>('http://localhost:8080/login', this.logUser)
-    .pipe ( 
-      catchError((error) => this.msg = error.error.message
-    ))
+    this.logUser = new User("","", "", this.loginUserForm.value.password, this.loginUserForm.value.username, "USER");
+    this.http.post<string>('http://localhost:8080/login', this.logUser)
+    // .pipe ( 
+    //   catchError((error) => this.msg = error.error.message
+    // ))
     .subscribe((data) => {
-      localStorage.setItem("currentUser", JSON.stringify(data));
+      localStorage.setItem('token', Object.values(data)[0]);
+      const currentUser = this.loginUserForm.value.username;
+      localStorage.setItem('currentUser', currentUser);
+      this.router.navigate(['/account', currentUser])
     })
-    this.router.navigate(['/ville']);
   }
 
 }

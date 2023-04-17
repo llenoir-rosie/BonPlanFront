@@ -10,35 +10,62 @@
   <body>
     <div *ngFor="let city of listeCities">
       <div class="col s12 m8 offset-m2">
-        <h2 class="header center">{{ city.name }}</h2>
         <div class="card horizontal hoverable" > <!--(click)="goToVilleActiviteBonplan(nameActivity, city)"-->
-          <div class="card-image">
-            <img src= " {{city.image}}" >
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <h2 class="card-header center">{{ city.name }}</h2>
-              <!-- <td>Nom</td> -->
-              <!-- <td><strong>{{ act.name }}</strong></td> -->
-              <!-- <td>Description</td> -->
-              <p class="card-description">
-                <strong>{{ city.description }}</strong>
-              </p>
+          <div class="sub-card">
+            <div class="card-image">
+              <img src= " {{city.image}}" >
             </div>
-            <div class="card-action">
-              <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
-            </div>
-            <button class="editCity" (click)="openDialogWithTemplateRef(DialogUpdateAct)" >
-              Modifier
-            </button>
-            <button class="gotobonplan" (click)="goToVilleActiviteBonplan(city, Act)" >
+            <div class="card-stacked">
+              <div class="card-content">
+                <h2 class="card-header center">{{ city.name }}</h2>
+                <!-- <td>Nom</td> -->
+                <!-- <td><strong>{{ act.name }}</strong></td> -->
+                <!-- <td>Description</td> -->
+                <p class="card-description">
+                  <strong>{{ city.description }}</strong>
+                </p>
+              </div>
+              <div class="card-action">
+                <!-- <a (click)="goToVilleList()" ><span class="{{'chip'}}" style="color:rgb(0, 0, 0);background-color:rgb(253, 228, 0);">Retour</span></a> -->
+              </div>
+              <button class="gotobonplan" (click)="goToVilleActiviteBonplan(city, Act)" >
                 Découvrez les bons plans {{  nameActivity }} de {{ city.name }}
-            </button>
-          </div>
+                <i class="material-icons right" style="font-size: 30px;">chevron_right</i>
+              </button>
+              <div class = "bouton-bottom-card">
+                <button class="editCity" mat-raised-button class="waves-effect waves-light btn" 
+                  (click)="openDialogWithTemplateRef(DialogUpdateAct)" type="button"
+                  style="color:wheat; background-color: rgb(172, 172, 172);" >Modifier
+                  <i class="material-icons right" style="font-size: 20px;">edit</i>
+                </button>
+                <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" 
+                  (click)="CountBonPlan(city.name) ; CountMauvaisPlan(city.name); openDialogWithTemplateRef(DialogDeleteCity)" 
+                  style="color:wheat; background-color: rgb(255, 0, 0);">Supprimer
+                  <i class="material-icons right" style="font-size: 20px;">delete</i>
+              </button>
+              </div>
+            </div>
+          </div> 
         </div>
       </div>
+
+
+      <ng-template #DialogDeleteCity>
+        <h2> Supprimer l'activité {{nameActivity}} à {{city.name}} ? </h2>
+        <div mat-dialog-content [hidden]="(count_bonplan==0 && count_mauvaisplan==0)">
+          L'activité ne peut pas être supprimée car <span [hidden]="count_bonplan==0">{{count_bonplan}} bon<span [hidden]="count_bonplan==1">s</span> plan<span [hidden]="count_bonplan==1">s</span> </span>
+          <span [hidden]="count_bonplan==0 || count_mauvaisplan==0"> et </span> <span [hidden]="count_mauvaisplan==0">{{count_mauvaisplan}} mauvais
+             plan<span [hidden]="count_mauvaisplan==1">s</span> </span> lui correspond<span [hidden]="(count_mauvaisplan==1 || count_bonplan==1)&&(count_mauvaisplan==0 || count_bonplan==0)">ent</span>.
+          Merci de supprimer les plans existant avant de supprimer l'activité :) <br>
+        </div>
+        <div mat-dialog-actions class="bouton-pop-up-delete">
+          <button mat-button matDialogClose color="primary" id="delete_city" [disabled]="count_bonplan>0 || count_mauvaisplan>0" value={{city.name}} (click)="DeleteCityActivity()">Supprimer l'activité</button>
+          <button mat-button matDialogClose color="primary" >Annuler</button>
+        </div>
+      </ng-template>
+
       <ng-template #DialogUpdateAct>
-        <h2 matDialogTitle >Mettre à jour l'activité {{nameActivity}}</h2>
+        <h2 matDialogTitle >Mettre à jour la ville {{city.name}}</h2>
         <div mat-dialog-content>
           <div>
             <label for={{city.name}}>{{city.name}}</label>
@@ -47,8 +74,8 @@
             <label for={{city.description}}> Description </label>
             <textarea style="height:100px;" id = "new_city_description" name="itembox" cols="33">{{city.description}}</textarea>
             <br>
-            <!-- <label for="city_image">Image</label>
-            <input type="file" id="new_city_image" name="city_image" accept="image/png, image/jpeg"> -->
+            <label for="city_image">Image</label>
+            <input type="file" id="new_city_image" name="city_image" accept="image/png, image/jpeg">
           </div>        
         </div>
         <div mat-dialog-actions class = "bouton-pop-up-edit-city">
@@ -57,9 +84,47 @@
       </ng-template>
     </div>
     <div class="button_bottom">
-      <button mat-raised-button class="waves-effect waves-light btn " (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
-        <i class="material-icons right">send</i>
+      <button mat-raised-button class="waves-effect waves-light btn "
+        (click)="goToVilleList()" style="color:wheat; background-color: black;">Retour
+        <i class="material-icons right" style="font-size: 23px;">subdirectory_arrow_left</i>
+      </button>
+      <button mat-raised-button class="waves-effect waves-light btn " (click)="openDialogWithTemplateRef(DialogAddCity)"
+      style="color:wheat; background-color: black;">Ajouter une ville
+      <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
       </button>
     </div> 
+    <div>
+      <ng-template #DialogAddCity class="PopUpAct">
+        <h2>Ajouter une ville pour l'activité {{nameActivity}}</h2>
+        <div mat-dialog-content>
+          <p>Sélectionner les villes à ajouter</p>
+          <div *ngFor="let city of listAllCities">
+            <input type="checkbox" class = "demo2" id={{city.name}} name = citybox value={{city.name}}>
+            <label for ={{city.name}}>{{city.name}}</label>
+          </div>
+          <div mat-dialog-actions class="bouton-pop-up-ajouter-act">
+            <button id="boutonValider" mat-button matDialogClose="primary" (click)="openDialogWithTemplateRef(DialogCreateCity)">Ajouter une autre ville</button>
+            <button id="boutonValider" mat-button matDialogClose="primary" (click)="AddCity()" >Valider</button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #DialogCreateCity class="PopUpAct">
+        <h2>Ajouter une nouvelle ville pour l'activité {{nameActivity}}</h2>
+        <div mat-dialog-content>
+          <label for="new_city_name">Nom de la ville</label>
+          <input type="text" name="new_city_name" (keyup)="CheckNullCityName()" id="new_city_name" required="required" size="30">
+          <br><br>
+          <label for="new_city_description">Description</label>
+          <textarea id="new_city_description" style="height: 100px;" name="new_city_description" rows="5" cols="30"></textarea>
+          <br><br>
+          <label for="new_city_image">Image</label>
+          <input type="file" id="new_city_image" name="new_city_image" accept="image/png, image/jpeg">
+        </div>
+        <div mat-dialog-actions align="end">
+          <button id="CreateActValider" mat-button matDialogClose color = "primary" [disabled]=true (click)="CreateCity()">Valider</button>
+          <button mat-button matDialogClose color="primary">Annuler</button>
+        </div>
+      </ng-template>
+    </div>
   </body>
 </html>
