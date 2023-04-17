@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 import { Ville } from './ville';
 import { User } from './User';
@@ -13,17 +13,18 @@ import { Location } from '@angular/common';
   styleUrls: ['app.component.css'],
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   touteVille: Ville[] = [];
   Villeslist: Ville[] = [];
   logIn: Boolean = false;
   commonUser = new User("","","","", "", "COMMON")
   currentUser: User;
+  public nomdelaville: String;
   currentImg: String;
   currentVille: String;
   currentActivite: String;
   public searchInput: String = '';
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) { }
 
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
@@ -36,15 +37,45 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(localStorage)
     // this.logCurrentUser();
     this.changeImgNav();
 
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
       this.Villeslist = data;
-    })  
+    })
     
   }
+  
+  @HostListener('window:beforeunload') onBeforeUnload() {
+    localStorage.removeItem("currentActivite");
+    localStorage.removeItem("currentVille");
+    localStorage.setItem("currentImg", "./assets/img/activite-navbar.jpeg");
+    }
+
+
+  fonction_utile() {
+    for (let i = 0; i < this.Villeslist.length; i++) {
+      if (location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())
+      && location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())) {
+        localStorage.setItem("currentImg", this.Villeslist[i].image.toString());
+        this.currentImg = localStorage.getItem("currentImg")!;
+        localStorage.setItem("currentVille", this.Villeslist[i].name.toString());
+        this.currentVille = localStorage.getItem("currentVille")!;
+        localStorage.setItem("currentActivite", "");
+        this.currentActivite = localStorage.getItem("currentActivite")!;
+      }
+    }
+  }
+
+  @HostListener('window:popstate') onPopState() {
+
+    const routeParams = this.route.snapshot.params;
+    this.route.params.subscribe(routeParams => {
+    this.nomdelaville = routeParams['name'];
+    })
+    console.log('pop', routeParams)
+  }
+
   // logCurrentUser() {
   //   if (localStorage.getItem('currentUser["role"]') == null || localStorage.getItem('currentUser["role"]') == 'COMMON') {
   //     localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
