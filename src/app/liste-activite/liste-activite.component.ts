@@ -46,6 +46,10 @@ export class ListeActiviteComponent implements OnInit {
     // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
     this.currentImg = localStorage.getItem("currentImg")!;
 
+    // on attribue la bonne valeur à currentActivite en allant la chercher dans localStorage
+    localStorage.setItem('currentActivite', "");
+    this.currentActivite = localStorage.getItem('currentActivite')!;
+
     // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
     this.currentVille = localStorage.getItem("currentVille")!;
 

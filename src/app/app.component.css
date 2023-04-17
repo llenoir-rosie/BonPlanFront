@@ -18,6 +18,20 @@ nav {
     flex-grow: 0;
     flex-shrink: 0;
   } */
+  .material-icons {
+    margin-right: 3px;
+  }
+
+.ligne-footer {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start;   
+}
+
+.ligne-footer .text-icons {
+    margin-top: 0.5%; 
+}
+
 a.text-lighten-4 {
     display: flex;
     align-items: flex-start;
