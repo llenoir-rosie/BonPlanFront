@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import { cityactivities } from '../cityactivity';
+      // Pour installer file-saver (fonction saveAs)
+      // npm install file-saver -save
+      // npm install @types/file-saver -save-dev
 import * as FileSaver from "file-saver";
 
 // Pour installer file-saver (fonction saveAs) :
@@ -34,8 +37,8 @@ export class ListeActiviteComponent implements OnInit {
   id: number;
   count_bonplan : Number;
   count_mauvaisplan : Number;
-  
-
+  allowModeratorRight: boolean;
+  allowUserRight: boolean;
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
@@ -53,6 +56,17 @@ export class ListeActiviteComponent implements OnInit {
     this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
     this.getAllActivities(routeParams['name']);
     this.getAllPossibleActivities();
+
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowModeratorRight = false
+      this.allowUserRight = false
+    } else {
+      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+        this.allowModeratorRight = true
+      } else {
+        this.allowUserRight = true
+      }
+    }
 
     });
   }
@@ -167,6 +181,7 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
       const file1 : File = UpdateImage.files![0] ;
       PathUpdateImg = file1.name
       FileSaver.saveAs(file1 , PathUpdateImg) 
+    
     }
 
     this.newActivity = new Activite(PathUpdateImg, activity.name, UpdateDescription)
