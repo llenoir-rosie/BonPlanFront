@@ -29,8 +29,10 @@
                     <p>Description {{ bp.address }}</p>
                   </div>    
                   <img class = "img-test" src=".\assets\img\foot.jfif">
-                  <i *ngIf="allowModeratorRight || allowUserRight" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                  <i *ngIf="allowModeratorRight || allowUserRight" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
+                  <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
+                  ses bp )-->
+                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
                 </div>     
             </div> 
           </div>
@@ -53,8 +55,10 @@
                   <p>Description {{ mp.address }}</p>
                 </div>    
                 <img class = "img-test" src=".\assets\img\foot.jfif">
-                <i *ngIf="allowModeratorRight || allowUserRight" id='trashBtn' class='fa fa-trash' (click)="deleteMauvaisPlan(mp.name)"></i>
-                <i *ngIf="allowModeratorRight || allowUserRight" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateMauvaisPlan(mp)"></i>
+                <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
+                  ses bp )-->
+                <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == mp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteMauvaisPlan(mp.name)"></i>
+                <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == mp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateMauvaisPlan(mp)"></i>
               </div>     
             </div> 
           </div>

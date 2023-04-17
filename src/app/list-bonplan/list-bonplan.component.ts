@@ -32,6 +32,7 @@ throw new Error('Method not implemented.');
   mauvaisplanDeleted: Boolean = false;
   allowUserRight: boolean;
   allowModeratorRight: boolean;
+  currentUser: String;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog) { }
 
@@ -54,6 +55,7 @@ throw new Error('Method not implemented.');
       this.allowModeratorRight = false
       this.allowUserRight = false
     } else {
+      this.currentUser = localStorage.getItem("currentUser")!
       if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
         this.allowModeratorRight = true
       } else {
@@ -98,8 +100,6 @@ throw new Error('Method not implemented.');
     });
     this.mauvaisplanDeleted = true;
   }
-
-
 
   // Formulaire de création de bons plans / mauvais plans
   public updateBonPlan(bp: Bonplan) {
