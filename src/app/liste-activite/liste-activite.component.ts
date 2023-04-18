@@ -112,15 +112,13 @@ export class ListeActiviteComponent implements OnInit {
   //@return redirection to /ville
   goToVilleActiviteBonplan(ville: String , activity: Activite) {
     this.router.navigate(['/ville', this.nomdelaville, activity.name])
-
-    localStorage.setItem("currentImg", activity.image.toString());
-    this.currentImg = localStorage.getItem("currentImg")!;
-
-    localStorage.setItem("currentActivite", "\xa0"  + activity.name.toString());
-    this.currentActivite = localStorage.getItem("currentActivite")!;
-
-    localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
-    this.currentVille = localStorage.getItem("currentVille")!;
+    
+    // localStorage.setItem("currentImg", activity.image.toString());
+    // this.currentImg = localStorage.getItem("currentImg")!;
+    // localStorage.setItem("currentActivite", "\xa0"  + activity.name.toString());
+    // this.currentActivite = localStorage.getItem("currentActivite")!;
+    // localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
+    // this.currentVille = localStorage.getItem("currentVille")!;
   }
 
 

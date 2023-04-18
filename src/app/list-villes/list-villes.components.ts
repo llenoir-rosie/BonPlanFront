@@ -107,23 +107,21 @@ export class ListeVillesComponent implements OnInit {
   goToVilleList() {
     this.router.navigate(['/ville']);
 
-    // on change la valeur de currentImg
-    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    this.currentImg = localStorage.getItem("currentImg")!;
-
-    // on change la valeur de currentVille
-    localStorage.setItem('currentActivite', "");
-    this.currentActivite = localStorage.getItem("currentActivite")!;
+    // // on change la valeur de currentImg
+    // localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    // this.currentImg = localStorage.getItem("currentImg")!;
+    // // on change la valeur de currentVille
+    // localStorage.setItem('currentActivite', "");
+    // this.currentActivite = localStorage.getItem("currentActivite")!;
   }
   
   goToVilleActiviteBonplan(ville: Ville , Act: Activite) {
     this.router.navigate(['/ville', ville.name, this.nameActivity])
 
-    localStorage.setItem("currentActivite", "\xa0"  + this.nameActivity.toString());
-    this.currentActivite = localStorage.getItem("currentActivite")!;
-
-    localStorage.setItem("currentVille"," à " + ville.name);
-    this.currentVille = localStorage.getItem("currentVille")!;
+    // localStorage.setItem("currentActivite", "\xa0"  + this.nameActivity.toString());
+    // this.currentActivite = localStorage.getItem("currentActivite")!;
+    // localStorage.setItem("currentVille"," à " + ville.name);
+    // this.currentVille = localStorage.getItem("currentVille")!;
   }
 
   @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
