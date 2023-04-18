@@ -69,7 +69,7 @@ a.text-lighten-4 {
     font-family: fantasy;
     /* text-shadow: 0 0 2px rgb(0, 0, 0); */
     text-decoration: none;
-    /* transition-duration: 0.3s; */
+    transition-duration: 0.3s;
 }
 img.logo-site {
     position: relative;
