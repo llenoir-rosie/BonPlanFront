@@ -8,6 +8,7 @@ import { __values } from 'tslib';
 import { Ville } from '../ville';
 import { cityactivities } from '../cityactivity';
 import * as FileSaver from 'file-saver';
+import { AppComponent } from "../app.component";
 
 @Component({
   selector: 'liste-villes',
@@ -33,28 +34,34 @@ export class ListeVillesComponent implements OnInit {
   count_mauvaisplan: Number;
 
 
-  constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+  constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient,
+    private appComponent: AppComponent) { }
 
   ngOnInit() {
 
-    // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
-    this.currentImg = localStorage.getItem("currentImg")!;
+    // // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
+    // this.currentImg = localStorage.getItem("currentImg")!;
 
-    // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
-    this.currentVille = localStorage.getItem("currentVille")!;
-    this.currentActivite = localStorage.getItem("currentActivite")!;
+    // // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
+    // this.currentVille = localStorage.getItem("currentVille")!;
+    // this.currentActivite = localStorage.getItem("currentActivite")!;
 
     const routeParams = this.route.snapshot.params;
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
         this.nameActivity = routeParams['activity.name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
         this.getAllCities(routeParams['activity.name']);
         this.getAllPossibleCities();
+        this.getImgActivity(this.nameActivity);
     });
+
+    // on enlève la valeur de currentVille dans localStorage et on y met la bonne valeur de currentActivity
+    localStorage.removeItem('currentVille');
+    localStorage.setItem('currentActivite', "\xa0"  + routeParams['activity.name'].toString());
   }
     // this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
     // si jamais il y a des soucis avec les majuscules des premières lettres des villes
 
-  public getAllCities(nameActivity: String) {
+  public getAllCities(nameActivity: String) { // récupère la liste des classes villes qui possèdent cette activité
     this.http.get<Ville[]>("http://localhost:8080/villes/" + nameActivity).subscribe((data) => {
     this.listeCities = data;
     })
@@ -65,8 +72,16 @@ export class ListeVillesComponent implements OnInit {
       this.listAllCities = data;
     this.listAllCities.sort((a : Ville , b : Ville) =>
       (a.name < b.name) ? -1 : 1)
-    
-    console.log(this.listAllCities)
+    })
+  }
+  
+  // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
+  public getImgActivity(nameact: String) { 
+    this.http.get<Activite>("http://localhost:8080/activity/" + nameact).subscribe((data) => {
+      this.currentImg = data.image;
+      // on met la bonne valeur à currentImg dans localStorage et on recharge le composant appComponent
+      localStorage.setItem('currentImg', this.currentImg.toString());
+      this.appComponent.ngOnInit();
     })
   }
 

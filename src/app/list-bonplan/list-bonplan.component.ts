@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bonplan } from '../bonplan';
 import { Mauvaisplan } from '../mauvaisplan' ;
 import { Ville } from '../ville';
+import { Activite } from '../activite';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponentAddBonPlan } from './pop-up-addBonPlan';
 import { PopUpComponentAddMauvaisPlan } from './pop-up-addMauvaisPlan';
 import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
 import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.component';
+import { AppComponent } from "../app.component";
 
 @Component({
   selector: 'app-list-bonplan',
@@ -32,8 +34,12 @@ throw new Error('Method not implemented.');
   mauvaisplanDeleted: Boolean = false;
   allowUserRight: boolean;
   allowModeratorRight: boolean;
+  currentImg: String;
+  currentVille: String;
+  currentActivite: String;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
+    private appComponent: AppComponent) { }
 
   ngOnInit() {
     //Recup the city name of bonplan 
@@ -49,6 +55,7 @@ throw new Error('Method not implemented.');
     
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     this.getAllMauvaisPlan(this.nomdelaville, this.nomdelactivite);
+    this.getImgActivity(this.nomdelactivite);
 
     if (localStorage.getItem("currentUser") == null) {
       this.allowModeratorRight = false
@@ -60,6 +67,9 @@ throw new Error('Method not implemented.');
         this.allowUserRight = true
       }
     }
+
+    localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
+    localStorage.setItem("currentActivite", "\xa0"  + this.nomdelactivite.toString());
   }
 
 
@@ -76,6 +86,15 @@ throw new Error('Method not implemented.');
     })
   }
 
+  // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
+  public getImgActivity(nameact: String) { 
+    this.http.get<Activite>("http://localhost:8080/activity/" + nameact).subscribe((data) => {
+      this.currentImg = data.image;
+      // on met la bonne valeur à currentImg dans localStorage et on recharge le composant appComponent
+      localStorage.setItem('currentImg', this.currentImg.toString());
+      this.appComponent.ngOnInit();
+    })
+  }
 
 
   public deleteBonPlan(bpName: String) {

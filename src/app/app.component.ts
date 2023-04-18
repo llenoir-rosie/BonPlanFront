@@ -45,6 +45,7 @@ export class AppComponent implements OnInit{
       this.Villeslist = data;
     })
     this.IsUserIsAuth();
+
   }
 
   IsUserIsAuth() {
@@ -77,14 +78,15 @@ export class AppComponent implements OnInit{
   //   }
   // }
 
-  @HostListener('window:popstate') onPopState() {
+  // @HostListener('window:popstate') onPopState() {
 
-    const routeParams = this.route.snapshot.params;
-    this.route.params.subscribe(routeParams => {
-    this.nomdelaville = routeParams['name'];
-    })
-    console.log('pop', routeParams['name'])
-  }
+  //   const routeParams = this.route.snapshot.params;
+  //   this.route.params.subscribe(routeParams => {
+  //     this.nomdelaville = routeParams['name'];
+  //     // this.listeVillesComponent.getAllCities(routeParams['name']);
+  //   })
+  //   console.log('pop', routeParams['name'])
+  // }
 
   // logCurrentUser() {
   //   if (localStorage.getItem('currentUser["role"]') == null || localStorage.getItem('currentUser["role"]') == 'COMMON') {
@@ -99,7 +101,7 @@ export class AppComponent implements OnInit{
   }
   changeImgNav() { // cette fonction est activée dès qu'on clicke dans le body et à l'initialisation
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
-    if(location.href == "http://localhost:4200/#"){
+    if(location.href == "http://localhost:4200/ville"){
       this.currentImg = "./assets/img/activite-navbar.jpeg";
       localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
       this.currentVille = "";
@@ -111,7 +113,8 @@ export class AppComponent implements OnInit{
       this.currentImg = localStorage.getItem("currentImg")!;
       this.currentVille = localStorage.getItem("currentVille")!;
       this.currentActivite = localStorage.getItem("currentActivite")!;
-    }
+    }    
+    
   }
   gotToMyAccount(currentUser: String) {
     this.router.navigate(['/account', currentUser])
@@ -120,16 +123,16 @@ export class AppComponent implements OnInit{
   goToDetail(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
 
-    // change la valeur de la currentImg de localStorage par l'image de la ville où on est
-    localStorage.setItem("currentImg", ville.image.toString());
-    this.currentImg = localStorage.getItem("currentImg")!;
+    // // change la valeur de la currentImg de localStorage par l'image de la ville où on est
+    // localStorage.setItem("currentImg", ville.image.toString());
+    // this.currentImg = localStorage.getItem("currentImg")!;
 
-    // change la valeur de la currentVille de localStorage par le nom de la ville où on est
-    localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
-    this.currentVille = localStorage.getItem("currentVille")!;
+    // // change la valeur de la currentVille de localStorage par le nom de la ville où on est
+    // localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
+    // this.currentVille = localStorage.getItem("currentVille")!;
 
-    localStorage.setItem('currentActivite', "");
-    this.currentActivite = localStorage.getItem("")!;
+    // localStorage.setItem('currentActivite', "");
+    // this.currentActivite = localStorage.getItem("")!;
   }
 
 
