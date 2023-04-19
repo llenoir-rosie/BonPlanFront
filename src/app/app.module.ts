@@ -24,9 +24,11 @@ import { ListeVillesComponent } from './list-villes/list-villes.components';
 import { PopUpComponentUpdateMauvaisPlan } from './list-bonplan/pop-up-updateMauvaisPlan.component';
 import { AuthInterceptor } from './AuthInterceptor';
 import { UserAccountComponent } from './user-account/user-account.component';
+// import { customResearchComponent } from './custom-research.component';
 
 @NgModule({
   declarations: [
+    // customResearchComponent,
     UserAccountComponent,
     ListeVillesComponent,
     PopUpComponentUpdateBonPlan,

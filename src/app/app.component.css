@@ -76,7 +76,7 @@ a.text-lighten-4 {
     font-family: fantasy;
     /* text-shadow: 0 0 2px rgb(0, 0, 0); */
     text-decoration: none;
-    /* transition-duration: 0.3s; */
+    transition-duration: 0.3s;
 }
 img.logo-site {
     position: relative;
@@ -155,6 +155,21 @@ form{
     box-shadow: 0 0 10px 10px #2980b9;
     font-size: 135%;
     /* overflow: visible; */
+}
+.change-search {
+    position: absolute;
+    font-weight: 900;
+    font-size: large;
+    color: #07051a;
+    top: 50%;
+    left: 64%;
+    transform: translate(-50%,-50%);
+    text-decoration: underline
+}
+
+.change-search:hover {
+    font-size: 2em;
+    cursor: pointer;
 }
 
 input.new-search {

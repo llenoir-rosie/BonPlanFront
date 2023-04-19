@@ -11,6 +11,7 @@ import { DOCUMENT } from '@angular/common';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { Activite } from '../activite';
 import { _getOptionScrollPosition } from '@angular/material/core';
+import { AppComponent } from "../app.component";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -29,7 +30,8 @@ export class ListeVilleComponent implements OnInit{
   activeUIIndex = 1;
   scroll_y = 0;
 
-  constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService, @Inject(DOCUMENT) private document: any) {}
+  constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService,
+    @Inject(DOCUMENT) private document: any, private appComponent: AppComponent) {}
   
   // @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
   //   console.log($event);
@@ -58,6 +60,7 @@ export class ListeVilleComponent implements OnInit{
         prevEl: ".swiper-button-prev",
       },
     });
+    this.appComponent.ngOnInit();
   }
 
 scrollCustomImplementation(element: HTMLElement, index:any) {
@@ -83,24 +86,24 @@ public getAllActivities() {
 public goToVille(activity: Activite) {
   this.router.navigate(['/activity', activity.name])
 
-  localStorage.setItem('currentImg', activity.image.toString());
-  this.currentImg = localStorage.getItem("currentImg")!;
+  // localStorage.setItem('currentImg', activity.image.toString());
+  // this.currentImg = localStorage.getItem("currentImg")!;
 
-  localStorage.setItem('currentActivite', "\xa0"  +  activity.name.toString());
-  this.currentActivite = localStorage.getItem("currentActivite")!;
+  // localStorage.setItem('currentActivite', "\xa0"  +  activity.name.toString());
+  // this.currentActivite = localStorage.getItem("currentActivite")!;
 
 }
 
 goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name])
 
-    // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
-    localStorage.setItem('currentImg', ville.image.toString());
-    this.currentImg = localStorage.getItem("currentImg")!;
+    // // on change la valeur de currentImg à celle de l'image correspondant à la ville actuelle dans localStorage
+    // localStorage.setItem('currentImg', ville.image.toString());
+    // this.currentImg = localStorage.getItem("currentImg")!;
 
-    // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
-    localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
-    this.currentVille = localStorage.getItem("currentVille")!;
+    // // on change la valeur de currentVille à celle du nom de la ville actuelle dans localStorage
+    // localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
+    // this.currentVille = localStorage.getItem("currentVille")!;
   }
   
 }
