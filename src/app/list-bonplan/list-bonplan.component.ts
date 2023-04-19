@@ -185,8 +185,7 @@ throw new Error('Method not implemented.');
     let nouvelleNote : number;
     let nouveauNbNote : number;
     nouvelleNote = (bpNote * bpNbNote + Number(note))/(bpNbNote + 1);
-    nouveauNbNote = bpNbNote + 1;
-
+    nouveauNbNote = bpNbNote + 1; 
     this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
     nouvelleNote , nouveauNbNote);
 
