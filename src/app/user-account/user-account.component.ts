@@ -21,7 +21,7 @@ export class UserAccountComponent implements OnInit{
     userDetails: User;
     username: String;
     AllBonPlan: Bonplan[]
-    AllMauvaisPlan: Bonplan[]
+    AllMauvaisPlan: Mauvaisplan[]
     msgError: String
     msgError2: String
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private appComponent: AppComponent) {}

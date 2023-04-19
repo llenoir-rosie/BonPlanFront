@@ -36,7 +36,7 @@ ngOnInit() {
     )
 }
 public addNewBP() {
-    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.oldBP.name, this.updateBPForm.value.address, localStorage.getItem('currentUser')!);
+    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.oldBP.name, this.updateBPForm.value.address, localStorage.getItem('currentUser')!,0 ,0);
     console.log(this.newBP)
     this.http.put('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/updatebonplan', this.newBP).subscribe((data) => {
         this.dialogRefs.closeAll();

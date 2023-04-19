@@ -78,6 +78,30 @@ body {
     width: 50%;
 }
 
+.rating {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    transform: translate(-50%, 0);
+    display: flex;
+    align-items: center;
+    margin-bottom: 1%;
+}
+.rating a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 2em;
+    transition: color .4s;
+    float: right; /* permet de colorer les étoiles dans le bon sens (de gauche à droite) */
+ }
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a, /* sélecteur d'adjacente indirecte: permet de changer la couleur des étoiles précédentes à celle surolée  */
+.rating a:focus ~ a {
+    cursor: pointer;
+    color: orange;
+}
+
 h2 {
     width: 100%;
     white-space: normal;

@@ -26,8 +26,19 @@
                 <div class="card-content-bp">
                   <div class="left-content">
                     <h2>Nom {{ bp.name }}</h2>
+                    <p *ngIf="bp.nb_note > 0"> {{bp.note}}★ ({{bp.nb_note}} avis)</p>
+                    <p *ngIf="bp.nb_note == 0 ">(pas encore d'avis)</p>
                     <p>Description {{ bp.address }}</p>
-                  </div>    
+                    <div class="rating">Laissez-nous votre avis ! &#160;
+                      <div>
+                         <a id="étoile5" (click)="noteClick('5', bp.note, bp.nb_note, bp.name, bp.address)" title="Donner 5 étoiles">☆</a><!--
+                      --><a id="étoile4" (click)="noteClick('4', bp.note, bp.nb_note, bp.name, bp.address)" title="Donner 4 étoiles">☆</a><!--
+                      --><a id="étoile3" (click)="noteClick('3', bp.note, bp.nb_note, bp.name, bp.address)" title="Donner 3 étoiles">☆</a><!--
+                      --><a id="étoile2" (click)="noteClick('2', bp.note, bp.nb_note, bp.name, bp.address)" title="Donner 2 étoiles">☆</a><!--
+                      --><a id="étoile1" (click)="noteClick('1', bp.note, bp.nb_note, bp.name, bp.address)" title="Donner 1 étoile">☆</a>
+                      </div>
+                    </div>
+                  </div>
                   <img class = "img-test" src=".\assets\img\foot.jfif">
                   <i *ngIf="allowModeratorRight || allowUserRight" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
                   <i *ngIf="allowModeratorRight || allowUserRight" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>

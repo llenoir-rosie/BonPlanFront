@@ -37,6 +37,7 @@ throw new Error('Method not implemented.');
   currentImg: String;
   currentVille: String;
   currentActivite: String;
+  newBP: Bonplan;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
@@ -178,5 +179,32 @@ throw new Error('Method not implemented.');
   // goToedit(ville: String, act: String){
   //   this.router.navigate(['/edit/bonplan'])
 
+  // }
+
+  public noteClick(note:String, bpNote: number, bpNbNote: number, bpName: String, bpAdress: String) {
+    let nouvelleNote : number;
+    let nouveauNbNote : number;
+    nouvelleNote = (bpNote * bpNbNote + Number(note))/(bpNbNote + 1);
+    nouveauNbNote = bpNbNote + 1;
+
+    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    nouvelleNote , nouveauNbNote);
+
+    this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe
+    (() => {
+      this.http.get<Bonplan[]>("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/bonplan").subscribe((data) => {
+      this.listeBonPlan = data;
+    })
+      })
+  }
+
+  // public updateBonPlanNote(bpName: String) {
+
+  //   this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, this.updateBPForm.value.address, localStorage.getItem('currentUser')!,0 ,0);
+  //   console.log(this.newBP)
+  //   this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe((data) => {
+    
+  // })
+    
   // }
 }
