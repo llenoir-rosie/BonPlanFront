@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+    <div>
+        <h1>Vos bons plans</h1>
+    </div>
+    <div *ngIf = "msgError">
+        {{msgError}}
+    </div>
+    <div *ngFor="let elemt of AllBonPlan">
+        <div class="card" testBorderCard = 'setHeight=50'>
+            <div class="card-content-bp">
+              <div class="left-content">
+                <h2>Nom {{ elemt.name }}</h2>
+                <p>Description {{ elemt.address }}</p>
+              </div>  
+              <img class = "img-test" src=".\assets\img\foot.jfif">  
+            </div>
+        </div> 
+      </div>
+    
+</body>

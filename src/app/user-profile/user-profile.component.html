@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>BonplanfrontApp</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+<body>
+    <h1>Votre Compte Utilisateur</h1>
+    <div class="container_infos_account">
+        <div class="row1">
+            <div><span>Username : </span>{{username}}</div>
+            <div><span>Prénom : </span>{{userDetails.firstName}}</div>
+            <div><span>Nom : </span>{{userDetails.lastName}}</div>
+            <div><span>Email : </span>{{userDetails.email}}</div>
+        </div>
+        <div class="row2">
+            <h2>Personalisez votre compte !</h2>
+            <div class="container_row_photo">
+                <div class="row4">
+                    <p>Aperçu de votre photo de profil: </p>
+                    <div class="image_profile_temp">{{username[0]}}</div>
+                </div>
+                <div class="row3">
+                    <button mat-raised-button class="waves-effect waves-light btn button-photo"color="primary"
+                    style="color:wheat; background-color: black;"><i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
+                    Ajouter une photo</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container_button_bottom">
+        <button  (click)="openDialogWithTemplateRef(DialogUpdateInfosAccount)" class = "button_bottom waves-effect waves-light btn " mat-raised-button 
+        type = "button" style="color:wheat; background-color: rgb(172, 172, 172);"> Mettre à jour mes informations personnelles
+        <i class="material-icons right" style="font-size: 20px;">edit</i></button>
+        <button (click)="openDialogWithTemplateRef(DialogUpdatePassword)" class = "button_bottom waves-effect waves-light btn " mat-raised-button 
+        type = "button" style="color:wheat; background-color: rgb(172, 172, 172);">Changer le mot de passe
+        <i class="material-icons right" style="font-size: 20px;">edit</i></button>
+    
+        <ng-template #DialogUpdateInfosAccount class="popup-updateinfos">
+            <h2 matDialogTitle>Mise à jour des informations du compte</h2>
+        </ng-template>
+
+        <ng-template #DialogUpdatePassword class="popup-updatepassword">
+            <h2 matDialogTitle style="text-align:center">Mise à jour du mot de passe</h2>
+            <div mat-dialog-content class="popup-updatepassword-content">
+                <label for="current_password">Saisissez votre mot de passe actuel : </label>
+                <input type="password" id="current_password" name="current_password">
+                <br><br>
+                <label for="new_password1">Saisissez votre nouveau mot de passe : </label>
+                <input type="password" id="new_password1" name="new_password1">
+                <br><br>
+                <label for="new_password2">Confirmez votre nouveau mot de passe : </label>
+                <input type="password" id="new_password2" name="new_password2">
+            </div>
+            <div mat-dialog-actions>
+                <button id="UpdatePassword" mat-button matDialogClose color="primary" (click)="UpdatePassword(username); openDialogWithTemplateRef(DialogVerifyUpdatePassword)">Valider</button>
+                <button mat-button matDialogClose color="primary" >Annuler</button>
+            </div>
+        </ng-template>
+
+        <ng-template #DialogVerifyUpdatePassword>
+            <h2 matDialogTitle style="text-align:center">Password Update</h2>
+            <div class="">
+                {{msg}}
+            </div>
+        </ng-template>
+    
+    </div>
+    <br>
+    <br>
+    <div>
+        <button mat-raised-button class="waves-effect waves-light btn button-delete" type = "button"
+        style="color:wheat; background-color: rgb(255, 0, 0);"> Supprimer mon Compte
+        <i class="material-icons right" style="font-size: 20px;">delete</i>
+        </button>(Avec possibilité de laisser les plans créés ou de les supprimer)
+    </div>
+
+
+
+
+</body>

@@ -1,0 +1,122 @@
+body{
+    padding: 3%;
+}
+h1{
+    font-size : 2.5em;
+    text-align: center;
+    margin : 3%;
+    margin-top : 0%;
+}
+
+.button_bottom{
+    margin : 10px;
+    padding: 10px;
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    
+}
+
+.button-delete{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.button-photo{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.container_button_bottom{
+    display:flex;
+    justify-content: center;
+}
+
+.container_infos_account{
+    margin : 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.row1{
+    margin:10px;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.row1 div{
+    margin:10px;
+    font-size:1.2em;
+    font-weight:bolder;
+    color:rgb(0, 0, 158);
+}
+.row1 div span{
+    color:black;
+}
+
+
+.row2{
+    margin:10px;
+    align-items: center;
+    text-align: center;
+}
+
+.container_row_photo{
+    margin : 10px;
+    display : flex;
+    flex-direction: row;
+}
+
+.row3{
+    margin:10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.row4{
+    border-style:solid;
+    margin:10px;
+    padding : 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(224, 224, 224);
+    border-radius: 5%;
+    border-color:gray;
+}
+.row4 div{
+    font-size:3em;
+}
+
+.image_profile_temp{
+    background-image: url('../../assets/img/user_default.jpg');
+    border-radius: 50%;
+    width: 100px;
+    height : 100px;
+    color : white;
+    text-transform:capitalize ;
+    border-color:white;
+    border-style: solid;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.popup-updateinfos{
+    padding: 100px;
+    margin: 100px;
+}
+
+.popup-updatepassword-content label{
+    font-size: 1em;
+}
+
+/* .popup-updatepassword h2{
+    text-align: center;
+    color:red;
+} */

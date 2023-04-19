@@ -52,8 +52,35 @@
                   </a>
                 </ul>
               </div>
-              <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
-            </form>
+            <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
+          </form>
+          <button *ngIf = "!allowConnection" class="menu" >
+          <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
+            
+            <li class="letter">{{initial_username[0]}}
+              <ul class="sub-menu">
+                <!-- <li><a href="http://localhost:4200/user-profile.component.html">Mon profile</a></li> -->
+                
+                <li><a (click)="goToUserProfile(currentUser)">Mon profil</a></li>
+                <li><a (click)="goToUserBonPlan(currentUser)">Mes bons plans</a></li>
+                <li><a (click)="goToUserMauvaisPlan(currentUser)">Mes mauvais plans</a></li>
+              </ul>
+            </li>
+
+
+          </button>
+          <!-- <ul *ngIf = "!allowConnection" class="myAccount menu" >
+            <li><img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+            
+              <ul class="sub-menu">
+                <li>Profile</li>
+                <li>Mes Bons Plans</li>
+                <li>Mes Mauvais Plans</li>
+              </ul>
+            </li>
+          </ul> -->
+            <!-- <button *ngIf = "!allowConnection" class="myAccount" (click)="gotToMyAccount(currentUser)">
+              <div class="txt-connection" >{{currentUser}}</div>
           <form *ngIf='!isCityActivated' action="">
             <input
             [(ngModel)]="searchInput"
@@ -81,23 +108,15 @@
           <div (click)="changeSearchBtn(researcheBy)" class="change-search">
               {{ researcheBy }}
           </div>
-          <button *ngIf = "!allowConnection" class="myAccount">
-            <div class="txt-connection" (click)="gotToMyAccount(currentUser)">{{currentUser}}</div>
-            <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
-          </button>
-          <button class="button-connexion">
-            <div *ngIf = "allowConnection" class="txt-connection" (click)="login()">Se connecter</div>
-            <div *ngIf = "!allowConnection" class="txt-connection" (click)="logout()">Déconnexion</div>
-            <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
-          </button>
-        </div>
-      <div class="entete" >
-        <h1>Vous êtes arrivé dans une nouvelle ville ? Envie de partager vos bons coins ? Bienvenue !!</h1>
-        <p class="description">
-          Vous êtes à la recherche d'endroits pour faire du sport, écouter de la musique, découvrir votre nouvelle ville. Mais aussi éviter les faux plans ?
-          Ce site vous permettra de trouver les activités qui vous conviennent dans les villes où vous vous situez !
-          Entièrement collaboratif, les internautes se refilent leurs bons plans.
-        </p>
+            <button *ngIf = "!allowConnection" class="myAccount">
+              <div class="txt-connection" (click)="gotToMyAccount(currentUser)">{{currentUser}}</div>
+              <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+            </button> -->
+            <button class="button-connexion">
+              <div *ngIf = "allowConnection" class="txt-connection" (click)="login()">Se connecter</div>
+              <div *ngIf = "!allowConnection" class="txt-connection" (click)="logout()">Déconnexion</div>
+              <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+            </button>
       </div>
   </nav>
   <body (click)="changeImgNav()">

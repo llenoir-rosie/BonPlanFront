@@ -8,7 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeVillesComponent } from './list-villes/list-villes.components';
 import { UserAccountComponent } from './user-account/user-account.component';
-
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
+import { UserMauvaisPlanComponent } from './user-profile/user-mauvaisplan.component'
 
 
 
@@ -24,6 +26,9 @@ const routes: Routes = [
   { path : 'account/:currentUser', component: UserAccountComponent},
   // { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
   { path: '', redirectTo: 'ville', pathMatch: 'full' },
+  { path : 'profile/:currentUser', component : UserProfileComponent},
+  { path : 'userbonplans/:currentUser', component : UserBonPlanComponent},
+  { path : 'usermauvaisplans/:currentUser', component : UserMauvaisPlanComponent}
 ];
 
 @NgModule({
