@@ -27,9 +27,6 @@
           </div>
       
           <img class = "activite-navbar" src='{{currentImg}}'>
-          <!-- <div class='search-component'>
-            <my-custom-component  [customResearch]='searchParam' ></my-custom-component>
-          </div> -->
           <form *ngIf='isCityActivated' action="">
             <input
             [(ngModel)]="searchInput"
@@ -54,6 +51,33 @@
               </div>
             <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
           </form>
+          <form *ngIf='!isCityActivated' action="">
+            <input
+            [(ngModel)]="searchInput"
+            class="new-search"
+            type="text"
+            required
+            name="name" 
+            #searchBox
+            placeholder="Recherchez une activité"
+            (keyup)="SearchActivity(searchBox.value)"
+            (keyup.enter)= "SearchActivityEnter()">
+              <div class="collection">
+                <ul>
+                  <a *ngFor="let Activite of this.allActivities"
+                    (click)="goToDetailActivity(Activite)"
+                    class="collection-item"
+                    id="log"
+                  >
+                    <p> {{ Activite.name }} </p>
+                  </a>
+                </ul>
+              </div>
+              <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
+            </form>
+            <div (click)="changeSearchBtn(researcheBy)" class="change-search">
+              {{ researcheBy }}
+          </div>
           <button *ngIf = "!allowConnection" class="menu" >
           <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
             
@@ -103,10 +127,8 @@
                   </a>
                 </ul>
               </div>
-            <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
-          </form>
-
-
+              <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
+            </form>
           <div (click)="changeSearchBtn(researcheBy)" class="change-search">
               {{ researcheBy }}
           </div>
@@ -120,15 +142,18 @@
               <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
             </button>
       </div>
+      <div class="entete" >
+        <h1>Vous êtes arrivé dans une nouvelle ville ? Envie de partager vos bons coins ? Bienvenue !!</h1>
+        <p class="description">
+          Vous êtes à la recherche d'endroits pour faire du sport, écouter de la musique, découvrir votre nouvelle ville. Mais aussi éviter les faux plans ?
+          Ce site vous permettra de trouver les activités qui vous conviennent dans les villes où vous vous situez !
+          Entièrement collaboratif, les internautes se refilent leurs bons plans.
+        </p>
+      </div>
   </nav>
   <body (click)="changeImgNav()">
     <router-outlet></router-outlet>
     <footer class="page-footer" style="background-color:rgb(148, 158, 110)">
-      <div class="container">
-          <div class = "center">
-            <h5 class="white-text">Footer Content</h5>
-          </div>
-      </div>
       <div class="footer-copyright">
         <div class="container">
           © 2023 Copyright Lorenzo Lenoir, Gabriel Pons, Claire Favre, Thibault Ferney, Solenn Ducos, Samy Mor
