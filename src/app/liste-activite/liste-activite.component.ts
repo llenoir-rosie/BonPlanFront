@@ -12,6 +12,7 @@ import { cityactivities } from '../cityactivity';
       // npm install file-saver -save
       // npm install @types/file-saver -save-dev
 import * as FileSaver from "file-saver";
+import { AppComponent } from "../app.component";
 
 // Pour installer file-saver (fonction saveAs) :
 // npm install file-saver -save
@@ -40,22 +41,24 @@ export class ListeActiviteComponent implements OnInit {
   allowModeratorRight: boolean;
   allowUserRight: boolean;
 
-  constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+  constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient,
+    private appComponent: AppComponent) { }
 
   ngOnInit() {
-    // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
-    this.currentImg = localStorage.getItem("currentImg")!;
+    // // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
+    // this.currentImg = localStorage.getItem("currentImg")!;
 
-    // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
-    this.currentVille = localStorage.getItem("currentVille")!;
+    // // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
+    // this.currentVille = localStorage.getItem("currentVille")!;
 
-  dialogRefs: MatDialog;
+    dialogRefs: MatDialog;
 
     const routeParams = this.route.snapshot.params;
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
-    this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
-    this.getAllActivities(routeParams['name']);
-    this.getAllPossibleActivities();
+      this.nomdelaville = routeParams['name']; // ne pas supprimer : la variable nomdelaville est utilisé plus bas
+      this.getAllActivities(routeParams['name']);
+      this.getAllPossibleActivities();
+      this.getImgVille(this.nomdelaville);
 
     if (localStorage.getItem("currentUser") == null) {
       this.allowModeratorRight = false
@@ -69,6 +72,10 @@ export class ListeActiviteComponent implements OnInit {
     }
 
     });
+
+    // on enlève la valeur de currentActivite dans localStorage et on y met la bonne valeur de currentVille
+    localStorage.removeItem('currentActivite');
+    localStorage.setItem('currentVille', "\xa0" + "à "  + this.nomdelaville.toString());
   }
     // this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
     // si jamais il y a des soucis avec les majuscules des premières lettres des villes
@@ -86,30 +93,37 @@ export class ListeActiviteComponent implements OnInit {
     })
   }
 
+  // fait une requette au back pour attraper la classe ville correspondant au nom de la ville où on est
+  // ATTENTION : MISE A JOUR DU BACK NECESSAIRE /////////////////////////////////////////////////////////////////////////////////
+  public getImgVille(nameville: String) {
+    this.http.get<Ville>("http://localhost:8080/city/" + nameville).subscribe((data) => {
+      this.currentImg = data.image;
+      // on met la bonne valeur à currentImg dans localStorage et on recharge le composant appComponent
+      localStorage.setItem('currentImg', this.currentImg.toString());
+      this.appComponent.ngOnInit();
+    })
+  }
+
   goToVilleList() {
     this.router.navigate(['/ville']);
-
-    // on change la valeur de currentImg
-    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    this.currentImg = localStorage.getItem("currentImg")!;
-
-    // on change la valeur de currentVille
-    localStorage.setItem('currentVille', "");
-    this.currentVille = localStorage.getItem("currentVille")!;
+    // // on change la valeur de currentImg
+    // localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    // this.currentImg = localStorage.getItem("currentImg")!;
+    // // on change la valeur de currentVille
+    // localStorage.setItem('currentVille', "");
+    // this.currentVille = localStorage.getItem("currentVille")!;
   }
   
   //@return redirection to /ville
   goToVilleActiviteBonplan(ville: String , activity: Activite) {
     this.router.navigate(['/ville', this.nomdelaville, activity.name])
-
-    localStorage.setItem("currentImg", activity.image.toString());
-    this.currentImg = localStorage.getItem("currentImg")!;
-
-    localStorage.setItem("currentActivite", "\xa0"  + activity.name.toString());
-    this.currentActivite = localStorage.getItem("currentActivite")!;
-
-    localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
-    this.currentVille = localStorage.getItem("currentVille")!;
+    
+    // localStorage.setItem("currentImg", activity.image.toString());
+    // this.currentImg = localStorage.getItem("currentImg")!;
+    // localStorage.setItem("currentActivite", "\xa0"  + activity.name.toString());
+    // this.currentActivite = localStorage.getItem("currentActivite")!;
+    // localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
+    // this.currentVille = localStorage.getItem("currentVille")!;
   }
 
 

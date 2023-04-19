@@ -4,10 +4,12 @@
   <head>
     <meta charset="utf-8">
     <title>BonplanfrontApp</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   </head>
   <nav>
       <div class="nav-wrapper" style="background-color: #2980b9;">
@@ -24,16 +26,11 @@
             </div>
           </div>
       
-          
-
           <img class = "activite-navbar" src='{{currentImg}}'>
-          <!-- <img class = "activite-navbar" src=".\assets\img\activite-navbar.jpeg"> -->
-
-
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-          crossorigin="anonymous">
-          <form action="">
+          <!-- <div class='search-component'>
+            <my-custom-component  [customResearch]='searchParam' ></my-custom-component>
+          </div> -->
+          <form *ngIf='isCityActivated' action="">
             <input
             [(ngModel)]="searchInput"
             class="new-search"
@@ -43,11 +40,11 @@
             #searchBox
             placeholder="Recherchez une ville"
             (keyup)="SearchVille(searchBox.value)"
-            (keyup.enter)= "SearchEnter()">
+            (keyup.enter)= "SearchVilleEnter()">
               <div class="collection">
                 <ul>
                   <a *ngFor="let Ville of this.touteVille"
-                    (click)="goToDetail(Ville)"
+                    (click)="goToDetailVille(Ville)"
                     class="collection-item"
                     id="log"
                   >
@@ -55,7 +52,7 @@
                   </a>
                 </ul>
               </div>
-            <i class="fa fa-search" (click)="SearchEnter()"></i>
+            <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
           </form>
           <button *ngIf = "!allowConnection" class="menu" >
           <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
@@ -84,6 +81,36 @@
           </ul> -->
             <!-- <button *ngIf = "!allowConnection" class="myAccount" (click)="gotToMyAccount(currentUser)">
               <div class="txt-connection" >{{currentUser}}</div>
+          <form *ngIf='!isCityActivated' action="">
+            <input
+            [(ngModel)]="searchInput"
+            class="new-search"
+            type="text"
+            required
+            name="name" 
+            #searchBox
+            placeholder="Recherchez une activité"
+            (keyup)="SearchActivity(searchBox.value)"
+            (keyup.enter)= "SearchActivityEnter()">
+              <div class="collection">
+                <ul>
+                  <a *ngFor="let Activite of this.allActivities"
+                    (click)="goToDetailActivity(Activite)"
+                    class="collection-item"
+                    id="log"
+                  >
+                    <p> {{ Activite.name }} </p>
+                  </a>
+                </ul>
+              </div>
+            <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
+          </form>
+
+
+          <div (click)="changeSearchBtn(researcheBy)" class="change-search">
+              {{ researcheBy }}
+          </div>
+            <button *ngIf = "!allowConnection" class="myAccount">
               <div class="txt-connection" (click)="gotToMyAccount(currentUser)">{{currentUser}}</div>
               <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
             </button> -->
@@ -96,22 +123,33 @@
   </nav>
   <body (click)="changeImgNav()">
     <router-outlet></router-outlet>
-    <footer class="page-footer" style="background-color:grey">
+    <footer class="page-footer" style="background-color:rgb(148, 158, 110)">
       <div class="container">
           <div class = "center">
             <h5 class="white-text">Footer Content</h5>
-            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>   
           </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-          © 2023 Copyright LPFF
+          © 2023 Copyright Lorenzo Lenoir, Gabriel Pons, Claire Favre, Thibault Ferney, Solenn Ducos, Samy Mor
           <a class="grey-text text-lighten-4 right" href="#!">More Links
-          <img src=".\assets\img\facebook.png" height="15px" width="15px">
-          <img src=".\assets\img\twitter.png" height="15px" width="15px">
-          <img src=".\assets\img\instagram.jfif" height="15px" width="15px">
-          <img src=".\assets\img\discord.jfif" height="15px" width="15px">
+          <img src=".\assets\img\facebook.png" height="20px" width="20px">
+          <img src=".\assets\img\twitter.png" height="20px" width="20px">
+          <img src=".\assets\img\instagram.png" height="20px" width="20px">
+          <img src=".\assets\img\discord.png" height="20px" width="20px">
           </a>
+          <div class="ligne-footer">
+            <i class="material-icons">home</i>
+            <p class="text-icons" >Lyon, France</p>
+          </div>
+          <div class="ligne-footer">
+            <i class="material-icons">mail</i>
+            <p class="text-icons">bidon@wanadoo.fr</p>
+          </div>
+          <div class="ligne-footer">
+            <i class="material-icons">phone</i>
+            <p class="text-icons=">06 51 01 20 75</p>
+          </div>
         </div>
       </div>
     </footer>
