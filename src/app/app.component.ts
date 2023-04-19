@@ -30,6 +30,7 @@ export class AppComponent implements OnInit{
   allowConnection: Boolean;
   currentActivite: String;
   public searchInput: String = '';
+  initial_username : String;
 
   //search variable 
   researcheBy: string;
@@ -67,9 +68,11 @@ export class AppComponent implements OnInit{
   IsUserIsAuth() {
     if (localStorage.getItem("currentUser") == null) {
       this.allowConnection = true
+      console.log(localStorage.getItem("currentUser"))
     } else {
       this.currentUser = localStorage.getItem("currentUser")!;
       this.allowConnection = false
+      this.initial_username = (this.currentUser)
     }
   }
   
@@ -135,6 +138,18 @@ export class AppComponent implements OnInit{
   }
   gotToMyAccount(currentUser: String) {
     this.router.navigate(['/account', currentUser])
+  }
+
+  goToUserProfile(currentUser: String){
+    this.router.navigate(['/profile', currentUser])
+  }
+
+  goToUserBonPlan(currentUser:String){
+    this.router.navigate(['/userbonplans',currentUser])
+  }
+
+  goToUserMauvaisPlan(currentUser:String){
+    this.router.navigate(['/usermauvaisplans',currentUser])
   }
 
   goToDetailVille(ville: Ville) {
