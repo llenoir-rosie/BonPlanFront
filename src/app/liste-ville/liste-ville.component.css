@@ -6,12 +6,11 @@ body {
 }
 
 body {
-  background: ;
+  background: rgb(148, 158, 110);
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;
   margin: 0;
-  padding: 0;
 }
 
 .espace-marge {
@@ -21,7 +20,8 @@ body {
 }
 
 .entete {
-  top: 50%;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .entete h1 {
   top: 50%;
