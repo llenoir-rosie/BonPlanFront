@@ -51,7 +51,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     // this.logCurrentUser();
     this.isCityActivated = true;
-    this.researcheBy = this.searchArray[0]
+    this.researcheBy = this.searchArray[1]
     this.changeImgNav();
 
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
