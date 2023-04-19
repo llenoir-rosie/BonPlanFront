@@ -1,12 +1,10 @@
-html, body {
-    margin:0;
-    padding:0;
-    min-height: 100%;
-    background-color: #e4e7e7;
-} 
 nav {
     height: 100px;
     z-index: 1000;
+}
+
+body {
+    top: 0px;
 }
 .page-footer {
     bottom: 0;
