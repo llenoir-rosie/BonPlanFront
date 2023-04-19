@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { User } from "../User";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
@@ -24,6 +24,7 @@ export class UserAccountComponent implements OnInit{
     AllMauvaisPlan: Bonplan[]
     msgError: String
     msgError2: String
+    dialog: any;
     constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private appComponent: AppComponent) {}
 
 ngOnInit(): void {
@@ -65,5 +66,7 @@ public getMauvaisPlanUser(username: String) {
         }
       }) 
 }
+
+
 
 }
