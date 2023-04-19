@@ -17,8 +17,8 @@ export class PopUpComponentUpdateMauvaisPlan implements OnInit {
     updateMPForm: FormGroup;
     ville_name;
     activity_type;
-    oldMP: Bonplan;
-    newMP: Bonplan;
+    oldMP: Mauvaisplan;
+    newMP: Mauvaisplan;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient, private dialogRefs: MatDialog) { 
     this.ville_name = data.nameCity
