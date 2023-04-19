@@ -9,16 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 </head>
 <body>
- 
-  <div #sec1 class="entete" >
-    <h1>Vous êtes arrivé dans une nouvelle ville ? Envie de partager vos bons coins ? Bienvenue !!</h1>
-    <p class="description">
-      Vous êtes à la recherche d'endroits pour faire du sport, écouter de la musique, découvrir votre nouvelle ville. Mais aussi éviter les faux plans ?
-      Ce site vous permettra de trouver les activités qui vous conviennent dans les villes où vous vous situez !
-      Entièrement collaboratif, les internautes se refilent leurs bons plans.
-    </p>
-  </div>
-  <div>
+  <div #sec1>
   <div class="main-wrapper">
     <div class="step-container">
       <div class="step" [ngClass]="{'active': (this.scroll_y < 650)}" pageScroll (click)="scrollCustomImplementation(sec1, 1)">

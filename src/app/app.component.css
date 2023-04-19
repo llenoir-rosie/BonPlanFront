@@ -1,11 +1,26 @@
 nav {
-    height: 100px;
+    height: 100%;
     z-index: 1000;
 }
 
 body {
     top: 0px;
 }
+
+.entete {
+    background: rgb(148, 158, 110);
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+.entete h1 {
+top: 50%;
+left: 12%;
+}
+
+.description {
+font-style: italic;
+}
+
 .page-footer {
     bottom: 0;
     width: 100%;
@@ -239,6 +254,7 @@ form:hover .fa {
 }
 
 .collection {
+    z-index: 2;
     opacity: 0;
 }
 form:hover .collection,
