@@ -181,18 +181,25 @@ throw new Error('Method not implemented.');
 
   // }
 
-  public noteClick(note:String, bpNote: number, bpNbNote: number, bpName: String, bpAdress: String) {
-    let nouvelleNote : number;
-    let nouveauNbNote : number;
-    nouvelleNote = (bpNote * bpNbNote + Number(note))/(bpNbNote + 1);
-    nouveauNbNote = bpNbNote + 1; 
-    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
-    nouvelleNote , nouveauNbNote);
+  // public moyenneTableau(tab: Number[]) {
+  //   let moyenne : number = 0;
+  //   for (let i in tab){
+  //     moyenne = moyenne + (Number(tab[i])/tab.length);
+  //   }
+  //   return moyenne;
+  // }
 
-    this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe
-    (() => {
-      this.http.get<Bonplan[]>("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/bonplan").subscribe((data) => {
-      this.listeBonPlan = data;
+  public noteClick(note:String, bpNote: Number[], bpName: String, bpAdress: String) {
+    console.log('Number(note)', Number(note), 'bpNote', bpNote);
+    let nouvelleNote : Number[] = bpNote;
+    nouvelleNote.push(Number(note));
+    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    nouvelleNote);
+
+    this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
+    () => {
+      this.http.get<Bonplan[]>("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/bonplan").subscribe(
+      (data) => {this.listeBonPlan = data;
     })
       })
   }
