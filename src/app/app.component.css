@@ -24,6 +24,7 @@ font-style: italic;
 .page-footer {
     bottom: 0;
     width: 100%;
+    padding: -10%;
   }
 /* footer {
     position: absolute;
@@ -41,8 +42,14 @@ font-style: italic;
     align-items: flex-start;   
 }
 
+.coordonnees-footer {
+    margin: 0%;
+}
+
 .ligne-footer .text-icons {
-    margin-top: 0.5%; 
+    /*margin-top: 0.5%; 
+    margin: -50% 1% 1% -50%;
+    display: inline-block;*/
 }
 
 a.text-lighten-4 {
