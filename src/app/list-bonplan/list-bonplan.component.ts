@@ -197,13 +197,4 @@ throw new Error('Method not implemented.');
       })
   }
 
-  // public updateBonPlanNote(bpName: String) {
-
-  //   this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, this.updateBPForm.value.address, localStorage.getItem('currentUser')!,0 ,0);
-  //   console.log(this.newBP)
-  //   this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe((data) => {
-    
-  // })
-    
-  // }
 }
