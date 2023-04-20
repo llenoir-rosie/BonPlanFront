@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit{
     //   catchError((error) => this.msg = error.error.message
     // ))
     .subscribe((data) => {
+      console.log(data)
       localStorage.setItem('token', Object.values(data)[0]);
       const currentUser = this.loginUserForm.value.username;
       localStorage.setItem('currentUser', currentUser);

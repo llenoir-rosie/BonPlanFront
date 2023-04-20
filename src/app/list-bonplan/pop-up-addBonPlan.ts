@@ -28,11 +28,13 @@ ngOnInit() {
             activity_type : new FormControl('', Validators.required),
             name : new FormControl('', Validators.required),
             address : new FormControl('', Validators.required),
+            note : new FormControl('', Validators.required)
         }
     )
 }
 public addNewBP() {
-    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address, localStorage.getItem('currentUser')!, 0, 0);
+    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
+        localStorage.getItem('currentUser')!, []);
     console.log(this.newBP)
     this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe((data) => {
         this.dialogRefs.closeAll();

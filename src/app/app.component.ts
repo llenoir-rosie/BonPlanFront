@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
 
   //search variable 
   researcheBy: string;
-  searchArray: string[] = ['Recherche par Villes', 'Recherche par Activitées']
+  searchArray: string[] = ['Recherche par Ville', 'Recherche par Activité']
 
   //boolean for searchVille or searchActivities input
   isCityActivated: boolean;
@@ -155,16 +155,17 @@ export class AppComponent implements OnInit{
   goToDetailVille(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
 
-    // // change la valeur de la currentImg de localStorage par l'image de la ville où on est
-    // localStorage.setItem("currentImg", ville.image.toString());
-    // this.currentImg = localStorage.getItem("currentImg")!;
+    // change la valeur de la currentImg de localStorage par l'image de la ville où on est
+    localStorage.setItem("currentImg", ville.image.toString());
+    this.currentImg = localStorage.getItem("currentImg")!;
 
-    // // change la valeur de la currentVille de localStorage par le nom de la ville où on est
-    // localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
-    // this.currentVille = localStorage.getItem("currentVille")!;
+    // change la valeur de la currentVille de localStorage par le nom de la ville où on est
+    localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
+    this.currentVille = localStorage.getItem("currentVille")!;
 
-    // localStorage.setItem('currentActivite', "");
-    // this.currentActivite = localStorage.getItem("")!;
+    // enlève la currentActivité
+    localStorage.setItem('currentActivite', "");
+    this.currentActivite = localStorage.getItem("")!;
   }
 
   goToDetailActivity(act: Activite) {

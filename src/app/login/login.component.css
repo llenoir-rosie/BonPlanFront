@@ -8,8 +8,14 @@
     font-family: sans-serif;
     background: linear-gradient(#141e30, #243b55);
   } */
-  
+  body {
+    width: 100%;
+    background-color: burlywood;
+  }
+
   .login-box {
+    margin-top: 100px;
+    margin-bottom: 115px;
     position: relative;
     top: 220px;
     left: 100%;
@@ -17,7 +23,7 @@
     height: 100%;
     padding: 60px ;
     transform: translate(-50%, -50%);
-    background: rgba(0,0,0,1);
+    background-color: brown;
     box-shadow: 0px 15px 25px rgba(0,0,0,0.6);
     box-sizing: border-box;
     border-radius: 10px;
@@ -61,7 +67,7 @@
   .login-box .user-box input:valid ~ label {
     top: -20px;
     left: 0;
-    color: #03e9f4;
+    color: rgb(148, 158, 110);
     font-size: 12px;
   }
   
@@ -69,7 +75,7 @@
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-    color: #03e9f4;
+    color: rgb(148, 158, 110);
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -83,7 +89,7 @@
     position: relative;
     display: inline-block;
     padding: 10px 30px;
-    color: #03e9f4;
+    color: rgb(148, 158, 110);
     font-size: 10px;
     text-decoration: none;
     text-transform: uppercase;
