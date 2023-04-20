@@ -24,7 +24,7 @@
                     <div class="image_profile_temp">{{username[0]}}</div>
                 </div>
                 <div class="row3">
-                    <button mat-raised-button class="waves-effect waves-light btn button-photo"color="primary"
+                    <button (click)="openDialogWithTemplateRef(DialogPhoto)" mat-raised-button class="waves-effect waves-light btn button-photo"color="primary"
                     style="color:wheat; background-color: black;"><i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
                     Ajouter une photo</button>
                     
@@ -42,6 +42,25 @@
     
         <ng-template #DialogUpdateInfosAccount class="popup-updateinfos">
             <h2 matDialogTitle>Mise à jour des informations du compte</h2>
+            <p>Merci de compléter les champs que vous souhaitez modifier</p>
+            <div mat-dialog-content class="container-contentupdateinfo">
+                <div class="contentlabel-popupupdateinfos">
+                    <label for="new_firstname">Votre prénom : </label>
+                    <input type="text" id="new_firstname" name="new_firstname" placeholder={{userDetails.firstName}}>
+                </div>
+                <div class="contentlabel-popupupdateinfos">
+                    <label for="new_lastname">Votre nom : </label>
+                    <input type="text" id="new_lastname" name="new_lastname" placeholder={{userDetails.lastName}}>
+                </div>
+                <div class="contentlabel-popupupdateinfos">
+                    <label for="new_email">Votre adresse mail : </label>
+                    <input type="text" id="new_email" name="new_email" placeholder={{userDetails.email}}>
+                </div>
+            </div>
+            <div mat-dialog-actions class="button-bottom-dialog">
+                <button id="UpdatePassword" mat-button matDialogClose color="primary" (click)="UpdateInfos(username)">Valider</button>
+                <button mat-button matDialogClose color="primary" >Annuler</button>
+            </div>
         </ng-template>
 
         <ng-template #DialogUpdatePassword class="popup-updatepassword">
@@ -56,7 +75,7 @@
                 <label for="new_password2">Confirmez votre nouveau mot de passe : </label>
                 <input type="password" id="new_password2" name="new_password2">
             </div>
-            <div mat-dialog-actions>
+            <div mat-dialog-actions class="button-bottom-dialog">
                 <button id="UpdatePassword" mat-button matDialogClose color="primary" (click)="UpdatePassword(username); openDialogWithTemplateRef(DialogVerifyUpdatePassword)">Valider</button>
                 <button mat-button matDialogClose color="primary" >Annuler</button>
             </div>
@@ -64,9 +83,21 @@
 
         <ng-template #DialogVerifyUpdatePassword>
             <h2 matDialogTitle style="text-align:center">Password Update</h2>
-            <div class="">
+            <div class="message_updatepassword">
                 {{msg}}
             </div>
+        </ng-template>
+
+        <ng-template #DialogPhoto>
+            <h2 style="text-align:center">Choisissez votre meilleure photo !</h2>
+            <div mat-dialog-content>
+                <input type="file" id="photo" name="photo">
+            </div>
+            <div mat-dialog-actions class="button-bottom-dialog">
+                <button id="UpdatePassword" mat-button matDialogClose color="primary" >Valider</button>
+                <button mat-button matDialogClose color="primary" >Annuler</button>
+            </div>
+            
         </ng-template>
     
     </div>
