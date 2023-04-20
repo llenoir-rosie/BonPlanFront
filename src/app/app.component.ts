@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
 
   //search variable 
   researcheBy: string;
-  searchArray: string[] = ['Recherche par Villes', 'Recherche par Activitées']
+  searchArray: string[] = ['Recherche par Ville', 'Recherche par Activité']
 
   //boolean for searchVille or searchActivities input
   isCityActivated: boolean;
