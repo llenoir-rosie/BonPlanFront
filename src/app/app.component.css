@@ -60,8 +60,11 @@ a.text-lighten-4 {
 
 
 .nav-wrapper {
+    background-color: rgba(134, 134, 134, 0.5);
+    position: relative;
+    z-index: 2;
     box-shadow: 0 0 20px 0 #2980b9;
-}  
+}
 
 .haut-gauche {
     position: relative;
@@ -70,7 +73,7 @@ a.text-lighten-4 {
     max-height: 100px;
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(134, 134, 134, 0.5);
+    background-color: rgba(134, 134, 134, 0.5); 
     box-shadow: 0 -5px 5px 5px rgba(134, 134, 134, 0.5);
 }
 
