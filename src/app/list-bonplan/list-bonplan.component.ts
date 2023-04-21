@@ -181,16 +181,16 @@ throw new Error('Method not implemented.');
 
   // }
 
-  // public moyenneTableau(tab: Number[]) {
-  //   let moyenne : number = 0;
-  //   for (let i in tab){
-  //     moyenne = moyenne + (Number(tab[i])/tab.length);
-  //   }
-  //   return moyenne;
-  // }
+  public moyenneTableau(tab: Number[]) {
+    let moyenne : number = 0;
+    for (let i in tab){
+      moyenne = moyenne + (Number(tab[i])/tab.length);
+    }
+    return moyenne.toFixed(1);
+  }
 
   public noteClick(note:String, bpNote: Number[], bpName: String, bpAdress: String) {
-    console.log('Number(note)', Number(note), 'bpNote', bpNote);
+    // console.log('Number(note)', Number(note), 'bpNote', bpNote);
     let nouvelleNote : Number[] = bpNote;
     nouvelleNote.push(Number(note));
     this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
