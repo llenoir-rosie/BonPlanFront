@@ -1,0 +1,221 @@
+/* html {
+    height: 100%;
+  }
+  body {
+    height: 1000px;
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+  } */
+  @keyframes shake {
+    0%, 100% { translate: 0; }
+    25% { translate: 8px 0; }
+    75% { translate: -8px 0; }
+  }
+
+  body {
+    width: 100%;
+    background-color: burlywood;
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+  }
+
+  form .form_column {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-box {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 60px ;
+    align-items: center;
+    justify-content: center;
+    background-color: brown;
+    box-shadow: 0px 15px 25px rgba(0,0,0,0.6);
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+  
+  .login-box h1 {
+    margin-bottom: 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .login-box .user-box {
+    position: relative;
+    margin-bottom: 50px;
+  }
+  .invalid-feedback {
+    color:red;
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #fe4567;
+    outline: none;
+    background: transparent;
+    animation: shake 0.14s 3;
+  }
+
+  .login-box .user-box input:valid {
+    border-color: #45feaf;
+    animation: none
+  }
+
+  .login-box .user-box label {
+    margin-top: 10px;
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:defined ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+  }
+  
+  .login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
+  
+  .login-box form p {
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px;
+    color: #fff;
+    font-size: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+  }
+
+  .login-box a:hover {
+    background: burlywood;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px burlywood,
+                0 0 25px burlywood,
+                0 0 50px burlywood,
+                0 0 100px burlywood;
+  }
+  
+  .login-box a span {
+    position: absolute;
+    display: block;
+  }
+  
+  .login-box a span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, burlywood);
+    animation: btn-anim1 1s linear infinite;
+  }
+  
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, burlywood);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+  
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, burlywood);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+  
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+  
+  .login-box a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, burlywood);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../User';
-import { FormGroup, FormControl, Validators} from '@angular/forms'; 
+import { FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms'; 
+import Validation from '../Validation';
 import {catchError} from 'rxjs/operators';
 
 @Component({
@@ -16,9 +17,12 @@ export class Registration implements OnInit{
   success: Boolean = false;
   newUser: User;
   msg: String;
+  submitted: Boolean;
+
   constructor(private router: Router, private http: HttpClient) {}
   
   ngOnInit() {
+    this.submitted = false;
     this.newUserForm = new FormGroup (
       {
         first_name : new FormControl('', Validators.required),
@@ -29,8 +33,12 @@ export class Registration implements OnInit{
       }
     )
   }
+  get f(): { [key: string]: AbstractControl } {
+    return this.newUserForm.controls;
+  }
 
   addNewUser() {
+    this.submitted = true;
     this.newUser = new User(this.newUserForm.value.first_name,this.newUserForm.value.last_name, this.newUserForm.value.email, this.newUserForm.value.password, this.newUserForm.value.username, "USER")
     this.http.post<String>('http://localhost:8080/registration', this.newUser)
       .pipe ( 
@@ -42,4 +50,7 @@ export class Registration implements OnInit{
      this.router.navigate(['/login']);
   }
 
+  goToLogin() {
+    this.router.navigate(['/login'])
+  }
 }

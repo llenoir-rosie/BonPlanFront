@@ -14,19 +14,25 @@
         <div class = "col-md-6 col-md-offser-3">
             <div class="login-box">
                 <h1>Log In</h1>
-                <div *ngIf="msg">
-                  <div class="alert alert-danger"> {{msg}} </div>
-                </div>
                     <form [formGroup]="loginUserForm">
                             <div class="user-box">
-                                <input class="form-control" formControlName="username"  matInput required />
+                                <input class="form-control" type="text" formControlName="username"  
+                                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" matInput required />
                                 <label>Username</label>
-                              </div>
-                            <div class="user-box">                               
-                                <input class="form-control" formControlName="password"  matInput required />
-                                <label>Password</label>
+                                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['username'].errors['required']">Fullname is required</div>
+                                </div>
                             </div>
-                            <a (click)="loginUser()">
+                            <div class="user-box">                               
+                                <input class="form-control" type="password" formControlName="password"  
+                                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+                                matInput required />
+                                <label>Password</label>
+                                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['password'].errors['required']">Password is required</div>
+                                </div>
+                            </div>
+                            <a type="submit" (click)="loginUser()">
                               <span></span>
                               <span></span>
                               <span></span>
