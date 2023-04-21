@@ -203,9 +203,10 @@ export class AppComponent implements OnInit{
   }
 
   changeSearchBtn(searchItemHTML: string) {
-    if (searchItemHTML == 'Recherche par Villes') {
+    if (searchItemHTML == 'Recherche par Ville') {
       this.researcheBy = this.searchArray[1];
       this.isCityActivated = true;
+      console.log(this.researcheBy)
     } else {
       this.researcheBy = this.searchArray[0];
       this.isCityActivated = false;
