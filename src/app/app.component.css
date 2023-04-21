@@ -72,8 +72,8 @@ a.text-lighten-4 {
     background-color: rgba(134, 134, 134, 0.5);
     position: relative;
     z-index: 2;
-    box-shadow: 0 0 20px 0 #2980b9;
-}
+    box-shadow: 0 0 20px 0 black;
+}  
 
 .haut-gauche {
     position: relative;
@@ -82,8 +82,6 @@ a.text-lighten-4 {
     max-height: 100px;
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(134, 134, 134, 0.5); 
-    box-shadow: 0 -5px 5px 5px rgba(134, 134, 134, 0.5);
 }
 
 .right-content {
@@ -106,10 +104,10 @@ a.text-lighten-4 {
 img.logo-site {
     position: relative;
     z-index:1;
-    margin-top: 10px;
-    margin-left: 10px;
-    height: 80px;
-    width: 80px;
+    margin-top: 8px;
+    margin-left: 8px;
+    height: 90px;
+    width: 90px;
     border-radius: 30px;
     /* box-shadow: 0 0 3px black; */
     transition-duration: 0.3s;
@@ -290,7 +288,7 @@ form:focus-within .collection {
     right: 0%;
     font-weight: bold;
     flex-wrap: wrap;
-    background-color: #3498db;
+    background-color: rgb(148, 158, 110);
     color: rgb(0, 0, 0);
     border: none;
     -webkit-transition: all 0.4s linear;
@@ -404,4 +402,32 @@ form:focus-within .collection {
     transform: scale(1);
   }
 
-  
+
+@keyframes shake {
+    20% {
+        transform: rotate(15deg);
+    }
+    40% {
+        transform: rotate(-15deg);
+    }
+    60% {
+        transform: rotate(15deg);
+    }
+    80% {
+        transform: rotate(-15deg);
+    }
+}
+
+.container img {
+    border-radius: 50%;
+    margin: 0 5px 0 10px;
+    outline: 2px solid #fff;
+    transition-property: outline-offset, outline-color, background-color ;
+    transition-duration: 0.25s;
+}
+.container img:hover {
+    outline-offset: 4px;
+}
+.container img:hover {
+    animation: shake 0.25s;
+}
