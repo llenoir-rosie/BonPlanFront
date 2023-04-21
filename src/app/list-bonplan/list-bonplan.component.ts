@@ -40,6 +40,9 @@ throw new Error('Method not implemented.');
   currentVille: String;
   currentActivite: String;
   newBP: Bonplan;
+  allBonPlan: Bonplan[];
+  allMauvaisPlan: Bonplan[];
+
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
@@ -81,7 +84,10 @@ throw new Error('Method not implemented.');
   //"attrape" les bons et les mauvais plans en foncion de la ville et de l'activité où l'on est
   public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
     this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
-      this.listeBonPlan = data;
+      // trie les bons plans en fonction de la note moyenne des utilisateurs
+      this.listeBonPlan = data.sort((a,b) => Number(this.moyenneTableau(b.note)) - Number(this.moyenneTableau(a.note)));
+      this.allBonPlan = this.listeBonPlan.filter(el => Number(this.moyenneTableau(el.note)) > 2);
+      this.allMauvaisPlan = this.listeBonPlan.filter(el => Number(this.moyenneTableau(el.note)) <= 2).reverse();
     })
   }
   public getAllMauvaisPlan(nomdelaville: String, nomdelactivite: String) {
@@ -206,10 +212,8 @@ throw new Error('Method not implemented.');
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
     () => {
-      this.http.get<Bonplan[]>("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/bonplan").subscribe(
-      (data) => {this.listeBonPlan = data;
+      this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     })
-      })
   }
 
 }
