@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('token', Object.values(data)[0]);
       const currentUser = this.loginUserForm.value.username;
       localStorage.setItem('currentUser', currentUser);
-      this.router.navigate(['/profile', currentUser]);
+      this.router.navigate(['/ville'])
     })
   }
 

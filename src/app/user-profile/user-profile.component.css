@@ -110,10 +110,37 @@ h1{
 .popup-updateinfos{
     padding: 100px;
     margin: 100px;
+    width: auto;
 }
+
+
 
 .popup-updatepassword-content label{
     font-size: 1em;
+}
+
+.popup-updateinfos-content label{
+    font-size: 1em;
+    width: 200px;
+}
+
+.contentlabel-popupupdateinfos{
+    padding:10px;
+    flex-wrap: wrap;
+    /* display: flex;
+    flex-direction: row; */
+}
+.button-bottom-dialog{
+    justify-content: space-around;
+}
+
+.container-contentupdateinfo label{
+    font-size: 1em;
+}
+
+.message_updatepassword{
+    margin: 5%;
+    font-size: 1.2em;
 }
 
 /* .popup-updatepassword h2{
