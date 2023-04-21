@@ -11,6 +11,7 @@ import { PopUpComponentAddMauvaisPlan } from './pop-up-addMauvaisPlan';
 import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
 import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.component';
 import { AppComponent } from "../app.component";
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -188,6 +189,13 @@ throw new Error('Method not implemented.');
     }
     return moyenne.toFixed(1);
   }
+
+  // public couleurEtoile(note: Number) {
+  //   var elem = document.getElementsByClassName('étoile');
+  //   if (Number(note) < 1.7){
+  //     style({ background: "red", color: "blue" });
+  //   }
+  // }
 
   public noteClick(note:String, bpNote: Number[], bpName: String, bpAdress: String) {
     // console.log('Number(note)', Number(note), 'bpNote', bpNote);

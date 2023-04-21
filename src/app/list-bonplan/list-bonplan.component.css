@@ -78,6 +78,12 @@ body {
     width: 50%;
 }
 
+.notation {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 .rating {
     position: absolute;
     bottom: 0;
