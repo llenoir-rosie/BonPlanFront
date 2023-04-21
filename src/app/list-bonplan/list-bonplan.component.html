@@ -26,10 +26,27 @@
                 <div class="card-content-bp">
                   <div class="left-content">
                     <h2>Nom {{ bp.name }}</h2>
-                    <p *ngIf="bp.note == [] ">(pas encore d'avis)</p>
-                    <p *ngIf="!(bp.note == [])"> {{moyenneTableau(bp.note)}}★ ({{bp.note.length}} avis)</p> 
-                    
+                    <p *ngIf="bp.note.length == 0 ">(pas encore d'avis)</p>
+                    <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
+                      <div *ngIf="moyenneTableau(bp.note) < '2.3'" class="notation">
+                        <i class="material-icons notation_étoile" style="font-size: 20px; color: red">
+                          star
+                        </i> <i> ({{bp.note.length}} avis) </i>
+                      </div>
+                      <div *ngIf="moyenneTableau(bp.note) > '3.7'" class="notation">
+                        <i class="material-icons notation_étoile" style="font-size: 20px; color: green">
+                          star
+                        </i> <i> ({{bp.note.length}} avis) </i>
+                      </div>
+                      <div *ngIf="moyenneTableau(bp.note) >= '2.3' && moyenneTableau(bp.note) <= '3.7' " class="notation">
+                        <i class="material-icons notation_étoile" style="font-size: 20px; color: orange">
+                          star
+                        </i> <i> ({{bp.note.length}} avis) </i>
+                      </div>
+                    </div>
+                    <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>
+                    <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div class="rating">Laissez-nous votre avis ! &#160;
                       <div>
                          <a id="étoile5" (click)="noteClick('5', bp.note, bp.name, bp.address)" title="Donner 5 étoiles">☆</a><!--

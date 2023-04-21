@@ -94,7 +94,6 @@ export class ListeActiviteComponent implements OnInit {
   }
 
   // fait une requette au back pour attraper la classe ville correspondant au nom de la ville où on est
-  // ATTENTION : MISE A JOUR DU BACK NECESSAIRE /////////////////////////////////////////////////////////////////////////////////
   public getImgVille(nameville: String) {
     this.http.get<Ville>("http://localhost:8080/city/" + nameville).subscribe((data) => {
       this.currentImg = data.image;

@@ -76,26 +76,12 @@ export class AppComponent implements OnInit{
     }
   }
   
+  // permet de "reset" la navbar lorsqu'on ferme l'onglet du site
   @HostListener('window:beforeunload') onBeforeUnload() {
     localStorage.removeItem("currentActivite");
     localStorage.removeItem("currentVille");
     localStorage.setItem("currentImg", "./assets/img/activite-navbar.jpeg");
     }
-
-
-  // fonction_utile() {
-  //   for (let i = 0; i < this.Villeslist.length; i++) {
-  //     if (location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())
-  //     && location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())) {
-  //       localStorage.setItem("currentImg", this.Villeslist[i].image.toString());
-  //       this.currentImg = localStorage.getItem("currentImg")!;
-  //       localStorage.setItem("currentVille", this.Villeslist[i].name.toString());
-  //       this.currentVille = localStorage.getItem("currentVille")!;
-  //       localStorage.setItem("currentActivite", "");
-  //       this.currentActivite = localStorage.getItem("currentActivite")!;
-  //     }
-  //   }
-  // }
 
   // @HostListener('window:popstate') onPopState() {
 
