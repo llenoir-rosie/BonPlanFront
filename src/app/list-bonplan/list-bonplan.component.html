@@ -26,8 +26,8 @@
                 <div class="card-content-bp">
                   <div class="left-content">
                     <h2>Nom {{ bp.name }}</h2>
-                    <!-- <p *ngIf="bp.note == [] ">(pas encore d'avis)</p>
-                    <p *ngIf="!(bp.note == [])"> {{bp.note}}★ ( avis)</p> {{bp.note.length}} -->
+                    <p *ngIf="bp.note == [] ">(pas encore d'avis)</p>
+                    <p *ngIf="!(bp.note == [])"> {{moyenneTableau(bp.note)}}★ ({{bp.note.length}} avis)</p> 
                     
                     <p>Description {{ bp.address }}</p>
                     <div class="rating">Laissez-nous votre avis ! &#160;
