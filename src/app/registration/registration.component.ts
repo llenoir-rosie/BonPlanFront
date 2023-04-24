@@ -5,6 +5,7 @@ import { User } from '../User';
 import { FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms'; 
 import Validation from '../Validation';
 import {catchError} from 'rxjs/operators';
+import { AppComponent } from "../app.component";
 
 @Component({
   selector: 'registration',
@@ -19,7 +20,7 @@ export class Registration implements OnInit{
   msg: String;
   submitted: Boolean;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private appComponent: AppComponent) {}
   
   ngOnInit() {
     this.submitted = false;
@@ -32,9 +33,15 @@ export class Registration implements OnInit{
         username : new FormControl('', Validators.required),
       }
     )
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    localStorage.setItem('currentVille', "");
+    localStorage.setItem('currentActivite', "");
+    this.appComponent.ngOnInit();
   }
   get f(): { [key: string]: AbstractControl } {
     return this.newUserForm.controls;
+
+    
   }
 
   addNewUser() {

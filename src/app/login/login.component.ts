@@ -25,13 +25,17 @@ export class LoginComponent implements OnInit{
     this.submitted = false;
     localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
     localStorage.setItem('currentVille', "");
-    this.appComponent.ngOnInit();
+    // this.appComponent.ngOnInit();
     this.loginUserForm = new FormGroup (
       {
         username : new FormControl('', Validators.required),
         password : new FormControl('', Validators.required),
       }
     )
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    localStorage.setItem('currentVille', "");
+    localStorage.setItem('currentActivite', "");
+    this.appComponent.ngOnInit();
   }
   goToRegistration() {
     this.router.navigate(['/registration'])

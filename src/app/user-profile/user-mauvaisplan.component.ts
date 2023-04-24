@@ -29,7 +29,10 @@ export class UserMauvaisPlanComponent implements OnInit{
       this.username = routeParams['currentUser'] 
       this.getMauvaisPlanUser(this.username)
   });
-  this.appComponent.ngOnInit();
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    localStorage.setItem('currentVille', "");
+    localStorage.setItem('currentActivite', "");
+    this.appComponent.ngOnInit();
 
 }
     

@@ -27,6 +27,10 @@ export class UserBonPlanComponent implements OnInit{
           this.username = routeParams['currentUser']
           this.getBonPlanUser(this.username);
     });
+      localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+      localStorage.setItem('currentVille', "");
+      localStorage.setItem('currentActivite', "");
+      this.appComponent.ngOnInit();
   }
 
   public getBonPlanUser(username: String) {
