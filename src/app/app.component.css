@@ -381,8 +381,11 @@ form:focus-within .collection {
     width: 200px;
     /* color:white; */
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
-    background-color: red;
+   
+    
     position: relative;
+    top: 20px; right: 20px;
+    
     transform: scale(0);
     transform-origin: top center;
     transition: all 300ms ease-in-out;
@@ -395,6 +398,8 @@ form:focus-within .collection {
     color:white;
     font-size: 1em;
     background-color: rgb(49, 49, 49);
+    border-bottom : none;
+    border-radius : 10px;
   }
 
   .sub-menu li a:hover {
@@ -406,6 +411,7 @@ form:focus-within .collection {
   }
   .sub-menu li:hover {
     background: black;
+    border-radius : 10px;
   }
   .menu > li:hover .sub-menu li {
     transform: scale(1);

@@ -8,16 +8,22 @@ import { Bonplan } from "../bonplan";
 @Component({
     selector: 'userProfile',
     templateUrl: './user-bonplan.component.html',
-    // styleUrls: ['user-bonplan.component.css'],
+    styleUrls: ['./user-bonplan.components.css'],
   })
 @Injectable({
 providedIn: 'root'
 })
 export class UserBonPlanComponent implements OnInit{
+  
+  
 
   username: String;
   AllBonPlan: Bonplan[];
   msgError : String;
+  allowUserRight: boolean;
+  allowModeratorRight: boolean;
+  currentUser: String;
+  bonplanDeleted : Boolean  = false;
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private appComponent: AppComponent) {}
 
 
@@ -27,6 +33,20 @@ export class UserBonPlanComponent implements OnInit{
           this.username = routeParams['currentUser']
           this.getBonPlanUser(this.username);
     });
+
+    
+    if (localStorage.getItem("currentUser") == null) {
+      this.allowModeratorRight = false
+      this.allowUserRight = false
+    } else {
+      this.currentUser = localStorage.getItem("currentUser")!
+      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+        this.allowModeratorRight = true
+      } else {
+        this.allowUserRight = true
+      }
+    }
+
   }
 
   public getBonPlanUser(username: String) {
@@ -38,6 +58,21 @@ export class UserBonPlanComponent implements OnInit{
             this.msgError = "Vous n'avez pas ENCORE crée de Bon Plan ! "
         }
       })
+}
+
+public deleteBonPlanUsr(BPname : String, BPcity : String, BPactivity : String){
+  this.http.delete<String>("http://localhost:8080/"+BPcity+"/"+BPactivity+"/"+BPname).subscribe(() => {
+    //Refresh listBonPlan whithout bonplan deleted
+    this.http.get<Bonplan[]>("http://localhost:8080/" + BPcity + "/" + BPactivity + "/bonplan").subscribe((data) => {
+      this.AllBonPlan = data;
+    })
+  });
+  this.bonplanDeleted = true;
+}
+
+
+public updateBonPlanUsr(bp : Bonplan){
+  console.log("clicked update")
 }
 
 }

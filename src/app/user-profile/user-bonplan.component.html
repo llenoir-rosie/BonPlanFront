@@ -1,6 +1,60 @@
 <!DOCTYPE html>
 <head></head>
 <body>
+
+
+  <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>
+      
+  <div class="row">
+
+    <div class = "col card-bp">
+      <div class="gros-titre">
+        <h1>Mes bons plans</h1>
+      </div>
+
+      <!-- <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
+      (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; BonPlan
+      <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
+      </button>   -->
+
+      <div *ngFor="let bp of AllBonPlan">
+        <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
+            <div class="card-content-bp">
+              <div class="left-content">
+                <div class="tetes-card">
+                  <h2>Nom : {{ bp.name }}</h2>
+                  <h2>Catégorie : {{bp.activity_type}}</h2>
+                  <h2>Ville : {{bp.ville_name}}</h2>
+                </div>
+                
+             
+                <p>Description : {{ bp.address }}</p>
+                <div class="rating">L'avis des internautes :  &#160;
+                  <div>
+                    <a id="étoile5">☆</a>
+                    <a id="étoile4" >☆</a>
+                    <a id="étoile3" >☆</a>
+                    <a id="étoile2">☆</a>
+                    <a id="étoile1">☆</a>
+                  </div>
+                  <p *ngIf="bp.note == [] ">(pas encore d'avis)</p>
+                  <!-- <p *ngIf="!(bp.note == [])"> {{moyenneTableau(bp.note)}}★ ({{bp.note.length}} avis)</p>  -->
+                  <p *ngIf="!(bp.note == [])">il y a des notes</p>
+                  
+                </div>
+              </div>
+              <!-- <img class = "img-test" src="{{currentImg}}"> -->
+              <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
+              ses bp )-->
+              <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlanUsr(bp.name, bp.ville_name, bp.activity_type)"></i> 
+              <!-- <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" (click)="updateBonPlanUsr(bp)"></i> -->
+              <button id="editBtn" (click)="updateBonPlanUsr(bp)"></button>
+            </div>     
+        </div> 
+      </div>
+    </div>
+<!-- 
+    <p>Test 2</p>
     <div>
         <h1>Vos bons plans</h1>
     </div>
@@ -17,6 +71,9 @@
               <img class = "img-test" src=".\assets\img\foot.jfif">  
             </div>
         </div> 
-      </div>
+        <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == elemt.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(elemt.name)"></i> 
+        <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == elemt.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(elemt.name)"></i>
+      </div> -->
     
+  </div>
 </body>

@@ -1,0 +1,127 @@
+body {
+    background-color: #e4e7e7;
+    height: 100%;
+}
+
+#editBtn {
+    color:forestgreen;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#editBtn:hover {
+    cursor:pointer;
+}
+
+#trashBtn {
+    color: red;
+    position: absolute;
+    top: 92%;
+    right: 15px;
+}
+
+#trashBtn:hover {
+    cursor: pointer;
+}
+
+.btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+/* ------------------------------------------------------------------------------ **/
+
+.gros-titre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-bp {
+    width: 50%;
+    background-color:#d0e9db ;
+    padding: 2%;
+    box-shadow: 0 0 10%;
+    box-shadow: 0 0 10px #d0e9db;
+}
+.card-bp h1 {                                                                                                               
+    background-color: #95a5a6;
+    border-radius: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 0 0 5px #2ecc71 ;
+}
+
+
+.rating {
+    position: relative;
+    bottom: 0;
+    /* left: 25%; */
+    /* transform: translate(-50%, 0); */
+    display: flex;
+    align-items: center;
+    margin-bottom: 1%;
+    margin: 10px;
+}
+.rating a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 2em;
+    transition: color .4s;
+    float: right; /* permet de colorer les étoiles dans le bon sens (de gauche à droite) */
+ }
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a, /* sélecteur d'adjacente indirecte: permet de changer la couleur des étoiles précédentes à celle surolée  */
+.rating a:focus ~ a {
+    cursor: pointer;
+    color: orange;
+}
+
+h2 {
+    /* width: 100%; */
+    white-space: normal;
+    text-align: center;
+    padding : 20px;
+    border:solid;
+}
+
+p {
+    /* width: 100%; */
+    white-space: normal;
+    margin:10px;
+    border:solid;
+    /* word-wrap: break-word; */
+}
+
+.card-content-bp {
+    display:flex;
+    flex-wrap: nowrap;
+    box-shadow: 0 0 5px #2ecc71 ;
+    padding: 2%;
+}
+
+
+.img-test {
+    position: relative;
+    margin-left: 4rem;
+    height: 80%;
+    width: 40%;
+    object-fit: cover;
+    border : solid;
+    background-color: #d31111;
+}
+
+.tetes-card{
+    display: flex;
+    flex-direction: row;
+    
+}
