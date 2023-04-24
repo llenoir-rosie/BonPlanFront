@@ -17,7 +17,7 @@
           </div>
 
           <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
-          (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; BonPlan
+          (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; Nouveau Plan
           <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
           </button>  
 
@@ -71,10 +71,6 @@
           <div class="gros-titre">
             <h1>Les mauvais plans</h1>
           </div>
-          <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-mp"
-            (click)="goToFormAddMauvaisPlan()" style="color:wheat; background-color: black;">&nbsp; MauvaisPlan
-            <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
-          </button>
           <div *ngFor="let bp of allMauvaisPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
                 <div class="card-content-bp">
