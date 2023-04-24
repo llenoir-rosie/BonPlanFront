@@ -140,7 +140,7 @@
               <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
             </button>
       </div>
-      <div class="entete" >
+      <div *ngIf = "this.location_url == 'http://localhost:4200/ville' " class="entete" >
         <h1>Vous êtes arrivé dans une nouvelle ville ? Envie de partager vos bons coins ? Bienvenue !!</h1>
         <p>
           Vous êtes à la recherche d'endroits pour faire du sport, écouter de la musique, découvrir votre nouvelle ville. Mais aussi éviter les faux plans ?

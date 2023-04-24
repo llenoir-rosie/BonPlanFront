@@ -31,6 +31,7 @@ export class AppComponent implements OnInit{
   currentActivite: String;
   public searchInput: String = '';
   initial_username : String;
+  location_url : String;
 
   //search variable 
   researcheBy: string;
@@ -62,6 +63,8 @@ export class AppComponent implements OnInit{
        this.Activitieslist = data;
     }) 
     this.IsUserIsAuth();
+
+    this.location_url = location.href;
 
   }
 
