@@ -68,7 +68,6 @@ export class AppComponent implements OnInit{
   IsUserIsAuth() {
     if (localStorage.getItem("currentUser") == null) {
       this.allowConnection = true
-      console.log(localStorage.getItem("currentUser"))
     } else {
       this.currentUser = localStorage.getItem("currentUser")!;
       this.allowConnection = false
@@ -101,6 +100,7 @@ export class AppComponent implements OnInit{
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserRole');
     localStorage.removeItem('token');
     this.router.navigate(['/login'])
   }

@@ -60,9 +60,7 @@ throw new Error('Method not implemented.');
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
     
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
-    this.getAllMauvaisPlan(this.nomdelaville, this.nomdelactivite);
     this.getImgActivity(this.nomdelactivite);
-
     if (localStorage.getItem("currentUser") == null) {
       this.allowModeratorRight = false
       this.allowUserRight = false
@@ -70,7 +68,7 @@ throw new Error('Method not implemented.');
       this.currentUser = localStorage.getItem("currentUser")!
       if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
         this.allowModeratorRight = true
-      } else {
+      } else if (localStorage.getItem("currentUserRole") == 'USER'){
         this.allowUserRight = true
       }
     }
@@ -90,11 +88,6 @@ throw new Error('Method not implemented.');
       this.allMauvaisPlan = this.listeBonPlan.filter(el => Number(this.moyenneTableau(el.note)) <= 2).reverse();
     })
   }
-  public getAllMauvaisPlan(nomdelaville: String, nomdelactivite: String) {
-    this.http.get<Mauvaisplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/mauvaisplan").subscribe((data) => {
-      this.listeMauvaisPlan = data;
-    })
-  }
 
   // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
   public getImgActivity(nameact: String) { 
@@ -106,33 +99,20 @@ throw new Error('Method not implemented.');
     })
   }
 
-
   public deleteBonPlan(bpName: String) {
     //Delete the Object bonplan which have his name equals to bpName
     this.http.delete<String>(`http://localhost:8080/${this.nomdelaville}/${this.nomdelactivite}/${bpName}`).subscribe(() => {
       //Refresh listBonPlan whithout bonplan deleted
-      this.http.get<Bonplan[]>("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/bonplan").subscribe((data) => {
-        this.listeBonPlan = data;
-      })
+      this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     });
     this.bonplanDeleted = true;
-  }
-  public deleteMauvaisPlan(mpName: String) {
-    //supprime l'objet mauvais plan
-    this.http.delete<String>(`http://localhost:8080/${this.nomdelaville}/${this.nomdelactivite}/${mpName}/deletemauvaisplan`).subscribe(() => {
-    //refais une requête get vers la bdd pour avoir la liste des mauvais plans sans le mp venant d'être supprimé => permet de refresh la page
-      this.http.get<Mauvaisplan[]>("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/mauvaisplan").subscribe((data) => {
-        this.listeMauvaisPlan = data;
-      })
-    });
-    this.mauvaisplanDeleted = true;
   }
 
   // Formulaire de création de bons plans / mauvais plans
   public updateBonPlan(bp: Bonplan) {
     this.dialogRef.open(PopUpComponentUpdateBonPlan, {
       width: '600px',
-      height: '600px',
+      height: '550px',
       data: {
         nameCity: this.nomdelaville,
         nameActivity:this.nomdelactivite,
@@ -141,52 +121,16 @@ throw new Error('Method not implemented.');
     }).afterClosed().subscribe(() => this.getAllBonPlan(this.nomdelaville, this.nomdelactivite));
   }
 
-  public updateMauvaisPlan(mp: Mauvaisplan) {
-    this.dialogRef.open(PopUpComponentUpdateMauvaisPlan, {
-      width: '600px',
-      height: '600px',
-      data: {
-        nameCity: this.nomdelaville,
-        nameActivity:this.nomdelactivite,
-        mp: mp 
-      }
-    }).afterClosed().subscribe(() => this.getAllMauvaisPlan(this.nomdelaville, this.nomdelactivite));
-  }
-
   public goToFormAddBonPlan() {
     this.dialogRef.open(PopUpComponentAddBonPlan, {
       width: '600px',
-      height: '600px',
+      height: '755px',
       data: {
         nameCity: this.nomdelaville,
         nameActivity:this.nomdelactivite 
       }
     }).afterClosed().subscribe(() => this.getAllBonPlan(this.nomdelaville, this.nomdelactivite));
   }
-  public goToFormAddMauvaisPlan() {
-    this.dialogRef.open(PopUpComponentAddMauvaisPlan, {
-      width: '600px',
-      height: '600px',
-      data: {
-        nameCity: this.nomdelaville,
-        nameActivity:this.nomdelactivite 
-      }
-    }).afterClosed().subscribe(() => this.getAllMauvaisPlan(this.nomdelaville, this.nomdelactivite));
-  }
-  
-  // goToVillePrecision(ville: Ville, act: Activite, bp: Bonplan) {
-  //   this.router.navigate(['/ville', ville.name, act.name, bp.name])
-  // }
-  // soumettreForm(test: string){
-  //   console.log(test)
-  // }
-  // CreNouveauBonPlan(ville: String, act: String) {
-  //   console.log(document.getElementById("test"),)
-  // }
-  // goToedit(ville: String, act: String){
-  //   this.router.navigate(['/edit/bonplan'])
-
-  // }
 
   public moyenneTableau(tab: Number[]) {
     let moyenne : number = 0;
@@ -195,13 +139,6 @@ throw new Error('Method not implemented.');
     }
     return moyenne.toFixed(1);
   }
-
-  // public couleurEtoile(note: Number) {
-  //   var elem = document.getElementsByClassName('étoile');
-  //   if (Number(note) < 1.7){
-  //     style({ background: "red", color: "blue" });
-  //   }
-  // }
 
   public noteClick(note:String, bpNote: Number[], bpName: String, bpAdress: String) {
     // console.log('Number(note)', Number(note), 'bpNote', bpNote);

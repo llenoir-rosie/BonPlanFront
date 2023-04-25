@@ -36,7 +36,7 @@
   }
   
   .login-box h1 {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     padding: 0;
     color: #fff;
     text-align: center;
@@ -113,6 +113,7 @@
     overflow: hidden;
     transition: .5s;
     margin-top: 40px;
+    margin-bottom: 0px;
   }
 
   .login-box a:hover {

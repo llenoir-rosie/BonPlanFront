@@ -17,7 +17,7 @@
           </div>
 
           <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
-          (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; BonPlan
+          (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; Nouveau Plan
           <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
           </button>  
 
@@ -60,8 +60,8 @@
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
                   ses bp )-->
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
                 </div>     
             </div> 
           </div>
@@ -71,10 +71,6 @@
           <div class="gros-titre">
             <h1>Les mauvais plans</h1>
           </div>
-          <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-mp"
-            (click)="goToFormAddMauvaisPlan()" style="color:wheat; background-color: black;">&nbsp; MauvaisPlan
-            <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
-          </button>
           <div *ngFor="let bp of allMauvaisPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
                 <div class="card-content-bp">
@@ -114,8 +110,8 @@
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
                   ses bp )-->
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
                 </div>     
             </div> 
           </div>
