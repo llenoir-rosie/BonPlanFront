@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<head></head>
+<head>
+
+</head>
 <body>
 
 
   <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>
-      
   <div class="row">
 
     <div class = "col card-bp">
@@ -16,64 +17,132 @@
       (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; BonPlan
       <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
       </button>   -->
+      <div class="content-usr-bp">
 
-      <div *ngFor="let bp of AllBonPlan">
-        <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
-            <div class="card-content-bp">
-              <div class="left-content">
-                <div class="tetes-card">
-                  <h2>Nom : {{ bp.name }}</h2>
-                  <h2>Catégorie : {{bp.activity_type}}</h2>
-                  <h2>Ville : {{bp.ville_name}}</h2>
-                </div>
-                
-             
-                <p>Description : {{ bp.address }}</p>
-                <div class="rating">L'avis des internautes :  &#160;
-                  <div>
-                    <a id="étoile5">☆</a>
-                    <a id="étoile4" >☆</a>
-                    <a id="étoile3" >☆</a>
-                    <a id="étoile2">☆</a>
-                    <a id="étoile1">☆</a>
-                  </div>
-                  <p *ngIf="bp.note == [] ">(pas encore d'avis)</p>
-                  <!-- <p *ngIf="!(bp.note == [])"> {{moyenneTableau(bp.note)}}★ ({{bp.note.length}} avis)</p>  -->
-                  <p *ngIf="!(bp.note == [])">il y a des notes</p>
-                  
-                </div>
+        <div class="options-bp">
+          <button class = "btn-addusrbp" (click)="openDialogWithTemplateRef(DialogAddUserBp) ; getCitiesActivities()" mat-raised-button class="waves-effect waves-light btn button-photo"color="primary"
+          style="color:wheat; background-color: black;">
+          <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>Ajouter un plan</button>
+          
+          <div class="choix-tri">
+            <label for="DropdownOptions">Trier par:</label>
+            <select class="form-control" id="DropdownOptions" >
+              <option
+                *ngFor="let opt of ngOptions"
+                [selected]="opt === ngDropdown"
+                [value]="opt">{{ opt }}
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <ng-template #DialogAddUserBp class="AddUserBp">
+          <h2>Ajout d'un plan</h2>
+          <div mat-dialog-content>
+            <div class="AddBpCategorie">
+              <div class="choixAct">
+                <label for="act">Catégorie d'activité : </label>
+                <select class="form-control" id="DropdownOptionsAct">
+                  <option
+                    *ngFor="let opt of ngOptionsAddAct"
+                    [selected]="opt === ngDropdownAddAct"
+                    [value]="opt">{{ opt }} 
+                    
+                  </option>
+                </select>
               </div>
-              <!-- <img class = "img-test" src="{{currentImg}}"> -->
-              <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
-              ses bp )-->
-              <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlanUsr(bp.name, bp.ville_name, bp.activity_type)"></i> 
-              <!-- <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" (click)="updateBonPlanUsr(bp)"></i> -->
-              <button id="editBtn" (click)="updateBonPlanUsr(bp)"></button>
-            </div>     
-        </div> 
-      </div>
-    </div>
-<!-- 
-    <p>Test 2</p>
-    <div>
-        <h1>Vos bons plans</h1>
-    </div>
-    <div *ngIf = "msgError">
-        {{msgError}}
-    </div>
-    <div *ngFor="let elemt of AllBonPlan">
-        <div class="card" testBorderCard = 'setHeight=50'>
-            <div class="card-content-bp">
-              <div class="left-content">
-                <h2>Nom {{ elemt.name }}</h2>
-                <p>Description {{ elemt.address }}</p>
-              </div>  
-              <img class = "img-test" src=".\assets\img\foot.jfif">  
+              <div class="choixVille">
+                <label for="act">Localisation : </label>
+                <select class="form-control" id="DropdownOptionsCity">
+                  <option
+                    *ngFor="let opt of ngOptionsAddCity"
+                    [selected]="opt === ngDropdownAddCity"
+                    [value]="opt">{{ opt }}
+                  </option>
+                </select>
+              </div>
             </div>
-        </div> 
-        <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == elemt.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(elemt.name)"></i> 
-        <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == elemt.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(elemt.name)"></i>
-      </div> -->
+            <div class="text-input">
+              <div class="name-newbp">
+                <label for="bp-name">Nom : </label>
+                <input type="text" id="bp-name" name="bp-name"><br>
+              </div>
+              <div class="description-newbp">
+                <label for="bp-description">Description : </label>
+                <textarea style="height: 100px;" id="bp-description" name="bp-description"></textarea>
+              </div>
+              <div class="rating">Laissez votre avis ! &#160;
+                <div>
+                  <a id="étoile5" value="5" (click)="GetNote(5)" title="Donner 5 étoiles">☆</a>
+                  <a id="étoile4" value="4" (click)="GetNote(4)" title="Donner 4 étoiles">☆</a>
+                  <a id="étoile3" value="3" (click)="GetNote(3)" title="Donner 3 étoiles">☆</a>
+                  <a id="étoile2" value="2" (click)="GetNote(2)" title="Donner 2 étoiles">☆</a>
+                  <a id="étoile1" value="1" (click)="GetNote(1)" title="Donner 1 étoile">☆</a>
+                </div>
+                {{note}}
+              </div>
+            </div>
+            
+          </div>
+          <div mat-dialog-actions class = "button-bottom">
+            <button (click)="AddNewBP()">Valider</button>
+            <button mat-button matDialogClose color="primary">Annuler</button>
+          </div>
+        </ng-template>
+        
+        
+        <div>
+          <div *ngFor="let bp of AllBonPlan">
+            <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
+                <div class="card-content-bp">
+                  <div class="left-content">
+                    <div class="tetes-card">
+                      <h2>Nom : {{ bp.name }}</h2>
+                      <h2>Catégorie : {{bp.activity_type}}</h2>
+                      <h2>Ville : {{bp.ville_name}}</h2>
+                    </div>
+                    <hr style="margin-top: 3%; margin-bottom: 3%;">
+                    
+                 
+                    <p>Description : {{ bp.address }}</p>
+                    <hr style="margin-top: 3%; margin-bottom: 3%;">
     
+                  
+                    <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
+                      <div *ngIf="moyenneTableau(bp.note) < '2.3'" class="notation">
+                        <i class="material-icons notation_étoile" style="font-size: 20px; color: red">
+                          star
+                        </i> <i> ({{bp.note.length}} avis) </i>
+                      </div>
+                      <div *ngIf="moyenneTableau(bp.note) > '3.7'" class="notation">
+                        <i class="material-icons notation_étoile" style="font-size: 20px; color: green">
+                          star
+                        </i> <i> ({{bp.note.length}} avis) </i>
+                      </div>
+                      <div *ngIf="moyenneTableau(bp.note) >= '2.3' && moyenneTableau(bp.note) <= '3.7' " class="notation">
+                        <i class="material-icons notation_étoile" style="font-size: 20px; color: orange">
+                          star
+                        </i> <i> ({{bp.note.length}} avis) </i>
+                      </div>
+                    </div>
+                  <!-- <img class = "img-test" src="{{currentImg}}"> -->
+                  <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
+                  ses bp )-->
+                  <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlanUsr(bp.name, bp.ville_name, bp.activity_type)"></i>
+                  <!-- <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlanUsr(bp.name, bp.ville_name, bp.activity_type)"></i>  -->
+                  <!-- <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" (click)="updateBonPlanUsr(bp)"></i> -->
+                  <button id="editBtn" class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlanUsr(bp)"></button>
+                </div>     
+            </div> 
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+    </div>
   </div>
+
 </body>

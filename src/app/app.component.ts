@@ -76,26 +76,12 @@ export class AppComponent implements OnInit{
     }
   }
   
+  // permet de "reset" la navbar lorsqu'on ferme l'onglet du site
   @HostListener('window:beforeunload') onBeforeUnload() {
     localStorage.removeItem("currentActivite");
     localStorage.removeItem("currentVille");
     localStorage.setItem("currentImg", "./assets/img/activite-navbar.jpeg");
     }
-
-
-  // fonction_utile() {
-  //   for (let i = 0; i < this.Villeslist.length; i++) {
-  //     if (location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())
-  //     && location.href.toLowerCase().includes(this.Villeslist[i].name.toString().toLowerCase())) {
-  //       localStorage.setItem("currentImg", this.Villeslist[i].image.toString());
-  //       this.currentImg = localStorage.getItem("currentImg")!;
-  //       localStorage.setItem("currentVille", this.Villeslist[i].name.toString());
-  //       this.currentVille = localStorage.getItem("currentVille")!;
-  //       localStorage.setItem("currentActivite", "");
-  //       this.currentActivite = localStorage.getItem("currentActivite")!;
-  //     }
-  //   }
-  // }
 
   // @HostListener('window:popstate') onPopState() {
 
@@ -118,9 +104,9 @@ export class AppComponent implements OnInit{
     localStorage.removeItem('token');
     this.router.navigate(['/login'])
   }
-  changeImgNav() { // cette fonction est activée dès qu'on clicke dans le body et à l'initialisation
+  changeImgNav() { // cette fonction est activée à l'initialisation 
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
-    if(location.href == "http://localhost:4200/ville"){
+    if(location.href == "http://localhost:4200/ville") {
       this.currentImg = "./assets/img/activite-navbar.jpeg";
       localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
       this.currentVille = "";

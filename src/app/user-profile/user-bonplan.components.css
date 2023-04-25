@@ -17,8 +17,11 @@ body {
 #trashBtn {
     color: red;
     position: absolute;
-    top: 92%;
-    right: 15px;
+    /* top: 92%;
+    right: 15px; */
+    /* top: 50px; */
+    left: 97%;
+    bottom:5%;
 }
 
 #trashBtn:hover {
@@ -46,7 +49,7 @@ body {
 }
 
 .card-bp {
-    width: 50%;
+    width: 80%;
     background-color:#d0e9db ;
     padding: 2%;
     box-shadow: 0 0 10%;
@@ -70,6 +73,7 @@ body {
     align-items: center;
     margin-bottom: 1%;
     margin: 10px;
+    padding : 2%
 }
 .rating a {
     color: #aaa;
@@ -86,19 +90,23 @@ body {
     color: orange;
 }
 
+.rating a:visited ~ a{
+    color: orange;
+}
+
+
+
 h2 {
     /* width: 100%; */
     white-space: normal;
     text-align: center;
     padding : 20px;
-    border:solid;
 }
 
 p {
     /* width: 100%; */
     white-space: normal;
     margin:10px;
-    border:solid;
     /* word-wrap: break-word; */
 }
 
@@ -116,12 +124,103 @@ p {
     height: 80%;
     width: 40%;
     object-fit: cover;
-    border : solid;
-    background-color: #d31111;
 }
 
 .tetes-card{
     display: flex;
     flex-direction: row;
     
+}
+
+.notation {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.content-usr-bp{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.btn-addusrbp{
+    height: 30px;
+    width: 180px;
+    margin: 5%;
+    /* padding-top:50%;
+    position : relative;
+    top:20% */
+}
+
+.options-bp{
+    display: flex;
+    flex-direction: column;
+    margin : 5%;
+    padding : 1%;
+
+}
+
+#trier{
+    position: relative;
+    border:solid;
+    z-index: 10000;
+}
+
+.AddUserBp{
+    font-size:1em;
+    margin:2%;
+}
+
+.AddBpCategorie{
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.choixAct{
+    padding:5%;
+    width:300px;
+}
+.choixVille{
+    padding:5%;
+    width:300px;
+}
+.choixAct label {
+    font-size:1.2em;
+}
+.choixVille label{
+    font-size:1.2em;
+}
+.text-input{
+
+}
+.text-input label{
+    font-size:1.2em;
+}
+
+.name-newbp{
+    padding : 2%;
+}
+
+.description-newbp{
+    padding : 2%;
+}
+
+.button-bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.choix-tri{
+    margin-top : 20%;
+    padding : 1%;
+}
+
+.choix-tri label{
+    font-size : 1em;
+    padding : 10px;
 }

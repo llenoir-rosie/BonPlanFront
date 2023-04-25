@@ -36,7 +36,7 @@
   }
   
   .login-box h1 {
-    margin: 0 0 30px;
+    margin-bottom: 20px;
     padding: 0;
     color: #fff;
     text-align: center;
@@ -44,14 +44,18 @@
   
   .login-box .user-box {
     position: relative;
+    margin-bottom: 50px;
   }
-  
+  .invalid-feedback {
+    color:red;
+    font-style: italic;
+    margin-bottom: 5px;
+  }
   .login-box .user-box input {
     width: 100%;
-    padding: 18px 0;
+    padding: 10px 0;
     font-size: 16px;
     color: #fff;
-    margin-bottom: 30px;
     border: none;
     border-bottom: 1px solid #fe4567;
     outline: none;
@@ -65,6 +69,7 @@
   }
 
   .login-box .user-box label {
+    margin-top: 10px;
     position: absolute;
     top:0;
     left: 0;

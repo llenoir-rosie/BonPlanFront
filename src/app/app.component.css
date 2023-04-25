@@ -439,7 +439,7 @@ form:focus-within .collection {
 .container img {
     border-radius: 50%;
     margin: 0 5px 0 10px;
-    outline: 2px solid #fff;
+    outline: 2px solid white;
     transition-property: outline-offset, outline-color, background-color ;
     transition-duration: 0.25s;
 }

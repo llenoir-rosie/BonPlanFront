@@ -30,6 +30,9 @@ ngOnInit(): void {
         this.username = routeParams['currentUser']
         this.getUserDetails(this.username)
     })
+    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    localStorage.setItem('currentVille', "");
+    localStorage.setItem('currentActivite', "");
     this.appComponent.ngOnInit();
 }
 
