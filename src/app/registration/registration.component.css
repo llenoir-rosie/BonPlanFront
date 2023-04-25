@@ -21,7 +21,6 @@
 
   form {
     display: flex;
-    align-items: center;
     justify-content: space-around;
     
   }
@@ -30,6 +29,16 @@
     margin-right: 50px;
     margin-left: 50px;
   }
+
+  form .form_column_submit {
+    display: flex;
+    align-items: end;
+  }
+
+  form .form_column_submit > a, p {
+    margin-bottom: 40px;
+  }
+
   .container {
     display: flex;
     align-items: center;

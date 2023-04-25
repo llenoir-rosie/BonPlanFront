@@ -60,8 +60,8 @@
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
                   ses bp )-->
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
                 </div>     
             </div> 
           </div>
@@ -110,8 +110,8 @@
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
                   ses bp )-->
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
-                  <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 
+                  <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlan(bp)"></i>
                 </div>     
             </div> 
           </div>

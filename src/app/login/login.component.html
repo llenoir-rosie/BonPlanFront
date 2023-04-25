@@ -13,12 +13,12 @@
     <div class="row">
         <div class = "col-md-6 col-md-offser-3">
             <div class="login-box">
-                <h1>Log In</h1>
+                <h1>Accèder au Compte</h1>
                     <form [formGroup]="loginUserForm">
                             <div class="user-box">
                                 <input class="form-control" type="text" formControlName="username"  
                                 [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" matInput required />
-                                <label>Username</label>
+                                <label>Nom d'Utilisateur</label>
                                 <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
                                   <div *ngIf="f['username'].errors['required']">Fullname is required</div>
                                 </div>
@@ -27,7 +27,7 @@
                                 <input class="form-control" type="password" formControlName="password"  
                                 [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
                                 matInput required />
-                                <label>Password</label>
+                                <label>Mot de Passe</label>
                                 <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                                   <div *ngIf="f['password'].errors['required']">Password is required</div>
                                 </div>
@@ -37,8 +37,8 @@
                               <span></span>
                               <span></span>
                               <span></span>
-                              LogIn
-                            </a><p (click)="goToRegistration()">No account ?</p>
+                              S'identifier
+                            </a><p (click)="goToRegistration()">Pas encore de Compte ?</p>
                         </form>
             </div>
         </div>

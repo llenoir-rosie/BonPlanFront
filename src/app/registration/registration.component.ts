@@ -45,16 +45,20 @@ export class Registration implements OnInit{
   }
 
   addNewUser() {
+    //if (!this.f['name'].errors && !this.f['address'].errors) {
     this.submitted = true;
-    this.newUser = new User(this.newUserForm.value.first_name,this.newUserForm.value.last_name, this.newUserForm.value.email, this.newUserForm.value.password, this.newUserForm.value.username, "USER")
-    this.http.post<String>('http://localhost:8080/registration', this.newUser)
-      .pipe ( 
-        catchError((error) => this.msg = error.error.message
-      ))
-     .subscribe((data) => {
-       this.success = true;
-     })
-     this.router.navigate(['/login']);
+    if (!this.f['first_name'].errors && !this.f['last_name'].errors  && !this.f['email'].errors  && !this.f['password'].errors  && !this.f['username'].errors) { 
+      this.newUser = new User(this.newUserForm.value.first_name,this.newUserForm.value.last_name, this.newUserForm.value.email, 
+                    this.newUserForm.value.password, this.newUserForm.value.username, "USER");
+      this.http.post<String>('http://localhost:8080/registration', this.newUser)
+      // .pipe ( 
+      //   catchError((error) => this.msg = error.error.message
+      // ))
+      .subscribe((data) => {
+        this.success = true;
+      })
+      this.router.navigate(['/login']);
+    }
   }
 
   goToLogin() {

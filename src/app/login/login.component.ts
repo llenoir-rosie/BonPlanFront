@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit{
     this.submitted = false;
     localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
     localStorage.setItem('currentVille', "");
-    // this.appComponent.ngOnInit();
     this.loginUserForm = new FormGroup (
       {
         username : new FormControl('', Validators.required),
@@ -55,9 +54,13 @@ export class LoginComponent implements OnInit{
     // ))
     .subscribe((data) => {
       localStorage.setItem('token', Object.values(data)[0]);
-      const currentUser = this.loginUserForm.value.username;
-      localStorage.setItem('currentUser', currentUser);
-      this.router.navigate(['/ville'])
+      console.log(data)
+      this.http.get<User>('http://localhost:8080/' + this.loginUserForm.value.username + '/Details').subscribe((data) => {
+        console.log(data)
+        localStorage.setItem('currentUser', data.username.toString());
+        localStorage.setItem('currentUserRole',data.role.toString());
+        this.router.navigate(['/ville'])
+      })
     })
   }
 
