@@ -166,6 +166,7 @@ form{
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 2;
     transform: translate(-50%,-50%);
     transition: 0.5s;
     width: 50px;
@@ -175,25 +176,9 @@ form{
     border-radius: 25px;
     border: 4px solid white;
     padding: 5px;
-    box-shadow: 0 0 10px 10px #2980b9;
+    box-shadow: 0 0 10px 5px #000000;
     font-size: 135%;
-    /* overflow: visible; */
-}
-.change-search {
-    position: absolute;
-    font-weight: 900;
-    font-size: large;
-    color: #07051a;
-    top: 50%;
-    left: 64%;
-    transform: translate(-50%,-50%);
-    text-decoration: underline
-}
-
-.change-search:hover {
-    font-size: 2em;
-    cursor: pointer;
-}
+  }
 
 input.new-search {
     position: absolute;
@@ -232,7 +217,6 @@ ul{
     text-align: center;
     border: none;
   }
-  
   ul a{
     background: #ddd;
     border-bottom: 3px solid whitesmoke;
@@ -240,7 +224,6 @@ ul{
     overflow: hidden;
     border-radius: 3px;
   }
-  
   ul a p{
     text-align: center;
     font-weight: bold;
@@ -250,26 +233,21 @@ ul{
     border: none;
   }
 
-/* form input.new-search:valid {
-    overflow: visible;
-} */
-
 form:hover,
 form:focus-within {
     width: 200px;
+    left: 39%;
     cursor: pointer;
 }
-
 form:hover input.new-search,
 form:focus-within input.new-search { 
     display: block;
 }
-
-form:hover .fa { 
+form:hover .fa,
+form:focus-within .fa {
     background: #07051a;
     color: white;
 }
-
 .collection {
     z-index: 2;
     opacity: 0;
@@ -279,6 +257,132 @@ form:focus-within .collection {
     opacity: 1;
 }
 
+.nav-centre {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  height: 100px;
+  width: 700px;
+  transition-duration: 0.5s;
+  transition-property: background-color;
+}
+/* .nav-centre:hover, .nav-centre:focus-within {
+  box-shadow: 0 0 20px 0 rgba(0, 64, 255, 0.5);
+} */
+.nav-centre:hover .toggle-ville-activite,
+.nav-centre:focus-within .toggle-ville-activite {
+  opacity: 1;
+}
+
+.toggle-ville-activite {
+  position: absolute;
+  right: 3%;
+  top: 50%;
+  transform: translate(0, -50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+.change-search {
+  line-height: 17px;
+  font-weight: 700;
+  width: 90px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: medium;
+  color: white;
+  text-align: center;
+}
+
+input[type=checkbox]{
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+label.toggle {
+  cursor: pointer;
+  /* text-indent: -9999px; */
+  width: 60px;
+  height: 25px;
+  /* background: grey; */
+  box-shadow: 0 0 0 3px #ffffff, 0 0 4px;
+  display: block;
+  border-radius: 30px;
+}
+label.toggle:after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 39.5%;
+  width: 21px;
+  height: 21px;
+  background: #fff;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+/* input#switch:checked + label.toggle {
+  background: #bada55;
+} */
+input#switch:checked + label.toggle:after {
+  left: calc(61%);
+  transform: translateX(-100%);
+}
+label.toggle:active:after {
+  width: 18px;
+}
+
+.curtain1 {
+  position: absolute;
+  cursor: default;
+  top: 15%;
+  left: 45%;
+  width: 10px;
+  height: 10px;
+  border: none;
+  z-index: -1;
+  opacity: 0;
+  transition-duration: 0.25s;
+  /* transition-property: background-color, transform, visibility; */
+  /* transition-timing-function: ease-in, cubic-bezier(0.6,0.2,0.4,1.5), linear; */
+}
+input#switch:checked ~ .curtain1 {
+  /* transform: scaleX(1); */
+  transform: scaleX(160) scaleY(10) translate(-15%, 7%);
+  background-color: rgba(255, 157, 0, 0.5);
+  box-shadow: 0 0 20px 0 rgba(255, 157, 0, 0.5);
+  opacity: 1;
+}
+input#switch:before ~ .curtain1 {
+  position: absolute;
+}
+.curtain2 {
+  position: absolute;
+  cursor: default;
+  top: 15%;
+  left: 45%;
+  width: 10px;
+  height: 10px;
+  border: none;
+  background-color: rgba(0, 64, 255, 0.5);
+  box-shadow: 0 0 20px 0 rgba(0, 64, 255, 0.5);
+  z-index: -1;
+  opacity: 1;
+  transform: scaleX(160) scaleY(10) translate(-15%, 7%);
+  /* transition-property: background-color, transform, visibility; */
+  transition-duration: 0.25s;
+  /* transition-timing-function: ease-in, cubic-bezier(0.6,0.2,0.4,1.5), linear; */
+}
+input#switch:checked ~ .curtain2 {
+  /* transform: scaleX(1); */
+  transform: scale(0);
+  opacity: 1;
+}
+input#switch:before ~ .curtain2 {
+  position: absolute;
+}
 
 .button-connexion {
     position: absolute;

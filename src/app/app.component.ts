@@ -53,7 +53,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     // this.logCurrentUser();
     this.isCityActivated = true;
-    this.researcheBy = this.searchArray[1]
+    this.researcheBy = this.searchArray[0]
     this.changeImgNav();
 
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
@@ -194,11 +194,10 @@ export class AppComponent implements OnInit{
   changeSearchBtn(searchItemHTML: string) {
     if (searchItemHTML == 'Recherche par Ville') {
       this.researcheBy = this.searchArray[1];
-      this.isCityActivated = true;
-      console.log(this.researcheBy)
+      this.isCityActivated = false;
     } else {
       this.researcheBy = this.searchArray[0];
-      this.isCityActivated = false;
+      this.isCityActivated = true;
     }
   }
   SearchVilleEnter(){
@@ -207,5 +206,6 @@ export class AppComponent implements OnInit{
   SearchActivityEnter(){
     this.goToDetailActivity(this.allActivities[0])
   }
+
 
 }
