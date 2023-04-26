@@ -11,37 +11,37 @@
 <body>
   <div class = "container">
     <div class="row">
-        <div class = "col-md-6 col-md-offser-3">
-            <div class="login-box">
-                <h1>Accèder au Compte</h1>
-                    <form [formGroup]="loginUserForm">
-                            <div class="user-box">
-                                <input class="form-control" type="text" formControlName="username"  
-                                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" matInput required />
-                                <label>Nom d'Utilisateur</label>
-                                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-                                  <div *ngIf="f['username'].errors['required']">Fullname is required</div>
-                                </div>
-                            </div>
-                            <div class="user-box">                               
-                                <input class="form-control" type="password" formControlName="password"  
-                                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
-                                matInput required />
-                                <label>Mot de Passe</label>
-                                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                                  <div *ngIf="f['password'].errors['required']">Password is required</div>
-                                </div>
-                            </div>
-                            <a type="submit" (click)="loginUser()">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              S'identifier
-                            </a><p (click)="goToRegistration()">Pas encore de Compte ?</p>
-                        </form>
-            </div>
+      <div class = "col-md-6 col-md-offser-3">
+        <div class="login-box">
+          <h1>Accèder au Compte</h1>
+            <form [formGroup]="loginUserForm">
+              <div class="user-box">
+                  <input class="form-control" type="text" formControlName="username"  
+                  [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" matInput required />
+                  <label>Nom d'Utilisateur</label>
+                  <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                    <div *ngIf="f['username'].errors['required']">Le Nom d'Utilisateur n'est pas rempli</div>
+                  </div>
+              </div>
+              <div class="user-box">                               
+                  <input class="form-control" type="password" formControlName="password"  
+                  [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+                  matInput required />
+                  <label>Mot de Passe</label>
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Le Mot de Passe n'est pas rempli</div>
+                  </div>
+              </div>
+              <a type="submit" (click)="loginUser()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                S'identifier
+              </a><p (click)="goToRegistration()">Pas encore de Compte ?</p>
+            </form>
         </div>
+      </div>
     </div>
   </div> 
 </body>

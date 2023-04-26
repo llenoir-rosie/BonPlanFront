@@ -18,46 +18,47 @@
                             <input class="form-control" formControlName="first_name" 
                             [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }" matInput required />
                             <label>Prénom</label>
-                        </div>
-                        <div *ngIf="submitted && f['first_name'].errors" class="invalid-feedback">
-                            <div *ngIf="f['first_name'].errors['required']">Le champ Prénom n'est pas rempli</div>
+                            <div *ngIf="submitted && f['first_name'].errors" class="invalid-feedback">
+                                <div *ngIf="f['first_name'].errors['required']">Le champ Prénom n'est pas rempli</div>
+                            </div>
                         </div>
                         <div class="user-box">
                             <input class="form-control" formControlName="last_name" matInput required />
                             <label>Nom</label>
-                        </div>
-                        <div *ngIf="submitted && f['last_name'].errors" class="invalid-feedback">
-                            <div *ngIf="f['last_name'].errors['required']">Le champ Prénom n'est pas rempli</div>
+                            <div *ngIf="submitted && f['last_name'].errors" class="invalid-feedback">
+                                <div *ngIf="f['last_name'].errors['required']">Le champ Prénom n'est pas rempli</div>
+                            </div>
                         </div>
                         <div class="user-box">
                             <input class="form-control" formControlName="email" matInput required />
                             <label>Mèl</label>
-                        </div>
-                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                            <div *ngIf="f['email'].errors['required']">Le champ Mèl n'est pas rempli</div>
+                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                <div *ngIf="f['email'].errors['required']">Le champ Mèl n'est pas rempli</div>
+                            </div>
                         </div>
                     </div>
                     <div class="form_column">
                         <div class="user-box">                                
-                            <input class="form-control" formControlName="password" matInput required />
+                            <input type="password" class="form-control" formControlName="password" matInput required />
                             <label>Mot de Passe</label>
-                        </div>
-                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                            <div *ngIf="f['password'].errors['required']">Le champ Password n'est pas rempli</div>
+                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                <div *ngIf="f['password'].errors['required']">Le champ Mot de Passe n'est pas rempli</div>
+                            </div>
                         </div>
                         <div class="user-box">                                
-                            <input class="form-control" formControlName="password" matInput required />
-                            <label>Confirmer Mot de Passe</label>
-                        </div>
-                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                            <div *ngIf="f['password'].errors['required']">Le champ Password n'est pas rempli</div>
+                            <input (keyup)="checkControlPassword()" type="password" id="password_control" class="form-control" name="password_control" matInput required />
+                            <label for="password_control">Confirmer Mot de Passe</label>
+                            <div *ngIf="submitted" class="invalid-feedback">
+                                <div *ngIf="error_empty">Le champ Password n'est pas rempli</div>
+                                <div *ngIf="error_control">Les Mots de Passe ne se correspondent pas</div>
+                            </div>
                         </div>
                         <div class="user-box">                                
                             <input class="form-control" formControlName="username" matInput required />
                             <label>Nom d'Utilisateur</label>
-                        </div>
-                        <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
-                            <div *ngIf="f['username'].errors['required']">Le champ Nom Utilisateur n'est pas rempli</div>
+                            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                                <div *ngIf="f['username'].errors['required']">Le champ Nom Utilisateur n'est pas rempli</div>
+                            </div>
                         </div>
                     </div>
                     <div class="form_column_submit">
