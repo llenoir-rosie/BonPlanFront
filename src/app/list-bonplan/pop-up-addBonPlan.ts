@@ -18,6 +18,7 @@ activity_type;
 nouvelleNote: Number[];
 newBP: Bonplan;
 submitted: Boolean;
+note_user: String[];
 
 constructor(@Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient, private dialogRefs: MatDialog) { 
     this.ville_name = data.nameCity
@@ -40,8 +41,9 @@ ngOnInit() {
 public addNewBP() {
     this.submitted = true; //une fois le formulaire soumis on peut afficher les messages d'erreurs s'ils existent
     if (!this.f['name'].errors && !this.f['address'].errors) {
+        this.note_user = [localStorage.getItem('currentUser')!];
         this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
-            localStorage.getItem('currentUser')!, this.nouvelleNote);
+            localStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user);
         this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe((data) => {
             this.dialogRefs.closeAll();
           })

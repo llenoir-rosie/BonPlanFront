@@ -19,11 +19,15 @@ export class Registration implements OnInit{
   newUser: User;
   msg: String;
   submitted: Boolean;
+  error_control: Boolean;
+  error_empty: Boolean;
 
   constructor(private router: Router, private http: HttpClient, private appComponent: AppComponent) {}
   
   ngOnInit() {
     this.submitted = false;
+    this.error_control = false;
+    this.error_empty = false;
     this.newUserForm = new FormGroup (
       {
         first_name : new FormControl('', Validators.required),
@@ -45,9 +49,16 @@ export class Registration implements OnInit{
   }
 
   addNewUser() {
-    //if (!this.f['name'].errors && !this.f['address'].errors) {
+    
     this.submitted = true;
-    if (!this.f['first_name'].errors && !this.f['last_name'].errors  && !this.f['email'].errors  && !this.f['password'].errors  && !this.f['username'].errors) { 
+    this.error_control = false;
+    this.error_empty = false;
+    if (this.newUserForm.value.password != (<HTMLInputElement>document.getElementById("password_control")).value) {
+      this.error_control = true;
+    } else if ((<HTMLInputElement>document.getElementById("password_control")).value == "") {
+      this.error_empty = true;
+    }
+    if (!this.f['first_name'].errors && !this.f['last_name'].errors  && !this.f['email'].errors  && !this.f['password'].errors  && !this.f['username'].errors && this.error_control==false && this.error_empty==false) { 
       this.newUser = new User(this.newUserForm.value.first_name,this.newUserForm.value.last_name, this.newUserForm.value.email, 
                     this.newUserForm.value.password, this.newUserForm.value.username, "USER");
       this.http.post<String>('http://localhost:8080/registration', this.newUser)
@@ -58,6 +69,16 @@ export class Registration implements OnInit{
         this.success = true;
       })
       this.router.navigate(['/login']);
+    }
+  }
+
+  checkControlPassword() {
+    this.error_control = false;
+    this.error_empty = false;
+    if (this.newUserForm.value.password != (<HTMLInputElement>document.getElementById("password_control")).value) {
+      this.error_control = true;
+    } else if ((<HTMLInputElement>document.getElementById("password_control")).value == "") {
+      this.error_empty = true;
     }
   }
 

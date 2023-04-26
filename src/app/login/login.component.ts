@@ -54,9 +54,7 @@ export class LoginComponent implements OnInit{
     // ))
     .subscribe((data) => {
       localStorage.setItem('token', Object.values(data)[0]);
-      console.log(data)
       this.http.get<User>('http://localhost:8080/' + this.loginUserForm.value.username + '/Details').subscribe((data) => {
-        console.log(data)
         localStorage.setItem('currentUser', data.username.toString());
         localStorage.setItem('currentUserRole',data.role.toString());
         this.router.navigate(['/ville'])
