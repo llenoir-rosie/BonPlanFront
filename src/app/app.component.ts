@@ -82,7 +82,7 @@ export class AppComponent implements OnInit{
   @HostListener('window:beforeunload') onBeforeUnload() {
     localStorage.removeItem("currentActivite");
     localStorage.removeItem("currentVille");
-    localStorage.setItem("currentImg", "./assets/img/activite-navbar.jpeg");
+    localStorage.setItem("currentImg", "");
     }
 
   // @HostListener('window:popstate') onPopState() {
@@ -110,8 +110,8 @@ export class AppComponent implements OnInit{
   changeImgNav() { // cette fonction est activée à l'initialisation 
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
     if(location.href == "http://localhost:4200/ville") {
-      this.currentImg = "./assets/img/activite-navbar.jpeg";
-      localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+      this.currentImg = "";
+      localStorage.setItem('currentImg', "");
       this.currentVille = "";
       localStorage.setItem('currentVille', "");
       this.currentActivite = "";
