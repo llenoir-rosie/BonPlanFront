@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background: rgb(148, 158, 110);
+    background: #949e6e;
     padding-top: 50px;
     padding-bottom: 50px;
   }

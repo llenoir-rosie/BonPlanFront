@@ -41,7 +41,7 @@ public addNewBP() {
     this.submitted = true; //une fois le formulaire soumis on peut afficher les messages d'erreurs s'ils existent
     if (!this.f['name'].errors && !this.f['address'].errors) {
         this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
-            localStorage.getItem('currentUser')!, this.nouvelleNote);
+            localStorage.getItem('currentUser')!, this.nouvelleNote, Date.now());
         this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe((data) => {
             this.dialogRefs.closeAll();
           })

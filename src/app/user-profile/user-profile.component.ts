@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { AppComponent } from "../app.component";
 import { MatDialog } from "@angular/material/dialog";
+import { Activite } from "../activite";
+import { Bonplan } from "../bonplan";
 
 @Component({
     selector: 'userProfile',
@@ -15,13 +17,14 @@ import { MatDialog } from "@angular/material/dialog";
 providedIn: 'root'
 })
 export class UserProfileComponent implements OnInit{
-    
-    
+
     constructor(private dialog : MatDialog,private router: Router, private route: ActivatedRoute, private http: HttpClient, private appComponent: AppComponent) {}
     userDetails : User;
     user_updated : User;
     username : String;
     msg : String;
+    choixdelete : String = "0";
+    AllBonPlan : Bonplan[]
 
    
 ngOnInit(): void {
@@ -34,6 +37,7 @@ ngOnInit(): void {
     localStorage.setItem('currentVille', "");
     localStorage.setItem('currentActivite', "");
     this.appComponent.ngOnInit();
+
 }
 
 public getUserDetails(username: String) {
@@ -97,6 +101,33 @@ public UpdateInfos(username:String){
         localStorage.setItem('currentUserRole', this.userDetails.role.toString())
         }) )
 }
+
+public ChoixDelete(choix : String){
+    this.choixdelete = choix;
+}
+
+public DeleteAccount(username:String){
+    if (this.choixdelete=="0"){
+        console.log('Il manque une option')
+    }else if(this.choixdelete=="1"){
+        this.http.delete("http://localhost:8080/deleteUser/" + username).subscribe()
+        this.AfterAccountDeleted()
+    }else if(this.choixdelete=="2"){
+        this.http.delete("http://localhost:8080/deleteAccountwithBP/"+username).subscribe() 
+        this.http.delete("http://localhost:8080/deleteUser/" + username).subscribe()
+        this.AfterAccountDeleted()
+    }
+}
+
+AfterAccountDeleted() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserRole');
+    localStorage.removeItem('token');
+    this.router.navigate(['/ville'])
+  }
+
+
+
 }
 
 

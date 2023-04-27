@@ -145,7 +145,7 @@ throw new Error('Method not implemented.');
     let nouvelleNote : Number[] = bpNote;
     nouvelleNote.push(Number(note));
     this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
-    nouvelleNote);
+    nouvelleNote,0);
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
     () => {

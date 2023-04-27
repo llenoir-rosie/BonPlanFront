@@ -26,70 +26,91 @@
           
           <div class="choix-tri">
             <label for="DropdownOptions">Trier par:</label>
-            <select class="form-control" id="DropdownOptions" >
+            <select class="form-control" id="DropdownOptions" (click)="Trie()" >
               <option
                 *ngFor="let opt of ngOptions"
                 [selected]="opt === ngDropdown"
-                [value]="opt">{{ opt }}
+                [value]="opt" >{{ opt }}
               </option>
             </select>
           </div>
 
         </div>
-
-        <ng-template #DialogAddUserBp class="AddUserBp">
-          <h2>Ajout d'un plan</h2>
-          <div mat-dialog-content>
-            <div class="AddBpCategorie">
-              <div class="choixAct">
-                <label for="act">Catégorie d'activité : </label>
-                <select class="form-control" id="DropdownOptionsAct">
-                  <option
-                    *ngFor="let opt of ngOptionsAddAct"
-                    [selected]="opt === ngDropdownAddAct"
-                    [value]="opt">{{ opt }} 
-                    
-                  </option>
-                </select>
-              </div>
-              <div class="choixVille">
-                <label for="act">Localisation : </label>
-                <select class="form-control" id="DropdownOptionsCity">
-                  <option
-                    *ngFor="let opt of ngOptionsAddCity"
-                    [selected]="opt === ngDropdownAddCity"
-                    [value]="opt">{{ opt }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="text-input">
-              <div class="name-newbp">
-                <label for="bp-name">Nom : </label>
-                <input type="text" id="bp-name" name="bp-name"><br>
-              </div>
-              <div class="description-newbp">
-                <label for="bp-description">Description : </label>
-                <textarea style="height: 100px;" id="bp-description" name="bp-description"></textarea>
-              </div>
-              <div class="rating">Laissez votre avis ! &#160;
-                <div>
-                  <a id="étoile5" value="5" (click)="GetNote(5)" title="Donner 5 étoiles">☆</a>
-                  <a id="étoile4" value="4" (click)="GetNote(4)" title="Donner 4 étoiles">☆</a>
-                  <a id="étoile3" value="3" (click)="GetNote(3)" title="Donner 3 étoiles">☆</a>
-                  <a id="étoile2" value="2" (click)="GetNote(2)" title="Donner 2 étoiles">☆</a>
-                  <a id="étoile1" value="1" (click)="GetNote(1)" title="Donner 1 étoile">☆</a>
+        
+        <ng-template  #DialogAddUserBp class="AddUserBp" >
+          <div class="content-ngtemplate" >
+            <h2 class = "titre">Ajout d'un plan</h2>
+            <div mat-dialog-content>
+              <div class="AddBpCategorie">
+                <div class="choixAct">
+                  <label for="act">Catégorie d'activité : </label>
+                  <select class="form-control" id="DropdownOptionsAct">
+                    <option
+                      *ngFor="let opt of ngOptionsAddAct"
+                      [selected]="opt === ngDropdownAddAct"
+                      [value]="opt">{{ opt }} 
+                      
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && error_act" class="invalid-feedback">
+                    * Saisir une activité
+                  </div>
                 </div>
-                {{note}}
+                <div class="choixVille">
+                  <label for="act">Localisation : </label>
+                  <select class="form-control" id="DropdownOptionsCity">
+                    <option
+                      *ngFor="let opt of ngOptionsAddCity"
+                      [selected]="opt === ngDropdownAddCity"
+                      [value]="opt">{{ opt }}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && error_city" class="invalid-feedback">
+                    * Saisir une ville
+                  </div>
+                </div>
               </div>
+              <div class="text-input">
+                <div class="name-newbp">
+                  <label for="bp-name">Nom : </label>
+                  <input type="text" id="bp-name" name="bp-name"><br>
+                  <div *ngIf="submitted && error_bpname" class="invalid-feedback">
+                    * Saisir un nom
+                  </div>
+                </div>
+                <div class="description-newbp">
+                  <label for="bp-description">Description : </label>
+                  <textarea style="height: 100px;" id="bp-description" name="bp-description"></textarea>
+                  <div *ngIf="submitted && error_bpdescription" class="invalid-feedback">
+                    * Saisir une description
+                  </div>
+                </div>
+                <div class="rating">
+                  <p>Laissez votre avis ! </p>
+                  <div>
+                    <a id="étoile5" value="5" (click)="GetNote(5)" title="Donner 5 étoiles">☆</a>
+                    <a id="étoile4" value="4" (click)="GetNote(4)" title="Donner 4 étoiles">☆</a>
+                    <a id="étoile3" value="3" (click)="GetNote(3)" title="Donner 3 étoiles">☆</a>
+                    <a id="étoile2" value="2" (click)="GetNote(2)" title="Donner 2 étoiles">☆</a>
+                    <a id="étoile1" value="1" (click)="GetNote(1)" title="Donner 1 étoile">☆</a>
+                  </div>
+                  <p>{{note}}</p>
+                  <div *ngIf="submitted && error_note" class="invalid-feedback">
+                    * Saisir une note
+                  </div>
+                </div>
+
+              </div>
+              
             </div>
-            
-          </div>
-          <div mat-dialog-actions class = "button-bottom">
-            <button (click)="AddNewBP()">Valider</button>
-            <button mat-button matDialogClose color="primary">Annuler</button>
+            <div mat-dialog-actions class = "button-bottom">
+              <button class="BtnValider" (click)="AddNewBP()">Valider</button>
+              <button class="BtnAnnuler" matDialogClose (click)="Annuler()" >Annuler</button>
+            </div>
           </div>
         </ng-template>
+        
+        
         
         
         <div>
@@ -108,24 +129,31 @@
                     <p>Description : {{ bp.address }}</p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
     
-                  
-                    <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
-                      <div *ngIf="moyenneTableau(bp.note) < '2.3'" class="notation">
-                        <i class="material-icons notation_étoile" style="font-size: 20px; color: red">
-                          star
-                        </i> <i> ({{bp.note.length}} avis) </i>
+                    <div class = "bottom-card-bp">
+                      <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
+                        <div *ngIf="moyenneTableau(bp.note) < '2.3'" class="notation">
+                          <i class="material-icons notation_étoile" style="font-size: 20px; color: red">
+                            star
+                          </i> <i> ({{bp.note.length}} avis) </i>
+                        </div>
+                        <div *ngIf="moyenneTableau(bp.note) > '3.7'" class="notation">
+                          <i class="material-icons notation_étoile" style="font-size: 20px; color: green">
+                            star
+                          </i> <i> ({{bp.note.length}} avis) </i>
+                        </div>
+                        <div *ngIf="moyenneTableau(bp.note) >= '2.3' && moyenneTableau(bp.note) <= '3.7' " class="notation">
+                          <i class="material-icons notation_étoile" style="font-size: 20px; color: orange">
+                            star
+                          </i> <i> ({{bp.note.length}} avis) </i>
+                        </div>
                       </div>
-                      <div *ngIf="moyenneTableau(bp.note) > '3.7'" class="notation">
-                        <i class="material-icons notation_étoile" style="font-size: 20px; color: green">
-                          star
-                        </i> <i> ({{bp.note.length}} avis) </i>
+                      <div class="separator">
                       </div>
-                      <div *ngIf="moyenneTableau(bp.note) >= '2.3' && moyenneTableau(bp.note) <= '3.7' " class="notation">
-                        <i class="material-icons notation_étoile" style="font-size: 20px; color: orange">
-                          star
-                        </i> <i> ({{bp.note.length}} avis) </i>
+                      <div class="date-bp">
+                        <p>il y a {{getDateCreaBp(bp.date)[0]}} {{getDateCreaBp(bp.date)[1]}}</p>
                       </div>
                     </div>
+                    
                   <!-- <img class = "img-test" src="{{currentImg}}"> -->
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
                   ses bp )-->
