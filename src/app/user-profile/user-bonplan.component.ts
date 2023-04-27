@@ -49,6 +49,7 @@ export class UserBonPlanComponent implements OnInit{
   error_note : Boolean;
   trie : String
   date: number;
+  note_user :String[]
   constructor(private dialog : MatDialog, private router: Router, private route: ActivatedRoute, private http: HttpClient, private appComponent: AppComponent) {}
 
 
@@ -170,6 +171,8 @@ public AddNewBP(){
   this.error_city = false;
   this.error_note = false;
   this.date = Date.now()
+  this.note_user=[this.username]
+  
 
   console.log(this.date)
 
@@ -178,7 +181,7 @@ public AddNewBP(){
   let bpdescription = (<HTMLInputElement>document.getElementById("bp-description")).value
   let act = (<HTMLInputElement>document.getElementById("DropdownOptionsAct")).value
   let city = (<HTMLInputElement>document.getElementById("DropdownOptionsCity")).value
-  this.newBP = new Bonplan(city, act, bpname, bpdescription, this.username, [this.note], this.date );
+  this.newBP = new Bonplan(city, act, bpname, bpdescription, this.username, [this.note], this.note_user, this.date );
   this.newCityActivity = new cityactivities(0, city, act);
   if(bpname==""){
     this.error_bpname=true

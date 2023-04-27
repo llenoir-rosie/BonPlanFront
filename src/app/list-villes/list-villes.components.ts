@@ -32,6 +32,8 @@ export class ListeVillesComponent implements OnInit {
   newCityActivity: cityactivities;
   count_bonplan: Number;
   count_mauvaisplan: Number;
+  allowModeratorRight: boolean;
+  allowUserRight: boolean;
 
 
   constructor(private dialog : MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient,
@@ -52,6 +54,17 @@ export class ListeVillesComponent implements OnInit {
         this.getAllCities(routeParams['activity.name']);
         this.getAllPossibleCities();
         this.getImgActivity(this.nameActivity);
+
+        if (localStorage.getItem("currentUser") == null) {
+          this.allowModeratorRight = false
+          this.allowUserRight = false
+        } else {
+          if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+            this.allowModeratorRight = true
+          } else {
+            this.allowUserRight = true
+          }
+        }
     });
 
     // on enlève la valeur de currentVille dans localStorage et on y met la bonne valeur de currentActivity

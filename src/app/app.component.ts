@@ -31,6 +31,7 @@ export class AppComponent implements OnInit{
   currentActivite: String;
   public searchInput: String = '';
   initial_username : String;
+  location_url : String;
 
   //search variable 
   researcheBy: string;
@@ -52,7 +53,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     // this.logCurrentUser();
     this.isCityActivated = true;
-    this.researcheBy = this.searchArray[1]
+    this.researcheBy = this.searchArray[0]
     this.changeImgNav();
 
     this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
@@ -62,6 +63,8 @@ export class AppComponent implements OnInit{
        this.Activitieslist = data;
     }) 
     this.IsUserIsAuth();
+
+    this.location_url = location.href;
 
   }
 
@@ -79,7 +82,7 @@ export class AppComponent implements OnInit{
   @HostListener('window:beforeunload') onBeforeUnload() {
     localStorage.removeItem("currentActivite");
     localStorage.removeItem("currentVille");
-    localStorage.setItem("currentImg", "./assets/img/activite-navbar.jpeg");
+    localStorage.setItem("currentImg", "");
     }
 
   // @HostListener('window:popstate') onPopState() {
@@ -107,8 +110,8 @@ export class AppComponent implements OnInit{
   changeImgNav() { // cette fonction est activée à l'initialisation 
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
     if(location.href == "http://localhost:4200/ville") {
-      this.currentImg = "./assets/img/activite-navbar.jpeg";
-      localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+      this.currentImg = "";
+      localStorage.setItem('currentImg', "");
       this.currentVille = "";
       localStorage.setItem('currentVille', "");
       this.currentActivite = "";
@@ -191,11 +194,10 @@ export class AppComponent implements OnInit{
   changeSearchBtn(searchItemHTML: string) {
     if (searchItemHTML == 'Recherche par Ville') {
       this.researcheBy = this.searchArray[1];
-      this.isCityActivated = true;
-      console.log(this.researcheBy)
+      this.isCityActivated = false;
     } else {
       this.researcheBy = this.searchArray[0];
-      this.isCityActivated = false;
+      this.isCityActivated = true;
     }
   }
   SearchVilleEnter(){
@@ -204,5 +206,6 @@ export class AppComponent implements OnInit{
   SearchActivityEnter(){
     this.goToDetailActivity(this.allActivities[0])
   }
+
 
 }

@@ -73,14 +73,17 @@
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <div class="rating">Laissez-nous votre avis ! &#160;
+                    <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
                       <div>
-                         <a id="étoile5" (click)="noteClick('5', bp.note, bp.name, bp.address)" title="Donner 5 étoiles">☆</a><!--
-                      --><a id="étoile4" (click)="noteClick('4', bp.note, bp.name, bp.address)" title="Donner 4 étoiles">☆</a><!--
-                      --><a id="étoile3" (click)="noteClick('3', bp.note, bp.name, bp.address)" title="Donner 3 étoiles">☆</a><!--
-                      --><a id="étoile2" (click)="noteClick('2', bp.note, bp.name, bp.address)" title="Donner 2 étoiles">☆</a><!--
-                      --><a id="étoile1" (click)="noteClick('1', bp.note, bp.name, bp.address)" title="Donner 1 étoile">☆</a>
+                         <a id="étoile5" (click)="noteClick('5', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 5 étoiles">☆</a><!--
+                      --><a id="étoile4" (click)="noteClick('4', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 4 étoiles">☆</a><!--
+                      --><a id="étoile3" (click)="noteClick('3', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 3 étoiles">☆</a><!--
+                      --><a id="étoile2" (click)="noteClick('2', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 2 étoiles">☆</a><!--
+                      --><a id="étoile1" (click)="noteClick('1', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 1 étoile">☆</a>
                       </div>
+                    </div>
+                    <div *ngIf = "bp.already_noted == 'true'" >
+                      <p class="information_call_note"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
                     </div>
                   </div>
                   <img class = "img-test" src="{{currentImg}}">
@@ -148,15 +151,21 @@
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <div class="rating">Laissez-nous votre avis ! &#160;
+                    <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
                       <div>
-                         <a id="étoile5" (click)="noteClick('5', bp.note, bp.name, bp.address)" title="Donner 5 étoiles">☆</a><!--
-                      --><a id="étoile4" (click)="noteClick('4', bp.note, bp.name, bp.address)" title="Donner 4 étoiles">☆</a><!--
-                      --><a id="étoile3" (click)="noteClick('3', bp.note, bp.name, bp.address)" title="Donner 3 étoiles">☆</a><!--
-                      --><a id="étoile2" (click)="noteClick('2', bp.note, bp.name, bp.address)" title="Donner 2 étoiles">☆</a><!--
-                      --><a id="étoile1" (click)="noteClick('1', bp.note, bp.name, bp.address)" title="Donner 1 étoile">☆</a>
+                         <a id="étoile5" (click)="noteClick('5', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 5 étoiles">☆</a><!--
+                      --><a id="étoile4" (click)="noteClick('4', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 4 étoiles">☆</a><!--
+                      --><a id="étoile3" (click)="noteClick('3', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 3 étoiles">☆</a><!--
+                      --><a id="étoile2" (click)="noteClick('2', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 2 étoiles">☆</a><!--
+                      --><a id="étoile1" (click)="noteClick('1', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 1 étoile">☆</a>
                       </div>
                     </div>
+                    <div *ngIf = "bp.already_noted == 'true'" >
+                      <p class="information_call_note"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
+                    </div>
+                    <!-- <div *ngIf="bp.already_noted == 'false' ">
+                      Bon Plan déjà noté
+                    </div> -->
                   </div>
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier

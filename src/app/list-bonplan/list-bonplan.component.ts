@@ -12,6 +12,7 @@ import { PopUpComponentUpdateBonPlan } from './pop-up-updateBonPlan.component';
 import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.component';
 import { AppComponent } from "../app.component";
 import { style } from '@angular/animations';
+import { BonPlanNote } from '../bonplan_note';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -33,8 +34,8 @@ throw new Error('Method not implemented.');
   imgBackGround: String;
   nomdelaville: String;
   nomdelactivite: String;
-  public listeBonPlan: Bonplan[];
-  public listeMauvaisPlan: Mauvaisplan[];
+  public listeBonPlan: BonPlanNote[];
+  public listeMauvaisPlan: BonPlanNote[];
   bonplanDeleted: Boolean = false;
   mauvaisplanDeleted: Boolean = false;
   allowUserRight: boolean;
@@ -44,11 +45,12 @@ throw new Error('Method not implemented.');
   currentVille: String;
   currentActivite: String;
   newBP: Bonplan;
-  allBonPlan: Bonplan[];
-  allMauvaisPlan: Bonplan[];
+  
+  allBonPlan: BonPlanNote[];
+  allMauvaisPlan: BonPlanNote[];
   trie1 : String;
   trie2 : String;
-
+  allBonPlanNote: BonPlanNote[];
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
@@ -87,12 +89,28 @@ throw new Error('Method not implemented.');
 
   //"attrape" les bons et les mauvais plans en foncion de la ville et de l'activité où l'on est
   public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
-    this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
+    this.http.get<BonPlanNote[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
       // trie les bons plans en fonction de la note moyenne des utilisateurs
+      this.allBonPlanNote = [];
       this.listeBonPlan = data.sort((a,b) => Number(this.moyenneTableau(b.note)) - Number(this.moyenneTableau(a.note)));
-      this.allBonPlan = this.listeBonPlan.filter(el => Number(this.moyenneTableau(el.note)) > 2);
-      this.allMauvaisPlan = this.listeBonPlan.filter(el => Number(this.moyenneTableau(el.note)) <= 2).reverse();
-      console.log("trie1", this.trie1)
+
+      this.listeBonPlan.forEach(elt => {
+        let i = 0;
+          while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
+            i++          
+          }
+          if (i < elt.note_user?.length ) {
+            let bon_plan_note = new BonPlanNote(elt, "true");
+            this.allBonPlanNote.push(bon_plan_note)
+          } else {
+            let bon_plan_note = new BonPlanNote(elt, "false");
+            this.allBonPlanNote.push(bon_plan_note)
+          }
+      })
+      
+
+      this.allBonPlan = this.allBonPlanNote.filter(el => Number(this.moyenneTableau(el.note)) > 2);
+      this.allMauvaisPlan = this.allBonPlanNote.filter(el => Number(this.moyenneTableau(el.note)) <= 2).reverse();
       this.trie1 = "Les mieux notés"
       this.trie2 = "Les moins bien notés"
       this.Trie1()
@@ -151,12 +169,13 @@ throw new Error('Method not implemented.');
     return moyenne.toFixed(1);
   }
 
-  public noteClick(note:String, bpNote: Number[], bpName: String, bpAdress: String) {
-    // console.log('Number(note)', Number(note), 'bpNote', bpNote);
+  public noteClick(note:String, bpNote: Number[], bpName: String, bpAdress: String, bpNoteUser: String[]) {
     let nouvelleNote : Number[] = bpNote;
     nouvelleNote.push(Number(note));
-    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
-    nouvelleNote,0);
+    let newUserNote : String[] = bpNoteUser;
+    newUserNote.push(String(localStorage.getItem('currentUser')!));
+    this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    nouvelleNote, newUserNote, 0), "true");
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
     () => {

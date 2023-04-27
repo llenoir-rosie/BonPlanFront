@@ -28,9 +28,9 @@
         </div>
       </div>
     </div>
-    <div style="background-color: brown;" class="swiper mySwiper2">
+    <div style="background-color: darkred; box-shadow: 0px -5px 5px darkred;" class="swiper mySwiper2">
       <div class="swiper-wrapper" >
-        <div class="swiper-slide" style="background-color: brown;" *ngFor="let ville of listVille">
+        <div class="swiper-slide" *ngFor="let ville of listVille">
           <div class="card">
             <img class="pic" src= " {{ ville.image }}">
             <div class="title-card">
@@ -48,9 +48,9 @@
       <div class="swiper-button-prev" style="color: black;"></div>
     </div>
   
-    <div  #sec2 class="swiper mySwiper2" style="background-color: beige;">
+    <div  #sec2 class="swiper mySwiper2" style="background-color: #8b4600; box-shadow: 0px -5px 5px #8b4600;">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" style="background-color: beige;" *ngFor="let activity of listActivities">
+        <div class="swiper-slide"  *ngFor="let activity of listActivities">
           <div class="card" >
             <img class="pic" src= " {{ activity.image }}">
             <div class="title-card">
@@ -67,6 +67,62 @@
     </div>
   </div>
 </div>
+<h1 class="title_card_faces">CREATEURS DU SITE : </h1>
+<div class="card_faces">
+  <div class="card2">
+    <img src="../../assets/img/profil_lorenzo.jpg" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">LENOIR Lorenzo</h5>
+      <p class="card-text">Full-Stack Developer</p>
+    </div>
+  </div>
+  <div class="card2">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">FAVRE Claire</h5>
+      <p class="card-text">Full-Stack Developer</p>
+    </div>
+  </div>
+  <div class="card2">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">PONS Gabriel</h5>
+      <p class="card-text">Front-End Developer</p>
+    </div>
+  </div>
+  <div class="card2">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">MOR Samy</h5>
+      <p class="card-text">Front-End Developer</p>
+    </div>
+  </div>
+  <div class="card2">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">THOMAZEAU Samuel</h5>
+      <p class="card-text">Coordinateur</p>
+    </div>
+  </div>
+  <div class="card2">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">DUCOS Solenn</h5>
+      <p class="card-text">Coordinatrice</p>
+    </div>
+  </div>
+  <div class="card2">
+    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <div class="card-body">
+      <h5 class="card-title">FERNEY Thibault</h5>
+      <p class="card-text">Front-End Developer</p>
+    </div>
+  </div>
+</div>
+<div class="commentaries_section">
+  Commentaires à venir ;)
+</div>
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     
 </body>

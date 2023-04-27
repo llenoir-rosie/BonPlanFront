@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   </head>
   <nav>
-      <div class="nav-wrapper" style="background-color: #2980b9;">
+      <div class="nav-wrapper" style="background-color: darkred; box-shadow: 0 5px 5px darkred; border-color: darkred;">
           <div class="haut-gauche">
             <a href="#" ><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
             <div class="right-content">
@@ -26,58 +26,72 @@
             </div>
           </div>
       
-          <img class = "activite-navbar" src='{{currentImg}}'>
-          <form *ngIf='isCityActivated' action="">
-            <input
-            [(ngModel)]="searchInput"
-            class="new-search"
-            type="text"
-            required
-            name="name" 
-            #searchBox
-            placeholder="Recherchez une ville"
-            (keyup)="SearchVille(searchBox.value)"
-            (keyup.enter)= "SearchVilleEnter()">
-              <div class="collection">
-                <ul>
-                  <a *ngFor="let Ville of this.touteVille"
-                    (click)="goToDetailVille(Ville)"
-                    class="collection-item"
-                    id="log"
-                  >
-                    <p> {{ Ville.name }} </p>
-                  </a>
-                </ul>
-              </div>
-            <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
-          </form>
-          <form *ngIf='!isCityActivated' action="">
-            <input
-            [(ngModel)]="searchInput"
-            class="new-search"
-            type="text"
-            required
-            name="name" 
-            #searchBox
-            placeholder="Recherchez une activité"
-            (keyup)="SearchActivity(searchBox.value)"
-            (keyup.enter)= "SearchActivityEnter()">
-              <div class="collection">
-                <ul>
-                  <a *ngFor="let Activite of this.allActivities"
-                    (click)="goToDetailActivity(Activite)"
-                    class="collection-item"
-                    id="log"
-                  >
-                    <p> {{ Activite.name }} </p>
-                  </a>
-                </ul>
-              </div>
+          <img *ngIf= "currentImg != '' " class = "activite-navbar" src='{{currentImg}}'>
+          <!-- <div *ngIf= "currentImg == '' " class = "activite-navbar" style="background-color: darkred; box-shadow: 0 0 5px 5px darkred; border-color: darkred;">
+          </div> -->
+          <div class="nav-centre">
+            <form *ngIf='isCityActivated' action="">
+              <input
+              [(ngModel)]="searchInput"
+              class="new-search"
+              type="text"
+              required
+              name="name" 
+              #searchBox
+              placeholder="Ville"
+              (keyup)="SearchVille(searchBox.value)"
+              (keyup.enter)= "SearchVilleEnter()">
+                <div class="collection">
+                  <ul>
+                    <a *ngFor="let Ville of this.touteVille"
+                      (click)="goToDetailVille(Ville)"
+                      class="collection-item"
+                      id="log"
+                    >
+                      <p> {{ Ville.name }} </p>
+                    </a>
+                  </ul>
+                </div>
+              <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
+            </form>
+            <form *ngIf='!isCityActivated' action="">
+              <input
+              [(ngModel)]="searchInput"
+              class="new-search"
+              type="text"
+              required
+              name="name" 
+              #searchBox
+              placeholder="Activité"
+              (keyup)="SearchActivity(searchBox.value)"
+              (keyup.enter)= "SearchActivityEnter()">
+                <div class="collection">
+                  <ul>
+                    <a *ngFor="let Activite of this.allActivities"
+                      (click)="goToDetailActivity(Activite)"
+                      class="collection-item"
+                      id="log"
+                    >
+                      <p> {{ Activite.name }} </p>
+                    </a>
+                  </ul>
+                </div>
               <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
             </form>
-            <div (click)="changeSearchBtn(researcheBy)" class="change-search">
-              {{ researcheBy }}
+            <div class="toggle-ville-activite">
+              <div class="change-search">
+                Recherche par ville
+              </div>
+              <input type="checkbox" id="switch" (click)="changeSearchBtn(researcheBy)"/>
+              <label for="switch" class="toggle"></label>
+              <div class="change-search">
+                Recherche par activité
+              </div>
+              <button class="curtain1"></button>
+              <button class="curtain2"></button>
+            </div>
           </div>
+          
           <button *ngIf = "!allowConnection" class="menu" >
           <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
             
@@ -90,67 +104,25 @@
               </ul>
             </li>
           </button>
-          <!-- <ul *ngIf = "!allowConnection" class="myAccount menu" >
-            <li><img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
-            
-              <ul class="sub-menu">
-                <li>Profile</li>
-                <li>Mes Bons Plans</li>
-                <li>Mes Mauvais Plans</li>
-              </ul>
-            </li>
-          </ul> -->
-            <!-- <button *ngIf = "!allowConnection" class="myAccount" (click)="gotToMyAccount(currentUser)">
-              <div class="txt-connection" >{{currentUser}}</div>
-          <form *ngIf='!isCityActivated' action="">
-            <input
-            [(ngModel)]="searchInput"
-            class="new-search"
-            type="text"
-            required
-            name="name" 
-            #searchBox
-            placeholder="Recherchez une activité"
-            (keyup)="SearchActivity(searchBox.value)"
-            (keyup.enter)= "SearchActivityEnter()">
-              <div class="collection">
-                <ul>
-                  <a *ngFor="let Activite of this.allActivities"
-                    (click)="goToDetailActivity(Activite)"
-                    class="collection-item"
-                    id="log"
-                  >
-                    <p> {{ Activite.name }} </p>
-                  </a>
-                </ul>
-              </div>
-              <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
-            </form>
-          <div (click)="changeSearchBtn(researcheBy)" class="change-search">
-              {{ researcheBy }}
-          </div>
-            <button *ngIf = "!allowConnection" class="myAccount">
-              <div class="txt-connection" (click)="gotToMyAccount(currentUser)">{{currentUser}}</div>
-              <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
-            </button> -->
-            <button class="button-connexion">
-              <div *ngIf = "allowConnection" class="txt-connection" (click)="login()">Se connecter</div>
-              <div *ngIf = "!allowConnection" class="txt-connection" (click)="logout()">Déconnexion</div>
-              <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
-            </button>
+          <button class="button-connexion">
+            <div *ngIf = "allowConnection" class="txt-connection" (click)="login()">Se connecter</div>
+            <div *ngIf = "!allowConnection" class="txt-connection" (click)="logout()">Déconnexion</div>
+            <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+          </button>
       </div>
-      <div class="entete" >
-        <h1>Vous êtes arrivé dans une nouvelle ville ? Envie de partager vos bons coins ? Bienvenue !!</h1>
-        <p>
-          Vous êtes à la recherche d'endroits pour faire du sport, écouter de la musique, découvrir votre nouvelle ville. Mais aussi éviter les faux plans ?
-          Ce site vous permettra de trouver les activités qui vous conviennent dans les villes où vous vous situez !
-          Entièrement collaboratif, les internautes se refilent leurs bons plans.
+      <div *ngIf = "this.location_url == 'http://localhost:4200/ville' " class="entete" >
+        <h1>Arrivé dans une nouvelle ville ? <br/> Envie de partager vos bons coins ? <br/> Bienvenue !!</h1>
+        <p class="trium_word">
+          Faire du sport, &nbsp;&nbsp;&nbsp; Ecouter de la musique, &nbsp;&nbsp;&nbsp; Eviter les faux plans ? <br/>
+        </p>  
+        <p class="sub_text">
+        Entièrement collaboratif, <br/> ce site permet aux internautes de se passer leurs bons plans.
         </p>
       </div>
   </nav>
   <body>
     <router-outlet></router-outlet>
-    <footer class="page-footer" style="background-color:rgb(148, 158, 110)">
+    <footer class="page-footer" style="background-color: darkred">
       <div class="footer-copyright">
         <div class="container">
           © 2023 Copyright Lorenzo Lenoir, Gabriel Pons, Claire Favre, Thibault Ferney, Solenn Ducos, Samy Mor
