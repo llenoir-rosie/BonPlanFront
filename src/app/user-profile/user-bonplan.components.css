@@ -1,0 +1,321 @@
+body {
+    background-color: #e4e7e7;
+    height: 100%;
+}
+
+#editBtn {
+    color:forestgreen;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#editBtn:hover {
+    cursor:pointer;
+}
+
+#trashBtn {
+    color: red;
+    position: absolute;
+    /* top: 92%;
+    right: 15px; */
+    /* top: 50px; */
+    left: 97%;
+    bottom:5%;
+}
+
+#trashBtn:hover {
+    cursor: pointer;
+}
+
+.btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+/* ------------------------------------------------------------------------------ **/
+
+.gros-titre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-bp {
+    width: 80%;
+    background-color:#d0e9db ;
+    padding: 2%;
+    box-shadow: 0 0 10%;
+    box-shadow: 0 0 10px #d0e9db;
+}
+.card-bp h1 {                                                                                                               
+    background-color: #95a5a6;
+    border-radius: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 0 0 5px #2ecc71 ;
+}
+
+
+.rating {
+    position: relative;
+    bottom: 0;
+    /* left: 25%; */
+    /* transform: translate(-50%, 0); */
+    display: flex;
+    align-items: center;
+    margin-bottom: 1%;
+    margin: 5px;
+    padding : 1%
+}
+.rating a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 2em;
+    transition: color .4s;
+    float: right; /* permet de colorer les étoiles dans le bon sens (de gauche à droite) */
+ }
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a, /* sélecteur d'adjacente indirecte: permet de changer la couleur des étoiles précédentes à celle surolée  */
+.rating a:focus ~ a {
+    cursor: pointer;
+    color: orange;
+}
+
+.rating a:visited ~ a{
+    color: orange;
+}
+.rating p{
+    color:white;
+}
+
+
+h2 {
+    /* width: 100%; */
+    white-space: normal;
+    text-align: center;
+    padding : 20px;
+}
+
+p {
+    /* width: 100%; */
+    white-space: normal;
+    margin:10px;
+    /* word-wrap: break-word; */
+}
+
+.card-content-bp {
+    display:flex;
+    flex-wrap: nowrap;
+    box-shadow: 0 0 5px #2ecc71 ;
+    padding: 2%;
+}
+
+
+.img-test {
+    position: relative;
+    margin-left: 4rem;
+    height: 80%;
+    width: 40%;
+    object-fit: cover;
+}
+
+.tetes-card{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.notation {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.content-usr-bp{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+.btn-addusrbp{
+    height: 30px;
+    width: 180px;
+    margin: 5%;
+    /* padding-top:50%;
+    position : relative;
+    top:20% */
+}
+
+.options-bp{
+    display: flex;
+    flex-direction: column;
+    margin : 5%;
+    padding : 1%;
+
+}
+
+#trier{
+    position: relative;
+    border:solid;
+    z-index: 10000;
+}
+/* 
+.AddUserBp{
+    font-size:2em;
+    margin:2%;
+} */
+
+.titre{
+    color: #fff;
+    text-align: center;
+    font-size:2em;
+}
+.content-ngtemplate{
+    margin-top: 0px;
+    position: relative;
+    top: 390px;
+    height : 790px; /* ne pas changer */
+    left: 50%;
+    width: 100%;
+    /* height: 100%; */
+    padding: 40px ;
+    transform: translate(-50%, -50%);
+    background-color: brown;
+    box-shadow: 0 0 0 10px brown;
+    border-radius: 10px;
+}
+
+.AddUserBp > h2 {
+    margin-bottom: 10px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size:1em;
+  }
+
+.AddBpCategorie{
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.choixAct{
+    padding:5%;
+    width:300px;
+}
+.choixVille{
+    padding:5%;
+    width:300px;
+}
+.choixAct label {
+    font-size:1em;
+    color: #fff;
+}
+.choixVille label{
+    font-size:1em;
+    color: #fff;
+}
+.text-input{
+
+}
+.text-input label{
+    font-size:1em;
+    color: #fff;
+}
+
+.name-newbp{
+    padding : 2%;
+}
+
+.description-newbp{
+    padding : 2%;
+}
+
+.button-bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+
+.BtnValider{
+    padding:5px;
+    width:20%;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: white;
+    color: white;
+    background-color:brown;
+
+}
+.BtnValider:hover{
+    background: burlywood;
+    color: #fff;
+    box-shadow: 0 0 5px burlywood,
+                0 0 25px burlywood,
+                0 0 50px burlywood,
+                0 0 100px burlywood;
+   
+    transition : 0.4s;
+  
+}
+
+.BtnAnnuler {
+    padding : 5px;
+    width:20%;
+    border-radius:5px;
+    border : solid;
+    color:white;
+    border-color: red;
+    border-width: 1px;
+    background-color: brown;
+}
+
+.choix-tri{
+    margin-top : 20%;
+    padding : 1%;
+}
+
+.choix-tri label{
+    font-size : 1em;
+    padding : 10px;
+}
+
+.invalid-feedback{
+    color:red;
+}
+#bp-name{
+    color:white;
+    /* border-bottom : red;
+    animation : shake 0.14s 3; */
+}
+#bp-description{
+    color:white;
+}
+
+.bottom-card-bp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.separator{
+    width : 5px;
+    height : 5px;
+    background-color: black;
+    border-radius: 50%;
+    margin : 10px;
+}
+

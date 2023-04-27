@@ -63,8 +63,7 @@ img {
 }
  #ButtonDeleteAct{
     /* background-color: red; */
-     flex-wrap: wrap;
-    width : 100px; 
+     flex-wrap: wrap; 
     /* bottom : 2%; */
     left : 20%; 
 }
@@ -81,6 +80,7 @@ img {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
+    align-content: center;
 }
 
 .bouton-pop-up-ajouter-act, .bouton-pop-up-delete, .bouton-bottom-card{

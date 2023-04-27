@@ -1,5 +1,10 @@
 body{
-    padding: 3%;
+    /* padding: 3%; */
+}
+
+.profile{
+    padding : 4%;
+    background-color:   #cfccdd;
 }
 h1{
     font-size : 2.5em;
@@ -31,7 +36,8 @@ h1{
 
 .container_button_bottom{
     display:flex;
-    justify-content: center;
+    justify-content: space-around;
+    margin : 10%;
 }
 
 .container_infos_account{
@@ -107,16 +113,121 @@ h1{
     justify-content:center;
 }
 
+.ng-template-updateinfos{
+    background-color: brown;
+    width :600px;
+    padding : 20px;
+}
+.ng-template-updateinfos h2{
+    color:white;
+    text-align: center;
+}
+.ng-template-updateinfos p{
+    color : white;
+    font-size: 0.7em;
+}
 .popup-updateinfos{
     padding: 100px;
     margin: 100px;
+    width: auto;
 }
+
+
 
 .popup-updatepassword-content label{
     font-size: 1em;
+    color : white;
 }
 
-/* .popup-updatepassword h2{
+.popup-updateinfos-content label{
+    font-size: 1em;
+    width: 200px;
+    color : white;
+}
+
+.contentlabel-popupupdateinfos{
+    padding:10px;
+    flex-wrap: wrap;
+    /* display: flex;
+    flex-direction: row; */
+}
+.contentlabel-popupupdateinfos label{
+    color:white;
+}
+.button-bottom-dialog{
+    padding-top : 30px;
+    justify-content: space-around;
+}
+
+.container-contentupdateinfo label{
+    font-size: 1em;
+    color : white;
+}
+
+.message_updatepassword{
+    margin: 5%;
+    font-size: 1.2em;
+    color:white;
     text-align: center;
-    color:red;
-} */
+}
+.popup-updatepassword-content input{
+    color:white;
+}
+
+.content-checkbox{
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+
+}
+.content-checkbox div label{
+    font-size: 1em;
+    padding : 5px;
+    margin : 10px;
+    color : white;
+}
+
+.choix-delete{
+    background-color: gray;
+    border-radius : 5px;
+    height : 15px;
+    width : 15px;
+    padding : 10px;
+    margin : 10px;
+}
+.choix-delete:active{
+    background-color: rgb(49, 206, 10);
+}
+
+.row-checkbox{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.ng-template-delete h2{
+    text-align: center;
+    padding : 10px;
+    color : white;
+}
+
+
+.ng-template-delete{
+    width : 600px;
+    background-color: brown;
+}
+
+.Btn-delete{
+    color : white;
+    border-color: white;
+    background-color: brown;
+    border-width : 1px;
+    border-radius : 5px;
+}
+.Btn-Annuler{
+    color : white;
+    border-color : white;
+    background-color: brown;
+    border-width : 1px;
+    border-radius : 5px;
+}

@@ -10,30 +10,51 @@
 <body>
   <div cdk-overlay-pane>
   <div class="login-box">
-      <h1>Add A New Bon Plan</h1>
-      <form [formGroup] = "newBPForm">
-        <div class="user-box">
+      <h1>Ajoutez Votre Nouveau Plan</h1>
+      <form ngNativeValidate [formGroup] = "newBPForm">
+        <div class="user-box2">
                 <input  class="form-control" formControlName="ville_name"  placeholder="{{ville_name}}" value="{{ville_name}}" readonly matInput required />
-                <label>City's name</label>
+                <label>Nom de la Ville</label>
         </div>
-        <div class="user-box">                      
+        <div class="user-box2">                      
             <input class="form-control" formControlName="activity_type" placeholder="{{activity_type}}" value="{{activity_type}} " readonly matInput required />
-            <label>Activity's Type</label>
+            <label>Type de l'Activité</label>
         </div>
         <div class="user-box">                      
-            <input class="form-control" formControlName="name" matInput required />
-            <label>Name</label>
+            <input class="form-control" formControlName="name" 
+            [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" matInput required />
+            <label>Nom du Nouveau Plan</label>
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+              <div *ngIf="f['name'].errors['required']">Besoin d'un Nom de Bon Plan</div>
+            </div>
         </div>
         <div class="user-box">                      
             <input class="form-control" formControlName="address" matInput required />
-            <label>Address</label>
+            <label>Addresse</label>
+            <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
+              <div *ngIf="f['address'].errors['required']">Besoin d'une Addresse</div>
+            </div>
         </div>
-        <a (click)="addNewBP()">
+        <div class="user-box" matInput required >
+          <div>
+            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles">☆</a>
+            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles">☆</a>
+            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles">☆</a>
+            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles">☆</a>
+            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile">☆</a>
+          </div>
+            <p *ngIf="nouvelleNote" style="font-size: 0.8em; position: absolute; left:0px; padding-left: 0px; top:5px; color: #45feaf;">Votre Plan est noté {{nouvelleNote}} </p>
+          <label> Votre avis sur le bon plan </label>
+          <div *ngIf="submitted && nouvelleNote==undefined" class="invalid-feedback">
+            Donnez une Note !
+          </div>
+        </div>
+        <a class="addBtn"(click)="addNewBP()">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
-        Submit
+        Enregistrer
         </a>
       </form>
   </div>

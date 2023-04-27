@@ -17,7 +17,7 @@ body {
 #trashBtn {
     color: red;
     position: absolute;
-    top: 220px;
+    top: 92%;
     right: 15px;
 }
 
@@ -43,6 +43,10 @@ body {
 .row {
     display: flex;
     justify-content: space-between;
+}
+
+.card {
+    border-radius: 10px;
 }
 
 .card-bp {
@@ -78,6 +82,12 @@ body {
     width: 50%;
 }
 
+.notation {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 .rating {
     position: absolute;
     bottom: 0;
@@ -102,6 +112,16 @@ body {
     color: orange;
 }
 
+.information_call_note {
+    color: #2ecc71;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 900;
+    margin-top: 40px;
+    margin-bottom: 0px;
+    margin-left: 30px;
+}
+
 h2 {
     width: 100%;
     white-space: normal;
@@ -119,19 +139,66 @@ p {
     display:flex;
     flex-wrap: nowrap;
     box-shadow: 0 0 5px #2ecc71 ;
+    border-radius: 10px;
     padding: 2%;
 }
 .card-content-mp {
     display:flex;
     flex-wrap: nowrap;
     box-shadow: 0 0 5px #e74c3c ;
+    border-radius: 10px;
     padding: 2%;
 }
 
 .img-test {
     position: relative;
     margin-left: 4rem;
-    height: 80%;
+    height: 100%;
     width: 40%;
     object-fit: cover;
+}
+
+.en-tete-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.choix-tri{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width : 46%
+}
+
+.choix-tri label{
+    font-size: 1em;
+    width : 50%
+}
+.separator{
+    width : 5px;
+    height : 5px;
+    background-color: black;
+    border-radius: 50%;
+    margin : 10px;
+}
+
+.row-avis-date{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+}
+.date-bp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.date-bp p{
+    text-align: center;
+    padding:0px;
+    margin:0px;
 }

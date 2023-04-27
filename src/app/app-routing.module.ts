@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeVillesComponent } from './list-villes/list-villes.components';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
-import { UserMauvaisPlanComponent } from './user-profile/user-mauvaisplan.component'
 
 
 
@@ -26,7 +25,6 @@ const routes: Routes = [
   { path: '', redirectTo: 'ville', pathMatch: 'full' },
   { path : 'profile/:currentUser', component : UserProfileComponent},
   { path : 'userbonplans/:currentUser', component : UserBonPlanComponent},
-  { path : 'usermauvaisplans/:currentUser', component : UserMauvaisPlanComponent}
 ];
 
 @NgModule({

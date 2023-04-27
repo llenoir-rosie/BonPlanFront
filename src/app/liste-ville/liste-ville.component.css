@@ -82,16 +82,16 @@ pointer-events:none;
 
 .swiper-wrapper {
   margin-bottom: 110px;
-  margin-top: 185px;
+  margin-top: 110px;
   width: 100%;
 }
 .card {
-  width: 60%;
+  width: 85%;
   height: 550px;
   position: relative;
   background-size: 100% 100%;
   overflow: hidden;
-  /* filter: grayscale(100%); */
+  border-radius: 10px;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
@@ -180,7 +180,9 @@ pointer-events:none;
   margin-left: 5%;
   }
 .card:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  transform: scale(1.1);
+
 }
 
   /*----------------------------------------------- Full Page Scroller ------------------------------------------*/
@@ -244,4 +246,56 @@ border-color: rgb(0, 0, 0);
 .step.active h4 {
   visibility: visible;
   opacity: 1;
+}
+
+/**--------------------------------------------------------Card For Faces--------------------------------------------------è-*/
+.title_card_faces {
+  font-size: 3em;
+  margin-top: 10px;
+  font-weight: bolder;
+  text-align: center;
+
+}
+.card_faces {
+  display: flex;
+}
+
+.card2 {
+  margin: 10px;
+  flex-grow: 1;
+}
+
+.card-img-top {
+  border-radius: 5%;
+  width: 90%;
+  padding: 5px;
+  margin: 10px;
+  margin-left: 18px;
+}
+
+.card-title {
+  font-weight: 800;
+  font-size: larger;
+  margin-bottom: 0;
+}
+
+.card-text {
+  font-style: italic;
+  margin-left: 10px;
+}
+
+.card-body {
+  width: 87%;
+  margin-left: 23px;
+}
+
+/**---------------------------------------- commentaries_section -----------------------------------------------------------*/
+
+.commentaries_section {
+  display: flex;
+  background-color: black;
+  color: #ffffff;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
 }

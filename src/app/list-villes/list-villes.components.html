@@ -33,12 +33,12 @@
                 <i class="material-icons right" style="font-size: 30px;">chevron_right</i>
               </button>
               <div class = "bouton-bottom-card">
-                <button class="editCity" mat-raised-button class="waves-effect waves-light btn" 
+                <button *ngIf = "allowModeratorRight" class="editCity" mat-raised-button class="waves-effect waves-light btn" 
                   (click)="openDialogWithTemplateRef(DialogUpdateAct)" type="button"
                   style="color:wheat; background-color: rgb(172, 172, 172);" >Modifier
                   <i class="material-icons right" style="font-size: 20px;">edit</i>
                 </button>
-                <button id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" 
+                <button *ngIf = "allowModeratorRight" id = "ButtonDeleteAct"  mat-raised-button class="waves-effect waves-light btn " type = "button" 
                   (click)="CountBonPlan(city.name) ; CountMauvaisPlan(city.name); openDialogWithTemplateRef(DialogDeleteCity)" 
                   style="color:wheat; background-color: rgb(255, 0, 0);">Supprimer
                   <i class="material-icons right" style="font-size: 20px;">delete</i>

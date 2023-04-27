@@ -94,7 +94,6 @@ export class ListeActiviteComponent implements OnInit {
   }
 
   // fait une requette au back pour attraper la classe ville correspondant au nom de la ville où on est
-  // ATTENTION : MISE A JOUR DU BACK NECESSAIRE /////////////////////////////////////////////////////////////////////////////////
   public getImgVille(nameville: String) {
     this.http.get<Ville>("http://localhost:8080/city/" + nameville).subscribe((data) => {
       this.currentImg = data.image;
@@ -106,24 +105,11 @@ export class ListeActiviteComponent implements OnInit {
 
   goToVilleList() {
     this.router.navigate(['/ville']);
-    // // on change la valeur de currentImg
-    // localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    // this.currentImg = localStorage.getItem("currentImg")!;
-    // // on change la valeur de currentVille
-    // localStorage.setItem('currentVille', "");
-    // this.currentVille = localStorage.getItem("currentVille")!;
   }
   
   //@return redirection to /ville
   goToVilleActiviteBonplan(ville: String , activity: Activite) {
     this.router.navigate(['/ville', this.nomdelaville, activity.name])
-    
-    // localStorage.setItem("currentImg", activity.image.toString());
-    // this.currentImg = localStorage.getItem("currentImg")!;
-    // localStorage.setItem("currentActivite", "\xa0"  + activity.name.toString());
-    // this.currentActivite = localStorage.getItem("currentActivite")!;
-    // localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
-    // this.currentVille = localStorage.getItem("currentVille")!;
   }
 
 

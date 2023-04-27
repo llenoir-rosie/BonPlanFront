@@ -18,6 +18,7 @@ export class PopUpComponentUpdateBonPlan implements OnInit {
     activity_type;
     oldBP: Bonplan;
     newBP: Bonplan;
+    submitted: Boolean;
 
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient, private dialogRefs: MatDialog) { 
     this.ville_name = data.nameCity
@@ -26,17 +27,21 @@ export class PopUpComponentUpdateBonPlan implements OnInit {
     }
 
 ngOnInit() {
+    this.submitted = false;
     this.updateBPForm = new FormGroup (
         {
             ville_name : new FormControl('', Validators.required),
             activity_type : new FormControl('', Validators.required),
             name : new FormControl('', Validators.required),
             address : new FormControl('', Validators.required), 
+            note : new FormControl('', Validators.required)
         }
     )
 }
-public addNewBP() {
-    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.oldBP.name, this.updateBPForm.value.address, localStorage.getItem('currentUser')!,0 ,0);
+public updateNewBP() {
+    this.submitted = true;
+    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.oldBP.name, this.updateBPForm.value.address,
+        localStorage.getItem('currentUser')!,  this.oldBP.note, this.oldBP.note_user, Date.now());
     console.log(this.newBP)
     this.http.put('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/updatebonplan', this.newBP).subscribe((data) => {
         this.dialogRefs.closeAll();
