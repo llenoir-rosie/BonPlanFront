@@ -89,7 +89,7 @@ throw new Error('Method not implemented.');
     })
   }
 
-  // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
+  // fait une requête au back pour attraper la classe activite correspondant au nom de l'activite où on est
   public getImgActivity(nameact: String) { 
     this.http.get<Activite>("http://localhost:8080/activity/" + nameact).subscribe((data) => {
       this.currentImg = data.image;
