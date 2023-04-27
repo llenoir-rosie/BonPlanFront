@@ -13,6 +13,7 @@ import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.comp
 import { AppComponent } from "../app.component";
 import { style } from '@angular/animations';
 import { BonPlanNote } from '../bonplan_note';
+import { commentary } from '../commentary';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -66,7 +67,6 @@ throw new Error('Method not implemented.');
 
     this.imgBackGround = '../assets/img/' + this.nomdelactivite + '.jfif'
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
-    // this.getAllCommentaries();
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     this.getImgActivity(this.nomdelactivite);
     if (localStorage.getItem("currentUser") == null) {
@@ -95,15 +95,20 @@ throw new Error('Method not implemented.');
       this.listeBonPlan = data.sort((a,b) => Number(this.moyenneTableau(b.note)) - Number(this.moyenneTableau(a.note)));
 
       this.listeBonPlan.forEach(elt => {
+        console.log("aze", elt)
         let i = 0;
           while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
             i++          
           }
           if (i < elt.note_user?.length ) {
-            let bon_plan_note = new BonPlanNote(elt, "true");
+            // this.http.get<commentary[]>("http://localhost:8080/commentaries/a").subscribe((data) => {
+            //   let a = data
+            //   console.log("eee", a);
+            // })
+            let bon_plan_note = new BonPlanNote(elt, "true", "commentaire de base");
             this.allBonPlanNote.push(bon_plan_note)
           } else {
-            let bon_plan_note = new BonPlanNote(elt, "false");
+            let bon_plan_note = new BonPlanNote(elt, "false", "commentaire de base");
             this.allBonPlanNote.push(bon_plan_note)
           }
       })
@@ -117,12 +122,6 @@ throw new Error('Method not implemented.');
       this.Trie2()
     })
   }
-
-  // public getAllCommentaries() {
-  //   this.http.get<commentary>().subscribe((data) => {
-  //     this.allCommentaries = data;
-  //   })
-  // }
 
   // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
   public getImgActivity(nameact: String) { 
@@ -180,8 +179,8 @@ throw new Error('Method not implemented.');
     nouvelleNote.push(Number(note));
     let newUserNote : String[] = bpNoteUser;
     newUserNote.push(String(localStorage.getItem('currentUser')!));
-    this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
-    nouvelleNote, newUserNote, 0), "true");
+    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    nouvelleNote, newUserNote, 0);
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
     () => {
