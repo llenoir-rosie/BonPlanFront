@@ -75,8 +75,8 @@
             <h1>Les mauvais plans</h1>
           </div>
           <div *ngFor="let bp of allMauvaisPlan">
-            <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
-                <div class="card-content-bp">
+            <div class="card"> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
+                <div class="card-content-mp">
                   <div class="left-content">
                     <h2>Nom {{ bp.name }}</h2>
                     <p *ngIf="bp.note.length == 0 ">(pas encore d'avis)</p>
@@ -99,6 +99,8 @@
                     </div>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>
+                    <hr style="margin-top: 3%; margin-bottom: 3%;">
+                    <p>Commentaires {{ bp.commentaries }} de javainuse </p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
                       <div>
