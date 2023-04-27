@@ -141,3 +141,48 @@ p {
     width: 40%;
     object-fit: cover;
 }
+
+.en-tete-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.choix-tri{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width : 46%
+}
+
+.choix-tri label{
+    font-size: 1em;
+    width : 50%
+}
+.separator{
+    width : 5px;
+    height : 5px;
+    background-color: black;
+    border-radius: 50%;
+    margin : 10px;
+}
+
+.row-avis-date{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+}
+.date-bp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.date-bp p{
+    text-align: center;
+    padding:0px;
+    margin:0px;
+}
