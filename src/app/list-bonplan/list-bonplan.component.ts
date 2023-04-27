@@ -59,7 +59,7 @@ throw new Error('Method not implemented.');
 
     this.imgBackGround = '../assets/img/' + this.nomdelactivite + '.jfif'
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
-    
+    // this.getAllCommentaries();
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     this.getImgActivity(this.nomdelactivite);
     if (localStorage.getItem("currentUser") == null) {
@@ -106,6 +106,12 @@ throw new Error('Method not implemented.');
 
     })
   }
+
+  // public getAllCommentaries() {
+  //   this.http.get<commentary>().subscribe((data) => {
+  //     this.allCommentaries = data;
+  //   })
+  // }
 
   // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
   public getImgActivity(nameact: String) { 
