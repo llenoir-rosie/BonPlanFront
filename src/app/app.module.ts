@@ -25,11 +25,9 @@ import { PopUpComponentUpdateMauvaisPlan } from './list-bonplan/pop-up-updateMau
 import { AuthInterceptor } from './AuthInterceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
-import { UserMauvaisPlanComponent } from './user-profile/user-mauvaisplan.component';
 
 @NgModule({
   declarations: [
-    UserMauvaisPlanComponent,
     UserBonPlanComponent,
     UserProfileComponent,
     ListeVillesComponent,

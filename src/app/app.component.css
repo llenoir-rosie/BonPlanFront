@@ -81,6 +81,9 @@ body {
 
 .coordonnees-footer {
     margin: 0%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .ligne-footer .text-icons {
@@ -512,8 +515,11 @@ input#switch:before ~ .curtain2 {
     width: 200px;
     /* color:white; */
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
-    background-color: red;
+   
+    
     position: relative;
+    top: 20px; right: 20px;
+    
     transform: scale(0);
     transform-origin: top center;
     transition: all 300ms ease-in-out;
@@ -526,6 +532,8 @@ input#switch:before ~ .curtain2 {
     color:white;
     font-size: 1em;
     background-color: rgb(49, 49, 49);
+    border-bottom : none;
+    border-radius : 10px;
   }
 
   .sub-menu li a:hover {
@@ -537,6 +545,7 @@ input#switch:before ~ .curtain2 {
   }
   .sub-menu li:hover {
     background: black;
+    border-radius : 10px;
   }
   .menu > li:hover .sub-menu li {
     transform: scale(1);

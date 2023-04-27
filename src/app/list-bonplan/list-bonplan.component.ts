@@ -24,14 +24,18 @@ export class ListBonplanComponent implements OnInit {
 pop() {
 throw new Error('Method not implemented.');
 }
+  ngOptions = ["Les mieux notés","Les plus récents"];
+  ngDropdown = "Les mieux notés";
+  ngOptions2 = ["Les moins bien notés","Les plus récents"];
+  ngDropdown2 = "Les moins bien notés";
   ville: Ville|undefined;
   bp: Bonplan[]=[];
   mp: Mauvaisplan[]=[];
   imgBackGround: String;
   nomdelaville: String;
   nomdelactivite: String;
-  public listeBonPlan: Bonplan[];
-  public listeMauvaisPlan: Mauvaisplan[];
+  public listeBonPlan: BonPlanNote[];
+  public listeMauvaisPlan: BonPlanNote[];
   bonplanDeleted: Boolean = false;
   mauvaisplanDeleted: Boolean = false;
   allowUserRight: boolean;
@@ -41,8 +45,11 @@ throw new Error('Method not implemented.');
   currentVille: String;
   currentActivite: String;
   newBP: Bonplan;
+  
   allBonPlan: BonPlanNote[];
   allMauvaisPlan: BonPlanNote[];
+  trie1 : String;
+  trie2 : String;
   allBonPlanNote: BonPlanNote[];
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
@@ -82,17 +89,17 @@ throw new Error('Method not implemented.');
 
   //"attrape" les bons et les mauvais plans en foncion de la ville et de l'activité où l'on est
   public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
-    this.http.get<Bonplan[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
+    this.http.get<BonPlanNote[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
       // trie les bons plans en fonction de la note moyenne des utilisateurs
-      console.log(data)
       this.allBonPlanNote = [];
       this.listeBonPlan = data.sort((a,b) => Number(this.moyenneTableau(b.note)) - Number(this.moyenneTableau(a.note)));
+
       this.listeBonPlan.forEach(elt => {
         let i = 0;
-          while (i < elt.note_user.length && elt.note_user[i] != this.currentUser) {
+          while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
             i++          
           }
-          if (i < elt.note_user.length ) {
+          if (i < elt.note_user?.length ) {
             let bon_plan_note = new BonPlanNote(elt, "true");
             this.allBonPlanNote.push(bon_plan_note)
           } else {
@@ -100,10 +107,14 @@ throw new Error('Method not implemented.');
             this.allBonPlanNote.push(bon_plan_note)
           }
       })
+      
 
       this.allBonPlan = this.allBonPlanNote.filter(el => Number(this.moyenneTableau(el.note)) > 2);
       this.allMauvaisPlan = this.allBonPlanNote.filter(el => Number(this.moyenneTableau(el.note)) <= 2).reverse();
-
+      this.trie1 = "Les mieux notés"
+      this.trie2 = "Les moins bien notés"
+      this.Trie1()
+      this.Trie2()
     })
   }
 
@@ -169,13 +180,87 @@ throw new Error('Method not implemented.');
     nouvelleNote.push(Number(note));
     let newUserNote : String[] = bpNoteUser;
     newUserNote.push(String(localStorage.getItem('currentUser')!));
-    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
-    nouvelleNote, newUserNote);
+    this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    nouvelleNote, newUserNote, 0), "true");
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
     () => {
       this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     })
+
   }
 
+  public Trie1(){
+    let newtrie :String = (<HTMLInputElement>document.getElementById("DropdownOptions")).value
+    if (this.trie1 != newtrie){
+      if (newtrie=="Les mieux notés"){
+        this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (this.moyenneTableau(a.note) > this.moyenneTableau(b.note)) ? -1 : 1)    
+      }else{
+        this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (a.date > b.date) ? -1 : 1)
+      }
+      this.trie1 = newtrie
+    }
+  }
+  public Trie2(){
+    let newtrie :String = (<HTMLInputElement>document.getElementById("DropdownOptions2")).value
+    if (this.trie2 != newtrie){
+      if (newtrie=="Les moins bien notés"){
+        this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (this.moyenneTableau(a.note) < this.moyenneTableau(b.note)) ? -1 : 1)    
+      }else{
+        this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (a.date > b.date) ? -1 : 1)
+      }
+      this.trie2 = newtrie
+    }
+  }
+
+  public getDateCreaBp(dateBp : number){
+    let DateNow = Date.now()
+    let delta : number = (DateNow - dateBp) //en millisecondes
+    const delta_sec = delta / 1000
+    const delta_min = delta_sec / 60
+    const delta_hour = delta_min / 60 
+    const delta_day = delta_hour / 24
+    const delta_month = delta_day / 31
+    const delta_year = delta_day / 365
+    let delta_final : number
+    let Unite : String
+  
+    if (delta_sec<0){
+      delta_final = 0
+      Unite = "secondes"
+    } else if (delta_sec<60){
+      delta_final = delta_sec
+      Unite = "secondes"
+    } else if (delta_min <60){
+      delta_final = delta_min
+      Unite = "minutes"
+    } else if (delta_hour < 24){
+      delta_final = delta_hour
+      Unite = "heures"
+    } else if (delta_day < 31){
+      delta_final = delta_day
+      Unite = "jours"
+    } else if (delta_month < 12){
+      delta_final = delta_month
+      Unite = "mois"
+    } else {
+      delta_final = delta_year
+      Unite = "années"
+    }
+  
+    if (dateBp==0 || dateBp == null){ //si la date n est pas renseignée pour le bonplan
+      delta_final = 0 , Unite=""
+    }
+  
+    if (Math.round(delta_final)==1){//enlever le "s" lorsque delta == 1
+      Unite = Unite.slice(0,-1)
+    }
+    
+    return [Math.round(delta_final) , Unite]
+  }
+  
 }

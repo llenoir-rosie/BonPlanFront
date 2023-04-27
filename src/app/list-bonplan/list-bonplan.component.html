@@ -15,17 +15,34 @@
           <div class="gros-titre">
             <h1>Les bons plans</h1>
           </div>
+          <div class="en-tete-card">
+            <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
+            (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; Nouveau Plan
+            <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
+            </button>
+            <div class="choix-tri">
+              <label for="DropdownOptions">Trier par:</label>
+              <select class="form-control" id="DropdownOptions" (click)="Trie1()" >
+                <option
+                  *ngFor="let opt of ngOptions"
+                  [selected]="opt === ngDropdown"
+                  [value]="opt" >{{ opt }}
+                </option>
+              </select>
+            </div>
+          </div>
 
-          <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
-          (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; Nouveau Plan
-          <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
-          </button>  
+            
+
 
           <div *ngFor="let bp of allBonPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
                 <div class="card-content-bp">
+                  
                   <div class="left-content">
-                    <h2>Nom {{ bp.name }} </h2>
+                  <h2>Nom {{ bp.name }}</h2>
+
+                  <div class="row-avis-date">
                     <p *ngIf="bp.note.length == 0 ">(pas encore d'avis)</p>
                     <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
                       <div *ngIf="moyenneTableau(bp.note) < '2.3'" class="notation">
@@ -44,6 +61,15 @@
                         </i> <i> ({{bp.note.length}} avis) </i>
                       </div>
                     </div>
+
+                    <div class="separator">
+                    </div>
+                    <div class="date-bp">
+                      <p>il y a {{getDateCreaBp(bp.date)[0]}} {{getDateCreaBp(bp.date)[1]}}</p>
+                    </div>
+                  </div>
+                  
+
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
@@ -74,28 +100,53 @@
           <div class="gros-titre">
             <h1>Les mauvais plans</h1>
           </div>
+          <div class="en-tete-card">
+            <!-- <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
+            (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; Nouveau Plan
+            <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
+            </button> -->
+            <div class="choix-tri">
+              <label for="DropdownOptions">Trier par:</label>
+              <select class="form-control" id="DropdownOptions2" (click)="Trie2()" >
+                <option
+                  *ngFor="let opt of ngOptions2"
+                  [selected]="opt === ngDropdown2"
+                  [value]="opt" >{{ opt }}
+                </option>
+              </select>
+            </div>
+          </div>
           <div *ngFor="let bp of allMauvaisPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
                 <div class="card-content-bp">
                   <div class="left-content">
                     <h2>Nom {{ bp.name }}</h2>
-                    <p *ngIf="bp.note.length == 0 ">(pas encore d'avis)</p>
-                    <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
-                      <div *ngIf="moyenneTableau(bp.note) < '2.3'" class="notation">
-                        <i class="material-icons notation_étoile" style="font-size: 20px; color: red">
-                          star
-                        </i> <i> ({{bp.note.length}} avis) </i>
-                      </div>
-                      <div *ngIf="moyenneTableau(bp.note) > '3.7'" class="notation">
-                        <i class="material-icons notation_étoile" style="font-size: 20px; color: green">
-                          star
-                        </i> <i> ({{bp.note.length}} avis) </i>
-                      </div>
-                      <div *ngIf="moyenneTableau(bp.note) >= '2.3' && moyenneTableau(bp.note) <= '3.7' " class="notation">
-                        <i class="material-icons notation_étoile" style="font-size: 20px; color: orange">
-                          star
-                        </i> <i> ({{bp.note.length}} avis) </i>
-                      </div>
+                    <div class="row-avis-date">
+
+                      <p *ngIf="bp.note.length == 0 ">(pas encore d'avis)</p>
+                      <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
+                        <div *ngIf="moyenneTableau(bp.note) < '2.3'" class="notation">
+                          <i class="material-icons notation_étoile" style="font-size: 20px; color: red">
+                            star
+                          </i> <i> ({{bp.note.length}} avis) </i>
+                        </div>
+                        <div *ngIf="moyenneTableau(bp.note) > '3.7'" class="notation">
+                          <i class="material-icons notation_étoile" style="font-size: 20px; color: green">
+                            star
+                          </i> <i> ({{bp.note.length}} avis) </i>
+                        </div>
+                        <div *ngIf="moyenneTableau(bp.note) >= '2.3' && moyenneTableau(bp.note) <= '3.7' " class="notation">
+                          <i class="material-icons notation_étoile" style="font-size: 20px; color: orange">
+                            star
+                          </i> <i> ({{bp.note.length}} avis) </i>
+                        </div>
+                        <div class="separator">
+                        </div>
+                        <div class="date-bp">
+                          <p>il y a {{getDateCreaBp(bp.date)[0]}} {{getDateCreaBp(bp.date)[1]}}</p>
+                        </div>
+                    </div>
+                    
                     </div>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>

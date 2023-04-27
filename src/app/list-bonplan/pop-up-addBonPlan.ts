@@ -43,7 +43,7 @@ public addNewBP() {
     if (!this.f['name'].errors && !this.f['address'].errors) {
         this.note_user = [localStorage.getItem('currentUser')!];
         this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
-            localStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user);
+            localStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user, Date.now());
         this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe((data) => {
             this.dialogRefs.closeAll();
           })
