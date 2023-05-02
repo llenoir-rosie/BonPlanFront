@@ -53,6 +53,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     // this.logCurrentUser();
     this.isCityActivated = true;
+    (<HTMLInputElement>document.getElementById("switch")).checked = false; // remet le switch sur 'recherche par ville'
     this.researcheBy = this.searchArray[0]
     this.changeImgNav();
 

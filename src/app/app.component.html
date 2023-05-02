@@ -28,7 +28,6 @@
       
           <img class = "activite-navbar" src='{{currentImg}}'>
 
-          <div class="nav-centre">
             <form *ngIf='isCityActivated' action="">
               <input
               [(ngModel)]="searchInput"
@@ -77,19 +76,11 @@
                 </div>
               <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
             </form>
-            <div class="toggle-ville-activite">
-              <div class="change-search">
-                Recherche par ville
-              </div>
+            
               <input type="checkbox" id="switch" (click)="changeSearchBtn(researcheBy)"/>
-              <label for="switch" class="toggle"></label>
-              <div class="change-search">
-                Recherche par activité
-              </div>
-              <button class="curtain1"></button>
-              <button class="curtain2"></button>
-            </div>
-          </div>
+              <label for="switch" class="toggle" id="toggle"></label>
+              <button class="curtain1" href="#switch"></button>
+              <button class="curtain2" href="#switch"></button>
           
           <button *ngIf = "!allowConnection" class="menu" >
           <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
