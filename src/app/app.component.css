@@ -259,21 +259,6 @@ form:focus-within .collection {
     opacity: 1;
 }
 
-/* .toggle-ville-activite {
-  position: absolute;
-  left: 55%;
-  top: 50%;
-  transform: translate(0, -50%);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.5s linear;
-} */
-/* .nav-wrapper:hover .toggle-ville-activite,
-.nav-wrapper:focus-within .toggle-ville-activite {
-  opacity: 1;
-} */
 .change-search {
   line-height: 17px;
   font-weight: 700;
@@ -338,9 +323,6 @@ label.toggle:after {
   border-radius: 30px;
   transition: 0.3s;
 }
-/* input#switch:checked + label.toggle {
-  background: #bada55;
-} */
 input#switch:checked + label.toggle:after {
   left: calc(97%);
   transform: translateX(-100%);
