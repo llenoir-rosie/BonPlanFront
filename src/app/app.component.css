@@ -86,11 +86,11 @@ body {
     justify-content: space-between;
 }
 
-.ligne-footer .text-icons {
-    /*margin-top: 0.5%; 
+/*.ligne-footer .text-icons {
+    margin-top: 0.5%; 
     margin: -50% 1% 1% -50%;
-    display: inline-block;*/
-}
+    display: inline-block;
+}*/
 
 a.text-lighten-4 {
     display: flex;
