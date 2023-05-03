@@ -9,7 +9,7 @@
 </head>
 <body>
   <div cdk-overlay-pane>
-  <div class="login-box">
+    <div class="login-box">
       <h1>Update {{oldBP.name}}</h1>
       <form [formGroup] = "updateBPForm">
         <div class="user-box">
@@ -28,7 +28,7 @@
             <input class="form-control" formControlName="address" placeholder= "{{oldBP.address}}" matInput required />
             <label>Description</label>
         </div>
-        <a (click)="updateNewBP()">
+        <a class="submit" (click)="updateNewBP()">
           <span></span>
           <span></span>
           <span></span>
@@ -36,7 +36,7 @@
         Submit
         </a>
       </form>
-  </div>
+    </div>
   </div>
 </body>
 </html>

@@ -159,7 +159,7 @@ pointer-events:none;
   font-size: 25px;
   top: 30px;
   right: 10px;
-  margin-left: 30%;
+  margin-left: 32%;
   opacity: 0;
   transition-delay: 0.2s;
   transition-duration: 0.3s;
@@ -172,7 +172,7 @@ pointer-events:none;
 }
 
 .card:hover button  {
-  transform: scale(24);
+  transform: scale(37);
   opacity: 1;
 }
 .card:hover h2 {
@@ -191,7 +191,7 @@ pointer-events:none;
 z-index: 3;
 /* width: 30px; */
 position: fixed; 
-top: 31%; 
+top: 25%; 
 opacity: 0.5;
 transition: opacity 0.5s linear;
 }
@@ -233,6 +233,9 @@ z-index: -1;
   top: -3.5px;
   font-weight: 600;
   margin-left: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 7px;
+  box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3);
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.5s linear;
@@ -258,6 +261,7 @@ border-color: rgb(0, 0, 0);
 }
 .card_faces {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .card2 {
@@ -266,11 +270,14 @@ border-color: rgb(0, 0, 0);
 }
 
 .card-img-top {
+  float: left;
   border-radius: 5%;
-  width: 90%;
+  width: 200px;
+  height: 300px;
   padding: 5px;
   margin: 10px;
   margin-left: 18px;
+  object-fit: cover;
 }
 
 .card-title {

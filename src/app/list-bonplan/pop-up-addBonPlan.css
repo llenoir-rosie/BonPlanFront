@@ -122,6 +122,9 @@
   margin-top: 40px;
   letter-spacing: 4px
 }
+.login-box form a.addBtn {
+  color: #fff;
+}
 
 #Enregistrer{
   color: white;
@@ -141,7 +144,7 @@
 }
 
 .user-box a {
-  color: #aaa;
+  color: #fff;;
   text-decoration: none;
   font-size: 2em;
   transition: color .4s;
@@ -168,6 +171,7 @@
 .login-box .addBtn:hover {
   background: burlywood;
   color: #fff;
+  cursor: pointer;
   border-radius: 5px;
   box-shadow: 0 0 5px burlywood,
               0 0 25px burlywood,

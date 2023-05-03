@@ -48,15 +48,18 @@ body {
 }
 
 .row {
+    margin-bottom: 0px;
     display: flex;
     justify-content: space-between;
 }
 
 .card {
     border-radius: 10px;
+    height: 280px;
 }
 
 .card-bp {
+    height: 200px;
     width: 50%;
     background-color:#d0e9db ;
     padding: 2%;
@@ -148,11 +151,13 @@ p {
     box-shadow: 0 0 5px #2ecc71 ;
     border-radius: 10px;
     padding: 2%;
+    height: 280px;
 }
 .card-content-mp {
     display:flex;
     flex-wrap: nowrap;
     box-shadow: 0 0 5px #e74c3c ;
+    height: 280px;
     border-radius: 10px;
     padding: 2%;
 }

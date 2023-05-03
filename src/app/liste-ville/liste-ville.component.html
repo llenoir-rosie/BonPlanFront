@@ -12,7 +12,7 @@
   <div #sec1>
   <div class="main-wrapper">
     <div class="step-container">
-      <div class="step" [ngClass]="{'active': (this.scroll_y < 650)}" pageScroll (click)="scrollCustomImplementation(sec1, 1)">
+      <div class="step" [ngClass]="{'active': (this.scroll_y > 500 && this.scroll_y < 1200)}" pageScroll (click)="scrollCustomImplementation(sec1, 1)">
         <div class="v-stepper">
           <div class="part-gauche">
             <div class="circle"></div>
@@ -21,7 +21,7 @@
           <h4 class="liste-ville">Liste des villes</h4>
         </div>
       </div>
-      <div class="step" [ngClass]="{'active': (this.scroll_y > 650)}" pageScroll (click)="scrollCustomImplementation(sec2, 2)">
+      <div class="step" [ngClass]="{'active': (this.scroll_y > 1200 && this.scroll_y < 2000)}" pageScroll (click)="scrollCustomImplementation(sec2, 2)">
         <div class="v-stepper">
           <div class="circle"></div>
           <h4 class="liste-activite">Liste des activités</h4>
@@ -67,7 +67,7 @@
     </div>
   </div>
 </div>
-<h1 class="title_card_faces">CREATEURS DU SITE : </h1>
+<h1 class="title_card_faces">ILS PARTICIPENT AU SITE : </h1>
 <div class="card_faces">
   <div class="card2">
     <img src="../../assets/img/profil_lorenzo.jpg" class="card-img-top"/>
@@ -77,14 +77,14 @@
     </div>
   </div>
   <div class="card2">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <img src="../../assets/img/profil_claire.jpg" class="card-img-top"/>
     <div class="card-body">
       <h5 class="card-title">FAVRE Claire</h5>
       <p class="card-text">Full-Stack Developer</p>
     </div>
   </div>
   <div class="card2">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <img src="../../assets/img/profil_gab.jpg" class="card-img-top"/>
     <div class="card-body">
       <h5 class="card-title">PONS Gabriel</h5>
       <p class="card-text">Front-End Developer</p>
@@ -98,14 +98,14 @@
     </div>
   </div>
   <div class="card2">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <img src="../../assets/img/profil_samuel.jpg" class="card-img-top"/>
     <div class="card-body">
       <h5 class="card-title">THOMAZEAU Samuel</h5>
       <p class="card-text">Coordinateur</p>
     </div>
   </div>
   <div class="card2">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <img src="../../assets/img/profil_solenn.jpg" class="card-img-top"/>
     <div class="card-body">
       <h5 class="card-title">DUCOS Solenn</h5>
       <p class="card-text">Coordinatrice</p>
