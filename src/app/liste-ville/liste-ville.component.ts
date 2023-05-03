@@ -33,13 +33,8 @@ export class ListeVilleComponent implements OnInit{
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService,
     @Inject(DOCUMENT) private document: any, private appComponent: AppComponent) {}
   
-  // @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
-  //   console.log($event);
-  //   console.log("scrolling");
-  // }
   @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
     this.scroll_y = scrollY;
-    console.log(this.scroll_y);
     }
 
   ngOnInit() {

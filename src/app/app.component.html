@@ -12,94 +12,94 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   </head>
   <nav>
-      <div class="nav-wrapper" style="background-color: darkred; box-shadow: 0 5px 5px darkred; border-color: darkred;">
-          <div class="haut-gauche">
-            <a href="#" ><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
-            <div class="right-content">
-              <div>
-                <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
-                  Bon Plan
-                </a>
-                <div class = "nom-ville-actuelle">  {{currentActivite}}  {{currentVille}}</div>
-              </div>
-              <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
+      <div class="nav-wrapper">
+        <div class="haut-gauche">
+          <a href="#" ><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
+          <div class="right-content">
+            <div>
+              <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
+                Bon Plan
+              </a>
+              <div class = "nom-ville-actuelle">  {{currentActivite}}  {{currentVille}}</div>
             </div>
+            <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
           </div>
-      
-          <img *ngIf= "currentImg != '' " class = "activite-navbar" src='{{currentImg}}'>
-          <!-- <div *ngIf= "currentImg == '' " class = "activite-navbar" style="background-color: darkred; box-shadow: 0 0 5px 5px darkred; border-color: darkred;">
-          </div> -->
-            <form *ngIf='isCityActivated' action="">
-              <input
-              [(ngModel)]="searchInput"
-              class="new-search"
-              type="text"
-              required
-              name="name" 
-              #searchBox
-              placeholder="Ville"
-              (keyup)="SearchVille(searchBox.value)"
-              (keyup.enter)= "SearchVilleEnter()">
-                <div class="collection">
-                  <ul>
-                    <a *ngFor="let Ville of this.touteVille"
-                      (click)="goToDetailVille(Ville)"
-                      class="collection-item"
-                      id="log"
-                    >
-                      <p> {{ Ville.name }} </p>
-                    </a>
-                  </ul>
-                </div>
-              <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
-            </form>
-            <form *ngIf='!isCityActivated' action="">
-              <input
-              [(ngModel)]="searchInput"
-              class="new-search"
-              type="text"
-              required
-              name="name" 
-              #searchBox
-              placeholder="Activité"
-              (keyup)="SearchActivity(searchBox.value)"
-              (keyup.enter)= "SearchActivityEnter()">
-                <div class="collection">
-                  <ul>
-                    <a *ngFor="let Activite of this.allActivities"
-                      (click)="goToDetailActivity(Activite)"
-                      class="collection-item"
-                      id="log"
-                    >
-                      <p> {{ Activite.name }} </p>
-                    </a>
-                  </ul>
-                </div>
-              <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
-            </form>
-            
-              <input type="checkbox" id="switch" (click)="changeSearchBtn(researcheBy)"/>
-              <label for="switch" class="toggle" id="toggle"></label>
-              <button class="curtain1" href="#switch"></button>
-              <button class="curtain2" href="#switch"></button>
+        </div>
+    
+        <img *ngIf= "currentImg != '' " class = "activite-navbar" src='{{currentImg}}'>
+        <!-- <div *ngIf= "currentImg == '' " class = "activite-navbar" style="background-color: darkred; box-shadow: 0 0 5px 5px darkred; border-color: darkred;">
+        </div> -->
+          <form *ngIf='isCityActivated' action="">
+            <input
+            [(ngModel)]="searchInput"
+            class="new-search"
+            type="text"
+            required
+            name="name" 
+            #searchBox
+            placeholder="Ville"
+            (keyup)="SearchVille(searchBox.value)"
+            (keyup.enter)= "SearchVilleEnter()">
+              <div class="collection">
+                <ul>
+                  <a *ngFor="let Ville of this.touteVille"
+                    (click)="goToDetailVille(Ville)"
+                    class="collection-item"
+                    id="log"
+                  >
+                    <p> {{ Ville.name }} </p>
+                  </a>
+                </ul>
+              </div>
+            <i class="fa fa-search" (click)="SearchVilleEnter()"></i>
+          </form>
+          <form *ngIf='!isCityActivated' action="">
+            <input
+            [(ngModel)]="searchInput"
+            class="new-search"
+            type="text"
+            required
+            name="name" 
+            #searchBox
+            placeholder="Activité"
+            (keyup)="SearchActivity(searchBox.value)"
+            (keyup.enter)= "SearchActivityEnter()">
+              <div class="collection">
+                <ul>
+                  <a *ngFor="let Activite of this.allActivities"
+                    (click)="goToDetailActivity(Activite)"
+                    class="collection-item"
+                    id="log"
+                  >
+                    <p> {{ Activite.name }} </p>
+                  </a>
+                </ul>
+              </div>
+            <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
+          </form>
           
+          <input type="checkbox" id="switch" (click)="changeSearchBtn(researcheBy)"/>
+          <label for="switch" class="toggle" id="toggle"></label>
+          <button *ngIf = "this.location_url !== 'http://localhost:4200/ville'" class="curtain1" href="#switch"></button>
+          <button *ngIf = "this.location_url !== 'http://localhost:4200/ville'" class="curtain2" href="#switch"></button>
+        
           <button *ngIf = "!allowConnection" class="menu" >
           <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
-            
-            <li class="letter">{{initial_username[0]}}
-              <ul class="sub-menu">
-                <!-- <li><a href="http://localhost:4200/user-profile.component.html">Mon profile</a></li> -->
-                
-                <li><a (click)="goToUserProfile(currentUser)">Mon profil</a></li>
-                <li><a (click)="goToUserBonPlan(currentUser)">Mes bons plans</a></li>
-              </ul>
-            </li>
-          </button>
-          <button class="button-connexion">
-            <div *ngIf = "allowConnection" class="txt-connection" (click)="login()">Se connecter</div>
-            <div *ngIf = "!allowConnection" class="txt-connection" (click)="logout()">Déconnexion</div>
-            <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
-          </button>
+          
+          <li class="letter">{{initial_username[0]}}
+            <ul class="sub-menu">
+              <!-- <li><a href="http://localhost:4200/user-profile.component.html">Mon profile</a></li> -->
+              
+              <li><a (click)="goToUserProfile(currentUser)">Mon profil</a></li>
+              <li><a (click)="goToUserBonPlan(currentUser)">Mes bons plans</a></li>
+            </ul>
+          </li>
+        </button>
+        <button class="button-connexion">
+          <div *ngIf = "allowConnection" class="txt-connection" (click)="login()">Se connecter</div>
+          <div *ngIf = "!allowConnection" class="txt-connection" (click)="logout()">Déconnexion</div>
+          <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+        </button>
       </div>
       <div *ngIf = "this.location_url == 'http://localhost:4200/ville' " class="entete" >
         <h1>Arrivé dans une nouvelle ville ? <br/> Envie de partager vos bons coins ? <br/> Bienvenue !!</h1>
