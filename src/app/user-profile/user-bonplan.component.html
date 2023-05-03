@@ -153,16 +153,47 @@
                         <p>il y a {{getDateCreaBp(bp.date)[0]}} {{getDateCreaBp(bp.date)[1]}}</p>
                       </div>
                     </div>
+                  </div>
+                  <div class="right-content">
+                    <button id='trashBtn' style=" background-color: white; border-radius: 5px; border-color: red; border-style:solid" (click)="deleteBonPlanUsr(bp.name, bp.ville_name, bp.activity_type)">
+                      <i class='fa fa-trash' style="margin:10px;"></i>
+                    </button>
+                    <button id='editBtn' (click)="openDialogWithTemplateRef(DialogUpdateUserBp)" class = "button_bottom waves-effect waves-light btn " mat-raised-button 
+                    type = "button" style="color:forestgreen; background-color: white; border-color: forestgreen">
+                    <i class="material-icons right" style="font-size: 20px; margin:10px">edit</i></button>
+                  
+                  </div>
+                 
+                  
+                  <!-- <i class='gg-edit-markup'  aria-hidden="false" (click)="openDialogWithTemplateRef(DialogUpdateUserBp)">update</i> -->
+                  
+                 
+                  
+                  <ng-template  #DialogUpdateUserBp class="UpdateUserBp" >
+                    <div class="pop-up-update-container">
+                      <div class="row1-update">
+                        <p>Mise à jour de : </p>
+                        <p style="font-weight: 600;">{{bp.name}}</p>
+                      </div>
+                      <div>
+                        <div class="row2-update">
+                          <p>Activité : {{bp.activity_type}}</p>
+                          <p>Localisation : {{bp.ville_name}}</p>
+                        </div>
+                        <div class="description-update">
+                          <label for="new_description">Description : </label>
+                          <textarea id = "new_desciription" name="new_description" style="height: 100px;" rows="10" cols="50" >{{bp.address}}</textarea>
+                        </div>
+                        <div class="button-bottom">
+                          <button class="BtnValider" matDialogClose (click)="updateBonPlanUsr(bp)">Valider</button>
+                          <button class = "BtnAnnuler" matDialogClose>Annuler</button>
+                        </div>
+                      </div>
+                      </div>
                     
-                  <!-- <img class = "img-test" src="{{currentImg}}"> -->
-                  <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
-                  ses bp )-->
-                  <i id='trashBtn' class='fa fa-trash' (click)="deleteBonPlanUsr(bp.name, bp.ville_name, bp.activity_type)"></i>
-                  <!-- <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlanUsr(bp.name, bp.ville_name, bp.activity_type)"></i>  -->
-                  <!-- <i *ngIf="(allowModeratorRight || allowUserRight) && (currentUser == bp.user_name)" id='editBtn' class="gg-edit-markup" (click)="updateBonPlanUsr(bp)"></i> -->
-                  <button id="editBtn" class="gg-edit-markup" aria-hidden="false" (click)="updateBonPlanUsr(bp)"></button>
-                </div>     
-            </div> 
+                  </ng-template>
+               </div>     
+            
           </div>
         </div>
       </div>

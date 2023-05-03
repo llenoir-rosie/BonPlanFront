@@ -22,7 +22,7 @@ providedIn: 'root'
 export class UserBonPlanComponent implements OnInit{
   
   
-  ngOptions = ["Les mieux notés","Les plus récents"];
+  ngOptions = ["Les mieux notés","Les plus récents", "Le maximum d'avis"];
   ngDropdown = "Les mieux notés";
   ngOptionsAddAct : String[];
   ngDropdownAddAct : String;
@@ -121,10 +121,10 @@ public getCitiesActivities(){
     (a.name < b.name) ? -1 : 1)
   this.listeAllActivites = this.listeAllActivites?.sort((a : Activite , b : Activite) => (a.name < b.name) ? -1 : 1)
  
-  for (var i=0; i<(this.listAllCities).length; i++){
+  for (var i=0; i<(this.listAllCities)?.length; i++){
     this.ngOptionsAddCity.push(this.listAllCities[i].name)
   }
-  for (var i = 0; i< (this.listeAllActivites).length; i++){
+  for (var i = 0; i< (this.listeAllActivites)?.length; i++){
     this.ngOptionsAddAct.push(this.listeAllActivites[i].name)
   }
  
@@ -141,7 +141,11 @@ public deleteBonPlanUsr(BPname : String, BPcity : String, BPactivity : String){
 
 
 public updateBonPlanUsr(bp : Bonplan){
-  console.log("clicked update")
+  let new_descr = (<HTMLInputElement>document.getElementById("new_desciription")).value;
+  this.newBP = new Bonplan(bp.ville_name, bp.activity_type, bp.name, new_descr, bp.user_name, bp.note, bp.note_user, bp.date);
+  this.http.put('http://localhost:8080/'+bp.ville_name+'/'+bp.activity_type+'/updatebonplan',this.newBP).subscribe((data)=>
+  this.getBonPlanUser(this.username))
+  
 }
 
 public moyenneTableau(tab: Number[]) {
@@ -172,11 +176,6 @@ public AddNewBP(){
   this.error_note = false;
   this.date = Date.now()
   this.note_user=[this.username]
-  
-
-  console.log(this.date)
-
-
   let bpname = (<HTMLInputElement>document.getElementById("bp-name")).value;
   let bpdescription = (<HTMLInputElement>document.getElementById("bp-description")).value
   let act = (<HTMLInputElement>document.getElementById("DropdownOptionsAct")).value
@@ -230,9 +229,12 @@ public Trie(){
     if (newtrie=="Les mieux notés"){
       this.AllBonPlan = this.AllBonPlan?.sort((a : Bonplan , b : Bonplan) =>
       (this.moyenneTableau(a.note) > this.moyenneTableau(b.note)) ? -1 : 1)    
-    }else{
+    }else if(newtrie=="Les plus récents"){
       this.AllBonPlan = this.AllBonPlan?.sort((a : Bonplan , b : Bonplan) =>
       (a.date > b.date) ? -1 : 1)
+    }else if (newtrie == "Le maximum d'avis"){
+      this.AllBonPlan = this.AllBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+      (a.note.length > b.note.length) ? -1 : 1)
     }
     this.trie = newtrie
   }

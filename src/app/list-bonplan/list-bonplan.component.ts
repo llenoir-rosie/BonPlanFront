@@ -24,9 +24,9 @@ export class ListBonplanComponent implements OnInit {
 pop() {
 throw new Error('Method not implemented.');
 }
-  ngOptions = ["Les mieux notés","Les plus récents"];
+  ngOptions = ["Les mieux notés","Les plus récents", "Le maximum d'avis"];
   ngDropdown = "Les mieux notés";
-  ngOptions2 = ["Les moins bien notés","Les plus récents"];
+  ngOptions2 = ["Les moins bien notés","Les plus récents", "Le maximum d'avis"];
   ngDropdown2 = "Les moins bien notés";
   ville: Ville|undefined;
   bp: Bonplan[]=[];
@@ -174,8 +174,10 @@ throw new Error('Method not implemented.');
     nouvelleNote.push(Number(note));
     let newUserNote : String[] = bpNoteUser;
     newUserNote.push(String(localStorage.getItem('currentUser')!));
-    this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
-    nouvelleNote, newUserNote, 0), "true");
+    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    nouvelleNote, newUserNote, 0)
+    // this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    // nouvelleNote, newUserNote, 0), "true");
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
     () => {
@@ -190,9 +192,12 @@ throw new Error('Method not implemented.');
       if (newtrie=="Les mieux notés"){
         this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
         (this.moyenneTableau(a.note) > this.moyenneTableau(b.note)) ? -1 : 1)    
-      }else{
+      }else if (newtrie == "Les plus récents"){
         this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
+      }else if(newtrie == "Le maximum d'avis"){
+        this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (a.note.length > b.note.length) ? -1 : 1)
       }
       this.trie1 = newtrie
     }
@@ -203,9 +208,12 @@ throw new Error('Method not implemented.');
       if (newtrie=="Les moins bien notés"){
         this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
         (this.moyenneTableau(a.note) < this.moyenneTableau(b.note)) ? -1 : 1)    
-      }else{
+      }else if (newtrie == "Les plus récents"){
         this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
+      }else if (newtrie=="Le maximum d'avis"){
+        this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (a.note.length > b.note.length) ? -1 : 1)
       }
       this.trie2 = newtrie
     }
