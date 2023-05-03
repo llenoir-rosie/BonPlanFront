@@ -146,7 +146,7 @@ throw new Error('Method not implemented.');
   public updateBonPlan(bp: Bonplan) {
     this.dialogRef.open(PopUpComponentUpdateBonPlan, {
       width: '600px',
-      height: '550px',
+      height: '730px',
       data: {
         nameCity: this.nomdelaville,
         nameActivity:this.nomdelactivite,
