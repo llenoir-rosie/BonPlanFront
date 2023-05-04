@@ -25,9 +25,9 @@ export class ListBonplanComponent implements OnInit {
 pop() {
 throw new Error('Method not implemented.');
 }
-  ngOptions = ["Les mieux notés","Les plus récents"];
+  ngOptions = ["Les mieux notés","Les plus récents", "Le maximum d'avis"];
   ngDropdown = "Les mieux notés";
-  ngOptions2 = ["Les moins bien notés","Les plus récents"];
+  ngOptions2 = ["Les moins bien notés","Les plus récents", "Le maximum d'avis"];
   ngDropdown2 = "Les moins bien notés";
   ville: Ville|undefined;
   bp: Bonplan[]=[];
@@ -129,6 +129,17 @@ throw new Error('Method not implemented.');
     })
   }
 
+  //Add a commentary to a specific Bon Plan
+  public addCommentary(bp: String) {
+    let username = localStorage.getItem("currentUser");
+    let newCommentary = (<HTMLInputElement>document.getElementById("new_commentary")).value;
+    let newCommentaryObject = new Commentary(bp, username!, newCommentary);
+    this.http.post("http://localhost:8080/commentaries/create/" + bp + "/" + username, newCommentaryObject).subscribe(() => {
+      this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+    })
+    this.dialogRef.closeAll();
+  }
+
   // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
   public getImgActivity(nameact: String) { 
     this.http.get<Activite>("http://localhost:8080/activity/" + nameact).subscribe((data) => {
@@ -152,7 +163,7 @@ throw new Error('Method not implemented.');
   public updateBonPlan(bp: Bonplan) {
     this.dialogRef.open(PopUpComponentUpdateBonPlan, {
       width: '600px',
-      height: '550px',
+      height: '730px',
       data: {
         nameCity: this.nomdelaville,
         nameActivity:this.nomdelactivite,
@@ -186,7 +197,9 @@ throw new Error('Method not implemented.');
     let newUserNote : String[] = bpNoteUser;
     newUserNote.push(String(localStorage.getItem('currentUser')!));
     this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
-    nouvelleNote, newUserNote, 0);
+    nouvelleNote, newUserNote, 0)
+    // this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    // nouvelleNote, newUserNote, 0), "true");
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
     () => {
@@ -201,9 +214,12 @@ throw new Error('Method not implemented.');
       if (newtrie=="Les mieux notés"){
         this.allBonPlanFiltered = this.allBonPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (this.moyenneTableau(a.note) > this.moyenneTableau(b.note)) ? -1 : 1)    
-      }else{
+      }else if (newtrie == "Les plus récents"){
         this.allBonPlanFiltered = this.allBonPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
+      }else if(newtrie == "Le maximum d'avis"){
+        this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (a.note.length > b.note.length) ? -1 : 1)
       }
       this.trie1 = newtrie
     }
@@ -215,9 +231,12 @@ throw new Error('Method not implemented.');
       if (newtrie=="Les moins bien notés"){
         this.allMauvaisPlanFiltered = this.allMauvaisPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (this.moyenneTableau(a.note) < this.moyenneTableau(b.note)) ? -1 : 1)    
-      }else{
+      }else if (newtrie == "Les plus récents"){
         this.allMauvaisPlanFiltered = this.allMauvaisPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
+      }else if (newtrie=="Le maximum d'avis"){
+        this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
+        (a.note.length > b.note.length) ? -1 : 1)
       }
       this.trie2 = newtrie
     }

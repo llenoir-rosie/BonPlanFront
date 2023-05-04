@@ -8,6 +8,9 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #editBtn:hover {
@@ -16,9 +19,10 @@ body {
 
 #trashBtn {
     color: red;
+    border-color: red;
     position: absolute;
     top: 92%;
-    right: 15px;
+    right: 10px;
 }
 
 #trashBtn:hover {
@@ -31,6 +35,8 @@ body {
     align-items: center;
     flex-direction: row-reverse;
 }
+
+
 
 /* ------------------------------------------------------------------------------ **/
 
@@ -47,6 +53,7 @@ body {
 }
 
 .card {
+    position: relative;
     border-radius: 10px;
     height: 280px;
 }
@@ -137,7 +144,7 @@ p {
 }
 
 .card-content-bp {
-    display:flex;
+    display: flex;
     flex-wrap: nowrap;
     box-shadow: 0 0 5px #2ecc71 ;
     border-radius: 10px;

@@ -31,7 +31,7 @@
                         </div>
                         <div class="user-box">
                             <input class="form-control" formControlName="email" matInput required />
-                            <label>Mèl</label>
+                            <label>Email</label>
                             <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                                 <div *ngIf="f['email'].errors['required']">Le champ Mèl n'est pas rempli</div>
                             </div>
@@ -68,7 +68,7 @@
                             <span></span>
                             <span></span>
                             Créer
-                        </a><p (click)="goToLogin()">Déjà utilisateur ?</p>
+                        </a><p id="go-to-login" (click)="goToLogin()">Déjà utilisateur ?</p>
                     </div>
                 </form>
         </div>

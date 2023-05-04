@@ -147,8 +147,13 @@
                 0 0 25px burlywood,
                 0 0 50px burlywood,
                 0 0 100px burlywood;
+    cursor: pointer;
   }
   
+#go-to-login:hover{
+  cursor: pointer;
+}
+
   .login-box a span {
     position: absolute;
     display: block;

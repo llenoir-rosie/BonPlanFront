@@ -113,7 +113,7 @@
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  color: #fff;
+  /* color: #fff; */
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -121,6 +121,13 @@
   transition: .5s;
   margin-top: 40px;
   letter-spacing: 4px
+}
+.login-box form a.addBtn {
+  color: #fff;
+}
+
+#Enregistrer{
+  color: white;
 }
 
 .login-box form p {
@@ -137,12 +144,14 @@
 }
 
 .user-box a {
-  color: #aaa;
+  color: #fff;;
   text-decoration: none;
   font-size: 2em;
   transition: color .4s;
   float: right; /* permet de colorer les étoiles dans le bon sens (de gauche à droite) */
 }
+.user-box a:visited,
+.user-box a:visited ~ a,
 .user-box a:hover,
 .user-box a:focus,
 .user-box a:hover ~ a, /* sélecteur d'adjacente indirecte: permet de changer la couleur des étoiles précédentes à celle surolée  */
@@ -150,15 +159,25 @@
   cursor: pointer;
   color: orange;
 }
-
+.user-box a:visited{
+  color: orange;
+}
+/* .user-box a:hover{
+  color : orange;
+} */
+/* .user-box a:visited{
+  color:orange;
+} */
 .login-box .addBtn:hover {
   background: burlywood;
   color: #fff;
+  cursor: pointer;
   border-radius: 5px;
   box-shadow: 0 0 5px burlywood,
               0 0 25px burlywood,
               0 0 50px burlywood,
               0 0 100px burlywood;
+  cursor: pointer;
 }
 
 .login-box a span {
