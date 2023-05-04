@@ -31,11 +31,7 @@
               </select>
             </div>
           </div>
-
-            
-
-
-          <div *ngFor="let bp of allBonPlan">
+          <div *ngFor="let bp of allBonPlanFiltered">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
                 <div class="card-content-bp">
                   
@@ -72,6 +68,20 @@
 
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>
+                    <hr style="margin-top: 3%; margin-bottom: 3%;">
+                    <p>Commentaires : </p>
+                    <p><i class="material-icons" (click)="openDialogWithTemplateRef(addACommentary)" style="font-size: 23px;">add_circle</i>ajouter un commentaire</p>
+                    <ng-template  #addACommentary >
+                      <p>Ehooo</p>
+                    </ng-template>
+                    <div *ngIf = "bp.allCommentaries.length != 0">
+                      <p *ngFor="let com of bp.allCommentaries" >
+                        {{ com.commentaries }}  ({{com.userName}})
+                      </p>
+                    </div>
+                    <div *ngIf = "bp.allCommentaries.length == 0">
+                      <p> aucun commentaire </p>
+                    </div>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
                       <div>
@@ -116,7 +126,7 @@
               </select>
             </div>
           </div>
-          <div *ngFor="let bp of allMauvaisPlan">
+          <div *ngFor="let bp of allMauvaisPlanFiltered">
             <div class="card"> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
                 <div class="card-content-mp">
                   <div class="left-content">
@@ -151,7 +161,10 @@
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>Description {{ bp.address }}</p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <p>Commentaires {{ bp.commentaries }} de javainuse </p>
+                    <p>Commentaires : </p>
+                    <p *ngFor="let com of bp.allCommentaries" >
+                      {{ com }}
+                    </p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
                       <div>

@@ -52,11 +52,9 @@ body {
 }
 
 .card-bp {
-    height: 200px;
     width: 50%;
     background-color:#d0e9db ;
     padding: 2%;
-    box-shadow: 0 0 10%;
     box-shadow: 0 0 10px #d0e9db;
 }
 .card-bp h1 {                                                                                                               

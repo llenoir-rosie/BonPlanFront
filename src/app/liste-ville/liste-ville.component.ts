@@ -39,7 +39,6 @@ export class ListeVilleComponent implements OnInit{
   // }
   @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
     this.scroll_y = scrollY;
-    console.log(this.scroll_y);
     }
 
   ngOnInit() {

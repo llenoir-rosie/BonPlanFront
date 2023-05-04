@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bonplan } from '../bonplan';
 import { Mauvaisplan } from '../mauvaisplan' ;
@@ -13,7 +13,7 @@ import { PopUpComponentUpdateMauvaisPlan } from './pop-up-updateMauvaisPlan.comp
 import { AppComponent } from "../app.component";
 import { style } from '@angular/animations';
 import { BonPlanNote } from '../bonplan_note';
-import { commentary } from '../commentary';
+import { Commentary } from '../Commentary';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -36,7 +36,6 @@ throw new Error('Method not implemented.');
   nomdelaville: String;
   nomdelactivite: String;
   public listeBonPlan: BonPlanNote[];
-  public listeMauvaisPlan: BonPlanNote[];
   bonplanDeleted: Boolean = false;
   mauvaisplanDeleted: Boolean = false;
   allowUserRight: boolean;
@@ -46,12 +45,14 @@ throw new Error('Method not implemented.');
   currentVille: String;
   currentActivite: String;
   newBP: Bonplan;
+  allCommentary: Commentary[];
   
-  allBonPlan: BonPlanNote[];
-  allMauvaisPlan: BonPlanNote[];
+  public allBonPlan: BonPlanNote[];
+  public allMauvaisPlan: BonPlanNote[];
+  public allBonPlanFiltered: BonPlanNote[] ;
+  public allMauvaisPlanFiltered: BonPlanNote[] ;
   trie1 : String;
   trie2 : String;
-  allBonPlanNote: BonPlanNote[];
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
@@ -89,37 +90,42 @@ throw new Error('Method not implemented.');
 
   //"attrape" les bons et les mauvais plans en foncion de la ville et de l'activité où l'on est
   public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
+    this.allBonPlanFiltered = [];
+    this.allMauvaisPlanFiltered=[];
     this.http.get<BonPlanNote[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
       // trie les bons plans en fonction de la note moyenne des utilisateurs
-      this.allBonPlanNote = [];
       this.listeBonPlan = data.sort((a,b) => Number(this.moyenneTableau(b.note)) - Number(this.moyenneTableau(a.note)));
-
-      this.listeBonPlan.forEach(elt => {
-        console.log("aze", elt)
-        let i = 0;
-          while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
-            i++          
-          }
-          if (i < elt.note_user?.length ) {
-            // this.http.get<commentary[]>("http://localhost:8080/commentaries/a").subscribe((data) => {
-            //   let a = data
-            //   console.log("eee", a);
-            // })
-            let bon_plan_note = new BonPlanNote(elt, "true", "commentaire de base");
-            this.allBonPlanNote.push(bon_plan_note)
-          } else {
-            let bon_plan_note = new BonPlanNote(elt, "false", "commentaire de base");
-            this.allBonPlanNote.push(bon_plan_note)
-          }
-      })
       
-
-      this.allBonPlan = this.allBonPlanNote.filter(el => Number(this.moyenneTableau(el.note)) > 2);
-      this.allMauvaisPlan = this.allBonPlanNote.filter(el => Number(this.moyenneTableau(el.note)) <= 2).reverse();
+      //add commentaries to list of Bon Plan
+      this.addCommentariesAndFilter(this.listeBonPlan);
       this.trie1 = "Les mieux notés"
       this.trie2 = "Les moins bien notés"
       this.Trie1()
       this.Trie2()
+    })
+  }
+
+  public addCommentariesAndFilter(listOfBP: Bonplan[]) {
+    listOfBP.forEach(elt => {
+      let i = 0;
+      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + elt.name).subscribe((data) => {
+        while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
+          i++          
+        }
+        if (i < elt.note_user?.length ) {
+          if (Number(this.moyenneTableau(elt.note)) > 2)  {
+            this.allBonPlanFiltered.push(new BonPlanNote(elt, "true", data));
+          } else {
+            this.allMauvaisPlanFiltered.push(new BonPlanNote(elt, "true", data));
+          }
+        } else {
+          if (Number(this.moyenneTableau(elt.note)) > 2)  {
+            this.allBonPlanFiltered.push(new BonPlanNote(elt, "false", data));
+          } else {
+            this.allMauvaisPlanFiltered.push(new BonPlanNote(elt, "false", data));
+          }
+        }
+      })
     })
   }
 
@@ -193,23 +199,24 @@ throw new Error('Method not implemented.');
     let newtrie :String = (<HTMLInputElement>document.getElementById("DropdownOptions")).value
     if (this.trie1 != newtrie){
       if (newtrie=="Les mieux notés"){
-        this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+        this.allBonPlanFiltered = this.allBonPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (this.moyenneTableau(a.note) > this.moyenneTableau(b.note)) ? -1 : 1)    
       }else{
-        this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+        this.allBonPlanFiltered = this.allBonPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
       }
       this.trie1 = newtrie
     }
   }
+
   public Trie2(){
     let newtrie :String = (<HTMLInputElement>document.getElementById("DropdownOptions2")).value
     if (this.trie2 != newtrie){
       if (newtrie=="Les moins bien notés"){
-        this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
+        this.allMauvaisPlanFiltered = this.allMauvaisPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (this.moyenneTableau(a.note) < this.moyenneTableau(b.note)) ? -1 : 1)    
       }else{
-        this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
+        this.allMauvaisPlanFiltered = this.allMauvaisPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
       }
       this.trie2 = newtrie
@@ -260,6 +267,11 @@ throw new Error('Method not implemented.');
     }
     
     return [Math.round(delta_final) , Unite]
+  }
+  
+  @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialogRef.open(templateRef);
   }
   
 }

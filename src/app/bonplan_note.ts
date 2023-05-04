@@ -1,12 +1,13 @@
 import { Bonplan } from "./bonplan"
+import { Commentary } from "./Commentary";
 
 export class BonPlanNote extends Bonplan{
     already_noted: String;
-    commentaries: String;
-    constructor(bonplan: Bonplan, already_noted: String, commentaries: String) {
+    allCommentaries: Commentary[];
+    constructor(bonplan: Bonplan, already_noted: String, allCommentaries: Commentary[]) {
         super(bonplan.ville_name, bonplan.activity_type, bonplan.name, bonplan.address, bonplan.user_name, 
             bonplan.note,  bonplan.note_user, bonplan.date);
         this.already_noted = already_noted;
-        this.commentaries = commentaries;
+        this.allCommentaries = allCommentaries;
     }
 }

@@ -1,10 +1,10 @@
-export class commentary {
-    bpname: String
-    username: String
+export class Commentary {
+    bpName: String
+    userName: String
     commentaries: String
-    constructor(bpname: String, username: String, commentaries: String) {
-        this.bpname = bpname;
-        this.username = username;
+    constructor(bpName: String, userName: String, commentaries: String) {
+        this.bpName = bpName;
+        this.userName = userName;
         this.commentaries = commentaries;
     }
 }
