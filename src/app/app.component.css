@@ -273,7 +273,7 @@ ul{
 
 form:hover,
 form:focus-within {
-    width: 200px;
+    width: 205px;
     left: 48%;
     cursor: pointer;
 }
@@ -382,7 +382,7 @@ label.toggle:active:after {
 input#switch:checked ~ .curtain1 {
   transform: scaleX(100) scaleY(50);
   background-color: rgba(255, 157, 0, 0.5);
-  box-shadow: 0 0 20px 0 rgba(255, 157, 0, 0.5);
+  box-shadow: 0 0 0.2px 0.2px rgba(255, 157, 0, 0.5);
   opacity: 1;
 }
 .curtain2 {

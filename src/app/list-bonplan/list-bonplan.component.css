@@ -1,5 +1,4 @@
 body {
-    position: relative;
     background-color: #e4e7e7;
     height: 100%;
 }
@@ -60,7 +59,6 @@ body {
 }
 
 .card-bp {
-    height: 200px;
     width: 50%;
     background-color:#d0e9db ;
     padding: 2%;

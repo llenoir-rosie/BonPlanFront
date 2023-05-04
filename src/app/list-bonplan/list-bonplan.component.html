@@ -32,16 +32,11 @@
             </div>
           </div>
 
-            
-
-
           <div *ngFor="let bp of allBonPlan">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
-                <div class="card-content-bp">
-                  
-                  <div class="left-content">
+              <div class="card-content-bp">
+                <div class="left-content">
                   <h2>{{ bp.name }}</h2>
-
                   <div class="row-avis-date">
                     <p *ngIf="bp.note.length == 0 ">(pas encore d'avis)</p>
                     <div class="notation" *ngIf="!(bp.note.length == 0)"> {{moyenneTableau(bp.note)}}
