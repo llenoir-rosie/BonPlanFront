@@ -68,21 +68,21 @@ export class UserBonPlanComponent implements OnInit{
   
 
     
-    if (localStorage.getItem("currentUser") == null) {
+    if (sessionStorage.getItem("currentUser") == null) {
       this.allowModeratorRight = false
       this.allowUserRight = false
     } else {
-      this.currentUser = localStorage.getItem("currentUser")!
-      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+      this.currentUser = sessionStorage.getItem("currentUser")!
+      if (sessionStorage.getItem("currentUserRole")! == 'MODERATOR') {
         this.allowModeratorRight = true
       } else {
         this.allowUserRight = true
       }
     }
 
-      localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-      localStorage.setItem('currentVille', "");
-      localStorage.setItem('currentActivite', "");
+      sessionStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+      sessionStorage.setItem('currentVille', "");
+      sessionStorage.setItem('currentActivite', "");
       this.appComponent.ngOnInit();
   }
 

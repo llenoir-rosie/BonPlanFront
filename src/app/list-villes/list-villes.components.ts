@@ -43,12 +43,12 @@ export class ListeVillesComponent implements OnInit {
 
   ngOnInit() {
 
-    // // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
-    // this.currentImg = localStorage.getItem("currentImg")!;
+    // // on attribue la bonne valeur à currentImg en allant la chercher dans sessionStorage
+    // this.currentImg = sessionStorage.getItem("currentImg")!;
 
-    // // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
-    // this.currentVille = localStorage.getItem("currentVille")!;
-    // this.currentActivite = localStorage.getItem("currentActivite")!;
+    // // on attribue la bonne valeur à currentVille en allant la chercher dans sessionStorage
+    // this.currentVille = sessionStorage.getItem("currentVille")!;
+    // this.currentActivite = sessionStorage.getItem("currentActivite")!;
 
     const routeParams = this.route.snapshot.params;
     this.route.params.subscribe(routeParams => { //this.route.params est le nom de la ville et on attribut cette valeur à routeParams
@@ -57,11 +57,11 @@ export class ListeVillesComponent implements OnInit {
         this.getAllPossibleCities();
         this.getImgActivity(this.nameActivity);
 
-        if (localStorage.getItem("currentUser") == null) {
+        if (sessionStorage.getItem("currentUser") == null) {
           this.allowModeratorRight = false
           this.allowUserRight = false
         } else {
-          if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+          if (sessionStorage.getItem("currentUserRole")! == 'MODERATOR') {
             this.allowModeratorRight = true
           } else {
             this.allowUserRight = true
@@ -69,9 +69,9 @@ export class ListeVillesComponent implements OnInit {
         }
     });
 
-    // on enlève la valeur de currentVille dans localStorage et on y met la bonne valeur de currentActivity
-    localStorage.removeItem('currentVille');
-    localStorage.setItem('currentActivite', "\xa0"  + routeParams['activity.name'].toString());
+    // on enlève la valeur de currentVille dans sessionStorage et on y met la bonne valeur de currentActivity
+    sessionStorage.removeItem('currentVille');
+    sessionStorage.setItem('currentActivite', "\xa0"  + routeParams['activity.name'].toString());
 
     this.getAllActivityName();
 
@@ -97,8 +97,8 @@ export class ListeVillesComponent implements OnInit {
   public getImgActivity(nameact: String) { 
     this.http.get<Activite>("http://localhost:8080/activity/" + nameact).subscribe((data) => {
       this.currentImg = data.image;
-      // on met la bonne valeur à currentImg dans localStorage et on recharge le composant appComponent
-      localStorage.setItem('currentImg', this.currentImg.toString());
+      // on met la bonne valeur à currentImg dans sessionStorage et on recharge le composant appComponent
+      sessionStorage.setItem('currentImg', this.currentImg.toString());
       this.appComponent.ngOnInit();
     })
   }
@@ -126,20 +126,20 @@ export class ListeVillesComponent implements OnInit {
     this.router.navigate(['/ville']);
 
     // // on change la valeur de currentImg
-    // localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    // this.currentImg = localStorage.getItem("currentImg")!;
+    // sessionStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    // this.currentImg = sessionStorage.getItem("currentImg")!;
     // // on change la valeur de currentVille
-    // localStorage.setItem('currentActivite', "");
-    // this.currentActivite = localStorage.getItem("currentActivite")!;
+    // sessionStorage.setItem('currentActivite', "");
+    // this.currentActivite = sessionStorage.getItem("currentActivite")!;
   }
   
   goToVilleActiviteBonplan(ville: Ville , Act: Activite) {
     this.router.navigate(['/ville', ville.name, this.nameActivity])
 
-    // localStorage.setItem("currentActivite", "\xa0"  + this.nameActivity.toString());
-    // this.currentActivite = localStorage.getItem("currentActivite")!;
-    // localStorage.setItem("currentVille"," à " + ville.name);
-    // this.currentVille = localStorage.getItem("currentVille")!;
+    // sessionStorage.setItem("currentActivite", "\xa0"  + this.nameActivity.toString());
+    // this.currentActivite = sessionStorage.getItem("currentActivite")!;
+    // sessionStorage.setItem("currentVille"," à " + ville.name);
+    // this.currentVille = sessionStorage.getItem("currentVille")!;
   }
 
   @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;

@@ -37,9 +37,9 @@ export class Registration implements OnInit{
         username : new FormControl('', Validators.required),
       }
     )
-    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    localStorage.setItem('currentVille', "");
-    localStorage.setItem('currentActivite', "");
+    sessionStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    sessionStorage.setItem('currentVille', "");
+    sessionStorage.setItem('currentActivite', "");
     this.appComponent.ngOnInit();
   }
   get f(): { [key: string]: AbstractControl } {
