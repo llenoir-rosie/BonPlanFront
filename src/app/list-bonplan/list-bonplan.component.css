@@ -212,3 +212,11 @@ p {
     padding:0px;
     margin:0px;
 }
+
+.commentaryBtn > button {
+    box-shadow: 1px 1px 1px 0;
+}
+
+/* ::ng-deep .custom-dialog > mat-dialog-container {
+    opacity: 0.8;
+} */
