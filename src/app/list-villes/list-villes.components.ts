@@ -22,6 +22,8 @@ export class ListeVillesComponent implements OnInit {
   public listeCities : Ville[];
   public nameActivity: String;
   public Act: Activite;
+  public listActivities: Activite[];
+  public listNameActivities: String[] = [];
   public listAllCities: Ville[];
   public newCity: Ville;
   dialogRefs: MatDialog;
@@ -70,6 +72,9 @@ export class ListeVillesComponent implements OnInit {
     // on enlève la valeur de currentVille dans localStorage et on y met la bonne valeur de currentActivity
     localStorage.removeItem('currentVille');
     localStorage.setItem('currentActivite', "\xa0"  + routeParams['activity.name'].toString());
+
+    this.getAllActivityName();
+
   }
     // this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
     // si jamais il y a des soucis avec les majuscules des premières lettres des villes
@@ -198,11 +203,19 @@ export class ListeVillesComponent implements OnInit {
     this.getAllCities(this.nameActivity))
   }
 
-
+  getAllActivityName(){
+    this.http.get<Activite[]>('http://localhost:8080/activities').subscribe((data) => {
+      this.listActivities = data;
+      for (let n: number = 0; n < this.listActivities.length; n++){
+        this.listNameActivities.push(this.listActivities[n].name);
+      }
+    })
+  }
 
 }
 
 function Inject(target: typeof ListeVillesComponent, propertyKey: undefined, parameterIndex: 0): void {
   throw new Error('Function not implemented.');
 }
+
 

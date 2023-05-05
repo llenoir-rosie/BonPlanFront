@@ -25,6 +25,7 @@ import { PopUpComponentUpdateMauvaisPlan } from './list-bonplan/pop-up-updateMau
 import { AuthInterceptor } from './AuthInterceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
     PopUpComponentAddMauvaisPlan,
     PopUpComponentUpdateBonPlan,
     PopUpComponentUpdateMauvaisPlan,
+    PageNotFoundComponent,
   ],
   imports: [
     NgxPageScrollCoreModule.forRoot({duration: 500}),

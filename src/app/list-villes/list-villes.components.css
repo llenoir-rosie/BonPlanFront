@@ -75,6 +75,7 @@ img {
     display : flex;
     /* align-items: center; */
     justify-content: space-evenly;
+    border-bottom: 20px solid transparent;
 }
 
 .bouton-pop-up-ajouter-act, .bouton-pop-up-delete, .bouton-bottom-card{

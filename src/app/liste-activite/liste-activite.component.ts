@@ -29,6 +29,8 @@ export class ListeActiviteComponent implements OnInit {
   currentImg: String;
   currentVille: String;
   currentActivite: String;
+  public listVille: Ville[];
+  public listNameVille: String[] = [];
   public listeActivites: Activite[];
   public listeAllActivites : Activite[];
   public nomdelaville: String;
@@ -76,6 +78,8 @@ export class ListeActiviteComponent implements OnInit {
     // on enlève la valeur de currentActivite dans localStorage et on y met la bonne valeur de currentVille
     localStorage.removeItem('currentActivite');
     localStorage.setItem('currentVille', "\xa0" + "à "  + this.nomdelaville.toString());
+
+    this.getAllVilleName();
   }
     // this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1)
     // si jamais il y a des soucis avec les majuscules des premières lettres des villes
@@ -198,6 +202,14 @@ openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     }
   }
 
+  getAllVilleName(){
+    this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
+      this.listVille = data;
+      for (let n: number = 0; n < this.listVille.length; n++){
+        this.listNameVille.push(this.listVille[n].name);
+      }
+    })
+  }
 
 }
 

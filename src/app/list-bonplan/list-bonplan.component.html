@@ -6,7 +6,7 @@
       <link href='https://css.gg/css' rel='stylesheet'>                  
     </head> 
     <body>       
-          
+      <div *ngIf="this.listNameActivities.includes(this.nomdelactivite) && this.listNameVille.includes(this.nomdelaville)">
       <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>
       
       <div class="row">
@@ -202,6 +202,18 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="center" style="display:flex; flex-direction: column; align-items: center;"
+    *ngIf="!this.listNameVille.includes(this.nomdelaville) || !this.listNameActivities.includes(this.nomdelactivite)">
+    <img src="../assets/img/travolta.gif">
+    <h1 style="margin: 20px"> Cette ville ou cette activité n'existe pas !</h1>
+    <button id = "AjoutAct" mat-raised-button class="waves-effect waves-light btn " routerLink="/ville" 
+    style="color:wheat; background-color: black; margin-bottom: 20px;
+    display: flex; align-content: center; flex-direction: row-reverse;"
+    >Retour à la page d'accueil
+      <i class="material-icons right" style="font-size: 23px;">subdirectory_arrow_left</i>
+    </button>
+  </div>
     </body>
   </html>
  
