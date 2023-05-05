@@ -55,7 +55,7 @@ body {
 .card {
     position: relative;
     border-radius: 10px;
-    height: 280px;
+    /* height: 280px; */
 }
 
 .card-bp {
