@@ -67,6 +67,7 @@ export class AppComponent implements OnInit{
 
     this.location_url = location.href;
 
+    console.log(localStorage);
   }
 
   IsUserIsAuth() {
@@ -79,12 +80,17 @@ export class AppComponent implements OnInit{
     }
   }
   
-  // permet de "reset" la navbar lorsqu'on ferme l'onglet du site
+  // permet de "reset" la navbar et de déconnecter l'utilisateur lorsqu'on ferme l'onglet du site
   @HostListener('window:beforeunload') onBeforeUnload() {
     localStorage.removeItem("currentActivite");
     localStorage.removeItem("currentVille");
     localStorage.setItem("currentImg", "");
+    // localStorage.removeItem('currentUser');
+    // localStorage.removeItem('currentUserRole');
+    // localStorage.removeItem('token');
+    // 
     }
+
 
   // @HostListener('window:popstate') onPopState() {
 
