@@ -37,6 +37,15 @@
             <div *ngIf="f['address'].errors['required']">Besoin d'une Addresse</div>
           </div>
         </div>
+        <div class="user-box">
+          <!-- <label for="bp-description" style="color:white; font-size: 1em; padding:10px; margin : 10px;">Description</label> -->
+          <!-- <textarea style="height: 100px;" id="bp-description" name="bp-description" class="form-control" formControlName="address" matInput required></textarea>                    -->
+          <input class="form-control" formControlName="commentary" matInput required />
+          <label>Commentaire :  </label>
+          <div *ngIf="submitted && f['commentary'].errors" class="invalid-feedback">
+            <div *ngIf="f['commentary'].errors['required']">Laissez un commentaire </div>
+          </div>
+        </div>
         <div class="user-box" matInput required >
           <div>
             <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles">☆</a>

@@ -10,7 +10,6 @@
       <div *ngIf="bonplanDeleted" class="alert alert-success" style="text-align: center; font-size: large; font-style: oblique;">You've successfully deleted the Bon Plan !!!</div>
       
       <div class="row">
-
         <div class = "col card-bp">
           <div class="gros-titre">
             <h1>Les bons plans</h1>
@@ -65,11 +64,46 @@
                   
 
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <p>{{ bp.address }}</p>
+                    <p>{{ bp.address }}</p> 
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <p> {{bp.allCommentaries.length}} Commentaires : </p>
-                    <p><i class="material-icons" (click)="openDialogWithTemplateRef(addACommentary)" style="font-size: 23px;">add_circle</i>ajouter un commentaire</p>
-                    <ng-template  #addACommentary >
+                    <p class="commentaryBtn"> 
+                      <button *ngIf = 'bp.allCommentaries.length > 1 '(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaires </button>
+                      <button *ngIf = 'bp.allCommentaries.length == 1 || bp.allCommentaries.length == 0'(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaire </button>
+                    </p>
+                    <!-- <p><i class="material-icons" (click)="openDialogWithTemplateRef(addACommentary)" style="font-size: 23px;">add_circle</i>ajouter un commentaire</p> -->
+                    <ng-template  #openCommentaries >
+                      <div class="content-ngtemplate" style="background:none;">
+                        <h2 class = "titre"> Commentaires </h2>
+                        <div mat-dialog-content>
+                          <div *ngIf = "bp.allCommentaries.length != 0">
+                            <p *ngFor="let com of allCommentary" >
+                              <mat-card>
+                                <mat-card-header>
+                                  <mat-card-subtitle>{{com.userName}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>{{ com.commentaries }} </mat-card-content>
+                              </mat-card>
+                            </p>
+                          </div>
+                          <div *ngIf = "bp.allCommentaries.length == 0">
+                            <p> aucun commentaire </p>
+                          </div>
+                          <div class="commentary">
+                            <label for="new_commentary">Partagez votre expérience : </label>
+                            <textarea  *ngIf="bp.already_noted == 'false'" style="height: 50px;" id="new_commentary" name="new_commentary"></textarea>
+                            <p *ngIf="bp.already_noted == 'true'"> Experience déjà partagée</p>
+                          </div>
+                        </div>
+                        <div mat-dialog-actions class = "button-bottom">
+                          <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp.name)"> Ajouter </button>
+                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider" (click)="addCommentary(bp.name)" disabled style="opacity: 0.5"> Ajouter </button>
+                          <button class="BtnAnnuler" matDialogClose > Annuler </button>
+                        </div>
+                      </div>
+                    </ng-template>
+
+
+                    <!-- <ng-template  #addACommentary >
                       <div class="content-ngtemplate" >
                         <h2 class = "titre">Que pensez vous de ce conseil ? </h2>
                         <div mat-dialog-content>
@@ -83,15 +117,7 @@
                           <button class="BtnAnnuler" matDialogClose > Annuler </button>
                         </div>
                       </div>
-                    </ng-template>
-                    <div *ngIf = "bp.allCommentaries.length != 0">
-                      <p *ngFor="let com of bp.allCommentaries" >
-                        {{ com.commentaries }}  ({{com.userName}})
-                      </p>
-                    </div>
-                    <div *ngIf = "bp.allCommentaries.length == 0">
-                      <p> aucun commentaire </p>
-                    </div>
+                    </ng-template> -->
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
                       <div>
@@ -171,10 +197,40 @@
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p>{{ bp.address }}</p>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <p> Commentaires : </p>
-                    <p *ngFor="let com of bp.allCommentaries" >
-                      {{ com }}
+                    <p class="commentaryBtn"> 
+                      <button *ngIf = 'bp.allCommentaries.length > 1 '(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaires </button>
+                      <button *ngIf = 'bp.allCommentaries.length == 1 || bp.allCommentaries.length == 0'(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaire </button>
                     </p>
+                    <ng-template  #openCommentaries >
+                      <div class="content-ngtemplate" style="background:none;">
+                        <h2 class = "titre"> Commentaires </h2>
+                        <div mat-dialog-content>
+                          <div *ngIf = "bp.allCommentaries.length != 0">
+                            <p *ngFor="let com of allCommentary" >
+                              <mat-card>
+                                <mat-card-header>
+                                  <mat-card-subtitle>{{com.userName}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content>{{ com.commentaries }} </mat-card-content>
+                              </mat-card>
+                            </p>
+                          </div>
+                          <div *ngIf = "bp.allCommentaries.length == 0">
+                            <p> aucun commentaire </p>
+                          </div>
+                          <div class="commentary">
+                            <label for="new_commentary">Partagez votre expérience : </label>
+                            <textarea  *ngIf="bp.already_noted == 'false'" style="height: 50px;" id="new_commentary" name="new_commentary"></textarea>
+                            <p *ngIf="bp.already_noted == 'true'"> Experience déjà partagée</p>
+                          </div>
+                        </div>
+                        <div mat-dialog-actions class = "button-bottom">
+                          <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp.name)"> Ajouter </button>
+                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider" (click)="addCommentary(bp.name)" disabled style="opacity: 0.5"> Ajouter </button>
+                          <button class="BtnAnnuler" matDialogClose > Annuler </button>
+                        </div>
+                      </div>
+                    </ng-template>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
                       <div>

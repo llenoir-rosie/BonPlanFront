@@ -142,9 +142,12 @@ throw new Error('Method not implemented.');
     let newCommentary = (<HTMLInputElement>document.getElementById("new_commentary")).value;
     let newCommentaryObject = new Commentary(bp, username!, newCommentary);
     this.http.post("http://localhost:8080/commentaries/create/" + bp + "/" + username, newCommentaryObject).subscribe(() => {
-      this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bp).subscribe((data) => {
+        this.allCommentary = [];
+        this.allCommentary = data;
+        this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+      });
     })
-    this.dialogRef.closeAll();
   }
 
   // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
@@ -295,10 +298,24 @@ throw new Error('Method not implemented.');
     return [Math.round(delta_final) , Unite]
   }
   
-  @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
-  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
-    this.dialogRef.open(templateRef);
+  // @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
+  // openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+  //   this.dialogRef.open(templateRef);
+  // }
+  @ViewChild('firstDialog', { static: true }) firstDialog: TemplateRef<any>;
+  openDialogCommentaries(templateRef: TemplateRef<any>, bpname: String) { 
+    this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bpname).subscribe((data) => {
+        this.allCommentary = [];
+        this.allCommentary = data;
+    });
+    this.dialogRef.open(templateRef, {
+        height: '700px',
+        width: '1200px',
+        panelClass: 'custom-dialog',
+        data: this.allCommentary,
+      });
   }
+
   
   getAllActivityName(){
     this.http.get<Activite[]>('http://localhost:8080/activities').subscribe((data) => {
