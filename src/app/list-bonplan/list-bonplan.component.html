@@ -92,8 +92,8 @@
                           </div>
                         </div>
                         <div mat-dialog-actions class = "button-bottom">
-                          <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp.name)"> Ajouter </button>
-                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider" (click)="addCommentary(bp.name)" disabled style="opacity: 0.5"> Ajouter </button>
+                          <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
+                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider"  disabled style="opacity: 0.5"> Ajouter </button>
                           <button class="BtnAnnuler" matDialogClose > Annuler </button>
                         </div>
                       </div>
@@ -222,8 +222,8 @@
                           </div>
                         </div>
                         <div mat-dialog-actions class = "button-bottom">
-                          <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp.name)"> Ajouter </button>
-                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider" (click)="addCommentary(bp.name)" disabled style="opacity: 0.5"> Ajouter </button>
+                          <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
+                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider" disabled style="opacity: 0.5"> Ajouter </button>
                           <button class="BtnAnnuler" matDialogClose > Annuler </button>
                         </div>
                       </div>

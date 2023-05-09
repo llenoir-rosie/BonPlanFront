@@ -130,12 +130,13 @@ throw new Error('Method not implemented.');
   }
 
   //Add a commentary to a specific Bon Plan
-  public addCommentary(bp: String) {
+  public addCommentary(bp: BonPlanNote) {
     let username = localStorage.getItem("currentUser");
     let newCommentary = (<HTMLInputElement>document.getElementById("new_commentary")).value;
-    let newCommentaryObject = new Commentary(bp, username!, newCommentary);
-    this.http.post("http://localhost:8080/commentaries/create/" + bp + "/" + username, newCommentaryObject).subscribe(() => {
-      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bp).subscribe((data) => {
+    let newCommentaryObject = new Commentary(bp.name, username!, newCommentary);
+    bp.already_noted = "true";
+    this.http.post("http://localhost:8080/commentaries/create/" + bp.name + "/" + username, newCommentaryObject).subscribe(() => {
+      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bp.name).subscribe((data) => {
         this.allCommentary = [];
         this.allCommentary = data;
         this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
