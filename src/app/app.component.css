@@ -5,7 +5,10 @@ nav {
 }
 
 body {
-    top: 0px;
+  position: relative;
+  top: 0px;
+  background-color: #e4e7e7;
+  min-height: 80.5vh;
 }
 
 .entete {
@@ -61,18 +64,14 @@ body {
   font-size: 2em;
 }
 
-.page-footer {
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER */
+.page-foutu-footer {
   left: 0;
   bottom: 0;
   width: 100%;
-  padding: 0;
+  padding: 10px;
   }
-/* footer {
-    position: absolute;
-    bottom: 0%;
-    flex-grow: 0;
-    flex-shrink: 0;
-  } */
+
   .material-icons {
     margin-right: 3px;
   }
@@ -80,7 +79,8 @@ body {
 .ligne-footer {
     display: flex;
     flex-direction: row; 
-    align-items: flex-start;   
+    align-items: flex-start;
+    margin-top: 7px; 
 }
 
 .coordonnees-footer {
@@ -102,9 +102,14 @@ a.text-lighten-4 {
     justify-content: space-between;
 }
 
+.container {
+  font-size: 15px;
+}
 
+/* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR */
 .nav-wrapper {
     position: relative;
+    height: 100px;
     z-index: 2;
     transition-duration: 0.5s;
     transition-property: background-color;
@@ -175,7 +180,7 @@ img.activite-navbar {
     z-index: -2;
     position: absolute;
     top: 0%;
-    height: 100px;
+    height: 100%;
     width: 100%;
     object-fit: cover;
 }
@@ -407,7 +412,7 @@ input#switch:checked ~ .curtain2 {
 
 .button-connexion {
     position: absolute;
-    height: 100px;
+    height: 100%;
     width: 100px;
     top: 0%;
     right: 0%;
