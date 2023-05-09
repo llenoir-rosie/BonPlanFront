@@ -13,6 +13,8 @@ import { Activite } from '../activite';
 import { _getOptionScrollPosition } from '@angular/material/core';
 import { AppComponent } from "../app.component";
 import { Commentary } from '../Commentary';
+// import { BonPlanNote } from '../bonplan_note';
+// import { CommaExpr } from '@angular/compiler';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -30,7 +32,9 @@ export class ListeVilleComponent implements OnInit{
   currentActivite: String;
   activeUIIndex = 1;
   scroll_y = 0;
-  randomCommentaries: String;
+  randomCommentaries: Commentary[];
+  randomCommentariesString: String[];
+  randomUserString: String[];
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService,
     @Inject(DOCUMENT) private document: any, private appComponent: AppComponent) {}
@@ -42,7 +46,7 @@ export class ListeVilleComponent implements OnInit{
   ngOnInit() {
     this.getAllCities();
     this.getAllActivities();
-    // this.getAleaCommentaries();
+    this.getAleaCommentaries();
     var swiper = new SwiperCore(".mySwiper2", {
       loop: true,
       spaceBetween: 10,
@@ -61,15 +65,20 @@ export class ListeVilleComponent implements OnInit{
     });
     this.appComponent.ngOnInit();
   }
-  // public getAleaCommentaries() {
-  //   this.randomCommentaries = '';
-  //   this.http.get<String>("http://localhost:8080/commentaries").subscribe((data) => {
-  //     for (let i = 0; i < 10; i++) {
-  //       console.log(data[Math.floor(Math.random() * data.length)]['commentaries'])
-  //       this.randomCommentaries += data[Math.floor(Math.random() * data.length)]; 
-  //     }
-  //   })
-  // }
+
+  public getAleaCommentaries() {
+    this.randomCommentaries = [];
+    this.randomCommentariesString = [];
+    this.randomUserString = [];
+    this.http.get<Commentary[]>("http://localhost:8080/commentaries").subscribe((data) => {
+      this.randomCommentaries = data; 
+      for (let i = 0; i < 5; i++) {
+        let j = Math.floor(Math.random() * this.randomCommentaries.length)
+        this.randomCommentariesString.push(this.randomCommentaries[j].commentaries);
+        this.randomUserString.push(this.randomCommentaries[j].userName)
+      }
+    })
+  }
 
 scrollCustomImplementation(element: HTMLElement, index:any) {
   this.pageScrollService.scroll({

@@ -14,6 +14,7 @@ import { AppComponent } from "../app.component";
 import { style } from '@angular/animations';
 import { BonPlanNote } from '../bonplan_note';
 import { Commentary } from '../Commentary';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -40,6 +41,7 @@ throw new Error('Method not implemented.');
   mauvaisplanDeleted: Boolean = false;
   allowUserRight: boolean;
   allowModeratorRight: boolean;
+  submitted: boolean;
   currentUser: String;
   currentImg: String;
   currentVille: String;
@@ -50,6 +52,7 @@ throw new Error('Method not implemented.');
   public listNameActivities: String[] = [];
   public listVille: Ville[];
   public listNameVille: String[] = [];
+  note: String;
   
   public allBonPlan: BonPlanNote[];
   public allMauvaisPlan: BonPlanNote[];
@@ -57,11 +60,13 @@ throw new Error('Method not implemented.');
   public allMauvaisPlanFiltered: BonPlanNote[] ;
   trie1 : String;
   trie2 : String;
+  newCommentaryForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
 
   ngOnInit() {
+    this.submitted = false;
     //Recup the city name of bonplan 
     const villeName: string|null = this.route.snapshot.paramMap.get('name');
     this.nomdelaville = (villeName+'').charAt(0).toUpperCase()+villeName?.substr(1);
@@ -72,6 +77,12 @@ throw new Error('Method not implemented.');
 
     this.imgBackGround = '../assets/img/' + this.nomdelactivite + '.jfif'
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
+    this.newCommentaryForm = new FormGroup (
+      {
+        form_commentary : new FormControl('', Validators.required),
+        form_note : new FormControl('', Validators.required),
+      }
+    )
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     this.getImgActivity(this.nomdelactivite);
     if (sessionStorage.getItem("currentUser") == null) {
@@ -136,18 +147,38 @@ throw new Error('Method not implemented.');
     })
   }
 
+  public saveNote(note:String) {
+    this.note = note;
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.newCommentaryForm.controls;
+  }
+
   //Add a commentary to a specific Bon Plan
-  public addCommentary(bp: String) {
-    let username = sessionStorage.getItem("currentUser");
-    let newCommentary = (<HTMLInputElement>document.getElementById("new_commentary")).value;
-    let newCommentaryObject = new Commentary(bp, username!, newCommentary);
-    this.http.post("http://localhost:8080/commentaries/create/" + bp + "/" + username, newCommentaryObject).subscribe(() => {
-      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bp).subscribe((data) => {
-        this.allCommentary = [];
-        this.allCommentary = data;
-        this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
-      });
-    })
+  public addCommentary(bp: BonPlanNote) {
+    this.submitted = true;
+    if (this.note != undefined && !this.f['form_commentary'].errors) {
+      let username = sessionStorage.getItem("currentUser");
+      let newCommentary = (<HTMLInputElement>document.getElementById("new_commentary")).value;
+      let newCommentaryObject = new Commentary(bp.name, username!, newCommentary);
+      let nouvelleNote : Number[] = bp.note;
+      nouvelleNote.push(Number(this.note));
+      let newUserNote : String[] = bp.note_user;
+      newUserNote.push(String(sessionStorage.getItem('currentUser')!));
+      this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bp.name, bp.address, sessionStorage.getItem('currentUser')!,
+      nouvelleNote, newUserNote, 0)
+      bp.already_noted = "true";
+      this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(() => {
+        this.http.post("http://localhost:8080/commentaries/create/" + bp.name + "/" + username, newCommentaryObject).subscribe(() => {
+          this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bp.name).subscribe((data) => {
+            this.allCommentary = [];
+            this.allCommentary = data;
+            this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+          });
+        })
+      })
+    }
   }
 
   // fait une requette au back pour attraper la classe activite correspondant au nom de l'activite où on est
@@ -199,23 +230,6 @@ throw new Error('Method not implemented.');
       moyenne = moyenne + (Number(tab[i])/tab.length);
     }
     return moyenne.toFixed(1);
-  }
-
-  public noteClick(note:String, bpNote: Number[], bpName: String, bpAdress: String, bpNoteUser: String[]) {
-    let nouvelleNote : Number[] = bpNote;
-    nouvelleNote.push(Number(note));
-    let newUserNote : String[] = bpNoteUser;
-    newUserNote.push(String(sessionStorage.getItem('currentUser')!));
-    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, sessionStorage.getItem('currentUser')!,
-    nouvelleNote, newUserNote, 0)
-    // this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, sessionStorage.getItem('currentUser')!,
-    // nouvelleNote, newUserNote, 0), "true");
-
-    this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(
-    () => {
-      this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
-    })
-
   }
 
   public Trie1(){
