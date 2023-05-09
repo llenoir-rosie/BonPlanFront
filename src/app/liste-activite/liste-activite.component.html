@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">       
   </head>
   <body>
+    <div *ngIf="this.listNameVille.includes(this.nomdelaville)">
     <div *ngFor="let act of listeActivites">
       <div class="col s12 m8 offset-m2">
         <div class="card horizontal hoverable" >
@@ -124,7 +125,17 @@
       </div> 
     </div>
     <br>
+  </div>
+  <div class="center" style="display:flex; flex-direction: column; align-items: center;"
+  *ngIf="!this.listNameVille.includes(this.nomdelaville)">
+    <img src="../assets/img/travolta.gif">
+    <h1 style="margin: 20px"> Cette ville n'existe pas !</h1>
+    <button id = "AjoutAct" mat-raised-button class="waves-effect waves-light btn " routerLink="/ville" 
+    style="color:wheat; background-color: black; margin-bottom: 20px;
+    display: flex; align-content: center; flex-direction: row-reverse;"
+    >Retour à la page d'accueil
+      <i class="material-icons right" style="font-size: 23px;">subdirectory_arrow_left</i>
+    </button>
+  </div>
   </body>
 </html>
-
-

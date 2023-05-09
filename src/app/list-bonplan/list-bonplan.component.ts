@@ -46,6 +46,10 @@ throw new Error('Method not implemented.');
   currentActivite: String;
   newBP: Bonplan;
   allCommentary: Commentary[];
+  public listActivities: Activite[];
+  public listNameActivities: String[] = [];
+  public listVille: Ville[];
+  public listNameVille: String[] = [];
   
   public allBonPlan: BonPlanNote[];
   public allMauvaisPlan: BonPlanNote[];
@@ -84,6 +88,9 @@ throw new Error('Method not implemented.');
 
     localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
     localStorage.setItem("currentActivite", "\xa0"  + this.nomdelactivite.toString());
+
+    this.getAllActivityName();
+    this.getAllVilleName();
   }
 
 
@@ -311,4 +318,21 @@ throw new Error('Method not implemented.');
   }
 
   
+  getAllActivityName(){
+    this.http.get<Activite[]>('http://localhost:8080/activities').subscribe((data) => {
+      this.listActivities = data;
+      for (let n: number = 0; n < this.listActivities.length; n++){
+        this.listNameActivities.push(this.listActivities[n].name);
+      }
+    })
+  }
+  getAllVilleName(){
+    this.http.get<Ville[]>('http://localhost:8080/cities').subscribe((data) => {
+      this.listVille = data;
+      for (let n: number = 0; n < this.listVille.length; n++){
+        this.listNameVille.push(this.listVille[n].name);
+      }
+    })
+  }
+
 }
