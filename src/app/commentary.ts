@@ -7,8 +7,4 @@ export class Commentary {
         this.userName = userName;
         this.commentaries = commentaries;
     }
-    getCommentaries() {
-        return this.commentaries;
-    }
-    
 }

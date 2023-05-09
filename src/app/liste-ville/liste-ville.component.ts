@@ -33,7 +33,8 @@ export class ListeVilleComponent implements OnInit{
   activeUIIndex = 1;
   scroll_y = 0;
   randomCommentaries: Commentary[];
-  randomCommentariesString: String[]
+  randomCommentariesString: String[];
+  randomUserString: String[];
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService,
     @Inject(DOCUMENT) private document: any, private appComponent: AppComponent) {}
@@ -68,10 +69,13 @@ export class ListeVilleComponent implements OnInit{
   public getAleaCommentaries() {
     this.randomCommentaries = [];
     this.randomCommentariesString = [];
+    this.randomUserString = [];
     this.http.get<Commentary[]>("http://localhost:8080/commentaries").subscribe((data) => {
       this.randomCommentaries = data; 
       for (let i = 0; i < 5; i++) {
-        this.randomCommentariesString.push(this.randomCommentaries[i].commentaries);
+        let j = Math.floor(Math.random() * this.randomCommentaries.length)
+        this.randomCommentariesString.push(this.randomCommentaries[j].commentaries);
+        this.randomUserString.push(this.randomCommentaries[j].userName)
       }
     })
   }

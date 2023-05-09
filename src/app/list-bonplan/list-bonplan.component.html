@@ -88,10 +88,29 @@
                           <div *ngIf = "bp.allCommentaries.length == 0">
                             <p> aucun commentaire </p>
                           </div>
-                          <div class="commentary">
-                            <label for="new_commentary">Partagez votre expérience : </label>
-                            <textarea  *ngIf="bp.already_noted == 'false'" style="height: 50px;" id="new_commentary" name="new_commentary"></textarea>
-                            <p *ngIf="bp.already_noted == 'true'"> Experience déjà partagée</p>
+                          <form [formGroup]="newCommentaryForm">
+                            <div *ngIf="bp.already_noted == 'false'" class="avis">
+                              <div class="commentary" matInput required>
+                                <label for="new_commentary">Partagez votre expérience : </label>
+                                <textarea  formControlName="form_commentary"  placeholder="Entrez votre commentaire" id="new_commentary" style="height: 50px;" matInput required></textarea>
+                                <div *ngIf="submitted && f['form_commentary'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['form_commentary'].errors['required']">Le champ Commentaire n'est pas rempli</div>
+                                </div>
+                              </div>
+                              <div matInput required>   
+                                <a id="étoile1" (click)="saveNote('1')" title="Donner 1 étoile">☆</a>
+                                <a id="étoile2" (click)="saveNote('2')" title="Donner 2 étoiles">☆</a>
+                                <a id="étoile3" (click)="saveNote('3')" title="Donner 3 étoiles">☆</a>
+                                <a id="étoile4" (click)="saveNote('4')" title="Donner 4 étoiles">☆</a>
+                                <a id="étoile5" (click)="saveNote('5')" title="Donner 5 étoiles">☆</a>
+                              </div>
+                              <div *ngIf="submitted && note==undefined" class="invalid-feedback">
+                                Donnez une Note !
+                              </div>
+                            </div>
+                          </form>
+                          <div *ngIf="bp.already_noted == 'true'">
+                              Vous avez déjà laissé un avis ;)
                           </div>
                         </div>
                         <div mat-dialog-actions class = "button-bottom">
@@ -101,35 +120,9 @@
                         </div>
                       </div>
                     </ng-template>
-
-
-                    <!-- <ng-template  #addACommentary >
-                      <div class="content-ngtemplate" >
-                        <h2 class = "titre">Que pensez vous de ce conseil ? </h2>
-                        <div mat-dialog-content>
-                          <div class="commentary">
-                            <label for="new_commentary">Commentaire : </label>
-                            <textarea style="height: 100px;" id="new_commentary" name="new_commentary"></textarea>
-                          </div>
-                        </div>
-                        <div mat-dialog-actions class = "button-bottom">
-                          <button class="BtnValider" (click)="addCommentary(bp.name)"> Ajouter </button>
-                          <button class="BtnAnnuler" matDialogClose > Annuler </button>
-                        </div>
-                      </div>
-                    </ng-template> -->
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
-                      <div>
-                         <a id="étoile5" (click)="noteClick('5', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 5 étoiles">☆</a><!--
-                      --><a id="étoile4" (click)="noteClick('4', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 4 étoiles">☆</a><!--
-                      --><a id="étoile3" (click)="noteClick('3', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 3 étoiles">☆</a><!--
-                      --><a id="étoile2" (click)="noteClick('2', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 2 étoiles">☆</a><!--
-                      --><a id="étoile1" (click)="noteClick('1', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 1 étoile">☆</a>
-                      </div>
-                    </div>
                     <div *ngIf = "bp.already_noted == 'true'" >
-                      <p class="information_call_note"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
+                      <p class="information_call_note" style="font-size: smaller;"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
                     </div>
                   </div>
                   <img class = "img-test" src="{{currentImg}}">
@@ -218,11 +211,30 @@
                           <div *ngIf = "bp.allCommentaries.length == 0">
                             <p> aucun commentaire </p>
                           </div>
-                          <div class="commentary">
-                            <label for="new_commentary">Partagez votre expérience : </label>
-                            <textarea  *ngIf="bp.already_noted == 'false'" style="height: 50px;" id="new_commentary" name="new_commentary"></textarea>
-                            <p *ngIf="bp.already_noted == 'true'"> Experience déjà partagée</p>
-                          </div>
+                          <form [formGroup]="newCommentaryForm">
+                            <div *ngIf="bp.already_noted == 'false'" class="avis">
+                              <div class="commentary" matInput required>
+                                <label for="new_commentary">Partagez votre expérience : </label>
+                                <textarea  formControlName="form_commentary"  placeholder="Entrez votre commentaire" id="new_commentary" style="height: 50px;" matInput required></textarea>
+                                <div *ngIf="submitted && f['form_commentary'].errors" class="invalid-feedback">
+                                  <div *ngIf="f['form_commentary'].errors['required']">Le champ Commentaire n'est pas rempli</div>
+                                </div>
+                              </div>
+                              <div matInput required>   
+                                <a id="étoile1" (click)="saveNote('1')" title="Donner 1 étoile">☆</a>
+                                <a id="étoile2" (click)="saveNote('2')" title="Donner 2 étoiles">☆</a>
+                                <a id="étoile3" (click)="saveNote('3')" title="Donner 3 étoiles">☆</a>
+                                <a id="étoile4" (click)="saveNote('4')" title="Donner 4 étoiles">☆</a>
+                                <a id="étoile5" (click)="saveNote('5')" title="Donner 5 étoiles">☆</a>
+                              </div>
+                              <div *ngIf="submitted && note==undefined" class="invalid-feedback">
+                                Donnez une Note !
+                              </div>
+                            </div>
+                          </form>
+                          <div *ngIf="bp.already_noted == 'true'">
+                            Vous avez déjà laissé un avis ;)
+                        </div>
                         </div>
                         <div mat-dialog-actions class = "button-bottom">
                           <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
@@ -232,21 +244,11 @@
                       </div>
                     </ng-template>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! &#160;
-                      <div>
-                         <a id="étoile5" (click)="noteClick('5', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 5 étoiles">☆</a><!--
-                      --><a id="étoile4" (click)="noteClick('4', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 4 étoiles">☆</a><!--
-                      --><a id="étoile3" (click)="noteClick('3', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 3 étoiles">☆</a><!--
-                      --><a id="étoile2" (click)="noteClick('2', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 2 étoiles">☆</a><!--
-                      --><a id="étoile1" (click)="noteClick('1', bp.note, bp.name, bp.address, bp.note_user)" title="Donner 1 étoile">☆</a>
-                      </div>
+                    <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! 
                     </div>
                     <div *ngIf = "bp.already_noted == 'true'" >
-                      <p class="information_call_note"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
+                      <p class="information_call_note" style="font-size: smaller;"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
                     </div>
-                    <!-- <div *ngIf="bp.already_noted == 'false' ">
-                      Bon Plan déjà noté
-                    </div> -->
                   </div>
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier

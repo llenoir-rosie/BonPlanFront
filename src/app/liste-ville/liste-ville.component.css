@@ -309,16 +309,16 @@ border-color: rgb(0, 0, 0);
   overflow: hidden;                     /* masque tout ce qui dépasse */
 }
 
-.commentaries_section:hover {
+.commentaries_section > :first-child:hover {
   animation-play-state: paused;
 }
 
-.commentaries_section span {
+.commentaries_section > :first-child {
   display: inline-block;                /* modèle de boîte en ligne */
   padding-right: 2em;                   /* un peu d'espace pour la transition */
   padding-left: 100%;                   /* placement à droite du conteneur */
   white-space: nowrap;                  /* pas de passage à la ligne */
-  animation: commentaries_section 15s infinite linear;
+  animation: commentaries_section 20s infinite linear;
 }
 @keyframes commentaries_section {
   0% {
