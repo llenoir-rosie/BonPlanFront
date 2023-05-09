@@ -37,7 +37,7 @@ ngOnInit() {
     )
 }
 public addNewMP() {
-    this.newMP = new Mauvaisplan(this.ville_name, this.activity_type, this.oldMP.name, this.updateMPForm.value.address, localStorage.getItem('currentUser')!);
+    this.newMP = new Mauvaisplan(this.ville_name, this.activity_type, this.oldMP.name, this.updateMPForm.value.address, sessionStorage.getItem('currentUser')!);
     this.http.put('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/updatemauvaisplan', this.newMP).subscribe((data) => {
         this.dialogRefs.closeAll();
       })

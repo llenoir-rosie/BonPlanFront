@@ -67,24 +67,30 @@ export class AppComponent implements OnInit{
 
     this.location_url = location.href;
 
+    console.log(sessionStorage);
   }
 
   IsUserIsAuth() {
-    if (localStorage.getItem("currentUser") == null) {
+    if (sessionStorage.getItem("currentUser") == null) {
       this.allowConnection = true
     } else {
-      this.currentUser = localStorage.getItem("currentUser")!;
+      this.currentUser = sessionStorage.getItem("currentUser")!;
       this.allowConnection = false
       this.initial_username = (this.currentUser)
     }
   }
   
-  // permet de "reset" la navbar lorsqu'on ferme l'onglet du site
-  @HostListener('window:beforeunload') onBeforeUnload() {
-    localStorage.removeItem("currentActivite");
-    localStorage.removeItem("currentVille");
-    localStorage.setItem("currentImg", "");
-    }
+  // permet de "reset" la navbar et de déconnecter l'utilisateur lorsqu'on ferme l'onglet du site
+  // @HostListener('window:beforeunload') onBeforeUnload() {
+  //   sessionStorage.removeItem("currentActivite");
+  //   sessionStorage.removeItem("currentVille");
+  //   sessionStorage.setItem("currentImg", "");
+    // sessionStorage.removeItem('currentUser');
+    // sessionStorage.removeItem('currentUserRole');
+    // sessionStorage.removeItem('token');
+    // 
+    // }
+
 
   // @HostListener('window:popstate') onPopState() {
 
@@ -97,32 +103,32 @@ export class AppComponent implements OnInit{
   // }
 
   // logCurrentUser() {
-  //   if (localStorage.getItem('currentUser["role"]') == null || localStorage.getItem('currentUser["role"]') == 'COMMON') {
-  //     localStorage.setItem("currentUser", JSON.stringify(this.commonUser));
+  //   if (sessionStorage.getItem('currentUser["role"]') == null || sessionStorage.getItem('currentUser["role"]') == 'COMMON') {
+  //     sessionStorage.setItem("currentUser", JSON.stringify(this.commonUser));
   //   }
   // }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('currentUserRole');
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUserRole');
+    sessionStorage.removeItem('token');
     this.router.navigate(['/login'])
   }
   changeImgNav() { // cette fonction est activée à l'initialisation 
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
     if(location.href == "http://localhost:4200/ville") {
       this.currentImg = "";
-      localStorage.setItem('currentImg', "");
+      sessionStorage.setItem('currentImg', "");
       this.currentVille = "";
-      localStorage.setItem('currentVille', "");
+      sessionStorage.setItem('currentVille', "");
       this.currentActivite = "";
-      localStorage.setItem('currentActivite', "");
-    // change l'image et le nom de la ville de la navbar selon la ville où l'on est grâce au localStorage
+      sessionStorage.setItem('currentActivite', "");
+    // change l'image et le nom de la ville de la navbar selon la ville où l'on est grâce au sessionStorage
     }
     else {
-      this.currentImg = localStorage.getItem("currentImg")!;
-      this.currentVille = localStorage.getItem("currentVille")!;
-      this.currentActivite = localStorage.getItem("currentActivite")!;
+      this.currentImg = sessionStorage.getItem("currentImg")!;
+      this.currentVille = sessionStorage.getItem("currentVille")!;
+      this.currentActivite = sessionStorage.getItem("currentActivite")!;
     }    
     
   }
@@ -145,17 +151,17 @@ export class AppComponent implements OnInit{
   goToDetailVille(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
 
-    // change la valeur de la currentImg de localStorage par l'image de la ville où on est
-    localStorage.setItem("currentImg", ville.image.toString());
-    this.currentImg = localStorage.getItem("currentImg")!;
+    // change la valeur de la currentImg de sessionStorage par l'image de la ville où on est
+    sessionStorage.setItem("currentImg", ville.image.toString());
+    this.currentImg = sessionStorage.getItem("currentImg")!;
 
-    // change la valeur de la currentVille de localStorage par le nom de la ville où on est
-    localStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
-    this.currentVille = localStorage.getItem("currentVille")!;
+    // change la valeur de la currentVille de sessionStorage par le nom de la ville où on est
+    sessionStorage.setItem('currentVille', "\xa0" + "à " + ville.name);
+    this.currentVille = sessionStorage.getItem("currentVille")!;
 
     // enlève la currentActivité
-    localStorage.setItem('currentActivite', "");
-    this.currentActivite = localStorage.getItem("")!;
+    sessionStorage.setItem('currentActivite', "");
+    this.currentActivite = sessionStorage.getItem("")!;
   }
 
   goToDetailActivity(act: Activite) {

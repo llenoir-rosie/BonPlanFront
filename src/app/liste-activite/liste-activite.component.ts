@@ -47,11 +47,11 @@ export class ListeActiviteComponent implements OnInit {
     private appComponent: AppComponent) { }
 
   ngOnInit() {
-    // // on attribue la bonne valeur à currentImg en allant la chercher dans localStorage
-    // this.currentImg = localStorage.getItem("currentImg")!;
+    // // on attribue la bonne valeur à currentImg en allant la chercher dans sessionStorage
+    // this.currentImg = sessionStorage.getItem("currentImg")!;
 
-    // // on attribue la bonne valeur à currentVille en allant la chercher dans localStorage
-    // this.currentVille = localStorage.getItem("currentVille")!;
+    // // on attribue la bonne valeur à currentVille en allant la chercher dans sessionStorage
+    // this.currentVille = sessionStorage.getItem("currentVille")!;
 
     dialogRefs: MatDialog;
 
@@ -62,11 +62,11 @@ export class ListeActiviteComponent implements OnInit {
       this.getAllPossibleActivities();
       this.getImgVille(this.nomdelaville);
 
-    if (localStorage.getItem("currentUser") == null) {
+    if (sessionStorage.getItem("currentUser") == null) {
       this.allowModeratorRight = false
       this.allowUserRight = false
     } else {
-      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+      if (sessionStorage.getItem("currentUserRole")! == 'MODERATOR') {
         this.allowModeratorRight = true
       } else {
         this.allowUserRight = true
@@ -75,9 +75,9 @@ export class ListeActiviteComponent implements OnInit {
 
     });
 
-    // on enlève la valeur de currentActivite dans localStorage et on y met la bonne valeur de currentVille
-    localStorage.removeItem('currentActivite');
-    localStorage.setItem('currentVille', "\xa0" + "à "  + this.nomdelaville.toString());
+    // on enlève la valeur de currentActivite dans sessionStorage et on y met la bonne valeur de currentVille
+    sessionStorage.removeItem('currentActivite');
+    sessionStorage.setItem('currentVille', "\xa0" + "à "  + this.nomdelaville.toString());
 
     this.getAllVilleName();
   }
@@ -101,8 +101,8 @@ export class ListeActiviteComponent implements OnInit {
   public getImgVille(nameville: String) {
     this.http.get<Ville>("http://localhost:8080/city/" + nameville).subscribe((data) => {
       this.currentImg = data.image;
-      // on met la bonne valeur à currentImg dans localStorage et on recharge le composant appComponent
-      localStorage.setItem('currentImg', this.currentImg.toString());
+      // on met la bonne valeur à currentImg dans sessionStorage et on recharge le composant appComponent
+      sessionStorage.setItem('currentImg', this.currentImg.toString());
       this.appComponent.ngOnInit();
     })
   }

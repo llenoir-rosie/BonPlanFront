@@ -74,20 +74,20 @@ throw new Error('Method not implemented.');
     // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
     this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
     this.getImgActivity(this.nomdelactivite);
-    if (localStorage.getItem("currentUser") == null) {
+    if (sessionStorage.getItem("currentUser") == null) {
       this.allowModeratorRight = false
       this.allowUserRight = false
     } else {
-      this.currentUser = localStorage.getItem("currentUser")!
-      if (localStorage.getItem("currentUserRole")! == 'MODERATOR') {
+      this.currentUser = sessionStorage.getItem("currentUser")!
+      if (sessionStorage.getItem("currentUserRole")! == 'MODERATOR') {
         this.allowModeratorRight = true
-      } else if (localStorage.getItem("currentUserRole") == 'USER'){
+      } else if (sessionStorage.getItem("currentUserRole") == 'USER'){
         this.allowUserRight = true
       }
     }
 
-    localStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
-    localStorage.setItem("currentActivite", "\xa0"  + this.nomdelactivite.toString());
+    sessionStorage.setItem("currentVille"," à " + this.nomdelaville.toString());
+    sessionStorage.setItem("currentActivite", "\xa0"  + this.nomdelactivite.toString());
 
     this.getAllActivityName();
     this.getAllVilleName();
@@ -138,7 +138,7 @@ throw new Error('Method not implemented.');
 
   //Add a commentary to a specific Bon Plan
   public addCommentary(bp: String) {
-    let username = localStorage.getItem("currentUser");
+    let username = sessionStorage.getItem("currentUser");
     let newCommentary = (<HTMLInputElement>document.getElementById("new_commentary")).value;
     let newCommentaryObject = new Commentary(bp, username!, newCommentary);
     this.http.post("http://localhost:8080/commentaries/create/" + bp + "/" + username, newCommentaryObject).subscribe(() => {
@@ -154,8 +154,8 @@ throw new Error('Method not implemented.');
   public getImgActivity(nameact: String) { 
     this.http.get<Activite>("http://localhost:8080/activity/" + nameact).subscribe((data) => {
       this.currentImg = data.image;
-      // on met la bonne valeur à currentImg dans localStorage et on recharge le composant appComponent
-      localStorage.setItem('currentImg', this.currentImg.toString());
+      // on met la bonne valeur à currentImg dans sessionStorage et on recharge le composant appComponent
+      sessionStorage.setItem('currentImg', this.currentImg.toString());
       this.appComponent.ngOnInit();
     })
   }
@@ -205,10 +205,10 @@ throw new Error('Method not implemented.');
     let nouvelleNote : Number[] = bpNote;
     nouvelleNote.push(Number(note));
     let newUserNote : String[] = bpNoteUser;
-    newUserNote.push(String(localStorage.getItem('currentUser')!));
-    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    newUserNote.push(String(sessionStorage.getItem('currentUser')!));
+    this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, sessionStorage.getItem('currentUser')!,
     nouvelleNote, newUserNote, 0)
-    // this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, localStorage.getItem('currentUser')!,
+    // this.newBP = new BonPlanNote(new Bonplan(this.nomdelaville, this.nomdelactivite, bpName, bpAdress, sessionStorage.getItem('currentUser')!,
     // nouvelleNote, newUserNote, 0), "true");
 
     this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(

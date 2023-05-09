@@ -23,17 +23,17 @@ export class LoginComponent implements OnInit{
   
   ngOnInit() {
     this.submitted = false;
-    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    localStorage.setItem('currentVille', "");
+    sessionStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    sessionStorage.setItem('currentVille', "");
     this.loginUserForm = new FormGroup (
       {
         username : new FormControl('', Validators.required),
         password : new FormControl('', Validators.required),
       }
     )
-    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    localStorage.setItem('currentVille', "");
-    localStorage.setItem('currentActivite', "");
+    sessionStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    sessionStorage.setItem('currentVille', "");
+    sessionStorage.setItem('currentActivite', "");
     this.appComponent.ngOnInit();
   }
   goToRegistration() {
@@ -53,10 +53,10 @@ export class LoginComponent implements OnInit{
     //   catchError((error) => this.msg = error.error.message
     // ))
     .subscribe((data) => {
-      localStorage.setItem('token', Object.values(data)[0]);
+      sessionStorage.setItem('token', Object.values(data)[0]);
       this.http.get<User>('http://localhost:8080/' + this.loginUserForm.value.username + '/Details').subscribe((data) => {
-        localStorage.setItem('currentUser', data.username.toString());
-        localStorage.setItem('currentUserRole',data.role.toString());
+        sessionStorage.setItem('currentUser', data.username.toString());
+        sessionStorage.setItem('currentUserRole',data.role.toString());
         this.router.navigate(['/ville'])
       })
     })

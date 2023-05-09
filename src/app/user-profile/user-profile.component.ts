@@ -33,9 +33,9 @@ ngOnInit(): void {
         this.username = routeParams['currentUser']
         this.getUserDetails(this.username)
     })
-    localStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
-    localStorage.setItem('currentVille', "");
-    localStorage.setItem('currentActivite', "");
+    sessionStorage.setItem('currentImg', "./assets/img/activite-navbar.jpeg");
+    sessionStorage.setItem('currentVille', "");
+    sessionStorage.setItem('currentActivite', "");
     this.appComponent.ngOnInit();
 
 }
@@ -43,7 +43,7 @@ ngOnInit(): void {
 public getUserDetails(username: String) {
 this.http.get<User>("http://localhost:8080/" + username + "/Details").subscribe((data) => {
     this.userDetails = data;
-    localStorage.setItem('currentUserRole', this.userDetails.role.toString())
+    sessionStorage.setItem('currentUserRole', this.userDetails.role.toString())
     }) 
 }
 
@@ -75,7 +75,7 @@ public UpdatePassword(username: String){
         this.userDetails.email,new_password, username, this.userDetails.role);
         this.http.put("http://localhost:8080/updatepassword",this.user_updated).subscribe(()=>this.http.get<User>("http://localhost:8080/" + username + "/Details").subscribe((data) => {
             this.userDetails = data;
-            localStorage.setItem('currentUserRole', this.userDetails.role.toString())
+            sessionStorage.setItem('currentUserRole', this.userDetails.role.toString())
             }) )
     }
 }
@@ -98,7 +98,7 @@ public UpdateInfos(username:String){
 
     this.http.put("http://localhost:8080/updateinfos", this.user_updated).subscribe(()=>this.http.get<User>("http://localhost:8080/" + username + "/Details").subscribe((data) => {
         this.userDetails = data;
-        localStorage.setItem('currentUserRole', this.userDetails.role.toString())
+        sessionStorage.setItem('currentUserRole', this.userDetails.role.toString())
         }) )
 }
 
@@ -120,9 +120,9 @@ public DeleteAccount(username:String){
 }
 
 AfterAccountDeleted() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('currentUserRole');
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUserRole');
+    sessionStorage.removeItem('token');
     this.router.navigate(['/ville'])
   }
 

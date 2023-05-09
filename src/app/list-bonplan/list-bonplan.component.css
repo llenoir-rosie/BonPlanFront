@@ -1,3 +1,7 @@
+html {
+    max-width:99%;
+}
+
 body {
     background-color: #e4e7e7;
     height: 100%;
@@ -55,7 +59,7 @@ body {
 .card {
     position: relative;
     border-radius: 10px;
-    height: 280px;
+    /* height: 280px; */
 }
 
 .card-bp {

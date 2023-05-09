@@ -43,10 +43,10 @@ ngOnInit() {
 public addNewBP() {
     this.submitted = true; //une fois le formulaire soumis on peut afficher les messages d'erreurs s'ils existent
     if (!this.f['name'].errors && !this.f['address'].errors && !this.f['commentary'].errors) {
-        this.note_user = [localStorage.getItem('currentUser')!];
+        this.note_user = [sessionStorage.getItem('currentUser')!];
         this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
-            localStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user, Date.now());
-        let newCommentaryObject = new Commentary(this.newBPForm.value.name, localStorage.getItem('currentUser')!, this.newBPForm.value.commentary);
+            sessionStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user, Date.now());
+        let newCommentaryObject = new Commentary(this.newBPForm.value.name, sessionStorage.getItem('currentUser')!, this.newBPForm.value.commentary);
         this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe(() => {
             this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
                 this.dialogRefs.closeAll();

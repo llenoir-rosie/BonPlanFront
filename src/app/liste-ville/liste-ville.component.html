@@ -14,17 +14,17 @@
     <div class="step-container">
       <div class="step" [ngClass]="{'active': (this.scroll_y > 500 && this.scroll_y < 1200)}" pageScroll (click)="scrollCustomImplementation(sec1, 1)">
         <div class="v-stepper">
-          <div class="part-gauche">
-            <div class="circle"></div>
-            <div class="line"></div>
+          <div class="circle">
+            <h4 class="liste-ville">Liste des villes</h4>
           </div>
-          <h4 class="liste-ville">Liste des villes</h4>
+          <div class="line"></div>
         </div>
       </div>
       <div class="step" [ngClass]="{'active': (this.scroll_y > 1200 && this.scroll_y < 2000)}" pageScroll (click)="scrollCustomImplementation(sec2, 2)">
         <div class="v-stepper">
-          <div class="circle"></div>
-          <h4 class="liste-activite">Liste des activités</h4>
+          <div class="circle">
+            <h4 class="liste-activite">Liste des activités</h4>
+          </div>
         </div>
       </div>
     </div>
@@ -91,7 +91,7 @@
     </div>
   </div>
   <div class="card2">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <img src="../../assets/img/profil_samy.png" class="card-img-top"/>
     <div class="card-body">
       <h5 class="card-title">MOR Samy</h5>
       <p class="card-text">Front-End Developer</p>
@@ -112,7 +112,7 @@
     </div>
   </div>
   <div class="card2">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top"/>
+    <img src="../../assets/img/profil_thibault.jpg" class="card-img-top"/>
     <div class="card-body">
       <h5 class="card-title">FERNEY Thibault</h5>
       <p class="card-text">Front-End Developer</p>
