@@ -38,7 +38,7 @@
             </div>
             <div (click)="goToVilleActivite(ville)">
               <i class="access">Accédez aux activités → </i>
-              <div class="description-ville">{{ ville.description }}</div>
+              <div class="description-card">{{ ville.description }}</div>
               <button></button>
             </div>
           </div>
@@ -57,7 +57,7 @@
               <h2>{{activity.name}}</h2>
             </div>
             <i class="access">Accédez aux villes → </i>
-            <div class="description-activity">{{ activity.description }}</div>
+            <div class="description-card">{{ activity.description }}</div>
             <button (click)="goToVille(activity)"></button>
           </div>
         </div>

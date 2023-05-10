@@ -152,7 +152,7 @@ pointer-events:none;
   font-size: 3rem;
 }
 
-.card .description-ville {
+.card .description-card {
   position: absolute;
   z-index: 0;
   opacity: 0;
@@ -164,8 +164,7 @@ pointer-events:none;
   transition-delay: 0.2s;
   transition-duration: 0.3s;
 }
-
-.card:hover .description-ville{
+.card:hover .description-card{
   z-index: 2;
   opacity: 0.7;
   color: #ffffff;
