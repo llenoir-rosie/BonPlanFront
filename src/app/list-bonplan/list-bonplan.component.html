@@ -88,7 +88,7 @@
                           <div *ngIf = "bp.allCommentaries.length == 0">
                             <p> aucun commentaire </p>
                           </div>
-                          <form [formGroup]="newCommentaryForm">
+                          <form *ngIf="(allowModeratorRight || currentUser == bp.user_name)" [formGroup]="newCommentaryForm">
                             <div *ngIf="bp.already_noted == 'false'" class="avis">
                               <div class="commentary" matInput required>
                                 <label for="new_commentary">Partagez votre expérience : </label>
@@ -113,7 +113,7 @@
                               Vous avez déjà laissé un avis ;)
                           </div>
                         </div>
-                        <div mat-dialog-actions class = "button-bottom">
+                        <div *ngIf="(allowModeratorRight || currentUser == bp.user_name)" mat-dialog-actions class = "button-bottom">
                           <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
                           <button *ngIf="bp.already_noted == 'true'" class="BtnValider"  disabled style="opacity: 0.5"> Ajouter </button>
                           <button class="BtnAnnuler" matDialogClose > Annuler </button>
@@ -121,6 +121,8 @@
                       </div>
                     </ng-template>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
+                    <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! 
+                    </div>
                     <div *ngIf = "bp.already_noted == 'true'" >
                       <p class="information_call_note" style="font-size: smaller;"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
                     </div>
@@ -202,7 +204,7 @@
                             <p *ngFor="let com of allCommentary" >
                               <mat-card>
                                 <mat-card-header>
-                                  <mat-card-subtitle>{{com.userName}}</mat-card-subtitle>
+                                  <mat-card-subtitle>{{com.userName}} {{com.note}}</mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-content>{{ com.commentaries }} </mat-card-content>
                               </mat-card>
@@ -234,7 +236,7 @@
                           </form>
                           <div *ngIf="bp.already_noted == 'true'">
                             Vous avez déjà laissé un avis ;)
-                        </div>
+                          </div>
                         </div>
                         <div mat-dialog-actions class = "button-bottom">
                           <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>

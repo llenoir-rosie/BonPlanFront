@@ -17,6 +17,7 @@ newBPForm: FormGroup;
 ville_name;
 activity_type;
 nouvelleNote: Number[];
+noteBP: String;
 newBP: Bonplan;
 submitted: Boolean;
 note_user: String[];
@@ -46,7 +47,7 @@ public addNewBP() {
         this.note_user = [sessionStorage.getItem('currentUser')!];
         this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
             sessionStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user, Date.now());
-        let newCommentaryObject = new Commentary(this.newBPForm.value.name, sessionStorage.getItem('currentUser')!, this.newBPForm.value.commentary);
+        let newCommentaryObject = new Commentary(this.newBPForm.value.name, sessionStorage.getItem('currentUser')!, this.newBPForm.value.commentary, this.noteBP);
         this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe(() => {
             this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
                 this.dialogRefs.closeAll();
@@ -56,6 +57,7 @@ public addNewBP() {
 }
 
 public noteClick(note:String) {
+    this.noteBP = note
     this.nouvelleNote = [];
     this.nouvelleNote.push(Number(note));
   }
