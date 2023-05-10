@@ -66,8 +66,6 @@ export class AppComponent implements OnInit{
     this.IsUserIsAuth();
 
     this.location_url = location.href;
-
-    console.log(sessionStorage);
   }
 
   IsUserIsAuth() {

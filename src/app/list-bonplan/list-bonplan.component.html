@@ -78,17 +78,59 @@
                           <div *ngIf = "bp.allCommentaries.length != 0">
                             <p *ngFor="let com of allCommentary" >
                               <mat-card>
-                                <mat-card-header>
-                                  <mat-card-subtitle>{{com.userName}}</mat-card-subtitle>
+                                <mat-card-header *ngIf = 'com.note == "5"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                  </mat-card-subtitle>
                                 </mat-card-header>
-                                <mat-card-content>{{ com.commentaries }} </mat-card-content>
+                                <mat-card-header *ngIf = 'com.note == "4"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-header *ngIf = 'com.note == "3"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-header *ngIf = 'com.note == "2"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-header *ngIf = 'com.note == "1"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content >{{ com.commentaries }} </mat-card-content>
                               </mat-card>
                             </p>
                           </div>
                           <div *ngIf = "bp.allCommentaries.length == 0">
                             <p> aucun commentaire </p>
                           </div>
-                          <form *ngIf="(allowModeratorRight || currentUser == bp.user_name)" [formGroup]="newCommentaryForm">
+                          <form *ngIf="currentUser != undefined" [formGroup]="newCommentaryForm">
                             <div *ngIf="bp.already_noted == 'false'" class="avis">
                               <div class="commentary" matInput required>
                                 <label for="new_commentary">Partagez votre expérience : </label>
@@ -113,7 +155,7 @@
                               Vous avez déjà laissé un avis ;)
                           </div>
                         </div>
-                        <div *ngIf="(allowModeratorRight || currentUser == bp.user_name)" mat-dialog-actions class = "button-bottom">
+                        <div *ngIf="currentUser != undefined " mat-dialog-actions class = "button-bottom">
                           <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
                           <button *ngIf="bp.already_noted == 'true'" class="BtnValider"  disabled style="opacity: 0.5"> Ajouter </button>
                           <button class="BtnAnnuler" matDialogClose > Annuler </button>
@@ -203,17 +245,59 @@
                           <div *ngIf = "bp.allCommentaries.length != 0">
                             <p *ngFor="let com of allCommentary" >
                               <mat-card>
-                                <mat-card-header>
-                                  <mat-card-subtitle>{{com.userName}} {{com.note}}</mat-card-subtitle>
+                                <mat-card-header *ngIf = 'com.note == "5"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                  </mat-card-subtitle>
                                 </mat-card-header>
-                                <mat-card-content>{{ com.commentaries }} </mat-card-content>
+                                <mat-card-header *ngIf = 'com.note == "4"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-header *ngIf = 'com.note == "3"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-header *ngIf = 'com.note == "2"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-header *ngIf = 'com.note == "1"'>
+                                  <mat-card-subtitle>{{com.userName}} 
+                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                  </mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content >{{ com.commentaries }} </mat-card-content>
                               </mat-card>
                             </p>
                           </div>
                           <div *ngIf = "bp.allCommentaries.length == 0">
                             <p> aucun commentaire </p>
                           </div>
-                          <form [formGroup]="newCommentaryForm">
+                          <form *ngIf="currentUser != undefined" [formGroup]="newCommentaryForm">
                             <div *ngIf="bp.already_noted == 'false'" class="avis">
                               <div class="commentary" matInput required>
                                 <label for="new_commentary">Partagez votre expérience : </label>
@@ -235,12 +319,12 @@
                             </div>
                           </form>
                           <div *ngIf="bp.already_noted == 'true'">
-                            Vous avez déjà laissé un avis ;)
+                              Vous avez déjà laissé un avis ;)
                           </div>
                         </div>
-                        <div mat-dialog-actions class = "button-bottom">
+                        <div *ngIf="currentUser != undefined " mat-dialog-actions class = "button-bottom">
                           <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
-                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider" disabled style="opacity: 0.5"> Ajouter </button>
+                          <button *ngIf="bp.already_noted == 'true'" class="BtnValider"  disabled style="opacity: 0.5"> Ajouter </button>
                           <button class="BtnAnnuler" matDialogClose > Annuler </button>
                         </div>
                       </div>
