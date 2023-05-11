@@ -204,6 +204,107 @@ img.activite-navbar {
     top: 100%;
 }
 
+
+/**---------------------------Indication de défilement vertical possible sur la page d'accueil, Scroll Down et Scroll Up-------------------------------*/
+.scrollIndicationDown {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  z-index: 2000;
+  align-items: center;
+}
+
+.scrollIndicationUp {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  z-index: 2000;
+  align-items: center;
+}
+.arrowUp {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+  transform: rotate(225deg);
+  border-left: none;
+  border-top: none;
+  border-right: 5px #ddd solid;
+  border-bottom: 5px #ddd solid;
+}
+.arrowDown {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+  transform: rotate(45deg);
+  border-left: none;
+  border-top: none;
+  border-right: 5px #ddd solid;
+  border-bottom: 5px #ddd solid;
+}
+
+.arrowUp:before {
+  position: fixed;
+  left: 50%;
+}
+
+.arrowDown:before {
+  position: fixed;
+  left: 50%;
+}
+
+.arrowUp:before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  margin: -10px 0 0 -10px;
+  border-left: none;
+  border-top: none;
+  border-right: 4px #ddd solid;
+  border-bottom: 4px #ddd solid;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: arrow2;
+}
+
+@keyframes arrow2 {
+  0% {
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+    transform: translate(-20px, -20px);
+  }
+}
+
+.arrowDown:before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  margin: -10px 0 0 -10px;
+  border-left: none;
+  border-top: none;
+  border-right: 4px #ddd solid;
+  border-bottom: 4px #ddd solid;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: arrow;
+}
+  
+@keyframes arrow {
+  0% {
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+    transform: translate(-20px, -20px);
+  }
+}
+
+/**-----------------------------------------------------form pour la recherche des villes ou activités------------------------------------------------------*/
 form{
     position: absolute;
     top: 50%;

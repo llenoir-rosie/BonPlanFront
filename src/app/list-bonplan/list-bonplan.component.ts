@@ -232,7 +232,7 @@ throw new Error('Method not implemented.');
   }
 
   public Trie1(){
-    let newtrie :String = (<HTMLInputElement>document.getElementById("DropdownOptions")).value
+    let newtrie : String = (<HTMLInputElement>document.getElementById("DropdownOptions")).value
     if (this.trie1 != newtrie){
       if (newtrie=="Les mieux notés"){
         this.allBonPlanFiltered = this.allBonPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>

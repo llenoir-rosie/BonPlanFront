@@ -47,12 +47,47 @@
           </div>
         </div>
         <div class="user-box" matInput required >
-          <div>
-            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles">☆</a>
-            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles">☆</a>
-            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles">☆</a>
-            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles">☆</a>
-            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile">☆</a>
+          <div *ngIf='noteBP == undefined'>
+            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+          </div>
+          <div *ngIf='noteBP == "1"'>
+            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i> </a>
+          </div>
+          <div *ngIf='noteBP == "2"'>
+            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i> </a>
+            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i> </a>
+          </div>
+          <div *ngIf='noteBP == "3"'>
+            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+          </div>
+          <div *ngIf='noteBP == "4"'>
+            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px">star</i></a>
+            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+          </div>
+          <div *ngIf='noteBP == "5"'>
+            <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+            <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+            <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+            <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
+            <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i> </a>
           </div>
             <p *ngIf="nouvelleNote" style="font-size: 0.8em; position: absolute; left:0px; padding-left: 0px; top:5px; color: #45feaf;">Votre Plan est noté {{nouvelleNote}} </p>
           <label> Votre avis sur le bon plan </label>

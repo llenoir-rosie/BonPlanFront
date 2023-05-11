@@ -7,6 +7,7 @@ import { User } from './User';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Activite } from './activite';
+import { PageScrollService } from 'ngx-page-scroll-core';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit{
   public searchInput: String = '';
   initial_username : String;
   location_url : String;
+  scroll_y = 0;
 
   //search variable 
   researcheBy: string;
@@ -39,7 +41,7 @@ export class AppComponent implements OnInit{
 
   //boolean for searchVille or searchActivities input
   isCityActivated: boolean;
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private pageScrollService: PageScrollService) { }
   
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
@@ -78,6 +80,9 @@ export class AppComponent implements OnInit{
     }
   }
   
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
+    this.scroll_y = scrollY;
+    }
   // permet de "reset" la navbar et de déconnecter l'utilisateur lorsqu'on ferme l'onglet du site
   // @HostListener('window:beforeunload') onBeforeUnload() {
   //   sessionStorage.removeItem("currentActivite");

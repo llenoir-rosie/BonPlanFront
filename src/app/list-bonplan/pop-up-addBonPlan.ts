@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators, AbstractControl} from '@angular/for
 import { Bonplan } from "../bonplan";
 import { HttpClient } from "@angular/common/http";
 import { Commentary } from "../Commentary";
-
+import { ListBonplanComponent } from "./list-bonplan.component";
 @Component({
     selector: 'app-pop-up-bonplan',
     templateUrl: './pop-up-addBonPlan.component.html',
@@ -42,6 +42,7 @@ ngOnInit() {
 }
 
 public addNewBP() {
+    // let listBPComponent: ListBonplanComponent;
     this.submitted = true; //une fois le formulaire soumis on peut afficher les messages d'erreurs s'ils existent
     if (!this.f['name'].errors && !this.f['address'].errors && !this.f['commentary'].errors) {
         this.note_user = [sessionStorage.getItem('currentUser')!];
@@ -51,6 +52,7 @@ public addNewBP() {
         this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe(() => {
             this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
                 this.dialogRefs.closeAll();
+                // listBPComponent.ngOnInit();
             })
           })
     }
@@ -58,6 +60,7 @@ public addNewBP() {
 
 public noteClick(note:String) {
     this.noteBP = note
+    console.log(this.noteBP)
     this.nouvelleNote = [];
     this.nouvelleNote.push(Number(note));
   }
