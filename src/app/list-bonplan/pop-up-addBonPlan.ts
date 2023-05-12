@@ -14,8 +14,8 @@ import { ListBonplanComponent } from "./list-bonplan.component";
 
 export class PopUpComponentAddBonPlan implements OnInit {
 newBPForm: FormGroup;
-ville_name;
-activity_type;
+ville_name: String;
+activity_type: String;
 nouvelleNote: Number[];
 noteBP: String;
 newBP: Bonplan;
@@ -48,9 +48,10 @@ public addNewBP() {
         this.note_user = [sessionStorage.getItem('currentUser')!];
         this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
             sessionStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user, Date.now());
-        let newCommentaryObject = new Commentary(this.newBPForm.value.name, sessionStorage.getItem('currentUser')!, this.newBPForm.value.commentary, this.noteBP);
+        let newCommentaryObject = new Commentary(this.newBPForm.value.name, sessionStorage.getItem('currentUser')!, this.newBPForm.value.commentary, this.noteBP, this.ville_name, this.activity_type);
+        console.log(typeof newCommentaryObject.activity_name)
         this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe(() => {
-            this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
+            this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + sessionStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
                 this.dialogRefs.closeAll();
                 // listBPComponent.ngOnInit();
             })
@@ -60,7 +61,6 @@ public addNewBP() {
 
 public noteClick(note:String) {
     this.noteBP = note
-    console.log(this.noteBP)
     this.nouvelleNote = [];
     this.nouvelleNote.push(Number(note));
   }

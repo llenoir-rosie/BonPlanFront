@@ -125,8 +125,9 @@ throw new Error('Method not implemented.');
   public addCommentariesAndFilter(listOfBP: Bonplan[]) {
     listOfBP.forEach(elt => {
       let i = 0;
-      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + elt.name).subscribe((data) => {
-        while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
+      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + elt.name + "/" + this.nomdelaville + "/" + this.nomdelactivite).subscribe((data) => {
+        console.log("ezfzef", data)
+      while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
           i++          
         }
         if (i < elt.note_user?.length ) {
@@ -160,7 +161,7 @@ throw new Error('Method not implemented.');
     if (this.note != undefined && !this.f['form_commentary'].errors) {
       let username = sessionStorage.getItem("currentUser");
       let newCommentary = (<HTMLInputElement>document.getElementById("new_commentary")).value;
-      let newCommentaryObject = new Commentary(bp.name, username!, newCommentary, this.note);
+      let newCommentaryObject = new Commentary(bp.name, username!, newCommentary, this.note, this.nomdelaville, this.nomdelactivite);
       let nouvelleNote : Number[] = bp.note;
       nouvelleNote.push(Number(this.note));
       let newUserNote : String[] = bp.note_user;
@@ -170,7 +171,7 @@ throw new Error('Method not implemented.');
       bp.already_noted = "true";
       this.http.put("http://localhost:8080/" + this.nomdelaville + "/" + this.nomdelactivite + "/updatebonplan", this.newBP).subscribe(() => {
         this.http.post("http://localhost:8080/commentaries/create/" + bp.name + "/" + username, newCommentaryObject).subscribe(() => {
-          this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bp.name).subscribe((data) => {
+          this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bp.name + "/" + this.nomdelaville + "/" + this.nomdelactivite).subscribe((data) => {
             this.allCommentary = [];
             this.allCommentary = data;
             this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
@@ -317,7 +318,7 @@ throw new Error('Method not implemented.');
   // }
   @ViewChild('firstDialog', { static: true }) firstDialog: TemplateRef<any>;
   openDialogCommentaries(templateRef: TemplateRef<any>, bpname: String) { 
-    this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bpname).subscribe((data) => {
+    this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + bpname + "/" + this.nomdelaville + "/" + this.nomdelactivite).subscribe((data) => {
         this.allCommentary = [];
         this.allCommentary = data;
     });

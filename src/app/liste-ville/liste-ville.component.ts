@@ -35,6 +35,7 @@ export class ListeVilleComponent implements OnInit{
   randomCommentaries: Commentary[];
   randomCommentariesString: String[];
   randomUserString: String[];
+  randomBPString: String[];
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService,
     @Inject(DOCUMENT) private document: any, private appComponent: AppComponent) {}
@@ -69,6 +70,7 @@ export class ListeVilleComponent implements OnInit{
   public getAleaCommentaries() {
     this.randomCommentaries = [];
     this.randomCommentariesString = [];
+    this.randomBPString = [];
     this.randomUserString = [];
     this.http.get<Commentary[]>("http://localhost:8080/commentaries").subscribe((data) => {
       this.randomCommentaries = data; 
@@ -76,8 +78,14 @@ export class ListeVilleComponent implements OnInit{
         let j = Math.floor(Math.random() * this.randomCommentaries.length)
         this.randomCommentariesString.push(this.randomCommentaries[j].commentaries);
         this.randomUserString.push(this.randomCommentaries[j].userName)
+        this.randomBPString.push(this.randomCommentaries[j].bpName)
       }
     })
+  }
+
+  public findBP(nb: number) {
+    // let a: String = (<HTMLInputElement>document.getElementById("comm1")).value;
+    console.log("zz", this.randomBPString[nb]);
   }
 
 scrollCustomImplementation(element: HTMLElement, index:any) {
