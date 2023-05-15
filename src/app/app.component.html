@@ -95,9 +95,12 @@
             </ul>
           </li>
         </button>
-        <button class="button-connexion">
-          <div *ngIf = "allowConnection" class="txt-connection" (click)="login()">Se connecter</div>
-          <div *ngIf = "!allowConnection" class="txt-connection" (click)="logout()">Déconnexion</div>
+        <button class="button-connexion" *ngIf = "allowConnection" (click)="login()">
+          <div class="txt-connection">Se connecter</div>
+          <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
+        </button>
+        <button class="button-connexion" *ngIf = "!allowConnection" (click)="logout()">
+          <div class="txt-connection">Déconnexion</div>
           <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
         </button>
       </div>
