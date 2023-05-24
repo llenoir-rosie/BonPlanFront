@@ -15,6 +15,7 @@ import { style } from '@angular/animations';
 import { BonPlanNote } from '../bonplan_note';
 import { Commentary } from '../Commentary';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { User } from '../User';
 
 @Component({
   selector: 'app-list-bonplan',
@@ -345,6 +346,24 @@ throw new Error('Method not implemented.');
         this.listNameVille.push(this.listVille[n].name);
       }
     })
+  }
+
+  goToUserRestrictedBonPlan(Username:String){
+    this.router.navigate(['/userbonplansRestricted',Username])
+  }
+
+  public getPhotoUsername(UsernameCreator:String){
+    let imgProfilUser="../assets/img/profil/"+UsernameCreator+".jfif"
+    let checkFile;
+    let img=new Image();
+    console.log(img)
+    img.src=imgProfilUser;
+    console.log(img)
+    let h=img.height;
+    if (h==0){
+      imgProfilUser = "../assets/img/default_user.jpg"
+    }
+    return imgProfilUser;
   }
 
 }

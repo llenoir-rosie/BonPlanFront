@@ -6,6 +6,7 @@ import { AppComponent } from "../app.component";
 import { MatDialog } from "@angular/material/dialog";
 import { Activite } from "../activite";
 import { Bonplan } from "../bonplan";
+import * as FileSaver from "file-saver";
 
 @Component({
     selector: 'userProfile',
@@ -72,7 +73,7 @@ public UpdatePassword(username: String){
     this.msg = this.CheckUpdatePassword(this.username);
     if(this.msg[0]!='I'){
             this.user_updated = new User(this.userDetails.firstName, this.userDetails.lastName,
-        this.userDetails.email,new_password, username, this.userDetails.role);
+        this.userDetails.email,new_password, username, this.userDetails.role,this.userDetails.imgProfil);
         this.http.put("http://localhost:8080/updatepassword",this.user_updated).subscribe(()=>this.http.get<User>("http://localhost:8080/" + username + "/Details").subscribe((data) => {
             this.userDetails = data;
             sessionStorage.setItem('currentUserRole', this.userDetails.role.toString())
@@ -94,13 +95,33 @@ public UpdateInfos(username:String){
         new_email=this.userDetails.email
     }
     
-    this.user_updated = new User(new_firstname,new_lastname, new_email, this.userDetails.password, username, this.userDetails.role);
+    this.user_updated = new User(new_firstname,new_lastname, new_email, this.userDetails.password, username, this.userDetails.role,this.userDetails.imgProfil);
 
     this.http.put("http://localhost:8080/updateinfos", this.user_updated).subscribe(()=>this.http.get<User>("http://localhost:8080/" + username + "/Details").subscribe((data) => {
         this.userDetails = data;
         sessionStorage.setItem('currentUserRole', this.userDetails.role.toString())
         }) )
 }
+
+public UpdatePhoto(){
+   
+    // const NewImgProfile : String = (<HTMLInputElement>document.getElementById("UpdatePhoto")).value;
+    let NewImg = <HTMLInputElement>document.getElementById("photo");
+    let FileName = "default"
+    if (NewImg.files?.length != 0){
+        const file1 : File = NewImg.files![0];
+        FileName = this.username + ".jfif";
+        FileSaver.saveAs(file1, FileName);
+    }
+    this.http.put('http://localhost:8080/updatePhoto/'+ FileName, this.userDetails).subscribe(()=>
+    this.http.get<User>("http://localhost:8080/" + this.userDetails.username + "/Details").subscribe((data) => {
+        this.userDetails = data;
+        sessionStorage.setItem('currentUserRole', this.userDetails.role.toString())
+    }))
+    console.log(this.userDetails)
+
+    // window.location = document.location;
+  }
 
 public ChoixDelete(choix : String){
     this.choixdelete = choix;

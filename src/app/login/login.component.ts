@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit{
 
   loginUser(){
     this.submitted = true;
-    this.logUser = new User("","", "", this.loginUserForm.value.password, this.loginUserForm.value.username, "USER");
+    this.logUser = new User("","", "", this.loginUserForm.value.password, this.loginUserForm.value.username, "USER","default");
     this.http.post<string>('http://localhost:8080/login', this.logUser)
     // .pipe ( 
     //   catchError((error) => this.msg = error.error.message

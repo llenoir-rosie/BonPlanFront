@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
   Activitieslist: Activite[] = [];
 
   logIn: Boolean = false;
-  commonUser = new User("","","","", "", "COMMON")
+  commonUser = new User("","","","", "", "COMMON","default")
   currentUser: String;
   public nomdelaville: String;
   currentImg: String;
@@ -34,6 +34,7 @@ export class AppComponent implements OnInit{
   initial_username : String;
   location_url : String;
   scroll_y = 0;
+  userDetails : User;
 
   //search variable 
   researcheBy: string;
@@ -77,6 +78,7 @@ export class AppComponent implements OnInit{
       this.currentUser = sessionStorage.getItem("currentUser")!;
       this.allowConnection = false
       this.initial_username = (this.currentUser)
+      this.getUserDetails(this.currentUser);
     }
   }
   
@@ -217,5 +219,12 @@ export class AppComponent implements OnInit{
     this.goToDetailActivity(this.allActivities[0])
   }
 
+  public getUserDetails(username: String) {
+    this.http.get<User>("http://localhost:8080/" + username + "/Details").subscribe((data) => {
+        this.userDetails = data;
+        sessionStorage.setItem('currentUserRole', this.userDetails.role.toString())
+        }) 
+    }
+    
 
 }

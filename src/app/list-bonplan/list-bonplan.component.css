@@ -224,3 +224,54 @@ p {
 /* ::ng-deep .custom-dialog > mat-dialog-container {
     opacity: 0.8;
 } */
+
+.descr-username{
+    display : flex;
+    /* flex-direction : row; */
+    /* border:solid; */
+    justify-content: center;
+    justify-self: center;
+}
+
+.description-bp2{
+    display : flex;
+    padding: 10px;
+    flex-direction : column;
+    width : 70%;
+    font-style : italic;
+    align-items:center;
+    /* border: solid; */
+    border-left:solid;
+}
+
+.Username-BP{
+    padding:10px;
+    cursor: pointer;
+    font-style : normal;
+    font-size : 1.2em;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.Username-BP:hover{
+    
+}
+
+.PhotoUserContainer{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    overflow:hidden;
+    align-items: center;
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    margin: 10px;
+}
+
+.PhotoUserBP{
+    max-width: 60px;
+    
+}

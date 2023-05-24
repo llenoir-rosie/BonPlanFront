@@ -30,6 +30,7 @@
               </select>
             </div>
           </div>
+
           <div *ngFor="let bp of allBonPlanFiltered">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
               <div class="card-content-bp">
@@ -64,7 +65,16 @@
                   
 
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <p>{{ bp.address }}</p> 
+                    <div class="descr-username">
+                      <p class="description-bp">{{ bp.address }}</p>
+                      <div class="description-bp2"> Créé par 
+                        <a (click)="goToUserRestrictedBonPlan(bp.user_name)" class="Username-BP"> 
+                          <div class="PhotoUserContainer">
+                            <img class="PhotoUserBP" src={{getPhotoUsername(bp.user_name)}}>
+                          </div>  {{bp.user_name}} 
+                        </a>
+                      </div>
+                    </div>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p class="commentaryBtn"> 
                       <button *ngIf = 'bp.allCommentaries.length > 1 '(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaires </button>
@@ -223,7 +233,16 @@
                     
                     </div>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
-                    <p>{{ bp.address }}</p>
+                    <div class="descr-username">
+                      <p class="description-bp">{{ bp.address }}</p>
+                      <div class="description-bp2"> Créé par 
+                        <a (click)="goToUserRestrictedBonPlan(bp.user_name)" class="Username-BP"> 
+                          <div class="PhotoUserContainer">
+                            <img class="PhotoUserBP" src={{getPhotoUsername(bp.user_name)}}>
+                          </div>  {{bp.user_name}} 
+                        </a>
+                      </div>
+                    </div>
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <p class="commentaryBtn"> 
                       <button *ngIf = 'bp.allCommentaries.length > 1 '(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaires </button>

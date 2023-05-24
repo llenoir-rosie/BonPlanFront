@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListeVillesComponent } from './list-villes/list-villes.components';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
+import { UserBonPlanRestrictedComponent } from './user-profile/user-bonplan-restricted.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'ville', pathMatch: 'full' },
   { path : 'profile/:currentUser', component : UserProfileComponent},
   { path : 'userbonplans/:currentUser', component : UserBonPlanComponent},
+  { path : 'userbonplansRestricted/:Username', component : UserBonPlanRestrictedComponent},
 
   // chemin vers les pages d'erreurs. ATTENTION : rajouter les nouvelles routes au dessus sinon ça ne marchera pas
   { path : '**', component: PageNotFoundComponent },

@@ -13,13 +13,13 @@ import { getLocaleDateTimeFormat } from "@angular/common";
 
 @Component({
     selector: 'userProfile',
-    templateUrl: './user-bonplan.component.html',
+    templateUrl: './user-bonplan-restricted.component.html',
     styleUrls: ['./user-bonplan.components.css'],
   })
 @Injectable({
 providedIn: 'root'
 })
-export class UserBonPlanComponent implements OnInit{
+export class UserBonPlanRestrictedComponent implements OnInit{
   
   
   ngOptions = ["Les mieux notés","Les plus récents", "Le maximum d'avis"];
@@ -57,7 +57,7 @@ export class UserBonPlanComponent implements OnInit{
       this.submitted=false;
       const routeParams = this.route.snapshot.params;
       this.route.params.subscribe(routeParams => { 
-          this.username = routeParams['currentUser']
+          this.username = routeParams['Username']
           this.getBonPlanUser(this.username);
 
       

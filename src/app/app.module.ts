@@ -25,11 +25,13 @@ import { PopUpComponentUpdateMauvaisPlan } from './list-bonplan/pop-up-updateMau
 import { AuthInterceptor } from './AuthInterceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
+import { UserBonPlanRestrictedComponent } from './user-profile/user-bonplan-restricted.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     UserBonPlanComponent,
+    UserBonPlanRestrictedComponent,
     UserProfileComponent,
     ListeVillesComponent,
     PopUpComponentUpdateBonPlan,

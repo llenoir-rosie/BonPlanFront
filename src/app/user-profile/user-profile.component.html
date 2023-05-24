@@ -22,7 +22,9 @@
             </div>
             <div class="column2">
                 <div class="image-profile">
-                    <div class="image_profile_temp">{{username[0]}} </div>
+                    <!-- <div><img src={{userDetails.imgprofil}}>test {{userDetails.imgprofil}}</div> -->
+                    <!-- <div class="image_profile_temp">{{username[0]}} </div> -->
+                    <div class="container-img"><img class="image_profile" src="{{userDetails.imgProfil}}"></div>
                     <button (click)="openDialogWithTemplateRef(DialogPhoto)" mat-raised-button class="waves-effect waves-light btn button-photo"color="primary"
                         style="color:wheat; background-color: black;"><i class="material-icons right" style="font-size: 20px;">edit</i>
                         </button>
@@ -62,7 +64,6 @@
                         
                     </ng-template>
                 </div>
-
             </div>
 
 
@@ -161,7 +162,7 @@
                         <input type="file" id="photo" name="photo">
                     </div>
                     <div mat-dialog-actions class="button-bottom-dialog">
-                        <button id="UpdatePassword" mat-button matDialogClose color="primary" >Valider</button>
+                        <button id="UpdatePhoto" mat-button matDialogClose color="primary" (click)="UpdatePhoto()">Valider</button>
                         <button mat-button matDialogClose color="primary" >Annuler</button>
                     </div>
                 </ng-template>

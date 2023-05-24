@@ -86,7 +86,9 @@
           <button *ngIf = "!allowConnection" class="menu" >
           <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
           
-          <li class="letter">{{initial_username[0]}}
+          <li class="letter">
+            <div class="container-menu-profil"><img class="menu2-profil" src="{{userDetails.imgProfil}}"></div>
+            
             <ul class="sub-menu">
               <!-- <li><a href="http://localhost:4200/user-profile.component.html">Mon profile</a></li> -->
               
