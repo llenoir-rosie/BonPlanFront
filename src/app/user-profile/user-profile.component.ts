@@ -120,7 +120,6 @@ public UpdatePhoto(){
     }))
     console.log(this.userDetails)
 
-    // window.location = document.location;
   }
 
 public ChoixDelete(choix : String){

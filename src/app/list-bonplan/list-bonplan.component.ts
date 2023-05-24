@@ -356,9 +356,7 @@ throw new Error('Method not implemented.');
     let imgProfilUser="../assets/img/profil/"+UsernameCreator+".jfif"
     let checkFile;
     let img=new Image();
-    console.log(img)
     img.src=imgProfilUser;
-    console.log(img)
     let h=img.height;
     if (h==0){
       imgProfilUser = "../assets/img/default_user.jpg"
