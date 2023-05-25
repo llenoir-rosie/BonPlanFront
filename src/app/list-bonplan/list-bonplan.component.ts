@@ -27,10 +27,10 @@ export class ListBonplanComponent implements OnInit {
 pop() {
 throw new Error('Method not implemented.');
 }
-  ngOptions = ["Les mieux notés","Les plus récents", "Le maximum d'avis"];
-  ngDropdown = "Les mieux notés";
-  ngOptions2 = ["Les moins bien notés","Les plus récents", "Le maximum d'avis"];
-  ngDropdown2 = "Les moins bien notés";
+  ngOptions = ["---", "Les mieux notés","Les plus récents", "Le maximum d'avis"];
+  ngDropdown = "---";
+  ngOptions2 = ["---", "Les moins bien notés","Les plus récents", "Le maximum d'avis"];
+  ngDropdown2 = "---";
   ville: Ville|undefined;
   bp: Bonplan[]=[];
   mp: Mauvaisplan[]=[];
@@ -242,7 +242,7 @@ throw new Error('Method not implemented.');
         this.allBonPlanFiltered = this.allBonPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
       }else if(newtrie == "Le maximum d'avis"){
-        this.allBonPlan = this.allBonPlan?.sort((a : Bonplan , b : Bonplan) =>
+        this.allBonPlanFiltered = this.allBonPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.note.length > b.note.length) ? -1 : 1)
       }
       this.trie1 = newtrie
@@ -259,7 +259,7 @@ throw new Error('Method not implemented.');
         this.allMauvaisPlanFiltered = this.allMauvaisPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.date > b.date) ? -1 : 1)
       }else if (newtrie=="Le maximum d'avis"){
-        this.allMauvaisPlan = this.allMauvaisPlan?.sort((a : Bonplan , b : Bonplan) =>
+        this.allMauvaisPlanFiltered = this.allMauvaisPlanFiltered?.sort((a : Bonplan , b : Bonplan) =>
         (a.note.length > b.note.length) ? -1 : 1)
       }
       this.trie2 = newtrie
