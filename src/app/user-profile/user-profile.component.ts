@@ -18,7 +18,8 @@ providedIn: 'root'
 })
 export class UserProfileComponent implements OnInit{
 
-    constructor(private dialog : MatDialog,private router: Router, private route: ActivatedRoute, private http: HttpClient, private appComponent: AppComponent) {}
+    constructor(private dialog : MatDialog, private router: Router, private route: ActivatedRoute, private http: HttpClient,
+         private appComponent: AppComponent) {}
     userDetails : User;
     user_updated : User;
     username : String;
@@ -37,7 +38,6 @@ ngOnInit(): void {
     sessionStorage.setItem('currentVille', "");
     sessionStorage.setItem('currentActivite', "");
     this.appComponent.ngOnInit();
-
 }
 
 public getUserDetails(username: String) {

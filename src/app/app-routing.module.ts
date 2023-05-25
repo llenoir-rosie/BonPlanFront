@@ -10,6 +10,7 @@ import { ListeVillesComponent } from './list-villes/list-villes.components';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 
@@ -24,8 +25,8 @@ const routes: Routes = [
   { path : 'activity/:activity.name', component: ListeVillesComponent},
   // { path: 'ville/:ville.name/bonplan/precision', component: ListPrecisionComponent},
   { path: '', redirectTo: 'ville', pathMatch: 'full' },
-  { path : 'profile/:currentUser', component : UserProfileComponent},
-  { path : 'userbonplans/:currentUser', component : UserBonPlanComponent},
+  { path : 'profile/:currentUser', component : UserProfileComponent, canActivate: [AuthGuard]},
+  { path : 'userbonplans/:currentUser', component : UserBonPlanComponent, canActivate: [AuthGuard]},
 
   // chemin vers les pages d'erreurs. ATTENTION : rajouter les nouvelles routes au dessus sinon ça ne marchera pas
   { path : '**', component: PageNotFoundComponent },
