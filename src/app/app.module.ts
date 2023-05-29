@@ -27,6 +27,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserBonPlanComponent } from './user-profile/user-bonplan.component';
 import { UserBonPlanRestrictedComponent } from './user-profile/user-bonplan-restricted.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CommonModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
   ],
   exports: [
     FormsModule,

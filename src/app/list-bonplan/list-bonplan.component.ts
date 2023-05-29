@@ -16,11 +16,14 @@ import { BonPlanNote } from '../bonplan_note';
 import { Commentary } from '../Commentary';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { User } from '../User';
+import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { PaginatorIntl } from './paginatorIntl.service';
 
 @Component({
   selector: 'app-list-bonplan',
   templateUrl: './list-bonplan.component.html',
   styleUrls: ['list-bonplan.component.css'],
+  providers: [{provide: MatPaginatorIntl, useClass: PaginatorIntl }]
 })
 export class ListBonplanComponent implements OnInit {
 
@@ -61,6 +64,10 @@ throw new Error('Method not implemented.');
   trie1 : String;
   trie2 : String;
   newCommentaryForm: FormGroup;
+  currentPageBP = 0;
+  currentPageMP = 0;
+  currentBPToShow : BonPlanNote[] = [];
+  currentMPToShow : BonPlanNote[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
@@ -102,6 +109,8 @@ throw new Error('Method not implemented.');
 
     this.getAllActivityName();
     this.getAllVilleName();
+
+    this.InitPagination();
   }
 
 
@@ -362,6 +371,28 @@ throw new Error('Method not implemented.');
       imgProfilUser = "../assets/img/default_user.jpg"
     }
     return imgProfilUser;
+  }
+
+  handlePageEventBP(pageEvent: PageEvent) {
+    this.currentPageBP = pageEvent.pageIndex;
+
+    this.currentBPToShow = this.allBonPlanFiltered.slice(
+      pageEvent.pageIndex * pageEvent.pageSize,
+      pageEvent.pageIndex * pageEvent.pageSize + pageEvent.pageSize
+    );
+  }
+  handlePageEventMP(pageEvent: PageEvent) {
+    this.currentPageMP = pageEvent.pageIndex;
+
+    this.currentBPToShow = this.allBonPlanFiltered.slice(
+      pageEvent.pageIndex * pageEvent.pageSize,
+      pageEvent.pageIndex * pageEvent.pageSize + pageEvent.pageSize
+    );
+  }
+
+  InitPagination() {
+    this.currentBPToShow = this.allBonPlanFiltered;
+    this.currentMPToShow = this.allMauvaisPlanFiltered;
   }
 
 }
