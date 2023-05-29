@@ -706,3 +706,18 @@ input#switch:checked ~ .curtain2 {
 .container img:hover {
     animation: shake 0.25s;
 }
+
+.pop-up-confirmation-déco{
+  position: relative;
+  background-color: brown;
+  padding: 20px;
+  text-align: center;
+}
+.pop-up-confirmation-déco div{
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+}
+.pop-up-boutons:focus-within{
+  background-color: brown;
+}

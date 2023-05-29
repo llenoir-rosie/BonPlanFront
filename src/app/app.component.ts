@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostListener, ViewChild, TemplateRef } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 import { Ville } from './ville';
 import { User } from './User';
@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Activite } from './activite';
 import { PageScrollService } from 'ngx-page-scroll-core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +43,8 @@ export class AppComponent implements OnInit{
 
   //boolean for searchVille or searchActivities input
   isCityActivated: boolean;
-  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute, private pageScrollService: PageScrollService) { }
+  constructor(private router: Router, private http: HttpClient, private route: ActivatedRoute,
+    private pageScrollService: PageScrollService, private dialogRef: MatDialog) { }
   
   goToVilleActivite(ville: Ville) {
     this.router.navigate(['/ville', ville.name]);
@@ -119,6 +121,16 @@ export class AppComponent implements OnInit{
     sessionStorage.removeItem('token');
     this.router.navigate(['/login'])
   }
+
+  @ViewChild('firstDialog', { static: true }) firstDialog: TemplateRef<any>;
+  openConfirmationDeconnexion(templateRef: TemplateRef<any>) {
+    this.dialogRef.open(templateRef, {
+        height: '124px',
+        width: '500px',
+        panelClass: 'custom-dialog',
+      });
+  }
+
   changeImgNav() { // cette fonction est activée à l'initialisation 
     // si on se trouve sur la page d'accueil, l'image de fond de la navbar est celle par défaut et il n'y a pas de nom de ville
     if(location.href == "http://localhost:4200/ville") {

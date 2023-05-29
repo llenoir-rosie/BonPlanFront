@@ -101,10 +101,19 @@
           <div class="txt-connection">Se connecter</div>
           <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
         </button>
-        <button class="button-connexion" *ngIf = "!allowConnection" (click)="logout()">
+        <button class="button-connexion" *ngIf = "!allowConnection" (click)="openConfirmationDeconnexion(ConfirmationDeconnexion)">
           <div class="txt-connection">Déconnexion</div>
           <img class="logo-authentification" src=".\assets\img\logo-authentification.png" height="50%" width="50%">
         </button>
+        <ng-template  #ConfirmationDeconnexion >
+          <div class="pop-up-confirmation-déco">
+            <h2>Êtes-vous sûr de vouloir nous quitter si tôt ?</h2>
+            <div>
+              <button class="pop-up-boutons" mat-button (click)="logout()" matDialogClose>Se déconnecter</button>
+              <button class="pop-up-boutons" mat-button class="BtnAnnuler" matDialogClose > Annuler </button>
+            </div>
+          </div>
+        </ng-template>
       </div>
       <div *ngIf = "this.location_url == 'http://localhost:4200/ville' " class="entete" >
         <div *ngIf = 'this.scroll_y > 400' class="scrollIndicationUp">
