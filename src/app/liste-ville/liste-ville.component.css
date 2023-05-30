@@ -327,3 +327,205 @@ pointer-events:none;
     transform: translate3d(-100%,0,0);  /* position finale à gauche */
   }
 }
+
+/* POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP POP-UP */
+
+.partie-ajout-bp{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px;
+}
+
+.btn-addusrbp {
+  font-family: system-ui, sans-serif;
+  font-size: 3.5rem;
+  color: white;
+  cursor: pointer;
+  padding: .1em .6em;
+  font-weight: bold;
+  border: none;
+  width: 1000px;
+  height: 150px;
+  transition-duration: 0.4s;
+  background-color: #2AA5A5;
+  border: 5px solid #2AA5A5;
+  box-shadow: 0 0 5px #2AA5A5;
+}
+
+.btn-addusrbp:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 10px #2AA5A5;
+}
+
+.btn-addusrbp:active {
+  color: #2AA5A5;
+}
+
+.titre{
+  color: #fff;
+  text-align: center;
+  font-size:2em;
+}
+.content-ngtemplate{
+  margin-top: 0px;
+  position: relative;
+  top: 390px;
+  height : 790px; /* ne pas changer */
+  left: 50%;
+  width: 100%;
+  /* height: 100%; */
+  padding: 40px ;
+  transform: translate(-50%, -50%);
+  background-color: brown;
+  box-shadow: 0 0 0 10px brown;
+  border-radius: 10px;
+}
+
+.AddUserBp > h2 {
+  margin-bottom: 10px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  font-size:1em;
+}
+
+.AddBpCategorie{
+  display : flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.choixAct{
+  padding:5%;
+  width:300px;
+}
+.choixVille{
+  padding:5%;
+  width:300px;
+}
+.choixAct label {
+  font-size:1em;
+  color: #fff;
+}
+.choixVille label{
+  font-size:1em;
+  color: #fff;
+}
+
+.text-input label{
+  font-size:1em;
+  color: #fff;
+}
+
+.name-newbp{
+  padding : 2%;
+}
+
+.description-newbp{
+  padding : 2%;
+}
+
+.button-bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.BtnValider{
+  padding:5px;
+  width:20%;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: white;
+  color: white;
+  background-color:brown;
+
+}
+.BtnValider:hover{
+  background: burlywood;
+  color: #fff;
+  box-shadow: 0 0 5px burlywood,
+              0 0 25px burlywood,
+              0 0 50px burlywood,
+              0 0 100px burlywood;
+  transition : 0.4s;
+}
+
+.BtnAnnuler {
+  padding : 5px;
+  width:20%;
+  border-radius:5px;
+  border : solid;
+  color:white;
+  border-color: red;
+  border-width: 1px;
+  background-color: brown;
+}
+
+.choix-tri{
+  margin-top : 20%;
+  padding : 1%;
+}
+
+.choix-tri label{
+  font-size : 1em;
+  padding : 10px;
+}
+
+.invalid-feedback{
+  color:red;
+}
+#bp-name{
+  color:white;
+  /* border-bottom : red;
+  animation : shake 0.14s 3; */
+}
+#bp-description{
+  color:white;
+}
+
+.bottom-card-bp{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.separator{
+  width : 5px;
+  height : 5px;
+  background-color: black;
+  border-radius: 50%;
+  margin : 10px;
+}
+
+.rating {
+  position: relative;
+  display: flex;
+  align-content: center;
+  column-gap: 10px;
+  margin: 10px;
+  padding : 1%
+}
+.rating a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 2em;
+  transition: color .4s;
+  float: right; /* permet de colorer les étoiles dans le bon sens (de gauche à droite) */
+}
+.rating a:hover,
+.rating a:hover ~ a{ /* sélecteur d'adjacente indirecte: permet de changer la couleur des étoiles précédentes à celle surolée  */
+  cursor: pointer;
+  color: orange;
+}
+.rating a:focus,
+.rating a:focus ~ a {
+  color: orange;
+}
+
+.rating p{
+  color:white;
+}
