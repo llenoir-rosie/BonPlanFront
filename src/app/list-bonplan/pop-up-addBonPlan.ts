@@ -36,26 +36,26 @@ ngOnInit() {
             name : new FormControl('', Validators.required),
             address : new FormControl('', Validators.required),
             note : new FormControl('', Validators.required),
-            commentary : new FormControl('', Validators.required)
+            // commentary : new FormControl('', Validators.required)
         }
     )
 }
 
 public addNewBP() {
     // let listBPComponent: ListBonplanComponent;
-    this.submitted = true; //une fois le formulaire soumis on peut afficher les messages d'erreurs s'ils existent
-    if (!this.f['name'].errors && !this.f['address'].errors && !this.f['commentary'].errors) {
-        this.note_user = [sessionStorage.getItem('currentUser')!];
-        this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
-            sessionStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user, Date.now());
-        let newCommentaryObject = new Commentary(this.newBPForm.value.name, sessionStorage.getItem('currentUser')!, this.newBPForm.value.commentary, this.noteBP);
-        this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe(() => {
-            this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
-                this.dialogRefs.closeAll();
-                // listBPComponent.ngOnInit();
-            })
-          })
-    }
+    // this.submitted = true; //une fois le formulaire soumis on peut afficher les messages d'erreurs s'ils existent
+    // if (!this.f['name'].errors && !this.f['address'].errors && !this.f['commentary'].errors) {
+    //     this.note_user = [sessionStorage.getItem('currentUser')!];
+    //     this.newBP = new Bonplan(this.ville_name, this.activity_type, this.newBPForm.value.name, this.newBPForm.value.address,
+    //         sessionStorage.getItem('currentUser')!, this.nouvelleNote, this.note_user, Date.now());
+    //     let newCommentaryObject = new Commentary(this.newBPForm.value.name, sessionStorage.getItem('currentUser')!, this.newBPForm.value.commentary, this.noteBP);
+    //     this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/newbonplan', this.newBP).subscribe(() => {
+    //         this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
+    //             this.dialogRefs.closeAll();
+    //             // listBPComponent.ngOnInit();
+    //         })
+    //       })
+    // }
 }
 
 public noteClick(note:String) {

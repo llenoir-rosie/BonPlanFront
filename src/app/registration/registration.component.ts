@@ -60,7 +60,7 @@ export class Registration implements OnInit{
     }
     if (!this.f['first_name'].errors && !this.f['last_name'].errors  && !this.f['email'].errors  && !this.f['password'].errors  && !this.f['username'].errors && this.error_control==false && this.error_empty==false) { 
       this.newUser = new User(this.newUserForm.value.first_name,this.newUserForm.value.last_name, this.newUserForm.value.email, 
-                    this.newUserForm.value.password, this.newUserForm.value.username, "USER","../assets/img/default_user.jpg");
+                    this.newUserForm.value.password, this.newUserForm.value.username, "USER","../assets/img/profil/"+this.newUserForm.value.username+ "/default_user.jpg");
       this.http.post<String>('http://localhost:8080/registration', this.newUser)
       // .pipe ( 
       //   catchError((error) => this.msg = error.error.message

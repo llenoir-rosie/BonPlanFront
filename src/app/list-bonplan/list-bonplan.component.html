@@ -82,84 +82,137 @@
                     </p>
                     <!-- <p><i class="material-icons" (click)="openDialogWithTemplateRef(addACommentary)" style="font-size: 23px;">add_circle</i>ajouter un commentaire</p> -->
                     <ng-template  #openCommentaries >
-                      <div class="content-ngtemplate" style="background:none;">
-                        <h2 class = "titre"> Commentaires </h2>
+                      <div class="content-ngtemplate-commentaries" >
+                        <h2 class = "titre-commentaires"> Commentaires - {{bp.name}}</h2>
                         <div mat-dialog-content>
                           <div *ngIf = "bp.allCommentaries.length != 0">
                             <p *ngFor="let com of allCommentary" >
-                              <mat-card>
-                                <mat-card-header *ngIf = 'com.note == "5"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-header *ngIf = 'com.note == "4"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-header *ngIf = 'com.note == "3"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-header *ngIf = 'com.note == "2"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content >{{ com.commentaries }} </mat-card-content>
+                              <mat-card class="card-commentaire">
+                                <div class="commentaire-infoUser">
+                                  <div class="container-img-commentaires">
+                                    <img class="PhotoUserBP2" src={{getPhotoUsername(com.userName)}}>
+                                  </div>
+                                  <mat-card-header *ngIf = 'com.note == "5"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "4"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "3"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "2"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "1"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                </div>
+                                
+                                <mat-card-content >{{com.commentaires}} </mat-card-content>
                               </mat-card>
                             </p>
                           </div>
                           <div *ngIf = "bp.allCommentaries.length == 0">
-                            <p> aucun commentaire </p>
+                            <p style="color:white"> Soyez le premier à donner votre avis ! </p>
                           </div>
-                          <form *ngIf="currentUser != undefined" [formGroup]="newCommentaryForm">
+
+                          <div *ngIf="currentUser != undefined">
                             <div *ngIf="bp.already_noted == 'false'" class="avis">
-                              <div class="commentary" matInput required>
-                                <label for="new_commentary">Partagez votre expérience : </label>
-                                <textarea  formControlName="form_commentary"  placeholder="Entrez votre commentaire" id="new_commentary" style="height: 50px;" matInput required></textarea>
-                                <div *ngIf="submitted && f['form_commentary'].errors" class="invalid-feedback">
+                              <div class="commentary">
+                                <label for="new_commentary2" style="color:white; font-size:1em">Partagez votre expérience : </label>
+                                <textarea  name="new_commentary2"  placeholder="Entrez votre commentaire" id="new_commentary2" style="height: 50px;color:white"></textarea>
+                                <!-- <div *ngIf="submitted && f['form_commentary'].errors" class="invalid-feedback">
                                   <div *ngIf="f['form_commentary'].errors['required']">Le champ Commentaire n'est pas rempli</div>
-                                </div>
+                                </div> -->
                               </div>
                               <div matInput required>   
-                                <a id="étoile1" (click)="saveNote('1')" title="Donner 1 étoile">☆</a>
-                                <a id="étoile2" (click)="saveNote('2')" title="Donner 2 étoiles">☆</a>
-                                <a id="étoile3" (click)="saveNote('3')" title="Donner 3 étoiles">☆</a>
-                                <a id="étoile4" (click)="saveNote('4')" title="Donner 4 étoiles">☆</a>
-                                <a id="étoile5" (click)="saveNote('5')" title="Donner 5 étoiles">☆</a>
+                                <div *ngIf='noteBP == undefined'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "1"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "2"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "3"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "4"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "5"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                </div>
                               </div>
                               <div *ngIf="submitted && note==undefined" class="invalid-feedback">
                                 Donnez une Note !
                               </div>
                             </div>
-                          </form>
-                          <div *ngIf="bp.already_noted == 'true'">
+                          </div>
+                          <div *ngIf="bp.already_noted == 'true'" class="already_noted">
                               Vous avez déjà laissé un avis ;)
                           </div>
                         </div>
-                        <div *ngIf="currentUser != undefined " mat-dialog-actions class = "button-bottom">
+                        <div *ngIf="currentUser != undefined " mat-dialog-actions class = "button-bottom-commentary">
                           <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
                           <button *ngIf="bp.already_noted == 'true'" class="BtnValider"  disabled style="opacity: 0.5"> Ajouter </button>
-                          <button class="BtnAnnuler" matDialogClose > Annuler </button>
+                          <button class="BtnAnnuler" matDialogClose > Retour </button>
                         </div>
                       </div>
                     </ng-template>
@@ -195,10 +248,10 @@
             <h1>Les mauvais plans</h1>
           </div>
           <div class="en-tete-card">
-            <!-- <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
+            <button *ngIf="allowModeratorRight || allowUserRight" mat-raised-button class="waves-effect waves-light btn btn-bp"
             (click)="goToFormAddBonPlan()" style="color:wheat; background-color: black;">&nbsp; Nouveau Plan
             <i class="material-icons right" style="font-size: 23px;">add_circle_outline</i>
-            </button> -->
+            </button>
             <div class="choix-tri">
               <label for="DropdownOptions">Trier par:</label>
               <select class="form-control" id="DropdownOptions2" (click)="Trie2()" >
@@ -258,97 +311,145 @@
                       <button *ngIf = 'bp.allCommentaries.length > 1 '(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaires </button>
                       <button *ngIf = 'bp.allCommentaries.length == 1 || bp.allCommentaries.length == 0'(click)="openDialogCommentaries(openCommentaries, bp.name)" >{{bp.allCommentaries.length}} Commentaire </button>
                     </p>
+                    <!-- <p><i class="material-icons" (click)="openDialogWithTemplateRef(addACommentary)" style="font-size: 23px;">add_circle</i>ajouter un commentaire</p> -->
                     <ng-template  #openCommentaries >
-                      <div class="content-ngtemplate" style="background:none;">
-                        <h2 class = "titre"> Commentaires </h2>
+                      <div class="content-ngtemplate-commentaries" >
+                        <h2 class = "titre-commentaires"> Commentaires - {{bp.name}}</h2>
                         <div mat-dialog-content>
                           <div *ngIf = "bp.allCommentaries.length != 0">
                             <p *ngFor="let com of allCommentary" >
-                              <mat-card>
-                                <mat-card-header *ngIf = 'com.note == "5"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-header *ngIf = 'com.note == "4"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: green">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-header *ngIf = 'com.note == "3"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-header *ngIf = 'com.note == "2"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-header *ngIf = 'com.note == "1"'>
-                                  <mat-card-subtitle>{{com.userName}} 
-                                    <i class="material-icons notation_étoile" style="font-size: 15px; color: red">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                    <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
-                                  </mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content >{{ com.commentaries }} </mat-card-content>
+                              <mat-card class="card-commentaire">
+                                <div class="commentaire-infoUser">
+                                  <div class="container-img-commentaires">
+                                    <img class="PhotoUserBP2" src={{getPhotoUsername(com.userName)}}>
+                                  </div>
+                                  <mat-card-header *ngIf = 'com.note == "5"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "4"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "3"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "2"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                  <mat-card-header *ngIf = 'com.note == "1"'>
+                                    <mat-card-subtitle>{{com.userName}} 
+                                      <i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                      <i class="material-icons notation_étoile" style="font-size: 15px">star</i>
+                                    </mat-card-subtitle>
+                                  </mat-card-header>
+                                </div>
+                                
+                                <mat-card-content >{{com.commentaires}} </mat-card-content>
                               </mat-card>
                             </p>
                           </div>
                           <div *ngIf = "bp.allCommentaries.length == 0">
-                            <p> aucun commentaire </p>
+                            <p style="color:white"> Soyez le premier à donner votre avis ! </p>
                           </div>
-                          <form *ngIf="currentUser != undefined" [formGroup]="newCommentaryForm">
+
+                          <div *ngIf="currentUser != undefined">
                             <div *ngIf="bp.already_noted == 'false'" class="avis">
-                              <div class="commentary" matInput required>
-                                <label for="new_commentary">Partagez votre expérience : </label>
-                                <textarea  formControlName="form_commentary"  placeholder="Entrez votre commentaire" id="new_commentary" style="height: 50px;" matInput required></textarea>
-                                <div *ngIf="submitted && f['form_commentary'].errors" class="invalid-feedback">
-                                  <div *ngIf="f['form_commentary'].errors['required']">Le champ Commentaire n'est pas rempli</div>
+                              <div class="commentary">
+                                <label style="font-size:1em; color:white" for="new_commentary2">Partagez votre expérience : </label>
+                                <textarea  name="new_commentary2"  placeholder="Entrez votre commentaire" id="new_commentary2" style="height: 50px; color:white"></textarea>
+                               
+                              </div>
+                              <label style="font-size: 1em;color:white"> Votre avis sur le bon plan </label>
+                              <div class="user-box" matInput required >
+                                <div *ngIf='noteBP == undefined'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "1"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "2"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "3"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "4"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoiles"><i class="material-icons notation_étoile" style="font-size: 15px; color:grey">star</i></a>
+                                </div>
+                                <div *ngIf='noteBP == "5"'>
+                                  <a id="étoile1" (click)="noteClick('1')" title="Donner 1 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile2" (click)="noteClick('2')" title="Donner 2 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile3" (click)="noteClick('3')" title="Donner 3 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile4" (click)="noteClick('4')" title="Donner 4 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                  <a id="étoile5" (click)="noteClick('5')" title="Donner 5 étoile"><i class="material-icons notation_étoile" style="font-size: 15px; color: orange">star</i> </a>
+                                </div>
+                               
+                                <div *ngIf="submitted && nouvelleNote==undefined" class="invalid-feedback">
+                                  Donnez une Note !
+                                </div>
                                 </div>
                               </div>
-                              <div matInput required>   
-                                <a id="étoile1" (click)="saveNote('1')" title="Donner 1 étoile">☆</a>
-                                <a id="étoile2" (click)="saveNote('2')" title="Donner 2 étoiles">☆</a>
-                                <a id="étoile3" (click)="saveNote('3')" title="Donner 3 étoiles">☆</a>
-                                <a id="étoile4" (click)="saveNote('4')" title="Donner 4 étoiles">☆</a>
-                                <a id="étoile5" (click)="saveNote('5')" title="Donner 5 étoiles">☆</a>
-                              </div>
-                              <div *ngIf="submitted && note==undefined" class="invalid-feedback">
-                                Donnez une Note !
-                              </div>
                             </div>
-                          </form>
-                          <div *ngIf="bp.already_noted == 'true'">
+
+
+                          <div *ngIf="bp.already_noted == 'true'" class="already_noted">
                               Vous avez déjà laissé un avis ;)
                           </div>
                         </div>
-                        <div *ngIf="currentUser != undefined " mat-dialog-actions class = "button-bottom">
+                        <div *ngIf="currentUser != undefined " mat-dialog-actions class = "button-bottom-commentary">
                           <button *ngIf="bp.already_noted == 'false'" class="BtnValider" (click)="addCommentary(bp)"> Ajouter </button>
                           <button *ngIf="bp.already_noted == 'true'" class="BtnValider"  disabled style="opacity: 0.5"> Ajouter </button>
-                          <button class="BtnAnnuler" matDialogClose > Annuler </button>
+                          <button class="BtnAnnuler" matDialogClose > Retour </button>
                         </div>
                       </div>
                     </ng-template>
+
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! 
                     </div>

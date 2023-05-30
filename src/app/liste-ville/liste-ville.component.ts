@@ -12,7 +12,7 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { Activite } from '../activite';
 import { _getOptionScrollPosition } from '@angular/material/core';
 import { AppComponent } from "../app.component";
-import { Commentary } from '../Commentary';
+import { Commentary } from '../Commentary'; // ça marche même si y'a une erreur
 import { MatDialog } from '@angular/material/dialog';
 import { cityactivities } from "../cityactivity";
 import { Bonplan } from "../bonplan";
@@ -79,7 +79,7 @@ export class ListeVilleComponent implements OnInit{
       this.randomCommentaries = data; 
       for (let i = 0; i < 5; i++) {
         let j = Math.floor(Math.random() * this.randomCommentaries.length)
-        this.randomCommentariesString.push(this.randomCommentaries[j].commentaries);
+        this.randomCommentariesString.push(this.randomCommentaries[j].commentaires);
         this.randomUserString.push(this.randomCommentaries[j].userName)
       }
     })
