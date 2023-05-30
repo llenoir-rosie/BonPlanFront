@@ -275,3 +275,63 @@ p {
     max-width: 60px;
     
 }
+
+.container-img-commentaires{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    overflow:hidden;
+    align-items: center;
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    margin: 10px;
+}
+
+.PhotoUserBP2{
+    max-width: 50px;
+}
+
+
+.commentaire-infoUser{
+    display:flex;
+    flex-direction: row;
+}
+
+.content-ngtemplate-commentaries{
+    background:brown;
+    /* height : 700px; */
+    height : 100%;
+}
+
+.titre-commentaires{
+    padding : 20px;
+    color:white;
+    font-size:1.5em;
+}
+
+.button-bottom-commentary{
+    justify-content: space-evenly;
+    /* border:white; */
+    background-color:brown;
+    color:brown;
+    /* color:white; */
+}
+
+.already_noted{
+    color:white;
+}
+
+.card-commentaire{
+    background-color:rgb(170, 65, 65);
+    border-color: brown;
+    border-width: 1px;
+    border:solid;
+    color:white
+}
+
+.commentaryBtn{
+    position:relative;
+    bottom:10%;
+}
+

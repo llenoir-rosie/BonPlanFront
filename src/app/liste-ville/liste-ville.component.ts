@@ -12,7 +12,7 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { Activite } from '../activite';
 import { _getOptionScrollPosition } from '@angular/material/core';
 import { AppComponent } from "../app.component";
-import { Commentary } from '../Commentary';
+import { Commentary } from "../Commentary";
 // import { BonPlanNote } from '../bonplan_note';
 // import { CommaExpr } from '@angular/compiler';
 
@@ -74,7 +74,7 @@ export class ListeVilleComponent implements OnInit{
       this.randomCommentaries = data; 
       for (let i = 0; i < 5; i++) {
         let j = Math.floor(Math.random() * this.randomCommentaries.length)
-        this.randomCommentariesString.push(this.randomCommentaries[j].commentaries);
+        this.randomCommentariesString.push(this.randomCommentaries[j].commentaires);
         this.randomUserString.push(this.randomCommentaries[j].userName)
       }
     })
