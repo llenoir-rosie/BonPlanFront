@@ -14,15 +14,15 @@
   <nav>
       <div class="nav-wrapper">
         <div class="haut-gauche">
-          <a href="#" ><img class = "logo-site" src=".\assets\img\logo-site.jfif" height="90%" width="3.5%"></a>
+          <a href="#" ><img class = "logo-site" src=".\assets\img\logo-site.png" ></a>
           <div class="right-content">
             <div>
-              <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
+              <!-- <a href="#" class="brand-logo" style="color: rgb(0, 0, 0)">
                 Bon Plan
-              </a>
+              </a> -->
               <div class = "nom-ville-actuelle">  {{currentActivite}}  {{currentVille}}</div>
             </div>
-            <p class="accroche">Le site qui vous <br> fera aimer voyager</p>
+            <!-- <p class="accroche">Le site qui vous <br> fera aimer voyager</p> -->
           </div>
         </div>
     
@@ -40,7 +40,7 @@
             placeholder="Ville"
             (keyup)="SearchVille(searchBox.value)"
             (keyup.enter)= "SearchVilleEnter()">
-              <div class="collection">
+              <div class="collection" *ngIf="touteVille.length != 0 ">
                 <ul>
                   <a *ngFor="let Ville of this.touteVille"
                     (click)="goToDetailVille(Ville)"
@@ -64,7 +64,7 @@
             placeholder="Activité"
             (keyup)="SearchActivity(searchBox.value)"
             (keyup.enter)= "SearchActivityEnter()">
-              <div class="collection">
+              <div class="collection" *ngIf="touteVille.length != 0 ">
                 <ul>
                   <a *ngFor="let Activite of this.allActivities"
                     (click)="goToDetailActivity(Activite)"
@@ -78,10 +78,13 @@
             <i class="fa fa-search" (click)="SearchActivityEnter()"></i>
           </form>
           
-          <input type="checkbox" id="switch" (click)="changeSearchBtn(researcheBy)"/>
-          <label for="switch" class="toggle" id="toggle"></label>
-          <button *ngIf = "this.location_url !== 'http://localhost:4200/ville'" class="curtain1" href="#switch"></button>
-          <button *ngIf = "this.location_url !== 'http://localhost:4200/ville'" class="curtain2" href="#switch"></button>
+          <input type="checkbox" id="switch"/>
+          <div class="toggle">
+            <button id="toggle-ville" [ngClass]="{'active': isCityActivated}" (click)="isCityActivated = true">Ville</button>
+            <button id="toggle-activité" [ngClass]="{'active': !isCityActivated}" (click)="isCityActivated = false">Activité</button>
+          </div>
+          <button *ngIf = "this.location_url !== 'http://localhost:4200/ville' " [ngClass]="{'active': !isCityActivated}" class="curtain1"></button>
+            <button *ngIf = "this.location_url !== 'http://localhost:4200/ville' " [ngClass]="{'active': !isCityActivated}" class="curtain2"></button>
         
           <button *ngIf = "!allowConnection" class="menu" >
           <!-- <button *ngIf = "!allowConnection" class="menu" (click)="gotToMyAccount(currentUser)"> -->
@@ -120,7 +123,7 @@
           <p style="position: fixed; top: 40px; left: 49%; font-size: 14px;"> Scroll Up </p>
           <div class="arrowUp"></div> 
         </div>
-        <h1>Arrivé dans une nouvelle ville ? <br/> Envie de partager vos bons coins ? <br/> Bienvenue !!</h1>
+        <h1>Arrivé dans une nouvelle ville ? <br/> Envie de partager vos bons coins ? <br/> Bienvenue !</h1>
         <p class="trium_word">
           Faire du sport, &nbsp;&nbsp; Ecouter de la musique, &nbsp;&nbsp; Eviter les faux plans ? <br/>
         </p>  

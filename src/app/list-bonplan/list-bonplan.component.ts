@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bonplan } from '../bonplan';
 import { Mauvaisplan } from '../mauvaisplan' ;
@@ -25,7 +25,7 @@ import { PaginatorIntl } from './paginatorIntl.service';
   styleUrls: ['list-bonplan.component.css'],
   providers: [{provide: MatPaginatorIntl, useClass: PaginatorIntl }]
 })
-export class ListBonplanComponent implements OnInit {
+export class ListBonplanComponent implements OnInit, AfterViewInit {
 
 pop() {
 throw new Error('Method not implemented.');
@@ -71,6 +71,8 @@ throw new Error('Method not implemented.');
   currentBPToShow : BonPlanNote[] = [];
   currentMPToShow : BonPlanNote[] = [];
 
+  paginatorBool = false;
+
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
 
@@ -112,7 +114,12 @@ throw new Error('Method not implemented.');
     this.getAllActivityName();
     this.getAllVilleName();
 
+    
+  }
+  
+  ngAfterViewInit(){
     this.InitPagination();
+    this.paginatorBool = true
   }
 
 
@@ -427,7 +434,7 @@ throw new Error('Method not implemented.');
   }
 
   InitPagination() {
-    this.currentBPToShow = this.allBonPlanFiltered;
+    this.currentBPToShow = this.allBonPlanFiltered.slice(0,5);
     this.currentMPToShow = this.allMauvaisPlanFiltered;
   }
   public noteClick(note : String){

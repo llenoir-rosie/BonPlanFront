@@ -215,15 +215,6 @@ export class AppComponent implements OnInit{
     return this.allActivities;
   }
 
-  changeSearchBtn(searchItemHTML: string) {
-    if (searchItemHTML == 'Recherche par Ville') {
-      this.researcheBy = this.searchArray[1];
-      this.isCityActivated = false;
-    } else {
-      this.researcheBy = this.searchArray[0];
-      this.isCityActivated = true;
-    }
-  }
   SearchVilleEnter(){
     this.goToDetailVille(this.touteVille[0])
   }

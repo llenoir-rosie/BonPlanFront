@@ -30,8 +30,7 @@
               </select>
             </div>
           </div>
-
-          <div *ngFor="let bp of currentBPToShow, let i = index ">
+          <div *ngFor="let bp of currentBPToShow, let i = index " ngIf="paginatorBool">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
               <div class="card-content-bp">
                 <div class="left-content">
