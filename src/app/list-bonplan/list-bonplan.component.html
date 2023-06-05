@@ -30,7 +30,7 @@
               </select>
             </div>
           </div>
-          <div *ngFor="let bp of currentBPToShow, let i = index " ngIf="paginatorBool">
+          <div *ngFor="let bp of currentBPToShow, let i = index ">
             <div class="card" testBorderCard = 'setHeight=50'> <!--(click)="deleteBonPlan(nomdelaville, nomdelactivite)"-->
               <div class="card-content-bp">
                 <div class="left-content">
@@ -218,9 +218,9 @@
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! 
                     </div>
-                    <div *ngIf = "bp.already_noted == 'true'" >
+                    <!-- <div *ngIf = "bp.already_noted == 'true'" >
                       <p class="information_call_note" style="font-size: smaller;"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
-                    </div>
+                    </div> -->
                   </div>
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
@@ -452,9 +452,9 @@
                     <hr style="margin-top: 3%; margin-bottom: 3%;">
                     <div *ngIf="bp.already_noted == 'false'" class="rating">Laissez-nous votre avis ! 
                     </div>
-                    <div *ngIf = "bp.already_noted == 'true'" >
+                    <!-- <div *ngIf = "bp.already_noted == 'true'" >
                       <p class="information_call_note" style="font-size: smaller;"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
-                    </div>
+                    </div> -->
                   </div>
                   <img class = "img-test" src="{{currentImg}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
