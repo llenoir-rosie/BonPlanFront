@@ -79,6 +79,83 @@
     </div>
   </div>
 </div>
+<div class="partie-ajout-bp">
+  <button class = "btn-addusrbp" (click)="userBonPlan.openDialogWithTemplateRef(DialogAddUserBp) ; userBonPlan.getCitiesActivities()">
+    Vous souhaitez partager vos bons plans ?<br/> Ne cherchez plus, c'est ici !
+  </button>
+</div>
+<ng-template  #DialogAddUserBp class="AddUserBp" >
+  <div class="content-ngtemplate" >
+    <h2 class = "titre">Ajout d'un plan</h2>
+    <div mat-dialog-content>
+      <div class="AddBpCategorie">
+        <div class="choixAct">
+          <label for="act">Catégorie d'activité : </label>
+          <select class="form-control" id="DropdownOptionsAct">
+            <option
+              *ngFor="let opt of userBonPlan.ngOptionsAddAct"
+              [selected]="opt === userBonPlan.ngDropdownAddAct"
+              [value]="opt">{{ opt }}
+            </option>
+          </select>
+          <div *ngIf="userBonPlan.submitted && userBonPlan.error_act" class="invalid-feedback">
+            * Saisir une activité
+          </div>
+        </div>
+        <div class="choixVille">
+          <label for="act">Localisation : </label>
+          <select class="form-control" id="DropdownOptionsCity">
+            <option
+              *ngFor="let opt of userBonPlan.ngOptionsAddCity"
+              [selected]="opt === userBonPlan.ngDropdownAddCity"
+              [value]="opt">{{ opt }}
+            </option>
+          </select>
+          <div *ngIf="userBonPlan.submitted && userBonPlan.error_city" class="invalid-feedback">
+            * Saisir une ville
+          </div>
+        </div>
+      </div>
+      <div class="text-input">
+        <div class="name-newbp">
+          <label for="bp-name">Nom : </label>
+          <input type="text" id="bp-name" name="bp-name"><br>
+          <div *ngIf="userBonPlan.submitted && userBonPlan.error_bpname" class="invalid-feedback">
+            * Saisir un nom
+          </div>
+        </div>
+        <div class="description-newbp">
+          <label for="bp-description">Description : </label>
+          <textarea style="height: 100px;" id="bp-description" name="bp-description"></textarea>
+          <div *ngIf="userBonPlan.submitted && userBonPlan.error_bpdescription" class="invalid-feedback">
+            * Saisir une description
+          </div>
+        </div>
+        <div class="rating">
+          <p>Laissez votre avis ! </p>
+          <div>
+            <a id="étoile5" value="5" (click)="userBonPlan.GetNote(5)" title="Donner 5 étoiles">☆</a>
+            <a id="étoile4" value="4" (click)="userBonPlan.GetNote(4)" title="Donner 4 étoiles">☆</a>
+            <a id="étoile3" value="3" (click)="userBonPlan.GetNote(3)" title="Donner 3 étoiles">☆</a>
+            <a id="étoile2" value="2" (click)="userBonPlan.GetNote(2)" title="Donner 2 étoiles">☆</a>
+            <a id="étoile1" value="1" (click)="userBonPlan.GetNote(1)" title="Donner 1 étoile">☆</a>
+          </div>
+          <p>{{userBonPlan.note}}</p>
+          <div *ngIf="userBonPlan.submitted && userBonPlan.error_note" class="invalid-feedback">
+            * Saisir une note
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+    <div mat-dialog-actions class = "button-bottom">
+      <button class="BtnValider" (click)="userBonPlan.AddNewBP()">Valider</button>
+      <button class="BtnAnnuler" matDialogClose (click)="userBonPlan.Annuler()" >Annuler</button>
+    </div>
+  </div>
+</ng-template>
+
 <h1 class="title_card_faces">ILS PARTICIPENT AU SITE : </h1>
 <div class="card_faces">
   <div class="card2">

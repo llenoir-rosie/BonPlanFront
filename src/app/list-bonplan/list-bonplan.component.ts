@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bonplan } from '../bonplan';
 import { Mauvaisplan } from '../mauvaisplan' ;
@@ -16,11 +16,15 @@ import { BonPlanNote } from '../bonplan_note';
 import { Commentary } from '../Commentary';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { User } from '../User';
+import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { PaginatorIntl } from './paginatorIntl.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-list-bonplan',
   templateUrl: './list-bonplan.component.html',
   styleUrls: ['list-bonplan.component.css'],
+  providers: [{provide: MatPaginatorIntl, useClass: PaginatorIntl }]
 })
 export class ListBonplanComponent implements OnInit {
 
@@ -57,13 +61,18 @@ throw new Error('Method not implemented.');
   nouvelleNote : String;
   BonPlanImg : String;
   
-  public allBonPlan: BonPlanNote[];
-  public allMauvaisPlan: BonPlanNote[];
+  // public allBonPlan: BonPlanNote[];
+  // public allMauvaisPlan: BonPlanNote[];
   public allBonPlanFiltered: BonPlanNote[] ;
   public allMauvaisPlanFiltered: BonPlanNote[] ;
   trie1 : String;
   trie2 : String;
   newCommentaryForm: FormGroup;
+  currentPageBP = 0;
+  currentPageMP = 0;
+  currentBPToShow : BonPlanNote[] = [];
+  currentMPToShow : BonPlanNote[] = [];
+
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private dialogRef: MatDialog,
     private appComponent: AppComponent) { }
@@ -79,15 +88,13 @@ throw new Error('Method not implemented.');
     this.nomdelactivite = activiteName+'';
 
     this.imgBackGround = '../assets/img/' + this.nomdelactivite + '.jfif'
-    // (activiteName+'').charAt(0).toUpperCase()+activiteName?.substr(1);
-    // this.newCommentaryForm = new FormGroup (
-    //   {
-    //     form_commentary : new FormControl('', Validators.required),
-    //     form_note : new FormControl('', Validators.required),
-    //   }
-    // )
-    this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+
+    // this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+    
+    this.Setup();
+
     this.getImgActivity(this.nomdelactivite);
+
     if (sessionStorage.getItem("currentUser") == null) {
       this.allowModeratorRight = false
       this.allowUserRight = false
@@ -106,7 +113,7 @@ throw new Error('Method not implemented.');
     this.getAllActivityName();
     this.getAllVilleName();
 
-    console.log(this.allBonPlan)
+    // console.log(this.allBonPlan)
     console.log(this.allBonPlanFiltered)
     console.log(this.currentImg)
   }
@@ -114,20 +121,21 @@ throw new Error('Method not implemented.');
 
 
   //"attrape" les bons et les mauvais plans en foncion de la ville et de l'activité où l'on est
-  public getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
+  public async getAllBonPlan(nomdelaville: String, nomdelactivite: String) {
     this.allBonPlanFiltered = [];
     this.allMauvaisPlanFiltered=[];
-    this.http.get<BonPlanNote[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe((data) => {
+    this.http.get<BonPlanNote[]>("http://localhost:8080/" + nomdelaville + "/" + nomdelactivite + "/bonplan").subscribe(async (data) => {
       // trie les bons plans en fonction de la note moyenne des utilisateurs
       this.listeBonPlan = data.sort((a,b) => Number(this.moyenneTableau(b.note)) - Number(this.moyenneTableau(a.note)));
 
       //add commentaries to list of Bon Plan
-      this.addCommentariesAndFilter(this.listeBonPlan);
+      //  this.addCommentariesAndFilter(this.listeBonPlan);
 
 
-      console.log(this.listeBonPlan);
-      console.log(this.currentImg)
+      // console.log(this.listeBonPlan);
+      // console.log(this.currentImg)
 
+      await this.addCommentariesAndFilter(this.listeBonPlan);
 
       this.trie1 = "Les mieux notés"
       this.trie2 = "Les moins bien notés"
@@ -136,17 +144,16 @@ throw new Error('Method not implemented.');
     })
   }
 
-  public addCommentariesAndFilter(listOfBP: Bonplan[]) {
-    listOfBP.forEach(elt => {
+  public async addCommentariesAndFilter(listOfBP: Bonplan[]) {
+    listOfBP.forEach(async elt => {
       let i = 0;
-      let test_ListeCommentaries
+      // let test_ListeCommentaries
 
-      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + elt.name).subscribe((data) => {
-        test_ListeCommentaries = data})
+      // this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + elt.name).subscribe((data) => {
+      //   test_ListeCommentaries = data})
 
-      console.log("TestListeCommentaires : ")
-      console.log(test_ListeCommentaries)
-      this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + elt.name).subscribe((data) => {
+      let data = await lastValueFrom(this.http.get<Commentary[]>("http://localhost:8080/getByBP/commentaries/" + elt.name));
+      
         while (i < elt.note_user?.length && elt.note_user[i] != this.currentUser) {
           i++          
         }
@@ -164,7 +171,6 @@ throw new Error('Method not implemented.');
           }
         }
       })
-    })
   }
 
   public saveNote(note:String) {
@@ -340,7 +346,7 @@ throw new Error('Method not implemented.');
       delta_final = 0 , Unite=""
     }
   
-    if (Math.round(delta_final)==1){//enlever le "s" lorsque delta == 1
+    if (Math.round(delta_final)==1 && Unite != "mois"){//enlever le "s" lorsque delta == 1
       Unite = Unite.slice(0,-1)
     }
     
@@ -404,6 +410,33 @@ throw new Error('Method not implemented.');
       imgProfilUser = "../assets/img/default_user.jpg"
     }
     return imgProfilUser;
+  }
+
+  handlePageEventBP(pageEvent: PageEvent) {
+    this.currentPageBP = pageEvent.pageIndex;
+    console.log(pageEvent)
+    this.currentBPToShow = this.allBonPlanFiltered.slice(
+      pageEvent.pageIndex * pageEvent.pageSize,
+      pageEvent.pageIndex * pageEvent.pageSize + pageEvent.pageSize
+    );
+  }
+  handlePageEventMP(pageEvent: PageEvent) {
+    this.currentPageMP = pageEvent.pageIndex;
+
+    this.currentBPToShow = this.allBonPlanFiltered.slice(
+      pageEvent.pageIndex * pageEvent.pageSize,
+      pageEvent.pageIndex * pageEvent.pageSize + pageEvent.pageSize
+    );
+  }
+
+  InitPagination() {
+    this.currentBPToShow = this.allBonPlanFiltered.slice(0,5);
+    this.currentMPToShow = this.allMauvaisPlanFiltered;
+  }
+
+  public async Setup() {
+    await this.getAllBonPlan(this.nomdelaville, this.nomdelactivite);
+    this.InitPagination();
   }
 
   public noteClick(note : String){

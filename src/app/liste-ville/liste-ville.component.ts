@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Ville } from '../ville';
@@ -12,7 +12,11 @@ import { PageScrollService } from 'ngx-page-scroll-core';
 import { Activite } from '../activite';
 import { _getOptionScrollPosition } from '@angular/material/core';
 import { AppComponent } from "../app.component";
-import { Commentary } from "../Commentary";
+import { Commentary } from '../Commentary'; // ça marche même si y'a une erreur
+import { MatDialog } from '@angular/material/dialog';
+import { cityactivities } from "../cityactivity";
+import { Bonplan } from "../bonplan";
+import { UserBonPlanComponent } from '../user-profile/user-bonplan.component';
 // import { BonPlanNote } from '../bonplan_note';
 // import { CommaExpr } from '@angular/compiler';
 
@@ -37,7 +41,7 @@ export class ListeVilleComponent implements OnInit{
   randomUserString: String[];
 
   constructor(private router: Router, private http: HttpClient, private pageScrollService: PageScrollService,
-    @Inject(DOCUMENT) private document: any, private appComponent: AppComponent) {}
+    @Inject(DOCUMENT) private document: any, private appComponent: AppComponent, private dialog : MatDialog, public userBonPlan : UserBonPlanComponent) {}
   
   @HostListener('window:scroll', ['$event']) onScrollEvent($event: any){
     this.scroll_y = scrollY;
@@ -64,6 +68,7 @@ export class ListeVilleComponent implements OnInit{
       },
     });
     this.appComponent.ngOnInit();
+    this.userBonPlan.ngOnInit();
   }
 
   public getAleaCommentaries() {
