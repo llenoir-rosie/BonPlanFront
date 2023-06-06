@@ -85,6 +85,11 @@
                     * Saisir une description
                   </div>
                 </div>
+                <div>
+                  <label for="ImgNewBP">Photo</label>
+                  <input type="file" id="ImgNewBP">
+                </div>
+                
                 <div class="rating">
                   <p>Laissez votre avis ! </p>
                   <div>
@@ -97,6 +102,13 @@
                   <p>{{note}}</p>
                   <div *ngIf="submitted && error_note" class="invalid-feedback">
                     * Saisir une note
+                  </div>
+                </div>
+                <div class="name-newbp">
+                  <label for="bp-commentaire">Commentaire : </label>
+                  <input type="text" id="bp-commentaire" name="bp-commentaire"><br>
+                  <div *ngIf="submitted && error_bpcom" class="invalid-feedback">
+                    * Saisir un commentaire
                   </div>
                 </div>
 

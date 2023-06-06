@@ -3,6 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { FormGroup, FormControl, Validators} from '@angular/forms'; 
 import { Bonplan } from "../bonplan";
 import { HttpClient } from "@angular/common/http";
+import * as FileSaver from "file-saver";
 
 @Component({
     selector: 'app-pop-up-Updatebonplan',
@@ -40,11 +41,44 @@ ngOnInit() {
 }
 public updateNewBP() {
     this.submitted = true;
-    this.newBP = new Bonplan(this.ville_name, this.activity_type, this.oldBP.name, this.updateBPForm.value.address,
-        sessionStorage.getItem('currentUser')!,  this.oldBP.note, this.oldBP.note_user, Date.now());
-    console.log(this.newBP)
-    this.http.put('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/updatebonplan', this.newBP).subscribe((data) => {
-        this.dialogRefs.closeAll();
-      })
+
+
+    let NewImg = <HTMLInputElement>document.getElementById("ImageBonPlanUpdated");
+  
+    let FileName = "default"
+    if (NewImg.files?.length != 0){
+        const file1 : File = NewImg.files![0];
+        FileName = this.oldBP.name + ".jfif";
+        FileSaver.saveAs(file1, FileName);
+
+        this.newBP = new Bonplan(this.ville_name, this.activity_type, this.oldBP.name, this.updateBPForm.value.address,
+            sessionStorage.getItem('currentUser')!,  this.oldBP.note, this.oldBP.note_user, Date.now(), FileName);
+       
+        if (this.newBP.address.length == 0){
+            this.newBP.address = this.oldBP.address
+        }
+
+
+        console.log(this.newBP)
+        this.http.put('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type +'/'+FileName +'/updatePhotoBonplan', this.newBP).subscribe((data) => {
+            this.dialogRefs.closeAll();
+          })
+
+        
+
+
+
+    }else{
+        this.newBP = new Bonplan(this.ville_name, this.activity_type, this.oldBP.name, this.updateBPForm.value.address,
+            sessionStorage.getItem('currentUser')!,  this.oldBP.note, this.oldBP.note_user, Date.now(), FileName);
+        this.http.put('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type  +'/updatebonplan', this.newBP).subscribe((data) => {
+            this.dialogRefs.closeAll();
+            })
+
+    }
+    
+
+
+    
 }
 }

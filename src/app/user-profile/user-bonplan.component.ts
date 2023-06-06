@@ -10,6 +10,8 @@ import { Ville } from "../ville";
 import { cityactivities } from "../cityactivity";
 import { TmplAstRecursiveVisitor } from "@angular/compiler";
 import { getLocaleDateTimeFormat } from "@angular/common";
+import * as FileSaver from "file-saver";
+import { Commentary } from "../Commentary";
 
 @Component({
     selector: 'userProfile',
@@ -47,9 +49,11 @@ export class UserBonPlanComponent implements OnInit{
   error_act : Boolean;
   error_city : Boolean;
   error_note : Boolean;
+  error_bpcom : Boolean;
   trie : String
   date: number;
   note_user :String[]
+  bpcom : String
   constructor(private dialog : MatDialog, private router: Router, private route: ActivatedRoute, private http: HttpClient, private appComponent: AppComponent) {}
 
 
@@ -142,7 +146,7 @@ public deleteBonPlanUsr(BPname : String, BPcity : String, BPactivity : String){
 
 public updateBonPlanUsr(bp : Bonplan){
   let new_descr = (<HTMLInputElement>document.getElementById("new_desciription")).value;
-  this.newBP = new Bonplan(bp.ville_name, bp.activity_type, bp.name, new_descr, bp.user_name, bp.note, bp.note_user, bp.date);
+  this.newBP = new Bonplan(bp.ville_name, bp.activity_type, bp.name, new_descr, bp.user_name, bp.note, bp.note_user, bp.date, "imageBP-userbpcomponent.ts");
   this.http.put('http://localhost:8080/'+bp.ville_name+'/'+bp.activity_type+'/updatebonplan',this.newBP).subscribe((data)=>
   this.getBonPlanUser(this.username))
   
@@ -175,13 +179,26 @@ public AddNewBP(){
   this.error_act = false;
   this.error_city = false;
   this.error_note = false;
+  this.error_bpcom = false;
   this.date = Date.now()
   this.note_user=[this.username]
   let bpname = (<HTMLInputElement>document.getElementById("bp-name")).value;
   let bpdescription = (<HTMLInputElement>document.getElementById("bp-description")).value
   let act = (<HTMLInputElement>document.getElementById("DropdownOptionsAct")).value
   let city = (<HTMLInputElement>document.getElementById("DropdownOptionsCity")).value
-  this.newBP = new Bonplan(city, act, bpname, bpdescription, this.username, [this.note], this.note_user, this.date );
+  let bpcom = (<HTMLInputElement>document.getElementById("bp-commentaire")).value
+ 
+ 
+
+  let NewImg = <HTMLInputElement>document.getElementById("ImgNewBP");
+  let FileName = "defaut"
+  if (NewImg.files?.length != 0){
+      const file1 : File = NewImg.files![0];
+      FileName = bpname + ".jfif";
+      FileSaver.saveAs(file1, FileName);
+  }
+ 
+  this.newBP = new Bonplan(city, act, bpname, bpdescription, this.username, [this.note], this.note_user, this.date , FileName);
   this.newCityActivity = new cityactivities(0, city, act);
   if(bpname==""){
     this.error_bpname=true
@@ -198,18 +215,34 @@ public AddNewBP(){
   if(this.note==0){
     this.error_note = true
   }
+  if(bpname==""){
+    this.error_bpcom=true
+  }
 
  
   if (bpname!="" && bpdescription!="" && act!=" - - - Activité - - - " &&
-          city!=" - - - Ville - - - " && this.note!=0){
+          city!=" - - - Ville - - - " && this.note!=0 && this.bpcom!=""){
 
             console.log(this.newBP)
 
-            this.http.post("http://localhost:8080/cityactivities/new", this.newCityActivity).subscribe((data)=>{})
-            this.http.post('http://localhost:8080/' + city + '/' +  act + '/newbonplan', this.newBP).subscribe((data) => {
-              this.getBonPlanUser(this.username) })
-            this.dialog.closeAll();
-  }
+
+
+            // this.http.post('http://localhost:8080/' + this.ville_name + '/' +  this.activity_type + '/' + FileName + '/newbonplan', this.newBP).subscribe(() => {
+            //   this.http.post("http://localhost:8080/commentaries/create/" + this.newBPForm.value.name + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe(() => {
+            //       this.dialogRefs.closeAll();
+            //       // listBPComponent.ngOnInit();
+            //   })
+            //   })
+            let newCommentaryObject = new Commentary(bpname, sessionStorage.getItem('currentUser')!, this.note.toString(), bpcom, city, act)
+    
+
+            this.http.post("http://localhost:8080/cityactivities/new", this.newCityActivity).subscribe((data)=>
+              this.http.post('http://localhost:8080/' + city + '/' +  act + '/' + FileName + '/newbonplan', this.newBP).subscribe((data) =>
+                this.http.post("http://localhost:8080/commentaries/create/" + bpname + "/" + localStorage.getItem('currentUser')!, newCommentaryObject).subscribe((data) => {
+                  this.getBonPlanUser(this.username) 
+            this.dialog.closeAll();})
+              ))
+          }
 
   this.note = 0
 

@@ -24,9 +24,15 @@
             <input class="form-control" formControlName="name" placeholder= "{{oldBP.name}}" value="{{oldBP.name}}" readonly matInput required />
             <label>Name</label>
         </div>
-        <div class="user-box">                      
-            <input class="form-control" formControlName="address" placeholder= "{{oldBP.address}}" matInput required />
-            <label>Adresse</label>
+        <div class="user-box">  
+          <label>Description</label><br><br>
+          <textarea class="form-control" formControlName="address"  placeholder= "{{oldBP.address}}">{{oldBP.address}}</textarea>                    
+            <!-- <input class="form-control" formControlName="address" placeholder= "{{oldBP.address}}" matInput required > -->
+          
+        </div>
+        <div>
+          <label style="font-size: 1em;color:white">Photo</label>
+          <input id="ImageBonPlanUpdated" type="file" class="form-control" formControlName="image">
         </div>
         <a class="submit" (click)="updateNewBP()">
           <span></span>

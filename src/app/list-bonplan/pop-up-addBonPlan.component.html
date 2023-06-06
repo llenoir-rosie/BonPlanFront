@@ -32,19 +32,26 @@
           <!-- <label for="bp-description" style="color:white; font-size: 1em; padding:10px; margin : 10px;">Description</label> -->
           <!-- <textarea style="height: 100px;" id="bp-description" name="bp-description" class="form-control" formControlName="address" matInput required></textarea>                    -->
           <input class="form-control" formControlName="address" matInput required />
-          <label>Adresse :  </label>
+          <label>Description :  </label>
           <div *ngIf="submitted && f['address'].errors" class="invalid-feedback">
             <div *ngIf="f['address'].errors['required']">Besoin d'une Addresse</div>
           </div>
         </div>
+        <div>
+          <label for style="font-size:1em;color:white" formControlname="ImgNewBP">Photo * </label>
+          <input type="file" id="ImgNewBP"/>
+          
+          <p>* Si aucune image n'est sélectionnée, une image par défaut sera attribuée au BonPlan. Vous pourrez la modifier à tout moment.</p>
+        </div>
         <div class="user-box">
           <!-- <label for="bp-description" style="color:white; font-size: 1em; padding:10px; margin : 10px;">Description</label> -->
-          <!-- <textarea style="height: 100px;" id="bp-description" name="bp-description" class="form-control" formControlName="address" matInput required></textarea>                    -->
-          <input class="form-control" formControlName="commentary" matInput required />
+          <!-- <textarea style="height: 100px;" id="bp-description" name="bp-description" class="form-control" formControlName="address" matInput required></textarea>                    --> -->
+         <!-- <input class="form-control" formControlName="commentary" matInput required /> -->
           <label>Commentaire :  </label>
-          <div *ngIf="submitted && f['commentary'].errors" class="invalid-feedback">
-            <div *ngIf="f['commentary'].errors['required']">Laissez un commentaire </div>
-          </div>
+          <input type="text" id="commentaire">
+          <!-- <div *ngIf="submitted && f['commentary'].errors" class="invalid-feedback"> -->
+            <!-- <div *ngIf="f['commentary'].errors['required']">Laissez un commentaire </div> -->
+          <!-- </div> -->
         </div>
         <div class="user-box" matInput required >
           <div *ngIf='noteBP == undefined'>

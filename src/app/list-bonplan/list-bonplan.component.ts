@@ -55,6 +55,7 @@ throw new Error('Method not implemented.');
   public listNameVille: String[] = [];
   note: String;
   nouvelleNote : String;
+  BonPlanImg : String;
   
   public allBonPlan: BonPlanNote[];
   public allMauvaisPlan: BonPlanNote[];
@@ -104,6 +105,10 @@ throw new Error('Method not implemented.');
 
     this.getAllActivityName();
     this.getAllVilleName();
+
+    console.log(this.allBonPlan)
+    console.log(this.allBonPlanFiltered)
+    console.log(this.currentImg)
   }
 
 
@@ -121,6 +126,7 @@ throw new Error('Method not implemented.');
 
 
       console.log(this.listeBonPlan);
+      console.log(this.currentImg)
 
 
       this.trie1 = "Les mieux notés"
@@ -189,8 +195,8 @@ throw new Error('Method not implemented.');
       newUserNote.push(String(sessionStorage.getItem('currentUser')!));
 
       // console.log(nouvelleNote, newUserNote)
-      this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bp.name, bp.address, sessionStorage.getItem('currentUser')!,
-      nouvelleNote, newUserNote, 0)
+      this.newBP = new Bonplan(this.nomdelaville, this.nomdelactivite, bp.name, bp.address, bp.user_name,
+      nouvelleNote, newUserNote, 0, bp.imageBonPlan)
       
       // console.log(this.newBP)
 

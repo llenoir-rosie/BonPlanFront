@@ -224,7 +224,8 @@
                       <p class="information_call_note" style="font-size: smaller;"> <i class="material-icons">check</i> La communauté BonPlan vous remercie pour cet avis !!</p>
                     </div>
                   </div>
-                  <img class = "img-test" src="{{currentImg}}">
+                  <!-- <p>{{bp.imgBonplan}}</p> -->
+                  <img class = "img-test" src="{{bp.imageBonPlan}}">
                   <!-- Enlever allowUserRight quand on aura plusieurs utilisateurs (le modérateur peut tout faire et le user peut modifier
                   ses bp )-->
                   <i *ngIf="(allowModeratorRight || currentUser == bp.user_name)" id='trashBtn' class='fa fa-trash' (click)="deleteBonPlan(bp.name)"></i> 

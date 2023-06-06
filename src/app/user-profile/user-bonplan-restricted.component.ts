@@ -142,7 +142,7 @@ public deleteBonPlanUsr(BPname : String, BPcity : String, BPactivity : String){
 
 public updateBonPlanUsr(bp : Bonplan){
   let new_descr = (<HTMLInputElement>document.getElementById("new_desciription")).value;
-  this.newBP = new Bonplan(bp.ville_name, bp.activity_type, bp.name, new_descr, bp.user_name, bp.note, bp.note_user, bp.date);
+  this.newBP = new Bonplan(bp.ville_name, bp.activity_type, bp.name, new_descr, bp.user_name, bp.note, bp.note_user, bp.date,"imgBP");
   this.http.put('http://localhost:8080/'+bp.ville_name+'/'+bp.activity_type+'/updatebonplan',this.newBP).subscribe((data)=>
   this.getBonPlanUser(this.username))
   
@@ -181,7 +181,7 @@ public AddNewBP(){
   let bpdescription = (<HTMLInputElement>document.getElementById("bp-description")).value
   let act = (<HTMLInputElement>document.getElementById("DropdownOptionsAct")).value
   let city = (<HTMLInputElement>document.getElementById("DropdownOptionsCity")).value
-  this.newBP = new Bonplan(city, act, bpname, bpdescription, this.username, [this.note], this.note_user, this.date );
+  this.newBP = new Bonplan(city, act, bpname, bpdescription, this.username, [this.note], this.note_user, this.date,"imgBP" );
   this.newCityActivity = new cityactivities(0, city, act);
   if(bpname==""){
     this.error_bpname=true

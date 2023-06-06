@@ -6,7 +6,7 @@ export class BonPlanNote extends Bonplan{
     allCommentaries: Commentary[];
     constructor(bonplan: Bonplan, already_noted: String, allCommentaries: Commentary[]) {
         super(bonplan.ville_name, bonplan.activity_type, bonplan.name, bonplan.address, bonplan.user_name, 
-            bonplan.note,  bonplan.note_user, bonplan.date);
+            bonplan.note,  bonplan.note_user, bonplan.date,bonplan.imageBonPlan);
         this.already_noted = already_noted;
         this.allCommentaries = allCommentaries;
     }
